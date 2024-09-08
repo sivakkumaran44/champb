@@ -13,7 +13,11 @@ import ReactCountryFlag from "react-country-flag";
 import { CountryFlagInput } from './CountryFlagInput';
 import ExamSelectionComponent from './Examselection';
 import FindMyLevelTest from './LevelTest';
-
+import PerformanceInsightsLayout from './Performance';
+import MasterYourSyllabus from './MasterYourSyllabus';
+import SuccessOddsAnalyzer from './SuccessOdeer';
+import Qrcode from './Qrcode';
+import Footer from './Footer';
 const Login: React.FC = () => {
   const [isLoginMode, setIsLoginMode] = useState(false);
   const [countryCode, setCountryCode] = useState("+91");
@@ -24,12 +28,15 @@ const Login: React.FC = () => {
        <div className="bg-gradient-to-br from-blue-50 to-blue-100 min-h-[500px] rounded-lg p-4 space-y-8">
    
     <div className="space-y-4 ml-8">
-      <p className="text-xl text-muted-foreground mt-8 mb-4">Practice Makes a Person Perfect. Agree?</p>
+      <p className="text-xl text-muted-foreground mt-8 mb-2">Practice Makes a Person Perfect. Agree?</p>
       <p className="scroll-m-20 text-4xl tracking-tight">
-        Our <span className="font-bold">Progressive Practice Test</span><br />
-        help you to <span className="font-bold">rank in top 1%</span>
+      Our <span className="font-bold">Progressive Practice Test</span>
       </p>
-      <p className="text-sm mt-2 mb-8">Trusted by Toppers to Practice, improve and succeed.</p>
+      <p className="scroll-m-20 text-4xl tracking-tight">
+helps you to <span className="font-bold">rank in the top 1%</span>.
+
+      </p>
+      <p className="text-sm text-muted-foreground">Trusted by Toppers to Practice, improve and succeed.</p>
     </div>
 
     <form className="space-y-2 ml-8">
@@ -79,7 +86,7 @@ const Login: React.FC = () => {
       <Button variant="green" size="lg" type="submit" className="mb-2 hover:bg-green-700">
         {isLoginMode ? "Continue To Achieve Goal" : "Join to Start Achieving Your Goal"}
       </Button>
-       <p className="text-sm">
+       <p className="text-sm ml-6">
       {isLoginMode ? "Ready To Achieve Goal?" : "Already have a goal to achieve?"}{' '}
       <span onClick={() => setIsLoginMode(!isLoginMode)} className="text-primary cursor-pointer">
         {isLoginMode ? "Sign Up" : "Login"}
@@ -95,6 +102,20 @@ const Login: React.FC = () => {
    <div className="mt-20"> 
     <FindMyLevelTest/>
    </div>
+   <div className="mt-20"> 
+   <PerformanceInsightsLayout/>
+   </div>
+   <div className="mt-20"> 
+   <MasterYourSyllabus/>
+   </div>
+   
+   <div className="mt-20"> 
+   <SuccessOddsAnalyzer/>
+   </div>
+   <div className="mt-20"> 
+  <Qrcode/>
+   </div>
+   <Footer/>
    </div>
   );
 };
