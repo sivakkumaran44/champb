@@ -12,7 +12,7 @@ const Header = () => {
           alt="bChamp Logo"
           width={120}
           height={40}
-          className="w-auto h-12"
+          className="w-auto h-10"
         />
       </div>
       <Button className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 text-sm">
