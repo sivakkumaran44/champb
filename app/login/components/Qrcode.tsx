@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import qrCodeImage from '../../img/Screenshot 2024-09-08 181710.png'
-import QImage  from '../../img/Screenshot 2024-09-08 181717.png'
-import QAImage from '../../img/Screenshot 2024-09-08 181723.png'
+import qrCodeImage from '../../img/QR_code_for_mobile_English_Wikipedia 1.png'
+import QImage  from '../../img/App Store.png'
+import QAImage from '../../img/Google Play.png'
 const AppDownloadSection = () => {
   return (
     <div className="flex flex-col items-center justify-center py-16 bg-white">

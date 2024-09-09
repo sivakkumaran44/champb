@@ -9,7 +9,7 @@ const SuccessOddsAnalyzer = () => {
       </div>
       
       <div className="w-full md:w-1/2 md:pl-8">
-      <h3 className="scroll-m-20 text-2xl mb-6 text-green-500 font-semibold tracking-tight">
+      <h3 className="scroll-m-20 text-2xl mb-6 text-emerald-500 font-semibold tracking-tight">
      Success Odds Analyzer</h3>
         <p className="text-lg text-gray-700 mb-6">
   Gain valuable insights into your exam readiness with bChamp&apos;s predictive analytics. Our system assesses

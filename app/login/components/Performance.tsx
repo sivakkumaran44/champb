@@ -8,7 +8,7 @@ const PerformanceInsightsLayout = () => {
       </div>
       
       <div className="w-full md:w-1/2 md:pl-8 mt-40">
-      <h3 className="scroll-m-20 text-2xl mb-6 text-green-500 font-semibold tracking-tight">
+      <h3 className="scroll-m-20 text-2xl mb-6 text-emerald-500 font-semibold tracking-tight">
           Smart Real-time Performance Insights
         </h3>
           <p className="text-lg text-gray-700 mb-6">

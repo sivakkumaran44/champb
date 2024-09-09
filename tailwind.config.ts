@@ -19,6 +19,7 @@ const config = {
     extend: {
       colors: {
         border: "hsl(var(--border))",
+      
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -55,7 +56,7 @@ const config = {
           800: '#047857',
         },
         lightgreen:{
-          default:'6ee787'
+          default:'#71E8B94D'
         }
       },
       borderRadius: {

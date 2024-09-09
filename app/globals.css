@@ -52,7 +52,17 @@ body {
     --radius: 0.5rem;
   }
 }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
+#__next {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 @layer base {
   * {
     @apply border-border;
