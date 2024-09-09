@@ -102,14 +102,14 @@ helps you to <span className="font-bold">rank in the top 1%</span>.
    <div className="mt-20"> 
     <FindMyLevelTest/>
    </div>
-   <div className="mt-20"> 
+   <div className="mb-20"> 
    <PerformanceInsightsLayout/>
    </div>
-   <div className="mt-20"> 
+   <div className="mb-20"> 
    <MasterYourSyllabus/>
    </div>
    
-   <div className="mt-20"> 
+   <div className="mb-20"> 
    <SuccessOddsAnalyzer/>
    </div>
    <div className="mt-20"> 

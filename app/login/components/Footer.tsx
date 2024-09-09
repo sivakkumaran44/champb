@@ -14,8 +14,9 @@ const Footer: React.FC = () => {
             Whether you have questions, need assistance, or just want to explore your options, our team is ready to support you every step of the way. Don&apos;t hesitate to reach out
           </p>
           <Button 
-            variant="default" 
-            className="bg-emerald-700 hover:bg-emerald-800 text-white rounded-full py-6 px-8"
+            variant="green" 
+            size="lg"
+            className=" text-white py-6 px-8"
             asChild
           >
             <Link href="https://wa.me/your_whatsapp_number">
@@ -27,8 +28,9 @@ const Footer: React.FC = () => {
           </Button>
         </CardContent>
       </Card>
-      <hr className="border-t border-black my-4" />
-
+      <div className="relative">
+        <hr className="border-t border-black absolute left-[-50vw] right-[-50vw] w-[200vw]" />
+      </div>
       <div className="flex flex-col md:flex-row justify-between items-center text-gray-600 py-4">
         <p className="mb-4 md:mb-0">Copyrights 2024 | bChamp</p>
         <div className="w-full md:w-px h-px md:h-6 bg-gray-300 my-4 md:my-0 md:mx-4"></div>

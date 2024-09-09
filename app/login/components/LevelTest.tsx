@@ -21,7 +21,7 @@ const FindMyLevelTest = () => {
       <button className="bg-slate-600 text-white p-2 pl-4 pr-16 relative overflow-hidden">
         <h2 className="text-lg font-semibold">3 Free Mock Tests</h2>
         <div 
-          className="absolute top-0 right-0 h-full w-8 bg-slate-100"
+          className="absolute  top-0 right-0 h-full w-8 bg-slate-100"
           style={{
             transform: 'skew(-35deg) translateX(50%)'
           }}
