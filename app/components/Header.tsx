@@ -15,7 +15,7 @@ const Header = () => {
           className="w-auto h-10"
         />
       </div>
-      <Button className=" rounded-xl bg-emerald-700 hover:bg-emerald-700 text-white  font-semibold px-6 py-2 text-sm">
+      <Button className=" rounded-xl bg-emerald-700 hover:bg-emerald-700 text-white   px-6 py-2 text-sm">
         Sign in / Sign up
       </Button>
     </header>
