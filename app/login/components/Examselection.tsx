@@ -32,12 +32,10 @@ const ExamSelectionComponent = () => {
   <Input
     type="text"
     placeholder="Search your exam"
-    className="pl-14 pr-4 py-3 w-full text-slate-700 h-12 bg-white border-0 border-b-4 border-green-300 focus:ring-0 focus:border-green-300 shadow-sm text-slate-700 placeholder-gray-400 rounded-t-lg"
+    className="pl-14 pr-4 py-3 w-full  bg-white border-0 border-b-4 border-green-300  shadow-sm text-slate-700 placeholder-gray-400 rounded-t-lg"
   />
 </div>
-
-
-        <div className="flex space-x-4 mb-6 justify-center items-center">
+  <div className="flex space-x-4 mb-6 justify-center items-center">
   {tabs.map((tab) => (
     <Button 
       key={tab}
@@ -53,7 +51,6 @@ const ExamSelectionComponent = () => {
     </Button>
   ))}
 </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {exams.map((exam) => (
             <Card
