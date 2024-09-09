@@ -22,8 +22,8 @@ const ExamSelectionComponent = () => {
      <p className="leading-7 [&:not(:first-child)]:mb-10">
      Streamline Your Study Strategy</p>
 
-      <div className="relative mb-6 w-full max-w-md mx-auto">
-          <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+      <div className="relative mb-6 w-full max-w-xl  mx-auto">
+          <div className="absolute  inset-y-0 left-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
           </div>
           <Input
@@ -51,9 +51,9 @@ const ExamSelectionComponent = () => {
   {exams.map((exam) => (
     <Card
       key={exam.id}
-      className="bg-gray-100 p-4 rounded-md hover:bg-green-100 transition-colors  flex flex-col items-center justify-center text-center duration-300 h-32 w-48"
+      className="bg-gray-100 p-4 rounded-md hover:bg-green-100 transition-colors  flex flex-col  justify-center duration-300 h-32 w-48"
     >
-      <h3 className="text-green-500 font-semibold   ">{exam.name}</h3>
+      <h3 className="text-green-500 font-semibold">{exam.name}</h3>
       <p className="text-gray-700">{exam.type}</p>
     </Card>
   ))}

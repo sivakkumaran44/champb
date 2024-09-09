@@ -15,7 +15,7 @@ const FindMyLevelTest = () => {
         Take 3 tests to find out where you stand and how to advance with our expert-level diagnostic exam
       </p>
      
-      <div className="max-w-md mx-auto bg-slate-100 rounded-xl shadow-sm overflow-hidden">
+      <div className="max-w-xl  mx-auto bg-slate-100 rounded-xl shadow-sm overflow-hidden">
         <div className="relative">
         <div className="relative inline-block">
       <button className="bg-slate-600 text-white p-2 pl-4 pr-16 relative overflow-hidden">
@@ -29,8 +29,8 @@ const FindMyLevelTest = () => {
       </button>
     </div>
         </div>
-        <div className="p-6">
-          <form className="space-y-4">
+        <div className="p-6 flex items-center justify-center">
+          <form className="space-y-4 max-w-sm ">
             <Select>
               <SelectTrigger className="w-full bg-white text-gray-400 border-none shadow-sm">
                 <SelectValue placeholder="Choose Exam" />
