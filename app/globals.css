@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,7 +14,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Anek;
 }
 
 @layer utilities {
@@ -49,8 +51,14 @@ body {
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --radius: 0.5rem;    
+      --font-anek-tamil: 'Anek Tamil', sans-serif;
+ 
   }
+
+}
+body {
+  font-family: var(--font-anek-tamil);
 }
 html, body {
   height: 100%;

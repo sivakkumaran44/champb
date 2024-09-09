@@ -7,20 +7,20 @@ const Header = () => {
   return (
     <header className="flex justify-between items-center p-4 bg-white">
       <div className="flex items-center">
-        <div className="flex items-center justify-center text-white text-2xl font-bold overflow-hidden">
+        <div className="flex items-center justify-center overflow-hidden">
           <Image
             src={Logo}
-            alt="QR Code"
+            alt="Logo"
             layout="responsive"
             width={250}
             height={250}
-            className="w-auto h-12 sm:h-16 md:h-20 lg:h-24 xl:h-28"
+            className="w-auto h-10 sm:h-12 md:h-16 lg:h-20 xl:h-24"
           />
         </div>
       </div>
-      <Button variant="green" className="flex items-center text-white">
-        <h3 className="scroll-m-20 text-sm tracking-tight">
-          <span>Login / signup</span>
+      <Button variant="green" className="flex items-center text-white px-4 py-2 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+        <h3 className="scroll-m-20 tracking-tight">
+          <span>Login / Signup</span>
         </h3>
       </Button>
     </header>
