@@ -85,7 +85,7 @@ const Login: React.FC = () => {
         <Button
      variant="green"
   type="submit"
-  className="w-full sm:w-auto mb-2 px-4 py-2 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-colors duration-300"
+  className="w-full sm:w-auto mb-2  px-10 py-2  hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-colors duration-300"
 >
   {isLoginMode ? "Continue To Achieve Goal" : "Start Achieving Your Goal"}
 </Button>
