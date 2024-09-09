@@ -79,8 +79,8 @@ const Login: React.FC = () => {
               className="w-full sm:w-72"
             />       
           </div>
-          <p className="text-sm text-slate-500">We'll send an OTP for Verification</p>
-        </form>
+          <p className="text-sm text-muted-foreground text-slate-500  ">We&apos;ll send an OTP for Verification</p>
+     </form>
         <div className="space-y-2">   
         <Button
   variant="green"
@@ -122,3 +122,4 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+      

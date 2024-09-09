@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import Logo from "@/app/img/LOGO SVG.svg";
+import Logo from "@/app/img/Group 4.png";
 import Image from 'next/image';
 
 const Header = () => {
@@ -18,9 +18,9 @@ const Header = () => {
           />
         </div>
       </div>
-      <Button variant="green" className="flex items-center text-white px-4 py-2 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-        <h3 className="scroll-m-20 tracking-tight">
-          <span>Login / Signup</span>
+      <Button variant="green" className="flex items-center text-white">
+        <h3 className="scroll-m-20 text-sm tracking-tight">
+          <span>Login / signup</span>
         </h3>
       </Button>
     </header>
