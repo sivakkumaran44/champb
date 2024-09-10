@@ -3,8 +3,10 @@ import syllabusImage from '@/app/img/Group_155.webp';
 import Image from 'next/image';
 const MasterYourSyllabus = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between p-20 bg-white">
-      <div className="w-full md:w-1/2 mb-8 md:mb-0 pr-8">
+    
+    <div className="flex flex-col md:flex-row items-center justify-between p-8 bg-white">
+      <div className="w-full md:w-1/2 md:pl-8 ">
+       
         <h3 className="scroll-m-20 text-2xl mb-6 text-emerald-500 font-semibold tracking-tight">
           Master Your Syllabus
         </h3>
@@ -15,7 +17,7 @@ const MasterYourSyllabus = () => {
         </p>
       </div>
       
-      <div className="w-full md:w-1/2 relative">
+      <div className="w-full md:w-1/2 mb-8 md:mb-0">
         <Image
           src={syllabusImage}
           alt="Master Your Syllabus"
