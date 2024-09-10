@@ -18,17 +18,15 @@ const FindMyLevelTest = () => {
       <div className="w-full max-w-xl mx-auto bg-slate-200 rounded-xl shadow-sm overflow-hidden">
         <div className="relative">
           <div className="relative inline-block w-full">
-          <div className="bg-slate-600 text-white p-2 pl-4 pr-12 sm:pr-16 relative overflow-hidden">
-  <h2 className="text-base sm:text-lg font-semibold">3 Free Mock Tests</h2>
-  <div
-    className="absolute top-0 right-0 h-full w-12 sm:w-16 bg-slate-200"
-    style={{
-      transform: 'skew(-20deg) translateX(75%)' 
-    }}
-  ></div>
-</div>
-
-
+          <div className="bg-slate-600 text-white p-2 pl-4 pr-24 sm:pr-32 relative overflow-hidden">
+      <h2 className="text-base sm:text-lg font-semibold">3 Free Mock Tests</h2>
+      <div
+        className="absolute top-0 right-0 h-full w-8/12 sm:w-11/12 bg-slate-200"
+        style={{
+          transform: 'skew(-20deg) translateX(40%)'
+        }}
+      ></div>
+    </div>
           </div>
         </div>
                 <div className="p-4 sm:p-6  flex items-center justify-center">

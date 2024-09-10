@@ -14,18 +14,19 @@ const Footer: React.FC = () => {
             Whether you have questions, need assistance, or just want to explore your options, our team is ready to support you every step of the way. Don&apos;t hesitate to reach out.
           </p>
           <Button 
-            variant="green" 
-            size="lg"
-            className="text-neutral-100 py-6 px-8"
-            asChild
-          >
-            <Link href="https://wa.me/your_whatsapp_number">
-              <span className="flex items-center space-x-2 text-lg">
-                Ask your Doubts
-                <FaWhatsapp className="w-6 h-6 ml-2" />
-              </span>
-            </Link>
-          </Button>
+  variant="green" 
+  size="lg"
+  className="text-neutral-100 py-4 px-6 sm:py-5 sm:px-7 lg:py-6 lg:px-8"
+  asChild
+>
+  <Link href="https://wa.me/your_whatsapp_number">
+    <span className="flex items-center space-x-2 text-base sm:text-lg">
+      Ask your Doubts
+      <FaWhatsapp className="w-5 h-5 sm:w-6 sm:h-6 ml-2" />
+    </span>
+  </Link>
+</Button>
+
         </CardContent>
       </Card>
       

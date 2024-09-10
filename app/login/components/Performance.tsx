@@ -4,9 +4,8 @@ import performanceImage from '../../img/Group_1197.webp';
 
 const PerformanceInsightsLayout = () => {
   return (
-    
-    <div className="flex flex-col md:flex-row items-center justify-between bg-white">
-      <div className="w-full md:w-1/2 mb-8 md:mb-0 flex justify-center">
+    <div className="flex flex-col md:flex-row items-center justify-between p-8 bg-white">
+      <div className="w-full md:w-1/2 mb-8 md:mb-0">
         <Image
           src={performanceImage}
           alt="Performance Insights"
@@ -16,9 +15,9 @@ const PerformanceInsightsLayout = () => {
         />
       </div>
       
-      <div className="w-full md:w-1/2 md:pl-0">
-        <h3 className="text-3xl font-bold text-emerald-500 mb-4">
-          Smart Performance Insights
+      <div className="w-full md:w-1/2 md:pl-8">
+        <h3 className="scroll-m-20 text-2xl mb-6 text-emerald-500 font-semibold tracking-tight">
+               Smart Performance Insights
         </h3>
         <p className="text-lg text-gray-700">
           Experience precise progress monitoring with bChamp's advanced tracking system. Our analyzes 

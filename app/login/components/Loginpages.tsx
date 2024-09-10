@@ -115,10 +115,10 @@ const Login: React.FC = () => {
         </div>
       </div>
       </div>
-      <div className="mt-40"> 
+      <div className="mb-40"> 
         <ExamSelectionComponent/>
       </div>
-      <div className="mt-40"> 
+      <div className="mb-40"> 
         <FindMyLevelTest/>
       </div>
       <div className="mb-40"> 
