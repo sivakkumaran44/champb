@@ -24,32 +24,33 @@ const ExamSelectionComponent = () => {
         </p>
 
         <div className="relative mb-6 w-full max-w-xl mx-auto">
-       
-  <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-    <Search className="h-6 w-6 text-gray-700" />
-  </div>
-  <input
-    type="text"
-    placeholder="Search your exam"
-    className="pl-14 pr-4 py-3 w-full  bg-white border-0 border-b-4 border-green-300  shadow-sm text-slate-700 placeholder-gray-400 rounded-t-lg"
-  />
-</div>
-  <div className="flex space-x-4 mb-6 justify-center items-center">
-  {tabs.map((tab) => (
-    <Button 
-      key={tab}
-      variant={activeTab === tab ? "default" : "outline"}
-      onClick={() => setActiveTab(tab)}
-      className={`px-4 py-2 rounded-lg transition-colors duration-300 ${
-        activeTab === tab 
-          ? 'bg-green-400 text-white hover:bg-green-500 shadow-none' 
-          : 'text-slate-400 bg-transparent hover:bg-slate-200' 
-      }`}
-    >
-      {tab}
-    </Button>
-  ))}
-</div>
+          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <Search className="h-6 w-6 text-slate-700" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search your exam"
+            className="pl-14 pr-4 py-3 w-full bg-white border border-slate-900 border-opacity-100 border-b-4 border-b-emerald-300 shadow-sm text-slate-700  rounded-t-lg "
+          />
+        </div>
+
+        <div className="flex space-x-4 mb-6 justify-center items-center">
+          {tabs.map((tab) => (
+            <Button 
+              key={tab}
+              variant={activeTab === tab ? "default" : "outline"}
+              onClick={() => setActiveTab(tab)}
+              className={`px-4 py-2 rounded-lg transition-colors duration-300 ${
+                activeTab === tab 
+                  ? 'bg-green-400 text-white hover:bg-green-500 shadow-none' 
+                  : 'text-slate-400 bg-transparent hover:bg-slate-200' 
+              }`}
+            >
+              {tab}
+            </Button>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {exams.map((exam) => (
             <Card

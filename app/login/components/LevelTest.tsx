@@ -15,7 +15,7 @@ const FindMyLevelTest = () => {
         Take 3 tests to find out where you stand and how to advance with our expert-level diagnostic exam
       </p>
      
-      <div className="w-full max-w-xl mx-auto bg-slate-200 rounded-xl shadow-sm overflow-hidden">
+      <div className="w-full max-w-2xl  mx-auto bg-slate-200 rounded-xl shadow-sm overflow-hidden ">
         <div className="relative">
           <div className="relative inline-block w-full">
           <div className="bg-slate-600 text-white p-2 pl-4 pr-24 sm:pr-32 relative overflow-hidden">

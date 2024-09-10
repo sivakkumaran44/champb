@@ -15,7 +15,7 @@ const PerformanceInsightsLayout = () => {
         />
       </div>
       
-      <div className="w-full md:w-1/2 md:pl-8">
+      <div className="w-full md:w-1/2 md:pl-8 p-20">
         <h3 className="scroll-m-20 text-2xl mb-6 text-emerald-500 font-semibold tracking-tight">
                Smart Performance Insights
         </h3>

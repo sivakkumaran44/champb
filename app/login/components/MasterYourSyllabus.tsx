@@ -3,7 +3,7 @@ import syllabusImage from '@/app/img/Group_155.webp';
 import Image from 'next/image';
 const MasterYourSyllabus = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between p-8 bg-white">
+    <div className="flex flex-col md:flex-row items-center justify-between p-20 bg-white">
       <div className="w-full md:w-1/2 mb-8 md:mb-0 pr-8">
         <h3 className="scroll-m-20 text-2xl mb-6 text-emerald-500 font-semibold tracking-tight">
           Master Your Syllabus

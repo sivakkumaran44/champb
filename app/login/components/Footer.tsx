@@ -7,7 +7,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from 'react-icons/fa'
 const Footer: React.FC = () => {
   return (
     <footer className="mt-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <Card className="bg-emerald-300 border-none rounded-2xl">
           <CardContent className="p-6 sm:p-8 md:p-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Here to help</h2>
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
       
       <div className="w-full bg-slate-900 h-px mt-8"></div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center text-gray-600 py-4">
           <p className="mb-4 md:mb-0">Copyrights 2024 | bChamp</p>
           <div className="flex space-x-6">
