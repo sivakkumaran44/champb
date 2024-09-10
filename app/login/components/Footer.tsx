@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
           <CardContent className="p-6 sm:p-8 md:p-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Here to help</h2>
             <p className="text-gray-700 mb-6 max-w-2xl text-base sm:text-lg">
-              Whether you have questions, need assistance, or just want to explore your options, our team is ready to support you every step of the way. Don't hesitate to reach out.
+              Whether you have questions, need assistance, or just want to explore your options, our team is ready to support you every step of the way. Don&apos;t hesitate to reach out.
             </p>
             <Button 
               variant="default" 
