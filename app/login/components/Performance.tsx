@@ -19,8 +19,8 @@ const PerformanceInsightsLayout = () => {
         <h3 className="scroll-m-20 text-2xl mb-6 text-emerald-500 font-semibold tracking-tight">
                Smart Performance Insights
         </h3>
-        <p className="text-lg text-gray-700">
-          Experience precise progress monitoring with bChamp's advanced tracking system. Our analyzes 
+        <p className="text-lg text-slate-700">
+          Experience precise progress monitoring with bChamp&apos;s advanced tracking system. Our analyzes 
           your performance across various test types, providing detailed insights and tailored 
           recommendations to boost your exam readiness.
         </p>

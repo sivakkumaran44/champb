@@ -84,8 +84,8 @@ const Login: React.FC = () => {
                 className="w-full sm:w-[300px] bg-white"
               />       
             </div>
-            <p className="text-xs text-slate-700">We'll send an OTP for Verification</p>
-          </form>
+            <p className="text-xs text-slate-700">We&apos;ll send an OTP for Verification</p>
+      </form>
           <div className="space-y-3">
   <Button
     type="submit"
@@ -121,7 +121,7 @@ const Login: React.FC = () => {
       <div className="mb-40"> 
         <FindMyLevelTest/>
       </div>
-      <div className="mb-40"> 
+      <div className="w-full overflow-hidden">
         <PerformanceInsightsLayout/>
       </div>
       <div className="mb-40"> 
