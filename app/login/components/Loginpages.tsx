@@ -27,7 +27,9 @@ const Login: React.FC = () => {
   const [mobileNumber, setMobileNumber] = useState("");
  
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">   
+    <div>   
+      
+      <div className="w-full max-w-10xl mx-auto  px-4 sm:px-6 lg:px-8">   
       <div className="min-h-[500px] rounded-lg p-6 sm:p-8 bg-slate-200 flex flex-col md:flex-row items-center">
         <div className="w-full md:w-1/2 space-y-6 pr-0 md:pr-8">
           <div className="space-y-3 ">
@@ -92,7 +94,8 @@ const Login: React.FC = () => {
     {isLoginMode ? "Start Achieving Your Goal" : "Continue To Achieve Goal"}
   </Button>
 
-  <p className=" text-slate-700   mt-3">
+  <p className="text-slate-700 mx-4 sm:mx-8 md:mx-12 lg:mx-20 mt-3">
+
     {isLoginMode ? "Already have a goal to achieve?" : "Ready to achieve your goal?"}{' '}
     <span onClick={() => setIsLoginMode(!isLoginMode)} className="text-slate-900 cursor-pointer font-semibold">
       {isLoginMode ? "Login" : "Sign Up"}
@@ -111,19 +114,20 @@ const Login: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="mt-20"> 
+      </div>
+      <div className="mt-40"> 
         <ExamSelectionComponent/>
       </div>
-      <div className="mt-20"> 
+      <div className="mt-40"> 
         <FindMyLevelTest/>
       </div>
-      <div className="mb-20"> 
+      <div className="mb-40"> 
         <PerformanceInsightsLayout/>
       </div>
-      <div className="mb-20"> 
+      <div className="mb-40"> 
         <MasterYourSyllabus/>
       </div>
-      <div className="mb-20"> 
+      <div className="mb-40"> 
         <SuccessOddsAnalyzer/>
       </div>
       <div className="mt-20"> 

@@ -29,7 +29,7 @@ const ExamSelectionComponent = () => {
   <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
     <Search className="h-6 w-6 text-gray-700" />
   </div>
-  <Input
+  <input
     type="text"
     placeholder="Search your exam"
     className="pl-14 pr-4 py-3 w-full  bg-white border-0 border-b-4 border-green-300  shadow-sm text-slate-700 placeholder-gray-400 rounded-t-lg"

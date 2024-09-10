@@ -51,7 +51,8 @@ body {
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;    
+    --radius: 0.5rem;
+    
       --font-anek-tamil: 'Anek Tamil', sans-serif;
  
   }
@@ -60,17 +61,7 @@ body {
 body {
   font-family: var(--font-anek-tamil);
 }
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
 
-#__next {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
 @layer base {
   * {
     @apply border-border;
