@@ -42,7 +42,7 @@ const FindMyLevelTest = () => {
               </SelectContent>
             </Select>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <Input placeholder="First Name" className="w-full sm:w-1/2 bg-white text-slate-100 border-none shadow-sm" />
+              <Input placeholder="First Name" className="w-full sm:w-1/2 bg-white text-slate-400 border-none shadow-sm" />
               <Input placeholder="Last Name" className="w-full sm:w-1/2 bg-white text-slate-400 border-none shadow-sm" />
             </div>
             <div className="flex space-x-4">
