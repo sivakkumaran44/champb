@@ -29,8 +29,8 @@ const FindMyLevelTest = () => {
         </div>
         <div className="p-4 sm:p-6 flex items-center justify-center">
           <form className="space-y-4 w-full max-w-sm">
-            <Select>
-              <SelectTrigger className="w-full bg-white text-slate-400 border-none shadow-sm">
+            <Select name="exam-select">
+              <SelectTrigger   className="w-full bg-white text-slate-400 border-none shadow-sm">
                 <SelectValue placeholder="Choose Exam" />
               </SelectTrigger>
               <SelectContent>
@@ -42,15 +42,13 @@ const FindMyLevelTest = () => {
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <Input
                 type="text"
-                id="name"
-                name="name"
+                 name="name"
                 placeholder="First Name"
                 className="w-full sm:w-1/2 bg-white text-slate-400 border-none shadow-sm"
                 autoComplete="given-name" 
               />
               <Input
                 type="text"
-                id="last"
                 name="last"
                 placeholder="Last Name"
                 className="w-full sm:w-1/2 bg-white text-slate-400 border-none shadow-sm"
@@ -58,7 +56,7 @@ const FindMyLevelTest = () => {
               />
             </div>
             <div className="flex space-x-4">
-              <Select defaultValue="+91">
+              <Select  name="country-code-select" defaultValue="+91">
                 <SelectTrigger className="w-20 bg-white text-slate-900 border-none shadow-sm">
                   <SelectValue placeholder="+91" />
                 </SelectTrigger>
@@ -68,9 +66,21 @@ const FindMyLevelTest = () => {
                   <SelectItem value="+44">+44</SelectItem>
                 </SelectContent>
               </Select>
-              <Input placeholder="98765-12345" className="flex-grow bg-white text-gray-400 border-none shadow-sm" />
+              <Input
+               
+                name="phone-number"
+                placeholder="98765-12345"
+                className="flex-grow bg-white text-gray-400 border-none shadow-sm"
+              />
             </div>
-            <Button variant="default" size="lg" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+            <Button 
+              type="submit"
+              id="submit-button"
+              name="submit-button"
+              variant="default" 
+              size="lg" 
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+            >
               Start Achieving Your Goal
             </Button>
           </form>

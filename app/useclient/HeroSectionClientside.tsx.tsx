@@ -41,7 +41,7 @@ const HeroSectionClientside: React.FC = () => {
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
           <div className="w-full sm:w-[100px]">
-            <Select onValueChange={(value) => setCountryCode(value)} value={countryCode}>
+            <Select name="country-code-select"onValueChange={(value) => setCountryCode(value)} value={countryCode}>
               <SelectTrigger className="w-full sm:w-[100px] bg-white">
                 <SelectValue>
                   {CountryFlagInput.find(c => c.dial_code === countryCode)?.code && (
@@ -73,7 +73,7 @@ const HeroSectionClientside: React.FC = () => {
             </Select>
           </div>
           <Input
-  id="mobileNumber"
+ 
   name="mobileNumber"
   placeholder="Enter mobile number"
   value={mobileNumber}

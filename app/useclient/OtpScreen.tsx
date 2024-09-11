@@ -58,7 +58,7 @@ const OtpScreen: React.FC<OtpScreenProps> = ({ isOpen, onClose, countryCode, mob
           {otp.map((digit, index) => (
             <Input
               key={index}
-              id={`otp-${index}`}
+             
               name={`otp-${index}`}
               type="text"
               inputMode="numeric"
