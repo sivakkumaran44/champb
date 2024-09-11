@@ -1,5 +1,5 @@
 import React from 'react';
-import successOddsImage from '@/app/img/Group_1197.webp'; 
+import successOddsImage from '@/public/assets/img/Group_1197.webp'; 
 import Image from 'next/image';
 
 const SuccessOddsAnalyzer = () => {
@@ -9,7 +9,10 @@ const SuccessOddsAnalyzer = () => {
         <Image
           src={successOddsImage}
           alt="Success Odds Analysis"
-          className="w-full h-auto object-cover"
+          width={500}
+          height={500}
+          className="w-full h-auto object-contain"
+         
         />
       </div>
       

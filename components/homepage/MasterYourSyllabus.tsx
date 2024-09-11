@@ -1,5 +1,5 @@
 import React from 'react';
-import syllabusImage from '@/app/img/Group_155.webp'; 
+import syllabusImage from '@/public/assets/img/Group_155.webp'; 
 import Image from 'next/image';
 const MasterYourSyllabus = () => {
   return (
@@ -21,7 +21,10 @@ const MasterYourSyllabus = () => {
         <Image
           src={syllabusImage}
           alt="Master Your Syllabus"
-          className="w-full h-auto object-cover"
+          width={500}
+          height={500}
+          className="w-full h-auto object-contain"
+        
         />
       </div>
     </div>

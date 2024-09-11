@@ -9,12 +9,10 @@ import SuccessOddsAnalyzer from './SuccessOdeer';
 import AppCta from './AppCta';
 import Footer from './Footer';
 import Image from 'next/image';
-import illustrationImage from '../../img/Group 1198.svg'
-import HeroSectionClientsid from '../../useclient/HeroSectionClientside.tsx';
+import illustrationImage from '@/public/assets/img/Group 1198.svg'
+import HeroSectionClientsid from '@/app/useclient/HeroSectionClientside.tsx';
 
 const HeroSection: React.FC = () => {
- 
- 
   return (
     <div>   
       <div className="w-full max-w-10xl mx-auto  px-4 sm:px-6 lg:px-8">   
@@ -35,12 +33,15 @@ const HeroSection: React.FC = () => {
         </div> 
         <div className="w-full md:w-1/2 mt-8 md:mt-0">
           <div className="relative w-full h-[340px] sm:h-[440px]"> 
-            <Image
-              src={illustrationImage}
-              alt="Progressive Practice Test Illustration"
-              layout="fill"
-              objectFit="contain"
-            />
+     
+  <Image
+    src={illustrationImage}
+    alt="Progressive Practice Test Illustration"
+    
+    style={{ objectFit: 'contain' }}
+  />
+
+
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import performanceImage from '../../img/Group_1197.webp';
+import performanceImage from '@/public/assets/img/Group_1197.webp';
 
 const PerformanceInsightsLayout = () => {
   return (

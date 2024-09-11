@@ -19,6 +19,8 @@ const GoalSection = () => {
           </div>
           <input
             type="text"
+            id="text"
+            name="text"
             placeholder="Search your exam"
             className="pl-14 pr-4 py-3 w-full bg-white border border-slate-900 border-opacity-100 border-b-4 border-b-emerald-300 shadow-sm text-slate-700  rounded-t-lg "
           />
