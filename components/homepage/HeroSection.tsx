@@ -33,11 +33,11 @@ const HeroSection: React.FC = () => {
         </div> 
         <div className="w-full md:w-1/2 mt-8 md:mt-0">
           <div className="relative w-full h-[340px] sm:h-[440px]"> 
-     
+          
   <Image
     src={illustrationImage}
     alt="Progressive Practice Test Illustration"
-    
+    fill
     style={{ objectFit: 'contain' }}
   />
 
