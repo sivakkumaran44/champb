@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 import GoalSection from './GoalSection';
 import FindMyLevelTest from './FindMyLevelTest';
 import PerformanceInsightsLayout from './Performance';
@@ -9,7 +8,7 @@ import SuccessOddsAnalyzer from './SuccessOdeer';
 import AppCta from './AppCta';
 import Footer from './Footer';
 import Image from 'next/image';
-import illustrationImage from '@/public/assets/img/Group 1198.svg'
+import illustrationImage from '@/public/assets/img/Group 1195.svg'
 import HeroSectionClientsid from '@/app/useclient/HeroSectionClientside.tsx';
 
 const HeroSection: React.FC = () => {
@@ -41,8 +40,6 @@ const HeroSection: React.FC = () => {
     style={{ objectFit: 'contain' }}
     priority={true} 
   />
-
-
           </div>
         </div>
       </div>

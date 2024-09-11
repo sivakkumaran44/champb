@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
-import Logo from "@/public/assets/img/Group 4.png";
+import Logo from "@/public/assets/img/LOGO SVG.svg";
 const Header = () => {
   return (
     <header className="flex justify-between items-center px-4 py-2 bg-white ">
@@ -9,8 +9,7 @@ const Header = () => {
         <Image
           src={Logo}
           alt="bChamp Logo"
-          width={120}
-          height={40}
+          
           className="w-full h-auto object-contain"
         />
       </div>
