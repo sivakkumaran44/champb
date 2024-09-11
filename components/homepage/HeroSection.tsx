@@ -8,7 +8,7 @@ import SuccessOddsAnalyzer from './SuccessOdeer';
 import AppCta from './AppCta';
 import Footer from './Footer';
 import Image from 'next/image';
-import illustrationImage from '@/public/assets/img/Group 1195.svg'
+import illustrationImage from '@/public/assets/img/Group 1198.svg'
 import HeroSectionClientsid from '@/app/useclient/HeroSectionClientside.tsx';
 
 const HeroSection: React.FC = () => {
@@ -27,18 +27,13 @@ const HeroSection: React.FC = () => {
             </h2>
             <p className="text-sm text-slate-700">Trusted by Toppers to Practice, improve and succeed.</p>
           </div>
-    <HeroSectionClientsid/>
-        
+    <HeroSectionClientsid/>  
         </div> 
-        <div className="w-full md:w-1/2 mt-8 md:mt-0">
-          <div className="relative w-full h-[340px] sm:h-[440px]"> 
-          
-  <Image
+        <div className="w-full md:w-1/2 mt-6 md:mt-0">
+          <div className="relative w-full h-[340px] sm:h-[480px]"> 
+           <Image
     src={illustrationImage}
     alt="Progressive Practice Test Illustration"
-    fill
-    style={{ objectFit: 'contain' }}
-    priority={true} 
   />
           </div>
         </div>
