@@ -5,13 +5,13 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 export const metadata: Metadata = {
-  title: "BCHAMP",
-  description: "BCHAMP",
+  title: "bChamp",
+  description: "bChamp",
   icons: {
     icon: [
-      { url: "/assets/img/LOGO SVG.svg" },
-      { url: "/assets/img/LOGO SVG.svg", sizes: "16x16", type: "image/png" },
-      { url: "assets/img/LOGO SVG.svg", sizes: "32x32", type: "image/png" },
+      { url: "/assets/img/Logo.png" },
+      { url: "/assets/img/Logo.png", sizes: "16x16", type: "image/png" },
+      { url: "assets/img/Logo.png", sizes: "32x32", type: "image/png" },
     ], 
   },
 };
