@@ -39,6 +39,7 @@ const HeroSection: React.FC = () => {
     alt="Progressive Practice Test Illustration"
     fill
     style={{ objectFit: 'contain' }}
+    priority={true} 
   />
 
 
