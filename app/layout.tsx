@@ -9,7 +9,9 @@ export const metadata: Metadata = {
   description: "bChamp",
   icons: {
     icon: [
-      { url: "/assets/img/LOGO.svg" }
+      { url: "/assets/img/Logo.png" },
+      { url: "/assets/img/Logo.png", sizes: "16x16", type: "image/png" },
+      { url: "assets/img/Logo.png", sizes: "32x32", type: "image/png" },
     ], 
   },
 };
