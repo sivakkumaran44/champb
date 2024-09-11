@@ -1,9 +1,9 @@
-import LoginPages from "../app/login/components/Loginpages"
+import HeroSection from "./login/components/HeroSection"
 
 function page() {
   return (
       <div className="mx-auto container mt-10">
-      <LoginPages/>
+      <HeroSection/>
     </div>
   
 

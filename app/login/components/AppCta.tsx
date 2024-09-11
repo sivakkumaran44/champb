@@ -3,7 +3,7 @@ import Image from 'next/image';
 import qrCodeImage from '../../img/QR_code_for_mobile_English_Wikipedia 1.png'
 import QImage  from '../../img/App Store.png'
 import QAImage from '../../img/Google Play.png'
-const AppDownloadSection = () => {
+const AppCta = () => {
   return (
     <div className="flex flex-col items-center justify-center py-16 bg-white">
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
@@ -48,4 +48,4 @@ const AppDownloadSection = () => {
   );
 };
 
-export default AppDownloadSection;
+export default AppCta;
