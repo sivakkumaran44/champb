@@ -2,14 +2,7 @@ import React from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+
 const FindMyLevelTest = () => {
   return (
     <div className="container px-4 sm:px-6 py-8 max-w-7xl mx-auto">
