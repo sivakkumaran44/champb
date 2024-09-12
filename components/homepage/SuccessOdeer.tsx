@@ -1,5 +1,5 @@
 import React from 'react';
-import successOddsImage from '@/public/assets/img/Group_1197.webp'; 
+import successOddsImage from '@/public/assets/img/Feature 2.svg'; 
 import Image from 'next/image';
 
 const SuccessOddsAnalyzer = () => {

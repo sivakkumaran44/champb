@@ -44,7 +44,7 @@ const GoalSectionClientside = () => {
             className="bg-gray-100 p-4 rounded-md hover:bg-green-100 transition-colors flex flex-col justify-center duration-300 h-32 w8"
           >
             <h3 className="text-emerald-500 font-extrabold ">{exam.name}</h3>
-            <p className="text-slate-700 font-normal">{exam.type}</p>
+            <p className="text-slate-700 font-medium">{exam.type}</p>
           </Card>
         ))}
       </div>

@@ -11,7 +11,7 @@ const AppCta = () => {
       </h2>
       
  <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center hidden md:block">
       <Image
         src={qrCodeImage}
         alt="QR Code"
@@ -19,7 +19,7 @@ const AppCta = () => {
         height={250}
         className="w-full h-auto object-contain"
       />
-      <p className="mt-2 text-sm text-gray-600">Scan QR to download</p>
+      <p className="mt-2 text-sm  text-center text-gray-600">Scan QR to download</p>
     </div>
         <div className="flex flex-col space-y-4">
         <div className="flex flex-col items-center">
