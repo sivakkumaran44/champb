@@ -18,12 +18,12 @@ const GoalSection = () => {
             <Search className="h-6 w-6 text-slate-700" />
           </div>
           <input
-            type="text"
-            name="exam"
-            placeholder="Search your exam"
-            className="pl-14 pr-4 py-3 w-full bg-white border border-slate-900 border-opacity-100 border-b-4 border-b-emerald-300 shadow-sm text-slate-700  rounded-t-lg "
-          />
-        </div>
+  type="text"
+  name="exam"
+  placeholder="Search your exam"
+  className="pl-14 pr-4 py-3 w-full bg-white border-2 border-slate-900 text-slate-700 rounded-lg shadow-[0_6px_0_0_#10b981] outline-none transition-all duration-200 ease-in-out:border-transparent "
+/>
+</div>
 
        <GoalSectionClientside/>
         

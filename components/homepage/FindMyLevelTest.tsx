@@ -15,22 +15,23 @@ const FindMyLevelTest = () => {
       
       <div className="w-full max-w-2xl mx-auto bg-slate-200 rounded-xl shadow-sm overflow-hidden">
         <div className="relative">
-          <div className="relative inline-block w-full">
+          <div className="relative w-full">
             <div className="bg-slate-600 text-white p-2 pl-4 pr-24 sm:pr-32 relative overflow-hidden">
-              <h2 className="text-base sm:text-lg font-semibold">3 Free Mock Tests</h2>
+              <h2 className="text-base sm:text-lg font-semibold z-10 relative">3 Free Mock Tests</h2>
               <div
-                className="absolute top-0 right-0 h-full w-8/12 sm:w-11/12 bg-slate-200"
-                style={{
-                  transform: 'skew(-20deg) translateX(40%)'
-                }}
-              ></div>
-            </div>
-          </div>
+  className="absolute top-0 right-0 h-full  bg-slate-200 border-none rounded-b-lg"
+  style={{
+    transform: 'skew(-40deg) translateX(40%)',
+  }}
+></div>
+
+</div>  </div>
         </div>
+        
         <div className="p-4 sm:p-6 flex items-center justify-center">
           <form className="space-y-4 w-full max-w-sm">
             <Select name="exam-select">
-              <SelectTrigger   className="w-full bg-white text-slate-400 border-none shadow-sm">
+              <SelectTrigger   className="w-full bg-white text-slate-400  outline-none shadow-sm">
                 <SelectValue placeholder="Choose Exam" />
               </SelectTrigger>
               <SelectContent>
@@ -44,20 +45,20 @@ const FindMyLevelTest = () => {
                 type="text"
                  name="name"
                 placeholder="First Name"
-                className="w-full sm:w-1/2 bg-white text-slate-400 border-none shadow-sm"
+                className="w-full sm:w-1/2 bg-white text-slate-400 outline-none shadow-sm"
                 autoComplete="given-name" 
               />
               <Input
                 type="text"
                 name="last"
                 placeholder="Last Name"
-                className="w-full sm:w-1/2 bg-white text-slate-400 border-none shadow-sm"
+                className="w-full sm:w-1/2 bg-white text-slate-400 outline-none shadow-sm"
                 autoComplete="family-name" 
               />
             </div>
             <div className="flex space-x-4">
               <Select  name="country-code-select" defaultValue="+91">
-                <SelectTrigger className="w-20 bg-white text-slate-900 border-none shadow-sm">
+                <SelectTrigger className="w-20 bg-white text-slate-900 outline-none shadow-sm">
                   <SelectValue placeholder="+91" />
                 </SelectTrigger>
                 <SelectContent>
@@ -70,7 +71,7 @@ const FindMyLevelTest = () => {
                
                 name="phone-number"
                 placeholder="98765-12345"
-                className="flex-grow bg-white text-gray-400 border-none shadow-sm"
+                className="flex-grow bg-white text-gray-400 outline-none shadow-sm"
               />
             </div>
             <Button 

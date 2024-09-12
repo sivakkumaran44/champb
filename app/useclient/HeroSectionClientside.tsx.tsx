@@ -73,12 +73,11 @@ const HeroSectionClientside: React.FC = () => {
             </Select>
           </div>
           <Input
- 
   name="mobileNumber"
   placeholder="Enter mobile number"
   value={mobileNumber}
   onChange={(e) => setMobileNumber(e.target.value)}
-  className="w-full sm:w-[300px] bg-white"
+  className="w-full sm:w-[300px] bg-white outline-none"
 />
         </div>
         <p className="text-xs text-slate-700">We&apos;ll send an OTP for Verification</p>
