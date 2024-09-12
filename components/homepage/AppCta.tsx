@@ -15,7 +15,7 @@ const AppCta = () => {
       <Image
         src={qrCodeImage}
         alt="QR Code"
-        width={250}
+        width={650}
         height={250}
         className="w-full h-auto object-contain"
       />

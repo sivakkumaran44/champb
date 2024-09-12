@@ -41,22 +41,22 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="mb-40"> 
+      <div className="w-full overflow-hidden"> 
         <GoalSection/>
       </div>
-      <div className="mb-40"> 
+      <div className="w-full overflow-hidden"> 
         <FindMyLevelTest/>
       </div>
       <div className="w-full overflow-hidden">
         <PerformanceInsightsLayout/>
       </div>
-      <div className="mb-40"> 
+      <div className="w-full overflow-hidden"> 
         <MasterYourSyllabus/>
       </div>
-      <div className="mb-40"> 
+      <div className="w-full overflow-hidden"> 
         <SuccessOddsAnalyzer/>
       </div>
-      <div className="mt-20"> 
+      <div className="w-full overflow-hidden"> 
         <AppCta/>
       </div>
       <Footer/>

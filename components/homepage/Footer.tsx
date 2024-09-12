@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
         </Card>
       </div>
       
-      <div className="w-full bg-slate-900 h-px mt-6"></div>
+      <div className="w-full bg-slate-950 h-px mt-6"></div>
       
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center text-gray-600 py-3">
