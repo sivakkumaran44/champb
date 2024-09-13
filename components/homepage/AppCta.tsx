@@ -1,17 +1,12 @@
-"use client"
 import React from 'react';
 import Image from 'next/image';
 import qrCodeImage from '@/public/assets/img/QR_code_for_mobile_English_Wikipedia 1.svg'
 import QImage  from '@/public/assets/img/App Store.svg'
 import QAImage from '@/public/assets/img/Google Play.svg'
+import AppCtaClient from '@/app/useclient/AppCtaClient';
 
 const AppCta = () => {
-  const handleGetStarted = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
+
 
   return (
     <div className="flex flex-col items-center justify-center py-16 bg-white">
@@ -47,12 +42,7 @@ const AppCta = () => {
               className="w-full h-auto object-contain"
             />
           </div>
-          <button 
-            className="bg-black text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-gray-800 transition duration-300"
-            onClick={handleGetStarted}
-          >
-            GET STARTED
-          </button>
+        <AppCtaClient/>
         </div>
       </div>
     </div>
