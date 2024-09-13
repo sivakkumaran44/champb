@@ -28,8 +28,6 @@ const OtpScreen: React.FC<OtpScreenProps> = ({ isOpen, onClose, countryCode, mob
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
-
-      // Move to next input if value is entered
       if (value !== '' && index < 5) {
         inputRefs.current[index + 1]?.focus();
       }
