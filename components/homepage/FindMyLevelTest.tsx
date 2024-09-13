@@ -7,6 +7,8 @@ import OtpVerification from '@/components/Auth/OtpScreen';
 
 const FindMyLevelTest = () => {
   const [showOtpVerification, setShowOtpVerification] = useState(false);
+  const [countryCode, setCountryCode] = useState('+91');
+  const [mobileNumber, setMobileNumber] = useState('');
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -71,7 +73,11 @@ const FindMyLevelTest = () => {
               </div>
               
               <div className="flex space-x-3 w-full">
-                <Select name="country-code-select" defaultValue="+91">
+                <Select 
+                  name="country-code-select" 
+                  defaultValue="+91"
+                  onValueChange={(value) => setCountryCode(value)}
+                >
                   <SelectTrigger className="w-1/4 sm:w-1/5 md:w-1/6 bg-white text-slate-900 border-none rounded-md shadow-sm h-12 sm:h-14">
                     <SelectValue placeholder="+91" />
                   </SelectTrigger>
@@ -85,6 +91,8 @@ const FindMyLevelTest = () => {
                   name="phone-number"
                   placeholder="98765-12345"
                   className="flex-grow bg-white text-slate-400 border-none rounded-md shadow-sm h-12 sm:h-14"
+                  value={mobileNumber}
+                  onChange={(e) => setMobileNumber(e.target.value)}
                 />
               </div>
               
@@ -102,10 +110,13 @@ const FindMyLevelTest = () => {
           </div>
         </form>
       </div>
-   {showOtpVerification && (
+
+      {showOtpVerification && (
         <OtpVerification 
           isOpen={showOtpVerification} 
-          onClose={handleOtpVerificationClose} 
+          onClose={handleOtpVerificationClose}
+          countryCode={countryCode}
+          mobileNumber={mobileNumber}
         />
       )}
     </div>
