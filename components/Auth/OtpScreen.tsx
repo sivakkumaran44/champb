@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -75,8 +74,8 @@ const OtpScreen: React.FC<OtpScreenProps> = ({ isOpen, onClose, countryCode, mob
                 maxLength={1}
                 value={digit}
                 onChange={(e) => handleOtpChange(index, e.target.value)}
-                className="w-12 h-12 text-center text-xl bg-slate-200 border-none"
-              />
+                className="w-12 h-12  text-center text-xl bg-slate-200 border-none"
+             />
             ))}
           </div>
           <div className="flex justify-center ">
