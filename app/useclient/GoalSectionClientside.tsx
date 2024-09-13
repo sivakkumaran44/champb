@@ -10,7 +10,6 @@ interface Exam {
   type: string;
 }
 
-// Move allExams outside the component
 const allExams: Exam[] = [
   { id: 1, name: 'SSC CGL', type: 'Combined Graduate Level' },
   { id: 2, name: 'SSC GD', type: 'Constable, General Duty' },
@@ -25,8 +24,9 @@ const GoalSectionClientside: React.FC = () => {
   const tabs = ['Upcoming', 'Popular', 'All'];
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredExams, setFilteredExams] = useState<Exam[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showAllExams, setShowAllExams] = useState(false);
 
-  // Use useMemo to memoize the filtered exams
   const memoizedFilteredExams = useMemo(() => {
     if (searchTerm) {
       return allExams.filter(exam =>
@@ -37,10 +37,24 @@ const GoalSectionClientside: React.FC = () => {
     return [];
   }, [searchTerm]);
 
-  // Update filteredExams when memoizedFilteredExams changes
   useEffect(() => {
     setFilteredExams(memoizedFilteredExams);
   }, [memoizedFilteredExams]);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      const isMobileView = window.innerWidth < 640;
+      setIsMobile(isMobileView);
+      setShowAllExams(!isMobileView);
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  const visibleExams = (isMobile && !showAllExams) ? allExams.slice(0, 3) : allExams;
 
   return (
     <div>
@@ -95,7 +109,7 @@ const GoalSectionClientside: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {allExams.map((exam) => (
+        {visibleExams.map((exam) => (
           <Card
             key={exam.id}
             className="bg-gray-100 p-4 rounded-md hover:bg-green-100 transition-colors flex flex-col justify-center duration-300 h-32 w-full"
@@ -105,6 +119,17 @@ const GoalSectionClientside: React.FC = () => {
           </Card>
         ))}
       </div>
+
+      {isMobile && !showAllExams && allExams.length > 3 && (
+        <div className="mt-4 text-center">
+          <Button
+            onClick={() => setShowAllExams(true)}
+            className="bg-emerald-700 text-white hover:bg-emerald-700"
+          >
+            Show More
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
