@@ -12,7 +12,7 @@ const FindMyLevelTest = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Trigger OTP verification screen
+   
     setShowOtpVerification(true);
   };
 

@@ -47,13 +47,15 @@ const OtpScreen: React.FC<OtpScreenProps> = ({ isOpen, onClose, countryCode, mob
     <>
       <AlertDialog open={isOpen && !showDetailsForm} onOpenChange={onClose}>
         <AlertDialogContent className="w-[90vw] max-w-[400px] p-4 sm:p-6 rounded-lg">
-        <Button
-          onClick={onClose}
-          variant="ghost"
-          className="absolute right-2 top-2 w-8 h-8 p-0 "
-        >
-          <X className="h-5 w-5" />
-        </Button>
+          <Button
+            onClick={onClose}
+            type="submit"
+            name="close"
+            variant="ghost"
+            className="absolute right-2 top-2 w-8 h-8 p-0 "
+          >
+            <X className="h-5 w-5" />
+          </Button>
           <AlertDialogHeader className="flex flex-col items-center space-y-2">
             <AlertDialogTitle className="text-slate-700 text-xl font-semibold text-center">
               Verify Phone Number
@@ -67,7 +69,7 @@ const OtpScreen: React.FC<OtpScreenProps> = ({ isOpen, onClose, countryCode, mob
             {otp.map((digit, index) => (
               <Input
                 key={index}
-                id={`otp-${index}`}
+                
                 name={`otp-${index}`}
                 type="text"
                 inputMode="numeric"
@@ -82,7 +84,7 @@ const OtpScreen: React.FC<OtpScreenProps> = ({ isOpen, onClose, countryCode, mob
             <Button 
               onClick={handleVerifyOtp} 
               type="submit"
-              id="verify-otp-button"
+            
               name="verify-otp-button"
               className="w-5/6 sm:w-4/6 lg:w-3/6 bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-300 py-2 text-lg font-medium rounded-md"
             >

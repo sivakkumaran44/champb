@@ -6,6 +6,7 @@ import {
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
+  AlertDialogDescription,
 } from "@/components/ui/alert-dialog";
 import OtpScreen from './OtpScreen'; 
 import { X } from "lucide-react";
@@ -45,15 +46,17 @@ const OtpVerification: React.FC<OtpVerificationProps> = ({ isOpen, onClose }) =>
             <AlertDialogTitle className="text-center text-slate-700 text-xl font-bold mb-2">
               OTP VERIFICATION
             </AlertDialogTitle>
+            <AlertDialogDescription className="text-center text-sm text-slate-500 mb-2">
+              We will send you one-time password to your mobile number
+            </AlertDialogDescription>
           </AlertDialogHeader>
-          <div className="text-center text-sm text-slate-500 mb-2">
-            We will send you one-time password<br />to your mobile number
-          </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-slate-500 text-center mb-2">Enter Mobile number</label>
+            <label htmlFor="mobileNumber" className="block text-sm font-medium text-slate-500 text-center mb-2">Enter Mobile number</label>
             <div className="flex items-center border-b-2 border-emerald-700">
               <span className="text-zinc-950 mr-2">+91</span>
               <Input
+                id="mobileNumber"
+                name="mobileNumber"
                 value={mobileNumber}
                 onChange={(e) => setMobileNumber(e.target.value)}
                 className="flex-1 border-none outline-none focus:ring-0 focus:outline-none hover:border-transparent active:border-transparent p-2 text-lg"
