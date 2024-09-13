@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ReactCountryFlag from "react-country-flag";
 import { CountryFlagInput } from '@/components/homepage/CountryFlagInput';
-import OtpScreen from './OtpScreen';
+import OtpScreen from '../../components/Auth/OtpScreen';
 
 const HeroSectionClientside: React.FC = () => {
   const [isLoginMode, setIsLoginMode] = useState(false);

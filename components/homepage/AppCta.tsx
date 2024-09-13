@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import qrCodeImage from '@/public/assets/img/QR_code_for_mobile_English_Wikipedia 1.png'
-import QImage  from '@/public/assets/img/App Store.png'
-import QAImage from '@/public/assets/img/Google Play.png'
+import qrCodeImage from '@/public/assets/img/QR_code_for_mobile_English_Wikipedia 1.svg'
+import QImage  from '@/public/assets/img/App Store.svg'
+import QAImage from '@/public/assets/img/Google Play.svg'
 const AppCta = () => {
   return (
     <div className="flex flex-col items-center justify-center py-16 bg-white">
@@ -15,8 +15,7 @@ const AppCta = () => {
       <Image
         src={qrCodeImage}
         alt="QR Code"
-        width={650}
-        height={250}
+      
         className="w-full h-auto object-contain"
       />
       <p className="mt-2 text-sm  text-center text-gray-600">Scan QR to download</p>
