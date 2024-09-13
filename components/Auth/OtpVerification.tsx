@@ -60,7 +60,7 @@ const OtpVerification: React.FC<OtpVerificationProps> = ({ isOpen, onClose }) =>
                 style={{
                   boxShadow: 'none',
                   '--tw-ring-color': 'transparent',
-                }}
+                } as React.CSSProperties}
               />
             </div>
           </div>  
