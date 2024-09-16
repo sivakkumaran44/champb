@@ -30,8 +30,10 @@ interface SidebarContentProps {
   isExpanded: boolean;
   toggleExpanded: () => void;
 }
+
 const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpanded }) => {
   const [expandedSection, setExpandedSection] = useState<string>('Tests');
+  const [activeTab, setActiveTab] = useState<string>('All Tests');
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -42,8 +44,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  const menuItems: MenuItem[] = [
+    const menuItems: MenuItem[] = [
     {
       icon: BookOpen,
       label: 'Tests',
@@ -71,6 +72,10 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
     setExpandedSection(prevSection => prevSection === label ? '' : label);
   };
 
+  const handleTabClick = (label: string) => {
+    setActiveTab(label);
+  };
+
   const renderMenuItem = (item: MenuItem, index: number) => (
     <li key={index} className={`mb-1 ${!isExpanded && !isMobile ? 'flex justify-center' : ''}`}>
       <Button
@@ -91,7 +96,12 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
             <li key={subIndex}>
               <Button
                 variant="lightgreen"
-                className="w-full justify-start px-4 py-2 rounded-lg bg-emerald-200 text-emerald-800 hover:bg-emerald-100"
+                className={`w-full justify-start px-4 py-2 rounded-lg ${
+                  activeTab === subItem.label
+                    ? 'bg-emerald-300 text-emerald-800'
+                    : 'bg-emerald-200 text-emerald-800 hover:bg-emerald-100'
+                }`}
+                onClick={() => handleTabClick(subItem.label)}
               >
                 <subItem.icon size={16} />
                 <span className="ml-3">{subItem.label}</span>
@@ -102,10 +112,9 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
       )}
     </li>
   );
-
   return (
     <>
-      {isMobile && (
+      {isMobile && !isExpanded && (
         <Button
           variant="ghost"
           className="fixed top-4 left-4 z-50"
@@ -123,37 +132,41 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
           isExpanded || isMobile ? 'w-64' : 'w-20'
         } transition-all duration-300`}
       >
-        <div className="relative p-4">
-          {isExpanded || isMobile ? (
-            <Image 
-              src={Logo} 
-              alt="bChamp Logo" 
-              width={120} 
-              height={20} 
-              priority 
-            />
-          ) : (
-            <Image 
-              src={LogoSmall} 
-              alt="bChamp Logo" 
-              width={32} 
-              height={32} 
-              priority 
-            />
+        <div className="flex items-center justify-between p-4 border-b border-gray-300">
+          {(!isMobile || !isExpanded) && (
+            isExpanded || isMobile ? (
+              <Image 
+                src={Logo} 
+                alt="bChamp Logo" 
+                width={120} 
+                height={20} 
+                priority 
+              />
+            ) : (
+              <Image 
+                src={LogoSmall} 
+                alt="bChamp Logo" 
+                width={32} 
+                height={32} 
+                priority 
+              />
+            )
           )}
           {!isMobile && (
-            <div
+            <Button
+              variant="ghost"
+              size="icon"
+              className="p-0 bg-transparent hover:bg-transparent"
               onClick={toggleExpanded}
-              className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-slate-200 rounded-full flex items-center justify-center cursor-pointer shadow-md"
             >
               <CircleChevronRight 
                 size={20} 
-                className={`text-emerald-600 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} 
+                className={`duration-300 ${isExpanded ? 'rotate-180' : ''}`} 
               />
-            </div>
+            </Button>
           )}
         </div>
-        <nav className="flex-1 overflow-y-auto px-2 py-2">
+        <nav className="flex-1 overflow-y-auto px-2 py-4">
           <ul className="space-y-1">
             {menuItems.map((item, index) => renderMenuItem(item, index))}
           </ul>
@@ -168,5 +181,4 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
     </>
   );
 };
-
 export default SidebarContent;

@@ -48,7 +48,7 @@ const tests: TestInfo[] = [
 ];
 
 const TestCard: React.FC<TestInfo> = ({ title, description, duration, questions, isFree }) => (
-  <Card className="mb-4 w-full max-w-3xl mx-auto bg-white border border-slate-300 rounded-lg relative">
+  <Card className="mb-4 w-full max-w-4xl mx-auto bg-white border border-slate-300 rounded-lg relative">
     <CardContent className="p-4 sm:p-6">
       {isFree && (
         <div className="absolute -top-3 -right-3">
