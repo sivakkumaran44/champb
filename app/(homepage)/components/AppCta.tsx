@@ -3,7 +3,7 @@ import Image from 'next/image';
 import qrCodeImage from '@/public/assets/img/QR_code_for_mobile_English_Wikipedia 1.svg'
 import QImage  from '@/public/assets/img/App Store.svg'
 import QAImage from '@/public/assets/img/Google Play.svg'
-import AppCtaClient from '@/app/useclient/AppCtaClient';
+import AppCtaClient from '@/components/useclient/AppCtaClient';
 
 const AppCta = () => {
 

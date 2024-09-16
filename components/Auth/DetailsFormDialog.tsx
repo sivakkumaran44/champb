@@ -1,4 +1,7 @@
+"use client";
+
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
@@ -25,11 +28,20 @@ const DetailsFormDialog: React.FC<DetailsFormDialogProps> = ({ isOpen, onClose }
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [exam, setExam] = useState('');
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Submitting details:', { firstName, lastName, exam });
+    
+    // Close the dialog
     onClose();
+
+    // Wait for the dialog to close (you might need to adjust this timeout)
+    await new Promise(resolve => setTimeout(resolve, 300));
+
+    // Navigate to dashboard
+    router.push('/dashboard');
   };
 
   return (
@@ -37,6 +49,7 @@ const DetailsFormDialog: React.FC<DetailsFormDialogProps> = ({ isOpen, onClose }
       <AlertDialogContent className="w-[95vw] max-w-[500px] p-4 sm:p-6 rounded-lg">
         <Button
           onClick={onClose}
+          type="button"
           variant="ghost"
           className="absolute right-2 top-2 w-8 h-8 p-0"
         >

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,16 +29,18 @@ const OtpVerification: React.FC<OtpVerificationProps> = ({ isOpen, onClose }) =>
 
   const handleOtpScreenClose = () => {
     setIsOtpScreenOpen(false);
+    onClose(); 
   };
 
   if (!isOpen) return null;
 
   return (
     <>
-      <AlertDialog open={!isOtpScreenOpen}>
+      <AlertDialog open={isOpen && !isOtpScreenOpen}>
         <AlertDialogContent className="w-[80vw] max-w-[300px] p-4 sm:p-6 rounded-lg bg-neutral-100 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
           <Button
             onClick={onClose}
+            type="button"
             variant="ghost"
             className="absolute right-2 top-2 w-8 h-8 p-0"
           >
@@ -69,6 +73,7 @@ const OtpVerification: React.FC<OtpVerificationProps> = ({ isOpen, onClose }) =>
           </div>  
           <Button
             onClick={handleGetOtp}
+            type="button"
             className="w-full bg-emerald-700 text-white hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-300 py-3 text-lg font-medium"
           >
             Get OTP

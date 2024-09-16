@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderClientside from '@/app/useclient/HeaderClientside';
+import HeaderClientside from '@/components/useclient/HeaderClientside';
 const Header = () => {
    return (
     <>

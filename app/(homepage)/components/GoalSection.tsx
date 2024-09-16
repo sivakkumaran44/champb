@@ -1,5 +1,5 @@
 import React from 'react';
-import GoalSectionClientside from '@/app/useclient/GoalSectionClientside';
+import GoalSectionClientside from '@/components/useclient/GoalSectionClientside';
 
 const GoalSection = () => {
    return (
