@@ -92,10 +92,8 @@ const GoalSectionClientside: React.FC = () => {
               <div className="p-3 text-slate-700">No exam found</div>
             )}
           </div>
-          
         )}
       </div>
-       
       </div>
       <div className="flex flex-wrap gap-10 sm:gap-12 lg:gap-20 mb-6 sm:mb-8 lg:mb-12 mr-0 sm:mr-8 lg:mr-28 justify-center items-center">
     {tabs.map((tab) => (
@@ -108,8 +106,8 @@ const GoalSectionClientside: React.FC = () => {
             className={`
               px-4 py-2 rounded-lg transition-all duration-300
               ${activeTab === tab 
-                ? 'bg-emerald-300 text-slate-700 hover:bg-emerald-300 border-transparent' 
-                : 'text-slate-950 bg-transparent hover:bg-slate-200 focus:outline-none border-slate-300'
+                ? 'bg-emerald-300 text-slate-700 hover:bg-emerald-300 focus:outline-none border-transparent' 
+                : 'text-slate-950 bg-transparent hover:bg-slate-200 focus:outline-none  border-transparent border-slate-300'
               }
               hover:border-transparent shadow-none
             `}
@@ -118,17 +116,17 @@ const GoalSectionClientside: React.FC = () => {
           </Button>
         ))}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 justify-items-center">
-  {visibleExams.map((exam) => (
-    <Card
-      key={exam.id}
-      className="bg-gray-200 p-4 rounded-md hover:bg-green-100 transition-colors flex flex-col justify-center duration-300 h-28 w-full sm:w-11/12 md:w-10/12 lg:w-9/12"
-    >
-      <h3 className="text-emerald-500 font-extrabold text-sm sm:text-base">{exam.name}</h3>
-      <p className="text-slate-700 font-medium text-xs sm:text-sm">{exam.type}</p>
-    </Card>
-  ))}
-</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+      {visibleExams.map((exam) => (
+        <Card
+          key={exam.id}
+          className="bg-slate-200 p-4 rounded-lg hover:bg-emerald-100 transition-colors flex flex-col justify-center duration-300 h-24 w-full"
+        >
+          <h3 className="text-emerald-500 font-bold text-sm sm:text-base">{exam.name}</h3>
+          <p className="text-slate-700 font-medium text-xs sm:text-sm">{exam.type}</p>
+        </Card>
+      ))}
+    </div>
       {isMobile && !showAllExams && allExams.length > 3 && (
         <div className="mt-4 text-center">
           <Button

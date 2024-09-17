@@ -1,5 +1,5 @@
 import React from 'react';
-import successOddsImage from '@/public/assets/img/Feature 2.svg'; 
+import successOddsImage from '@/public/assets/img/Features 3.svg'; 
 import Image from 'next/image';
 
 const SuccessOddsAnalyzer = () => {

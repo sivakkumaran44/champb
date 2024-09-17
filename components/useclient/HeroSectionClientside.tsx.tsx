@@ -91,7 +91,7 @@ const HeroSectionClientside: React.FC = () => {
           </Button>
           <p className="text-md text-slate-700 mx-4 sm:mx-8 md:mx-12 lg:mx-20 ">
             {isLoginMode ? "Already have a goal to achieve?" : "Ready to achieve your goal?"}{' '}
-            <span onClick={() => setIsLoginMode(!isLoginMode)} className="text-slate-700 cursor-pointer font-semibold">
+            <span onClick={() => setIsLoginMode(!isLoginMode)} className="text-slate-950 cursor-pointer font-medium">
               {isLoginMode ? "Login" : "Sign Up"}
             </span>
           </p>

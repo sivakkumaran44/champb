@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import performanceImage from '@/public/assets/img/Features 3.svg';
+import performanceImage from '@/public/assets/img/Feature 1.svg';
 
 const PerformanceInsightsLayout = () => {
   return (

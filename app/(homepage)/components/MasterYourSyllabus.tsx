@@ -1,5 +1,5 @@
 import React from 'react';
-import syllabusImage from '@/public/assets/img/Feature 1.svg'; 
+import syllabusImage from '@/public/assets/img/Feature 2.svg'; 
 import Image from 'next/image';
 
 const MasterYourSyllabus = () => {
