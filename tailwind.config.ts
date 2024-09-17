@@ -11,9 +11,6 @@ const config = {
   theme: {
     container: {
       center: true,
-      screens: {
-       
-      },
     },
     extend: {
       colors: {

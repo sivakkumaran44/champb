@@ -12,13 +12,13 @@ const FindMyLevelTest = () => {
 
       <div className="w-full max-w-sm sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-2xl mx-auto bg-slate-100 rounded-lg shadow-sm overflow-hidden h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px]">
         <div className="relative h-10 sm:h-14 bg-slate-100 mb-6 sm:mb-10 md:mb-16 lg:mb-20">
-          <div className="absolute left-0 top-0 bottom-0 w-1/2 bg-slate-600"
+          <div className="absolute left-0 top-0 bottom-0 rounded-br-lg w-1/2 bg-slate-600 "
             style={{
               clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0 100%)',
               borderBottomRightRadius: '2rem'
             }}
           >
-            <h2 className="absolute inset-0 flex items-center ml-4 sm:ml-6 md:ml-10 text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white">
+            <h2 className="absolute inset-0 flex items-center ml-4 sm:ml-6 md:ml-10 text-sm sm:text-base md:text-lg lg:text-xl font-bold  text-white">
               3 Free Mock Tests
             </h2>
           </div>

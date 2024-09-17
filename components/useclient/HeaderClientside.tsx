@@ -26,8 +26,9 @@ const Header = () => {
             className="w-full h-auto object-contain"
           />
         </div>
-        <Button 
-          className="rounded-xl bg-emerald-700 hover:bg-emerald-700 font-semibold text-white px-6 py-2 text-sm"
+        <Button size="sm"
+          className="rounded-xl bg-emerald-700 hover:bg-emerald-700 text-base font-semibold text-white px-6 py-2 text-sm"
+        
           onClick={handleSignInClick}
         >
           Sign in / Sign up
