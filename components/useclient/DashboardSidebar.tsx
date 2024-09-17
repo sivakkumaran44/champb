@@ -1,4 +1,3 @@
-"use client"
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
@@ -44,7 +43,8 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-    const menuItems: MenuItem[] = [
+
+  const menuItems: MenuItem[] = [
     {
       icon: BookOpen,
       label: 'Tests',
@@ -68,8 +68,11 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
     { icon: CreditCard, label: 'Subscription' },
   ];
 
-  const toggleSection = (label: string) => {
-    setExpandedSection(prevSection => prevSection === label ? '' : label);
+  const handleItemClick = (label: string) => {
+    if (!isExpanded) {
+      toggleExpanded();
+    }
+    setExpandedSection(label);
   };
 
   const handleTabClick = (label: string) => {
@@ -85,7 +88,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
             ? 'bg-emerald-300 text-emerald-800'
             : 'text-emerald-700 hover:bg-emerald-200'
         }`}
-        onClick={() => toggleSection(item.label)}
+        onClick={() => handleItemClick(item.label)}
       >
         <item.icon size={20} />
         {(isExpanded || isMobile) && <span className="ml-3 font-medium">{item.label}</span>}
@@ -112,6 +115,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
       )}
     </li>
   );
+
   return (
     <>
       {isMobile && !isExpanded && (
@@ -181,4 +185,5 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
     </>
   );
 };
+
 export default SidebarContent;

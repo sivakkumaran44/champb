@@ -59,17 +59,17 @@ const OtpVerification: React.FC<OtpVerificationProps> = ({ isOpen, onClose }) =>
             <div className="flex items-center border-b-2 border-emerald-700">
               <span className="text-zinc-950 mr-2">+91</span>
               <Input
-                id="mobileNumber"
-                name="mobileNumber"
-                value={mobileNumber}
-                onChange={(e) => setMobileNumber(e.target.value)}
-                className="flex-1 border-none outline-none focus:ring-0 focus:outline-none hover:border-transparent active:border-transparent p-2 text-lg"
-                style={{
-                  boxShadow: 'none',
-                  '--tw-ring-color': 'transparent',
-                } as React.CSSProperties}
-              />
-            </div>
+  id="mobileNumber"
+  name="mobileNumber"
+  value={mobileNumber}
+  onChange={(e) => setMobileNumber(e.target.value)}
+  className="flex-1 border-none outline-none focus:ring-0 focus:outline-none hover:border-transparent active:border-transparent p-2 text-lg"
+  style={{
+    boxShadow: 'none',
+    '--tw-ring-color': 'transparent',
+  } as React.CSSProperties}
+/>
+    </div>
           </div>  
           <Button
             onClick={handleGetOtp}

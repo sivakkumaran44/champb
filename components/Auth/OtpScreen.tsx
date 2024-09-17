@@ -53,46 +53,46 @@ const OtpScreen: React.FC<OtpScreenProps> = ({ isOpen, onClose, countryCode, mob
   return (
     <>
       <AlertDialog open={isOpen && !showDetailsForm} onOpenChange={onClose}>
-        <AlertDialogContent 
-          className="w-[90vw] max-w-[400px] p-4 sm:p-6 rounded-lg"
-          aria-describedby="otp-description"
-        >
-          <Button
-            onClick={onClose}
-            type="button"
-            id="close-button"
-            name="close"
-            variant="ghost"
-            className="absolute right-2 top-2 w-8 h-8 p-0"
-          >
-            <X className="h-5 w-5" />
-          </Button>
-          <AlertDialogHeader className="flex flex-col items-center space-y-2">
-            <AlertDialogTitle className="text-slate-700 text-xl font-semibold text-center">
-              Verify Phone Number
-            </AlertDialogTitle>
-            <AlertDialogDescription id="otp-description" className='text-slate-500 text-sm text-center'>
-              Please enter the 6 digit code sent to <br/>
-              <b className='text-gray-900'>{countryCode} {mobileNumber}</b>
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <div className="flex flex-wrap justify-center gap-2 mt-4">
-            {otp.map((digit, index) => (
-              <Input
-                key={index}
-                ref={(el) => {
-                  inputRefs.current[index] = el;
-                }}
-                id={`otp-${index}`}
-                name={`otp-${index}`}
-                type="text"
-                inputMode="numeric"
-                maxLength={1}
-                value={digit}
-                onChange={(e) => handleOtpChange(index, e.target.value)}
-                onKeyDown={(e) => handleKeyDown(index, e)}
-                className="w-12 h-12 text-center text-xl bg-slate-200 border-none"
-              />
+  <AlertDialogContent 
+    className="w-[90vw] max-w-[400px] p-4 sm:p-6 rounded-lg"
+  >
+    <Button
+      onClick={onClose}
+      type="button"
+      id="close-button"
+      name="close"
+      variant="ghost"
+      className="absolute right-2 top-2 w-8 h-8 p-0"
+    >
+      <X className="h-5 w-5" />
+    </Button>
+    <AlertDialogHeader className="flex flex-col items-center space-y-2">
+      <AlertDialogTitle className="text-slate-700 text-xl font-semibold text-center">
+        Verify Phone Number
+      </AlertDialogTitle>
+      <AlertDialogDescription className='text-slate-500 text-sm text-center'>
+        Please enter the 6 digit code sent to <br/>
+        <b className='text-gray-900'>{countryCode} {mobileNumber}</b>
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <div className="flex flex-wrap justify-center gap-2 mt-4">
+  {otp.map((digit, index) => (
+    <Input
+      key={index}
+      ref={(el) => {
+        inputRefs.current[index] = el;
+      }}
+      id={`otp-${index}`}
+      name={`otp-${index}`}
+      type="text"
+      inputMode="numeric"
+      maxLength={1}
+      value={digit}
+      onChange={(e) => handleOtpChange(index, e.target.value)}
+      onKeyDown={(e) => handleKeyDown(index, e)}
+      className="w-12 h-12 text-center text-xl bg-slate-200 border-none"
+    />
+
             ))}
           </div>
           <div className="flex justify-center">

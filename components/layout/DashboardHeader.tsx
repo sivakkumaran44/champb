@@ -9,8 +9,8 @@ const DashboardHeader = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640);
-      setIsSidebarOpen(window.innerWidth >= 640);
+      setIsMobile(window.innerWidth < 702);
+      setIsSidebarOpen(window.innerWidth >= 702);
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
