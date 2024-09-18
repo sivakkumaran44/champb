@@ -1,9 +1,7 @@
 "use client"
 import React from 'react';
-import TestTypeNavigation from './TestTypeNavigation';
+import TestTypeNavigation from '@/app/dashboard/components/TestTypeNavigation';
 import TestCard from "@/components/useclient/MockTestPageClient";
-import { useTestType } from '@/app/usecontext/TestTypeContext';
-
 interface TestInfo {
   id: string;
   title: string;
@@ -38,18 +36,14 @@ const tests: TestInfo[] = [
     isFree: true,
   },
 ];
+
 const MockTestPage: React.FC = () => {
-  const { activeTestType } = useTestType();
-
-  const filteredTests = tests.filter(test => 
-    activeTestType === 'All' || test.title.toLowerCase().includes(activeTestType.toLowerCase())
-  );
-
+ 
   return (
     <div className="container mx-auto p-4">
       <TestTypeNavigation />
       <div className="mt-4 sm:mt-8 space-y-4 sm:space-y-6">
-        {filteredTests.map((test) => (
+        {tests.map((test) => (
           <TestCard key={test.id} {...test} />
         ))}
       </div>

@@ -1,4 +1,3 @@
-type TestType = 'All' | 'Practice Test' | 'Previous Year Question Test' | 'Mock Test' | 'Custom Test';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
@@ -16,24 +15,29 @@ import {
   Target,
   Menu
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import Logo from '@/public/assets/img/LOGO SVG.svg';
 import LogoSmall from '@/public/assets/img/Logo.svg';
 import { useTestType } from '@/app/usecontext/TestTypeContext';
+
 interface MenuItem {
   icon: React.ElementType;
   label: string;
-  subItems?: { icon: React.ElementType; label: string }[];
+  href?: string;
+  subItems?: { icon: React.ElementType; label: string; href?: string }[];
 }
 
 interface SidebarContentProps {
   isExpanded: boolean;
   toggleExpanded: () => void;
 }
+
 const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpanded }) => {
   const [expandedSection, setExpandedSection] = useState<string>('Tests');
   const [isMobile, setIsMobile] = useState(false);
   const { activeTestType, setActiveTestType } = useTestType();
+  const router = useRouter();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -49,20 +53,20 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
       icon: BookOpen,
       label: 'Tests',
       subItems: [
-        { icon: FileText, label: 'All' },
-        { icon: PenTool, label: 'Practice Test' },
-        { icon: Calendar, label: 'Previous Year Question Test' },
-        { icon: AlignLeft, label: 'Mock Test' },
-        { icon: Settings, label: 'Custom Test' },
+        { icon: FileText, label: 'All', href: '/dashboard' },
+        { icon: PenTool, label: 'Practice Test', href: '/dashboard/practicetest' },
+        { icon: Calendar, label: 'Previous Year Question Test', href: '/dashboard/previousyear' },
+        { icon: AlignLeft, label: 'Mock Test', href: '/dashboard/mocktest' },
+        { icon: Settings, label: 'Custom Test', href: '/dashboard/customtest' },
       ]
     },
     {
       icon: TrendingUp,
       label: 'Progress',
       subItems: [
-        { icon: BarChart2, label: 'Test Progress' },
-        { icon: Clock, label: 'Syllabus Coverage' },
-        { icon: Target, label: 'Exam Selection Progress' },
+        { icon: BarChart2, label: 'Test Progress', href: '/dashboard/Process' },
+        { icon: Clock, label: 'Syllabus Coverage',href: '/dashboard/Syllabus' },
+        { icon: Target, label: 'Exam Selection Progress', href: '/dashboard/Process/ExamSelectionProgress' },
       ]
     },
     { icon: CreditCard, label: 'Subscription' },
@@ -72,10 +76,16 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
       toggleExpanded();
     }
     setExpandedSection(label);
+
+    if (label === 'Tests') {
+      setActiveTestType('All');
+      router.push('/dashboard');
+    }
   };
 
-  const handleTabClick = (label: string) => {
+  const handleSubItemClick = (label: string, href: string) => {
     setActiveTestType(label as TestType);
+    router.push(href);
   };
 
   const renderMenuItem = (item: MenuItem, index: number) => (
@@ -103,7 +113,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
                     ? 'bg-emerald-300 text-emerald-800'
                     : 'bg-emerald-200 text-emerald-800 hover:bg-emerald-100'
                 }`}
-                onClick={() => handleTabClick(subItem.label)}
+                onClick={() => handleSubItemClick(subItem.label, subItem.href || '#')}
               >
                 <subItem.icon size={16} />
                 <span className="ml-3">{subItem.label}</span>
@@ -114,7 +124,6 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
       )}
     </li>
   );
-
   return (
     <>
       {isMobile && !isExpanded && (
@@ -129,7 +138,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
       <div 
         className={`${
           isMobile 
-            ? `fixed inset-y-0 left-0 z-40 ${isExpanded ? 'translate-x-0' : '-translate-x-full'}`
+            ? `fixed inset-y-0 left-0 z-40 ${isExpanded ? 'translate-x-0' : '-translate-x-full'}` 
             : 'hidden sm:flex'
         } flex-col h-full bg-slate-200 ${
           isExpanded || isMobile ? 'w-64' : 'w-20'
