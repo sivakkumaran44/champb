@@ -19,26 +19,22 @@ import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import Logo from '@/public/assets/img/LOGO SVG.svg';
 import LogoSmall from '@/public/assets/img/Logo.svg';
-import { useTestType } from '@/app/usecontext/TestTypeContext';
-
+import { useTestType, TestType } from '@/app/usecontext/TestTypeContext';
 interface MenuItem {
   icon: React.ElementType;
   label: string;
   href?: string;
   subItems?: { icon: React.ElementType; label: string; href?: string }[];
 }
-
 interface SidebarContentProps {
   isExpanded: boolean;
   toggleExpanded: () => void;
 }
-
 const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpanded }) => {
   const [expandedSection, setExpandedSection] = useState<string>('Tests');
   const [isMobile, setIsMobile] = useState(false);
   const { activeTestType, setActiveTestType } = useTestType();
   const router = useRouter();
-
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 640);
@@ -87,6 +83,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
     setActiveTestType(label as TestType);
     router.push(href);
   };
+
 
   const renderMenuItem = (item: MenuItem, index: number) => (
     <li key={index} className={`mb-1 ${!isExpanded && !isMobile ? 'flex justify-center' : ''}`}>
