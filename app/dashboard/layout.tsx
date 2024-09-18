@@ -1,11 +1,16 @@
+"use client"
 import React from "react";
-import DashboardClient from "@/components/layout/DashboardHeader";
+import DashboardHeader from "@/components/layout/DashboardHeader";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <DashboardClient>
-      {children}
-    </DashboardClient>
+    <div className="h-screen flex flex-col">
+      <DashboardHeader>
+        <div>
+          {children}
+        </div>
+      </DashboardHeader>
+    </div>
   );
 };
 

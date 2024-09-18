@@ -9,8 +9,8 @@ const DashboardHeader = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 702);
-      setIsSidebarOpen(window.innerWidth >= 702);
+      setIsMobile(window.innerWidth < 768);
+      setIsSidebarOpen(window.innerWidth >= 768);
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -24,14 +24,14 @@ const DashboardHeader = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="h-screen flex flex-col">
       <Dashboardheader toggleSidebar={handleSidebarToggle} />
-
-      <div className="flex flex-1">
+      
+      <div className="flex flex-1 overflow-hidden">
         <div
           className={`
             ${isMobile ? 'fixed inset-y-0 left-0 z-50' : ''}
             ${isMobile && !isSidebarOpen ? '-translate-x-full' : 'translate-x-0'}
             ${!isMobile ? (isSidebarOpen ? "w-64" : "w-20") : "w-64"}
-            bg-white transition-all duration-300 overflow-hidden h-full
+            bg-white transition-all duration-300 overflow-y-auto h-full
             ${!isMobile ? 'fixed top-0 left-0 z-10' : ''}
           `}
         >
@@ -47,9 +47,9 @@ const DashboardHeader = ({ children }: { children: React.ReactNode }) => {
 
         <main
           className={`
-            flex-1 p-4 bg-white-100 overflow-auto
-            ${!isMobile ? `ml-${isSidebarOpen ? "64" : "20"}` : ""}
-            flex justify-center items-center
+            flex-1 p-4 bg-white overflow-y-auto
+            ${!isMobile ? (isSidebarOpen ? "ml-64" : "ml-20") : "ml-0"}
+            transition-all duration-300
           `}
         >
           {children}
