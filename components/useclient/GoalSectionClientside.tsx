@@ -95,7 +95,7 @@ const GoalSectionClientside: React.FC = () => {
         )}
       </div>
       </div>
-      <div className="flex flex-wrap gap-10 sm:gap-12 lg:gap-20 mb-6 sm:mb-8 lg:mb-12 mr-0 sm:mr-8 lg:mr-28 justify-center items-center">
+      <div className="flex flex-wrap gap-10 sm:gap-12 lg:gap-12 mb-6 sm:mb-8 lg:mb-12 mr-0 sm:mr-8 lg:mr-28 justify-center items-center">
     {tabs.map((tab) => (
           <Button size='xl'
             key={tab}
@@ -107,7 +107,7 @@ const GoalSectionClientside: React.FC = () => {
               px-4 py-2 rounded-lg transition-all duration-300
               ${activeTab === tab 
                 ? 'bg-emerald-300 text-slate-700 hover:bg-emerald-300 focus:outline-none border-transparent' 
-                : 'text-slate-950 bg-transparent hover:bg-slate-200 focus:outline-none  border-transparent border-slate-300'
+                : 'text-slate-400 bg-transparent hover:bg-slate-200 focus:outline-none  border-transparent border-slate-300'
               }
               hover:border-transparent shadow-none
             `}

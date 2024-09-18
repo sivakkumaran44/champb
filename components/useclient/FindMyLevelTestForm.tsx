@@ -23,7 +23,7 @@ const FindMyLevelTestForm = () => {
     <>
       <form onSubmit={handleSubmit}>
         <div className="flex justify-center items-center px-4 sm:px-6 md:px-8 lg:px-10 h-[calc(100%-6rem)] sm:h-[calc(100%-7rem)] md:h-[calc(100%-9rem)] lg:h-[calc(100%-11rem)]">
-          <div className="w-full max-w-xs sm:max-w-sm md:max-w-sm lg:max-w-sm space-y-4 sm:space-y-6 md:space-y-8">
+          <div className="w-84 max-w-xs sm:max-w-sm md:max-w-sm lg:max-w-sm space-y-4 sm:space-y-6 md:space-y-8">
             <Select name="exam-select">
               <SelectTrigger className="w-full bg-white text-slate-400 border-none rounded-md shadow-sm h-12 sm:h-14">
                 <SelectValue placeholder="Choose Exam" />

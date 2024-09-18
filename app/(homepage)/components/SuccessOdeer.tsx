@@ -20,7 +20,7 @@ const SuccessOddsAnalyzer = () => {
         <h3 className="scroll-m-20 text-2xl mb-6 text-emerald-500 font-semibold tracking-tight">
           Success Odds Analyzer
         </h3>
-        <p className="text-lg text-gray-700">
+        <p className="text-lg text-slate-700">
 
           Gain valuable insights into your exam readiness with bChamp&apos;s predictive analytics. Our system assesses
           your performance data to estimate your selection probability, helping you focus your efforts where they
