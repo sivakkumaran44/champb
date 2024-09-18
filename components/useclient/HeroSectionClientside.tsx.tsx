@@ -27,7 +27,6 @@ const HeroSectionClientside: React.FC = () => {
       alert("Please enter a mobile number");
     }
   };
-
   const handleContinueClick = () => {
     if (mobileNumber.trim() !== "") {
       setIsOtpDialogOpen(true);
@@ -80,7 +79,7 @@ const HeroSectionClientside: React.FC = () => {
   className="w-full sm:w-[300px] bg-white outline-none"
 />
         </div>
-        <p className="text-xs text-slate-700 mb-4 ">We&apos;ll send an OTP for Verification</p>
+        <p className="text-xs text-slate-700 mb-4  sm:mb-4 md:mb-4 lg:mb-4">We&apos;ll send an OTP for Verification</p>
         <div className="space-y-3 mt-6 ">
           <Button size="lg"
             type="button"

@@ -7,12 +7,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Dashboardheader: React.FC<{ toggleSidebar: () => void }> = ({ toggleSidebar }) => (
   <header className="bg-slate-200 p-4 flex justify-between items-center">
-    {/* Sidebar toggle button for mobile */}
     <Button variant="ghost" size="icon" onClick={toggleSidebar} className="lg:hidden">
       <Menu className="h-6 w-6" />
     </Button>
-
-    {/* Center section with goal selection */}
     <div className="flex-1 flex justify-center">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -48,9 +45,7 @@ const Dashboardheader: React.FC<{ toggleSidebar: () => void }> = ({ toggleSideba
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-
-    {/* Profile dropdown */}
-    <DropdownMenu>
+ <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-10 rounded-full flex items-center space-x-2 p-0 bg-transparent hover:bg-transparent">
           <Avatar className="h-10 w-10">
@@ -89,5 +84,4 @@ const Dashboardheader: React.FC<{ toggleSidebar: () => void }> = ({ toggleSideba
     </DropdownMenu>
   </header>
 );
-
 export default Dashboardheader;
