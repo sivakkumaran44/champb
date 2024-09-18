@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Clock, HelpCircle, PenLine } from 'lucide-react';
@@ -10,7 +10,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-
+import { useTestType } from '@/app/usecontext/TestTypeContext';
 interface TestInfo {
   id: string;
   title: string;
@@ -18,7 +18,10 @@ interface TestInfo {
   duration: number;
   questions: number;
   isFree: boolean; 
+ 
 }
+
+type TestType = 'All' | 'Practice Test' | 'Previous Year Question Test' | 'Mock Test' | 'Custom Test';
 
 const tests: TestInfo[] = [
   {
@@ -46,7 +49,6 @@ const tests: TestInfo[] = [
     isFree: true,
   },
 ];
-
 const TestCard: React.FC<TestInfo> = ({ title, description, duration, questions, isFree }) => (
   <Card className="mb-4 w-full max-w-4xl  bg-slate-100 border border-slate-300 rounded-lg relative">
     <CardContent className="p-4 sm:p-6">
@@ -76,39 +78,58 @@ const TestCard: React.FC<TestInfo> = ({ title, description, duration, questions,
     </CardContent>
   </Card>
 );
-
 const MockTestPage: React.FC = () => {
-  const [activeMenuItem, setActiveMenuItem] = useState<string>("All");
+  const { activeTestType, setActiveTestType } = useTestType();
 
-  const handleMenuItemClick = (item: string) => {
-    setActiveMenuItem(item);
+  const handleMenuItemClick = (item: TestType) => {
+    setActiveTestType(item);
+  };
+
+  const testTypes: TestType[] = ["All", "Practice Test", "Previous Year Question Test", "Mock Test", "Custom Test"];
+
+  const filterTests = (tests: TestInfo[], activeType: TestType) => {
+    if (activeType === 'All') return tests;
+    return tests.filter(test => {
+      switch (activeType) {
+        case 'Practice Test':
+          return test.title.includes('Practice');
+        case 'Previous Year Question Test':
+          return test.title.includes('Previous Year');
+        case 'Mock Test':
+          return test.title.includes('Mock');
+        case 'Custom Test':
+          return test.title.includes('Custom');
+        default:
+          return false;
+      }
+    });
   };
 
   return (
-    <div className="container mx-auto p-4 ">
-    <NavigationMenu className="w-full">
-  <NavigationMenuList className="flex flex-wrap  gap-x-6 gap-y-4 sm:gap-x-10  items-center justify-center">
-    {["All", "Practice Test", "Previous Year Question Test", "Mock Test", "Custom Test"].map((item) => (
-      <NavigationMenuItem key={item}>
-        <NavigationMenuLink
-          className={cn(
-            "inline-block text-sm sm:text-lg font-normal cursor-pointer", 
-            activeMenuItem === item 
-              ? "text-slate-700 border-b-2 border-slate-700" 
-              : "text-slate-700 text-opacity-60 hover:text-slate-700",
-            "focus:outline-none pb-1 sm:pb-2 w-[140px] text-center"
-          )}
-          onClick={() => handleMenuItemClick(item)}
-        >
-          {item}
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-    ))}
-  </NavigationMenuList>
-</NavigationMenu>
+    <div className="container mx-auto p-4">
+      <NavigationMenu className="w-full">
+        <NavigationMenuList className="flex flex-wrap gap-x-6 gap-y-4 sm:gap-x-10 items-center justify-center">
+          {testTypes.map((item) => (
+            <NavigationMenuItem key={item}>
+              <NavigationMenuLink
+                className={cn(
+                  "inline-block text-sm sm:text-lg font-normal cursor-pointer", 
+                  activeTestType === item 
+                    ? "text-slate-700 border-b-2 border-slate-700" 
+                    : "text-slate-700 text-opacity-60 hover:text-slate-700",
+                  "focus:outline-none pb-1 sm:pb-2 w-[140px] text-center"
+                )}
+                onClick={() => handleMenuItemClick(item)}
+              >
+                {item}
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          ))}
+        </NavigationMenuList>
+      </NavigationMenu>
 
       <div className="mt-4 sm:mt-8 space-y-4 sm:space-y-6">
-        {tests.map((test) => (
+        {filterTests(tests, activeTestType).map((test) => (
           <TestCard key={test.id} {...test} />
         ))}
       </div>

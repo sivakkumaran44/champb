@@ -1,3 +1,4 @@
+type TestType = 'All' | 'Practice Test' | 'Previous Year Question Test' | 'Mock Test' | 'Custom Test';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
@@ -18,7 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Logo from '@/public/assets/img/LOGO SVG.svg';
 import LogoSmall from '@/public/assets/img/Logo.svg';
-
+import { useTestType } from '@/app/usecontext/TestTypeContext';
 interface MenuItem {
   icon: React.ElementType;
   label: string;
@@ -29,11 +30,10 @@ interface SidebarContentProps {
   isExpanded: boolean;
   toggleExpanded: () => void;
 }
-
 const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpanded }) => {
   const [expandedSection, setExpandedSection] = useState<string>('Tests');
-  const [activeTab, setActiveTab] = useState<string>('All Tests');
   const [isMobile, setIsMobile] = useState(false);
+  const { activeTestType, setActiveTestType } = useTestType();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -49,10 +49,10 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
       icon: BookOpen,
       label: 'Tests',
       subItems: [
-        { icon: FileText, label: 'All Tests' },
+        { icon: FileText, label: 'All' },
         { icon: PenTool, label: 'Practice Test' },
-        { icon: Calendar, label: 'Previous Year Test' },
-        { icon: AlignLeft, label: 'Mock Tests' },
+        { icon: Calendar, label: 'Previous Year Question Test' },
+        { icon: AlignLeft, label: 'Mock Test' },
         { icon: Settings, label: 'Custom Test' },
       ]
     },
@@ -67,7 +67,6 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
     },
     { icon: CreditCard, label: 'Subscription' },
   ];
-
   const handleItemClick = (label: string) => {
     if (!isExpanded) {
       toggleExpanded();
@@ -76,7 +75,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
   };
 
   const handleTabClick = (label: string) => {
-    setActiveTab(label);
+    setActiveTestType(label as TestType);
   };
 
   const renderMenuItem = (item: MenuItem, index: number) => (
@@ -100,7 +99,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
               <Button
                 variant="lightgreen"
                 className={`w-full justify-start px-4 py-2 rounded-lg ${
-                  activeTab === subItem.label
+                  activeTestType === subItem.label
                     ? 'bg-emerald-300 text-emerald-800'
                     : 'bg-emerald-200 text-emerald-800 hover:bg-emerald-100'
                 }`}
