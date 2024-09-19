@@ -60,9 +60,9 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
       icon: TrendingUp,
       label: 'Progress',
       subItems: [
-        { icon: BarChart2, label: 'Test Progress', href: '/dashboard/Process' },
-        { icon: Clock, label: 'Syllabus Coverage',href: '/dashboard/Syllabus' },
-        { icon: Target, label: 'Exam Selection Progress', href: '/dashboard/Process/ExamSelectionProgress' },
+        { icon: BarChart2, label: 'Test Progress', href: '/dashboard/process' },
+        { icon: Clock, label: 'Syllabus Coverage',href: '/dashboard/syllabus' },
+        { icon: Target, label: 'Exam Selection Progress', href: '/dashboard/selectionprocess'},
       ]
     },
     { icon: CreditCard, label: 'Subscription' },
