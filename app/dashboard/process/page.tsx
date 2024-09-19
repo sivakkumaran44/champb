@@ -1,9 +1,12 @@
-import React from 'react'
-import Process from './components/process'
-function pages() {
-  return (
-    <Process/>
-  )
-}
+import TestProgress from './components/process';
+import testData from '@/components/data/test.json';
 
-export default pages
+const YourPage = () => {
+  return (
+    <div>
+      <TestProgress data={testData} />
+    </div>
+  );
+};
+
+export default YourPage;

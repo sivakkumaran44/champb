@@ -10,7 +10,7 @@ const PracticeTest: React.FC = () => {
   const [chapter, setChapter] = useState('');
   const [topic, setTopic] = useState('');
   const [subTopic, setSubTopic] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // New state for controlling dropdown
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const sections = ['General Intelligence', 'General Awareness', 'Quantitative Aptitude', 'English Comprehension'];
   const chapters = ['Chapter 1', 'Chapter 2', 'Chapter 3'];

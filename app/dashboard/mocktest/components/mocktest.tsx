@@ -51,7 +51,7 @@ const tests: TestInfo[] = [
 const MockTestPage: React.FC = () => {
  
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 ">
       <TestTypeNavigation />
       <div className="mt-4 sm:mt-8 space-y-4 sm:space-y-6">
         {tests.map((test) => (

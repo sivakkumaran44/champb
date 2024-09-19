@@ -76,14 +76,16 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
     if (label === 'Tests') {
       setActiveTestType('All');
       router.push('/dashboard');
+    } else if (label === 'Progress') {
+      setActiveTestType('Test Progress');
+      router.push('/dashboard/process');
     }
   };
 
-  const handleSubItemClick = (label: string, href: string) => {
-    setActiveTestType(label as TestType);
+  const handleSubItemClick = (label: TestType, href: string) => {
+    setActiveTestType(label);
     router.push(href);
   };
-
 
   const renderMenuItem = (item: MenuItem, index: number) => (
     <li key={index} className={`mb-1 ${!isExpanded && !isMobile ? 'flex justify-center' : ''}`}>
@@ -110,7 +112,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
                     ? 'bg-emerald-300 text-emerald-800'
                     : 'bg-emerald-200 text-emerald-800 hover:bg-emerald-100'
                 }`}
-                onClick={() => handleSubItemClick(subItem.label, subItem.href || '#')}
+                onClick={() => handleSubItemClick(subItem.label as TestType, subItem.href || '#')}
               >
                 <subItem.icon size={16} />
                 <span className="ml-3">{subItem.label}</span>

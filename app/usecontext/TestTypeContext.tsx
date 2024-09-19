@@ -1,7 +1,6 @@
 "use client"
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-
-export type TestType = 'All' | 'Practice Test' | 'Previous Year Question Test' | 'Mock Test' | 'Custom Test';
+export type TestType = 'All' | 'Practice Test' | 'Previous Year Question Test' | 'Mock Test' | 'Custom Test' | 'Test Progress' | 'Syllabus Coverage' | 'Exam Selection Progress';
 
 interface TestTypeContextType {
   activeTestType: TestType;

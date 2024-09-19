@@ -1,0 +1,47 @@
+[
+  {
+    "title": "SSC CGL Tier I Mock Test (2024)",
+    "score": 55,
+    "description": "Test includes questions similar to those found in the actual SSC CGL exam, covering various sections such as General Intelligence and Reasoning, General Awareness, Quantitative Aptitude, and English Comprehension.",
+    "stats": [
+      { "label": "Correct", "value": 55, "icon": "CheckCircle" },
+      { "label": "Wrong", "value": 22, "icon": "XCircle" },
+      { "label": "Skipped", "value": 23, "icon": "MinusCircle" },
+      { "label": "Attempt", "value": 2, "icon": "PenSquare" }
+    ],
+    "action": {
+      "label": "View Detailed Report",
+      "icon": "View"
+    }
+  },
+  {
+    "title": "SSC CGL Tier I Mock Test (2024)",
+    "score": 55,
+    "description": "Test includes questions similar to those found in the actual SSC CGL exam, covering various sections such as General Intelligence and Reasoning, General Awareness, Quantitative Aptitude, and English Comprehension.",
+    "stats": [
+      { "label": "Correct", "value": 55, "icon": "CheckCircle" },
+      { "label": "Wrong", "value": 22, "icon": "XCircle" },
+      { "label": "Skipped", "value": 23, "icon": "MinusCircle" },
+      { "label": "Attempt", "value": 2, "icon": "PenSquare" }
+    ],
+    "action": {
+      "label": "View Detailed Report",
+      "icon": "View"
+    }
+  },
+  {
+    "title": "SSC CGL Tier I Mock Test (2024)",
+    "score": 55,
+    "description": "Test includes questions similar to those found in the actual SSC CGL exam, covering various sections such as General Intelligence and Reasoning, General Awareness, Quantitative Aptitude, and English Comprehension.",
+    "stats": [
+      { "label": "Correct", "value": 55, "icon": "CheckCircle" },
+      { "label": "Wrong", "value": 22, "icon": "XCircle" },
+      { "label": "Skipped", "value": 23, "icon": "MinusCircle" },
+      { "label": "Attempt", "value": 2, "icon": "PenSquare" }
+    ],
+    "action": {
+      "label": "View Detailed Report",
+      "icon": "View"
+    }
+  }
+]
