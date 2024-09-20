@@ -1,5 +1,6 @@
 [
   {
+    "id": "test1",
     "title": "SSC CGL Tier I Mock Test (2024)",
     "score": 55,
     "description": "Test includes questions similar to those found in the actual SSC CGL exam, covering various sections such as General Intelligence and Reasoning, General Awareness, Quantitative Aptitude, and English Comprehension.",
@@ -15,6 +16,7 @@
     }
   },
   {
+    "id": "test2",
     "title": "SSC CGL Tier I Mock Test (2024)",
     "score": 55,
     "description": "Test includes questions similar to those found in the actual SSC CGL exam, covering various sections such as General Intelligence and Reasoning, General Awareness, Quantitative Aptitude, and English Comprehension.",
@@ -30,6 +32,7 @@
     }
   },
   {
+    "id": "test3",
     "title": "SSC CGL Tier I Mock Test (2024)",
     "score": 55,
     "description": "Test includes questions similar to those found in the actual SSC CGL exam, covering various sections such as General Intelligence and Reasoning, General Awareness, Quantitative Aptitude, and English Comprehension.",

@@ -24,7 +24,7 @@ interface Action {
   label: string;
 }
 
-interface TestData {
+export interface TestData {  
   id: string; 
   title: string;
   score: number;
@@ -37,8 +37,7 @@ interface TestProgressProps {
   data: TestData[];
 }
 
-const TestProgress: React.FC<TestProgressProps> = ({ data }) => {
-  const router = useRouter();
+const TestProgress: React.FC<TestProgressProps> = ({ data }) => { const router = useRouter();
 
   const handleViewReport = () => {
     router.push(`/dashboard/process/report`);

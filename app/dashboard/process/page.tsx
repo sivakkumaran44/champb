@@ -1,12 +1,13 @@
 import TestProgress from './components/process';
 import testData from '@/components/data/test.json';
+import { TestData } from './components/process'; 
 
-const YourPage = () => {
+const Page = () => {
   return (
     <div>
-      <TestProgress data={testData} />
+      <TestProgress data={testData as TestData[]} />
     </div>
   );
 };
 
-export default YourPage;
+export default Page;
