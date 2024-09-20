@@ -1,6 +1,5 @@
-"use client";
+"use client"
 import React, { useState } from 'react';
-
 interface CircularProgressProps {
   percentage: number;
   onClick: () => void;
@@ -25,11 +24,8 @@ const SyllabusCoverage = () => {
     const normalizedRadius = radius - strokeWidth / 2;
     const circumference = normalizedRadius * 2 * Math.PI;
 
-    // Calculate stroke dash offset for both green and orange
     const greenStrokeDashoffset = circumference - (percentage / 100) * circumference;
     const orangeStrokeDasharray = (circumference * 0.1) + ' ' + (circumference * 0.9);
-    const orangeStrokeDashoffset = circumference - (percentage / 100) * circumference * 0.9;
-
     return (
       <div
         className={`relative w-24 h-24 sm:w-32 sm:h-32 mx-auto cursor-pointer transition-all duration-300 ${
@@ -38,7 +34,6 @@ const SyllabusCoverage = () => {
         onClick={onClick}
       >
         <svg height="100%" width="100%" viewBox="0 0 100 100">
-          {/* Base circle for uncovered syllabus */}
           <circle
             stroke="#E0E0E0"
             fill="transparent"
@@ -47,7 +42,6 @@ const SyllabusCoverage = () => {
             cx="50"
             cy="50"
           />
-          {/* Green part - Correct answers */}
           <circle
             stroke="#00C49F"
             fill="transparent"
@@ -57,8 +51,8 @@ const SyllabusCoverage = () => {
             r={normalizedRadius}
             cx="50"
             cy="50"
+            strokeLinecap="round"
           />
-          {/* Orange part - Incorrect answers */}
           <circle
             stroke="#FF8042"
             fill="transparent"
@@ -68,6 +62,7 @@ const SyllabusCoverage = () => {
             r={normalizedRadius}
             cx="50"
             cy="50"
+            strokeLinecap="round"
           />
         </svg>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg sm:text-2xl font-bold">
@@ -81,7 +76,8 @@ const SyllabusCoverage = () => {
     if (selectedSection === null) return null;
 
     return (
-      <div className="space-y-2">
+      <div className="space-y-2 relative">
+        <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-300"></div>
         {[...Array(10)].map((_, index) => (
           <div key={index} className="flex items-center">
             <div className="w-4 h-px bg-gray-300"></div>
@@ -142,7 +138,7 @@ const SyllabusCoverage = () => {
           {sections.map((section, index) => (
             <div 
               key={index} 
-              className={`bg-gray-50 p-4 rounded-lg transition-all duration-300 w-48 h-48 flex flex-col justify-center items-center ${
+              className={`bg-slate-100 border-custombroder p-4 rounded-lg transition-all duration-300 w-48 h-48 flex flex-col justify-center items-center ${
                 selectedSection === index ? '' : ''
               } ${selectedSection !== null && selectedSection !== index ? 'opacity-50 scale-95' : ''}`}
             >
@@ -159,12 +155,12 @@ const SyllabusCoverage = () => {
             </div>
           ))}
         </div>
-        <div className={`transition-all duration-300 ${selectedSection === null ? 'w-0' : selectedSubsection === null ? 'lg:w-3/4' : 'lg:w-1/2'} pl-8`}>
+        <div className={`transition-all duration-300 ${selectedSection === null ? 'w-0' : selectedSubsection === null ? 'lg:w-3/4' : 'lg:w-1/2'} pl-8 relative`}>
           {selectedSection !== null && (
-            <div className="relative">
-              <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-300"></div>
+            <>
+              <div className="absolute left-0 top-1/2 w-8 h-px bg-gray-300"></div>
               {renderFlowChart()}
-            </div>
+            </>
           )}
         </div>
         <div className={`transition-all duration-300 ${selectedSubsection === null ? 'w-0' : 'lg:w-1/4'} pl-8`}>
