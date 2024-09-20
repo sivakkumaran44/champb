@@ -1,15 +1,23 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { CirclePower } from 'lucide-react';
 import { Card, CardContent, CardFooter } from "@/components/ui/card";  
 import { Checkbox } from "@/components/ui/checkbox";
+import { CheckedState } from '@radix-ui/react-checkbox'; // Import the CheckedState type
 
 const ExamApplicationForm: React.FC = () => {
   const [applied, setApplied] = useState<boolean>(false);
   const [admitCard, setAdmitCard] = useState<boolean>(false);
   const [examDate, setExamDate] = useState<string>('');
+
+  const handleCheckboxChange = (setState: React.Dispatch<React.SetStateAction<boolean>>) => (checked: CheckedState) => {
+    // Radix UI Checkbox supports 'indeterminate', but you only want boolean values
+    if (typeof checked === 'boolean') {
+      setState(checked);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +36,7 @@ const ExamApplicationForm: React.FC = () => {
                   <label className="inline-flex items-center">
                     <Checkbox 
                       checked={applied} 
-                      onCheckedChange={setApplied} 
+                      onCheckedChange={handleCheckboxChange(setApplied)} // Use the new handler
                     />
                     <span className="ml-2">Yes</span>
                   </label>
@@ -40,7 +48,7 @@ const ExamApplicationForm: React.FC = () => {
                   <label className="inline-flex items-center">
                     <Checkbox 
                       checked={admitCard} 
-                      onCheckedChange={setAdmitCard} 
+                      onCheckedChange={handleCheckboxChange(setAdmitCard)} // Use the new handler
                     />
                     <span className="ml-2">Yes</span>
                   </label>
