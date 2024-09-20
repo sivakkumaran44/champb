@@ -83,11 +83,11 @@ const Speed: React.FC = () => {
   return (
     <Card className="bg-slate-100 border border-custombroder max-w-md mx-auto">
       <CardHeader className="pb-2">
-        <CardTitle className="text-lg font-semibold text-gray-800">Speed vs Accuracy Trade Off</CardTitle>
-        <CardDescription className="text-sm text-gray-600">Relationship between time taken and correctness of answers</CardDescription>
+        <CardTitle className="text-lg font-semibold text-slate-700">Speed vs Accuracy Trade Off</CardTitle>
+        <CardDescription className="text-sm text-slate-700">Relationship between time taken and correctness of answers</CardDescription>
       </CardHeader>
       <CardContent>
-        <div style={{ height: '400px' }}>
+        <div style={{ height: '300px' }}>
           <ResponsiveScatterPlot<DataPoint> {...chartProps} />
         </div>
       </CardContent>

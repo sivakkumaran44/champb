@@ -13,7 +13,7 @@ import ImprovementAreasChart from './areachart';
 import { TimeManagementChart } from './timemangementchart';
 const Report = () => {
   return (
-    <div className="relative w-full max-w-5xl p-4">
+    <div className="relative w-full max-w-5xl p-2">
       <Card className="mb-4 w-full max-w-4xl bg-slate-100 border border-custombroder rounded-lg relative mt-12">
         <CardContent className="p-4 sm:p-6">
           <div className="flex justify-between items-start mb-4">

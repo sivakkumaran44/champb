@@ -98,26 +98,33 @@ export function AccuracyComponent() {
               content={<CustomTooltip />}   
             />
             <Pie
-              data={desktopData}
-              dataKey="desktop"
-              nameKey="month"
-              innerRadius={60}
-              strokeWidth={5}
-              activeIndex={hoverIndex !== undefined ? hoverIndex : activeIndex}
-              onMouseEnter={onPieEnter}
-              onMouseLeave={onPieLeave}
-              activeShape={({
-                outerRadius = 0,
-                ...props
-              }: PieSectorDataItem) => (
-                <g>
-                  <Sector {...props} outerRadius={outerRadius + 10} />
-                  <Sector
-                    {...props}
-                    outerRadius={outerRadius + 25}
-                    innerRadius={outerRadius + 12}
-                  />
-                </g>
+    data={desktopData}
+    dataKey="desktop"
+    nameKey="month"
+    innerRadius={60}
+    outerRadius={100}  
+    strokeWidth={5}
+    cornerRadius={10}  
+    activeIndex={hoverIndex !== undefined ? hoverIndex : activeIndex}
+    onMouseEnter={onPieEnter}
+    onMouseLeave={onPieLeave}
+    activeShape={({
+      outerRadius = 0,
+      ...props
+    }: PieSectorDataItem) => (
+      <g>
+        <Sector 
+          {...props} 
+          outerRadius={outerRadius + 10} 
+          cornerRadius={10} 
+        />
+        <Sector
+          {...props}
+          outerRadius={outerRadius + 25}
+          innerRadius={outerRadius + 12}
+          cornerRadius={10} 
+        />
+      </g>
               )}
             >
               <Label
@@ -158,7 +165,7 @@ export function AccuracyComponent() {
        
       </CardContent>
       <CardFooter/>
- <div className="grid grid-cols-3 gap-4 mb-6 ml-6">
+      <div className="grid grid-cols-2 gap-4 mb-6 ml-6">
  {desktopData.map((item) => (
    <div key={item.month} className="flex items-center">
      <span
