@@ -6,6 +6,7 @@ interface FlowChartProps {
   selectedSection: number | null;
   selectedSubsection: number | null;
   setSelectedSubsection: React.Dispatch<React.SetStateAction<number | null>>;
+  lineStart:number;
 }
 
 interface ProgressData {
@@ -13,9 +14,10 @@ interface ProgressData {
   correct: number;
   incorrect: number;
   uncovered: number;
+  
 }
 
-const FlowChart: React.FC<FlowChartProps> = ({ selectedSection, setSelectedSubsection }) => {
+const FlowChart: React.FC<FlowChartProps> = ({ selectedSection, setSelectedSubsection,lineStart }) => {
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
 
   if (selectedSection === null) return null;
