@@ -74,7 +74,7 @@ const Testspecificinstructions = () => {
           </Button>
           <Button 
             variant="outline" 
-            className="bg-white text-emerald-800 hover:bg-gray-100 border border-[#065F46]" 
+            className="bg-white  text-emerald-800 hover:bg-gray-100 border border-[#065F46]" 
             disabled={!agreed}
             onClick={handleGoNext}
           >

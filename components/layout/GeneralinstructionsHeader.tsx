@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Logo from '@/public/assets/img/LOGO SVG.svg';
+import Logo1 from '@/public/assets/img/Frame 427321252.svg';
 
 interface HeaderProps {
   title: string;
@@ -8,11 +8,11 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({  }) => {
   return (
-    <header className="flex items-center justify-between p-8">
-      <div className="bg-blue-50 flex items-center justify-between w-full rounded-2xl">
+    <header className="flex items-center justify-between p-8 ">
+      <div className="bg-blue-50 h-14 flex items-center justify-between w-full rounded-xl">
         <div className="flex items-center ml-8">
           <Image 
-            src={Logo} 
+            src={Logo1} 
             alt="bChamp Logo" 
             className="w-full h-auto object-contain"
             priority={true} 

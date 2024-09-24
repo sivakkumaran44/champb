@@ -62,7 +62,7 @@ const Generalinstructions: React.FC = () => {
   };
 
   const renderShape = (shape: string, color: string, withSymbol: boolean = false) => {
-    const colorClass = getColorClass(color); // Get the correct Tailwind color class
+    const colorClass = getColorClass(color);
     switch (shape) {
       case 'square':
         return (
@@ -82,7 +82,7 @@ const Generalinstructions: React.FC = () => {
       case 'empty-triangle':
         return (
           <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24">
-            <path d="M12 2 L22 22 L2 22 Z" fill="none" stroke={color} strokeWidth="2" />
+            <path d="M12 2 L22 22 L2 22 Z" fill={color} stroke={color} strokeWidth="2" />
           </svg>
         );
       default:
@@ -123,7 +123,7 @@ const Generalinstructions: React.FC = () => {
       </main>
       <footer className="fixed bottom-0 left-0 right-0 bg-blue-50 p-4 flex justify-end">
       <Button
-  className="bg-[#B9E8DC] hover:bg-[#B9E8DC] text-slate-700 px-6 py-2 rounded-lg transition duration-300 flex items-center border border-[#334155]"
+  className="bg-[#B9E8DC] hover:bg-[#B9E8DC] font-semibold text-slate-700 px-6 py-2 rounded-lg transition duration-300 flex items-center border border-[#334155]"
   onClick={handleNext}
 >
   Next
