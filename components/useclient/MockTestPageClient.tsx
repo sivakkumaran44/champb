@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Clock, HelpCircle, PenLine } from "lucide-react";
@@ -13,10 +13,51 @@ interface TestInfo {
   isFree: boolean;
 }
 
-const MockTestPageClient: React.FC<TestInfo> = ({  title, description, duration, questions, isFree }) => {
-const handleTakeTest = () => {
-    window.open("/generalinstructions", "mozillaWindow", "popup");
-  };
+const MockTestPageClient: React.FC<TestInfo> = ({ title, description, duration, questions, isFree }) => {
+  const handleTakeTest = useCallback(() => {
+    const testWindow = window.open("/generalinstructions", "mozillaWindow", "popup,width=800,height=600");
+    
+    if (!testWindow) {
+      alert('Please allow pop-ups for this site to take the test.');
+      return;
+    }
+
+    testWindow.onload = () => {
+      const script = testWindow.document.createElement('script');
+      script.textContent = `
+        (function() {
+          // Disable context menu and keyboard shortcuts
+          document.addEventListener('contextmenu', e => e.preventDefault());
+          document.addEventListener('copy', e => e.preventDefault());
+          document.addEventListener('cut', e => e.preventDefault());
+          document.addEventListener('paste', e => e.preventDefault());
+          document.addEventListener('keydown', e => {
+            if (e.key === 'PrintScreen' || (e.ctrlKey && e.key === 's')) {
+              e.preventDefault();
+            }
+          });
+          document.body.style.userSelect = 'none';
+          document.body.style.webkitUserSelect = 'none';
+          document.body.style.msUserSelect = 'none';
+          document.body.style.mozUserSelect = 'none';
+
+          // Warn user before leaving the page
+          window.addEventListener('beforeunload', e => {
+            e.preventDefault();
+            e.returnValue = '';
+          });
+
+          // Hide content during print
+          const style = document.createElement('style');
+          style.textContent = '@media print { body { display: none; } }';
+          document.head.appendChild(style);
+        })();
+      `;
+      testWindow.document.body.appendChild(script);
+    };
+
+  }, []);
+
   return (
     <Card className="mb-4 w-full max-w-4xl bg-slate-100 border border-slate-300 rounded-lg relative">
       <CardContent className="p-4 sm:p-6">
