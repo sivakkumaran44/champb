@@ -1,0 +1,38 @@
+{
+  "title": "Other Important Instructions",
+  "examStructure": {
+    "title": "Exam Structure and Duration:",
+    "details": [
+      "Total Duration: 60 minutes",
+      "Number of Questions: 100",
+      {
+        "title": "Sections:",
+        "items": [
+          "General Intelligence & Reasoning (25 questions)",
+          "General Awareness (25 questions)",
+          "Quantitative Aptitude (25 questions)",
+          "English Comprehension (25 questions)"
+        ]
+      }
+    ]
+  },
+  "markingScheme": {
+    "title": "Marking Scheme:",
+    "details": [
+      "Correct Answer: +2 marks",
+      "Incorrect Answer: -0.5 marks (Negative marking)",
+      "Unattempted Question: 0 marks"
+    ]
+  },
+  "agreement": "I understand that this is a mock test designed to simulate the actual competitive exam environment and confirm that I will complete this test independently, without any external assistance or unauthorized aids. I agree not to copy, distribute, or share any part of this test content with others.",
+  "buttons": [
+    {
+      "text": "Previous",
+      "type": "secondary"
+    },
+    {
+      "text": "I am ready to start test",
+      "type": "primary"
+    }
+  ]
+}

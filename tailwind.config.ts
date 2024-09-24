@@ -16,6 +16,7 @@ const config = {
       colors: {
         border: "hsl(var(--border))",
         customGray: '#CAC4D0',
+        customteal: '#B9E8DC',
         custombroder:'#D9D9D9',
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

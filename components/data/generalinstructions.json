@@ -1,0 +1,59 @@
+{
+    "title": "Please read these instructions carefully before beginning your test",
+    "generalInstructions": "General Instructions",
+    "sections": [
+      {
+        "title": "Test Environment:",
+        "items": [
+          "Ensure you're in a quiet, well-lit room with a stable internet connection."
+        ]
+      },
+      {
+        "title": "Time Management:",
+        "items": [
+          "The test duration is displayed at the top of the screen.",
+          "A timer will count down your remaining time.",
+          "Budget your time wisely across all sections."
+        ]
+      },
+      {
+        "title": "Navigation:",
+        "items": [
+          "Use the \"Next\" and \"Previous\" buttons to move between questions.",
+          "The question palette on the side shows"
+        ]
+      },
+      {
+        "title": "Navigating to a Question:",
+        "items": [
+          "Click on the question number in the Question Palette at the right of your screen to go to that numbered question directly. Note that using this option does NOT save your answer to the current question.",
+          "Click on Save & Next to save your answer for the current question and then go to the next question.",
+          "Click on Mark for Review & Next to save your answer for the current question, mark it for review, and then go to the next question."
+        ]
+      },
+      {
+        "title": "Navigating to a Section:",
+        "items": [
+          "Sections in this question paper are displayed on the top bar of the screen. Questions in a section can be viewed by clicking on the section name. The section you are viewing is highlighted.",
+          "After clicking the Save & Next button on the last question for a section, you will automatically be taken to the first question of the next section.",
+          "You can shuffle between sections and questions anything during the examination as per your convenience only during the time stipulated.",
+          "Candidate can view the corresponding section summary as part of the legend that appears in every section above the question palette."
+        ]
+      },
+      {
+        "title": "Technical:",
+        "items": [
+          "If you encounter any technical problems, click the \"Help\" button immediately.",
+          "You can click on the \">\" arrow which appears to the left of question palette to collapse the question palette thereby maximizing the question window. To view the question palette again, you can click on \"<\" which appears on the right side of question window.",
+          "You can click on your \"Profile\" image on top right corner of your screen to change the language during the exam for entire question paper. On clicking of Profile image you will get a drop-down to change the question content to the desired language."
+        ]
+      }
+    ],
+    "questionStatus": [
+      { "color": "gray", "text": "You have not visited the question yet." },
+      { "color": "red", "text": "You have not answered the question." },
+      { "color": "green", "text": "You have answered the question." },
+      { "color": "purple", "text": "You have NOT answered the question, but have marked the question for review." },
+      { "color": "purple", "text": "The question(s) \"Answered and Marked for Review\" will be considered for evaluation." }
+    ]
+  }
