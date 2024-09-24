@@ -13,10 +13,10 @@ const improvementAreas = [
   { name: "Current Affairs", progress: 30, status: "Focus" as Status },
 ];
 
-const statusColors: Record<Status, string> = {
-  Critical: "bg-red-200 text-red-700",
-  Improve: "bg-orange-200 text-orange-700",
-  Focus: "bg-yellow-200 text-yellow-700",
+const statusColors: Record<Status, { bg: string; text: string }> = {
+  Critical: { bg: "#FF8877", text: "#AA2727" },
+  Improve: { bg: "#FED7AA", text: "#C2410C" },
+  Focus: { bg: "#FEF08A", text: "#CA8A04" },
 };
 
 const ImprovementAreasChart = () => {
@@ -29,21 +29,28 @@ const ImprovementAreasChart = () => {
             Suggestions for topics or skills that need more focus based on performance
           </p>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="space-y-4">
           {improvementAreas.map((area, index) => (
-            <div key={index} className="flex items-center space-x-2">
-              <div className="flex-grow h-6 sm:h-8 overflow-hidden">
-                <div
-                  className="bg-blue-400 h-full rounded-full flex items-center"
-                  style={{ width: `${area.progress}%` }}
-                >
-                  <span className="text-slate-100 text-xs sm:text-sm font-semibold pl-3">
-                    {index + 1}.{area.name}
-                  </span>
-                </div>
+            <div key={index} className="flex items-center h-6 sm:h-8">
+              {/* Progress bar with rounded ends */}
+              <div
+                className="bg-blue-400 h-full rounded-full flex items-center pl-3"
+                style={{ width: `${area.progress}%` }}
+              >
+                <span className="text-white text-xs sm:text-sm font-semibold">
+                  {index + 1}.{area.name}
+                </span>
               </div>
-              <div className={`text-xs font-semibold px-2 sm:px-3 py-1 rounded-full ${statusColors[area.status]}`}>
-                {area.status}
+              <div className="ml-2">
+                <span 
+                  className="text-xs sm:text-sm font-semibold rounded-full px-2"
+                  style={{ 
+                    backgroundColor: statusColors[area.status].bg,
+                    color: statusColors[area.status].text
+                  }}
+                >
+                  {area.status}
+                </span>
               </div>
             </div>
           ))}

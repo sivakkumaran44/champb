@@ -47,7 +47,7 @@ const Barchart: React.FC = () => {
   return (
     <Card className="bg-slate-100 border border-custombroder max-w-md h-[450px]">
     <CardHeader>
-        <CardTitle className="text-slate-700 text-lg">Section-wise scores</CardTitle>
+        <CardTitle className="text-slate-700 text-lg mb-10">Section-wise scores</CardTitle>
       </CardHeader>
       <CardContent className="h-[calc(100%-2rem)]">
         <ChartContainer config={chartConfig}>

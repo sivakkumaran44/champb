@@ -1,5 +1,4 @@
 "use client"
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, MinusCircle, PenSquare, XCircle } from 'lucide-react'; 
@@ -13,7 +12,7 @@ import ImprovementAreasChart from './areachart';
 import { TimeManagementChart } from './timemangementchart';
 const Report = () => {
   return (
-    <div className="relative w-full max-w-5xl p-2">
+    <div className="relative w-full max-w-5xl ">
       <Card className="mb-4 w-full max-w-4xl bg-slate-100 border border-custombroder rounded-lg relative mt-12">
         <CardContent className="p-4 sm:p-6">
           <div className="flex justify-between items-start mb-4">
@@ -62,7 +61,7 @@ const Report = () => {
           <Speed />  
         </div> 
       </div>
-      <div className="p-4">
+      <div className=" w-full md:w-2/2">
       <ImprovementAreasChart />
     </div>
       <div >
