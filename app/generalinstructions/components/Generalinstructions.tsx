@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import {CircleChevronRight } from 'lucide-react'
+import { CircleChevronRight } from 'lucide-react';
 import instructionsData from '@/components/data/generalinstructions.json';
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 
 interface Instruction {
   title: string;
@@ -25,11 +25,12 @@ interface TestInstructionsData {
 
 const Generalinstructions: React.FC = () => {
   const [instructions, setInstructions] = useState<TestInstructionsData | null>(null);
-  const router = useRouter(); 
+  const router = useRouter();
 
   const handleNext = () => {
-    router.push(`/generalinstructions/testspecificinstructions`); 
+    router.push(`/generalinstructions/testspecificinstructions`);
   };
+
   useEffect(() => {
     setInstructions({
       ...instructionsData,
@@ -45,14 +46,30 @@ const Generalinstructions: React.FC = () => {
 
   if (!instructions) return <div>Loading...</div>;
 
+  const getColorClass = (color: string) => {
+    switch (color) {
+      case 'gray':
+        return 'bg-slate-300';
+      case 'red':
+        return 'bg-red-500';
+      case 'green':
+        return 'bg-green-500';
+      case 'purple':
+        return 'bg-purple-500';
+      default:
+        return 'bg-gray-500';
+    }
+  };
+
   const renderShape = (shape: string, color: string, withSymbol: boolean = false) => {
+    const colorClass = getColorClass(color); // Get the correct Tailwind color class
     switch (shape) {
       case 'square':
         return (
-          <div className={`w-6 h-6 bg-${color}-500 mr-2 border-2 border-black`} />
+          <div className={`w-6 h-6 ${colorClass} mr-2 border-2 border-black`} />
         );
       case 'circle':
-        return <div className={`w-6 h-6 rounded-full bg-${color}-500 mr-2`} />;
+        return <div className={`w-6 h-6 rounded-full ${colorClass} mr-2`} />;
       case 'triangle':
         return (
           <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24">
@@ -65,7 +82,7 @@ const Generalinstructions: React.FC = () => {
       case 'empty-triangle':
         return (
           <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24">
-            <path d="M12 2 L22 22 L2 22 Z" fill={color} stroke={color} strokeWidth="2" />
+            <path d="M12 2 L22 22 L2 22 Z" fill="none" stroke={color} strokeWidth="2" />
           </svg>
         );
       default:
@@ -74,16 +91,22 @@ const Generalinstructions: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen ">
-          <h1 className="text-xl text-center text-slate-700 font-bold p-4">   SSC CGL Mock test I (2024)</h1>
-      <main className="flex-grow mt-6 mb-20 p-8"> 
+    <div className="flex flex-col min-h-screen">
+      <h1 className="text-xl text-center text-slate-700 font-bold p-4">
+        Please read these instructions carefully before beginning your test
+      </h1>
+      <main className="flex-grow mt-6 mb-20 p-8">
         <h2 className="text-lg text-slate-700 mb-4">{instructions.generalInstructions}</h2>
         {instructions.sections.map((section, index) => (
           <div key={index} className="mb-6">
-            <h3 className="font-semibold text-slate-800">{index + 1}) {section.title}</h3>
+            <h3 className="font-semibold text-slate-800">
+              {index + 1}) {section.title}
+            </h3>
             <ul className="list-disc pl-5 mt-2">
               {section.items.map((item, itemIndex) => (
-                <li key={itemIndex} className="text-slate-600 mb-1">{item}</li>
+                <li key={itemIndex} className="text-slate-600 mb-1">
+                  {item}
+                </li>
               ))}
             </ul>
           </div>
@@ -99,10 +122,14 @@ const Generalinstructions: React.FC = () => {
         </div>
       </main>
       <footer className="fixed bottom-0 left-0 right-0 bg-blue-50 p-4 flex justify-end">
-      <Button className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition duration-300 flex items-center"  onClick={handleNext} >
-      Next
-      <CircleChevronRight  className="ml-2 text-lg" />
-    </Button>
+      <Button
+  className="bg-[#B9E8DC] hover:bg-[#B9E8DC] text-slate-700 px-6 py-2 rounded-lg transition duration-300 flex items-center border border-[#334155]"
+  onClick={handleNext}
+>
+  Next
+  <CircleChevronRight className="ml-2 text-lg" />
+</Button>
+
       </footer>
     </div>
   );

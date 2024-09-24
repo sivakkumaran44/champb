@@ -3,7 +3,6 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Clock, HelpCircle, PenLine } from "lucide-react";
-import { useRouter } from "next/navigation"; 
 
 interface TestInfo {
   id: string;
@@ -15,12 +14,9 @@ interface TestInfo {
 }
 
 const MockTestPageClient: React.FC<TestInfo> = ({  title, description, duration, questions, isFree }) => {
-  const router = useRouter(); 
-
-  const handleTakeTest = () => {
-    router.push(`/generalinstructions`); 
+const handleTakeTest = () => {
+    window.open("/generalinstructions", "mozillaWindow", "popup");
   };
-
   return (
     <Card className="mb-4 w-full max-w-4xl bg-slate-100 border border-slate-300 rounded-lg relative">
       <CardContent className="p-4 sm:p-6">
