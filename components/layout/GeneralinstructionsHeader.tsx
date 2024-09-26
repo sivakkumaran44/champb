@@ -3,11 +3,9 @@ import React from 'react';
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import Logo1 from '@/public/assets/img/Frame 427321252.svg';
-
 interface HeaderProps {
   title: string;
 }
-
 const Header: React.FC<HeaderProps> = ({ title }) => {
   const router = useRouter(); 
   const pathname = usePathname();  
@@ -15,9 +13,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
   const handleGoBack = () => {
     router.back();
   };
-
-  const isOnSpecificScreen = pathname !== '/generalinstructions/testspecificinstructions/testscreen/questionpaper';
-
+  const isOnQuestionPaperScreen = pathname === '/generalinstructions/testspecificinstructions/testscreen/questionpaper';
   return (
     <header className="flex items-center justify-between p-8 ">
       <div className="bg-blue-50 h-14 flex items-center justify-between w-full rounded-xl">
@@ -37,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
         </div>
        
         <div className="mr-8">
-          {isOnSpecificScreen && (
+          {isOnQuestionPaperScreen && (
             <button 
               onClick={handleGoBack} 
               className="bg-slate-700 text-white px-4 py-2 rounded-lg hover:bg-slate-700"
