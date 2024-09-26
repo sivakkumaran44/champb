@@ -6,12 +6,10 @@ interface QuizQuestion {
   id: number; 
   text: string; 
 }
-
 interface QuizData {
   subject: string;
   questions: QuizQuestion[];
 }
-
 interface QuizSidebarProps {
   isSidebarOpen: boolean;
   currentSubject: number;
@@ -20,7 +18,6 @@ interface QuizSidebarProps {
   quizData: QuizData[]; 
   toggleSidebar: () => void;
 }
-
 const QuizSidebar: React.FC<QuizSidebarProps> = ({
   isSidebarOpen,
   currentSubject,
@@ -43,7 +40,6 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
         return 'bg-gray-300';
     }
   };
-
   return (
     <>
       <div className={`${isSidebarOpen ? 'w-[20%]' : 'hidden'} bg-[#F1F5F9] border border-[#D9D9D9] rounded-xl mb-2 p-4 h-full transition-all duration-300 relative`}>
@@ -199,5 +195,4 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
     </>
   );
 };
-
 export default QuizSidebar;
