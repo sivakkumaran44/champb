@@ -20,7 +20,7 @@ const Testspecificinstructions = () => {
     router.push('/generalinstructions/testspecificinstructions/testscreen'); 
   };
   return (
-    <div className="flex flex-col min-h-screen p-8 bg-white">
+    <div className="flex flex-col min-h-screen p-8 bg-white mt-28">
       <h2 className="text-xl text-slate-700 font-bold mb-4">{instructions.title}</h2>
 
       <div className="mb-6">

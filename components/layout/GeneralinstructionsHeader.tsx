@@ -1,12 +1,23 @@
+"use client";
 import React from 'react';
 import Image from 'next/image';
+import { useRouter, usePathname } from 'next/navigation';
 import Logo1 from '@/public/assets/img/Frame 427321252.svg';
 
 interface HeaderProps {
   title: string;
 }
 
-const Header: React.FC<HeaderProps> = ({  }) => {
+const Header: React.FC<HeaderProps> = ({ title }) => {
+  const router = useRouter(); 
+  const pathname = usePathname();  
+
+  const handleGoBack = () => {
+    router.back();
+  };
+
+  const isOnSpecificScreen = pathname !== '/generalinstructions/testspecificinstructions/testscreen/questionpaper';
+
   return (
     <header className="flex items-center justify-between p-8 ">
       <div className="bg-blue-50 h-14 flex items-center justify-between w-full rounded-xl">
@@ -21,11 +32,20 @@ const Header: React.FC<HeaderProps> = ({  }) => {
       
         <div className="flex-grow flex justify-center">
           <div className="text-sm font-medium text-slate-700 bg-green-100 px-3 py-1 rounded-full">
-            SSC CGL Mock test I (2024)
+            {title} 
           </div>
         </div>
        
-        <div className="mr-8" />
+        <div className="mr-8">
+          {isOnSpecificScreen && (
+            <button 
+              onClick={handleGoBack} 
+              className="bg-slate-700 text-white px-4 py-2 rounded-lg hover:bg-slate-700"
+            >
+              Back to Test
+            </button>
+          )}
+        </div>
       </div>
     </header>
   );

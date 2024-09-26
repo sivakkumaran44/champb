@@ -16,7 +16,7 @@ export default function MainLayout({
         </div>
       </HeaderToggle>
 
-      <div className={`flex-grow overflow-auto`}>
+      <div className={`flex-grow `}>
         <main>{children}</main>
       </div>
     </div>
