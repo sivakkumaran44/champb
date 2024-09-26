@@ -2,14 +2,17 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 interface QuizQuestion {
-  id: number; 
-  text: string; 
+  question: string;
+  options: string[];
 }
+
 interface QuizData {
   subject: string;
   questions: QuizQuestion[];
 }
+
 interface QuizSidebarProps {
   isSidebarOpen: boolean;
   currentSubject: number;
@@ -18,6 +21,7 @@ interface QuizSidebarProps {
   quizData: QuizData[]; 
   toggleSidebar: () => void;
 }
+
 const QuizSidebar: React.FC<QuizSidebarProps> = ({
   isSidebarOpen,
   currentSubject,

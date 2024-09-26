@@ -18,12 +18,11 @@ const ReportQuestion = () => {
     <div>
      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
-          <Button variant="ghost" className="text-slate-700 flex items-center gap-2">
-            <CircleAlert className="w-4 h-4" />
+          <Button variant="ghost" className="text-slate-700  flex items-center gap-2">
+            <CircleAlert className="w-5 h-5" />
             Report
           </Button>
         </DialogTrigger>
-        
         <DialogContent className="sm:max-w-[425px] bg-white text-slate-700">
           <DialogHeader>
             <DialogTitle>Report Question</DialogTitle>

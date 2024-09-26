@@ -51,10 +51,16 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     setAnswers(initialAnswers);
   }, []);
 
-  const handleZoomIn = () => setFontSize((prev) => prev + 2);
-  const handleZoomOut = () => setFontSize((prev) => Math.max(12, prev - 2));
+  const handleZoomIn = () => {
+    setFontSize((prev) => Math.min(32, prev + 2));
+  };
+  
+  const handleZoomOut = () => {
+    setFontSize((prev) => Math.max(12, prev - 2));
+  };
+  
   const handleResetFontSize = () => setFontSize(16);
-
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeElapsed(prevTime => prevTime + 1); 
