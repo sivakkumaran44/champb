@@ -9,14 +9,12 @@ import SubmitDialog from './SubmitDialog';
 interface QuizInterfaceProps {
   initialSubject: number;
   initialQuestion: number;
-  selectedOption: string; // Add this line
+  selectedOption: string; 
   onOptionSelect: (value: string) => void;
   onPrevious: () => void;
   onSaveNext: () => void;
   onClearResponse: () => void;
 }
-
-
 const QuizInterface: React.FC<QuizInterfaceProps> = ({
   initialSubject,
   initialQuestion,
@@ -100,7 +98,6 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   };
 
   const handleMarkForReview = () => {
-    const currentStatus = questionStatuses[currentSubject][currentQuestion];
     const newStatus = selectedOption ? 'answered-and-marked' : 'marked-for-review';
     updateQuestionStatus(currentSubject, currentQuestion, newStatus);
     

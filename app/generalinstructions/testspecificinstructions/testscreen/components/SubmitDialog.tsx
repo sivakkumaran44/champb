@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   AlertDialog,
+  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -24,6 +25,7 @@ const SubmitDialog: React.FC<SubmitDialogProps> = ({
   isOpen,
   onOpenChange,
   questionSummary,
+  handleConfirmSubmit,
 }) => {
   return (
     <AlertDialog open={isOpen} onOpenChange={onOpenChange} rounded-xl >
@@ -80,11 +82,8 @@ const SubmitDialog: React.FC<SubmitDialogProps> = ({
       <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-in-out delay-100 bg-slate-700 rounded-xl opacity-0 group-hover:opacity-100"></span>
       <span className="relative text-white">Submit Test</span>
     </Button>     
-    <Button
-        className="font-semibold bg-[linear-gradient(305.13deg,_#FACC15_21.87%,_#FDE68A_81.26%)] text-slate-700 px-6 py-2 rounded-lg transition duration-300 flex items-center"
-      >
-      Continue
-      </Button>
+     <AlertDialogCancel className='bg-slate-700 text-white hover:bg-slate-700 text-white'>Continue</AlertDialogCancel>
+  
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
