@@ -4,6 +4,7 @@ import TestTypeNavigation from '@/app/dashboard/components/TestTypeNavigation';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { CircleChevronDown, Clock, HelpCircle, PenLine } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const CustomTest: React.FC = () => {
   const [section, setSection] = useState('');
@@ -67,10 +68,10 @@ const CustomTest: React.FC = () => {
                 <span>100 Questions</span>
               </div>
             </div>
-            <button className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white py-2 px-4 rounded-lg flex items-center justify-center space-x-2 transition duration-300">
+            <Button className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white py-2 px-4 rounded-lg flex items-center justify-center space-x-2 transition duration-300">
               <PenLine className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="text-xs sm:text-sm">TAKE TEST</span>
-            </button>
+            </Button>
           </CardContent>
         </Card>
          </div>

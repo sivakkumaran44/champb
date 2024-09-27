@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
+import { Button } from '../ui/button';
 import { useRouter, usePathname } from 'next/navigation';
 import Logo1 from '@/public/assets/img/Frame 427321252.svg';
 interface HeaderProps {
@@ -34,12 +35,12 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
        
         <div className="mr-8">
           {isOnQuestionPaperScreen && (
-            <button 
+            <Button 
               onClick={handleGoBack} 
-              className="bg-slate-700 text-white px-4 py-2 rounded-lg hover:bg-slate-700"
+              className="bg-slate-700 text-white px-4 py-2 rounded-lg"
             >
               Back to Test
-            </button>
+            </Button>
           )}
         </div>
       </div>
