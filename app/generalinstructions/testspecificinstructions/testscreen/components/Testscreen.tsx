@@ -1,65 +1,9 @@
-"use client";
-import React, { useState } from 'react';
-import TestHeader from './Testheader';
-import QuizInterface from './QuizInterface';
-import questionsData from '@/components/data/questionpaper.json';
+import React from 'react'
 
-interface SelectedOptions {
-  [key: string]: string;
+const Testscreen = () => {
+  return (
+    <div>Testscreen</div>
+  )
 }
 
-const TestScreen: React.FC = () => {
-  const testTitle = "SSC CGL Mock Test I (2024)";
-  const [currentSubject, setCurrentSubject] = useState<number>(0);
-  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({});
-
-  const handleOptionSelect = (value: string) => {
-    const key = `${currentSubject}-${currentQuestion}`;
-    setSelectedOptions((prev) => ({ ...prev, [key]: value }));
-  };
-
-  const handleSaveNext = () => {
-    if (currentQuestion < questionsData[currentSubject].questions.length - 1) {
-      setCurrentQuestion((prev) => prev + 1);
-    } else if (currentSubject < questionsData.length - 1) {
-      setCurrentSubject((prev) => prev + 1);
-      setCurrentQuestion(0);
-    }
-  };
-
-  const handlePrevious = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion((prev) => prev - 1);
-    } else if (currentSubject > 0) {
-      setCurrentSubject((prev) => prev - 1);
-      setCurrentQuestion(questionsData[currentSubject - 1].questions.length - 1);
-    }
-  };
-
-  const handleClearResponse = () => {
-    const key = `${currentSubject}-${currentQuestion}`;
-    setSelectedOptions((prev) => {
-      const newSelectedOptions = { ...prev };
-      delete newSelectedOptions[key];
-      return newSelectedOptions;
-    });
-  };
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <TestHeader testTitle={testTitle} />
-      <QuizInterface
-        initialSubject={currentSubject}
-        initialQuestion={currentQuestion}
-        selectedOption={selectedOptions[`${currentSubject}-${currentQuestion}`] || ''}
-        onOptionSelect={handleOptionSelect}
-        onPrevious={handlePrevious}
-        onSaveNext={handleSaveNext}
-        onClearResponse={handleClearResponse}
-      />
-    </div>
-  );
-};
-
-export default TestScreen;
+export default Testscreen
