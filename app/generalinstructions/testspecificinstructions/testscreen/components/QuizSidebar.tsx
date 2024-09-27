@@ -20,6 +20,7 @@ interface QuizSidebarProps {
   questionStatuses: string[][];
   quizData: QuizData[]; 
   toggleSidebar: () => void;
+  onNavigateToQuestion: (subjectIndex: number, questionIndex: number) => void;
 }
 
 const QuizSidebar: React.FC<QuizSidebarProps> = ({
@@ -29,6 +30,7 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
   questionStatuses,
   quizData,
   toggleSidebar,
+  onNavigateToQuestion,
 }) => {
   const getButtonColor = (status: string) => {
     switch (status) {
@@ -44,10 +46,11 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
         return 'bg-gray-300';
     }
   };
+
   return (
     <>
-      <div className={`${isSidebarOpen ? 'w-[20%]' : 'hidden'} bg-[#F1F5F9] border border-[#D9D9D9] rounded-xl mb-2 p-4 h-full transition-all duration-300 relative`}>
-        <div className="flex items-center gap-6 mb-4">
+        <div className={`hidden lg:block ${isSidebarOpen ? 'lg:w-[20%]' : 'lg:hidden'} bg-[#F1F5F9] border border-[#D9D9D9] rounded-xl mb-2 p-4 h-full transition-all duration-300 relative`}>
+      <div className="flex items-center gap-6 mb-4">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
             <AvatarFallback>CN</AvatarFallback>
@@ -112,76 +115,76 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
             {quizData[currentSubject]?.subject || "N/A"}
           </div>
           <div className="flex flex-wrap gap-4 flex items-center justify-center">
-            {quizData[currentSubject]?.questions.map((question: QuizQuestion, index: number) => {
-              const status = questionStatuses[currentSubject]?.[index];
-              const isCurrent = index === currentQuestion;
-              return (
-                <div 
-                  key={index} 
-                  className={`w-8 h-8 flex items-center justify-center transition-all
-                    ${isCurrent ? 'ring-1 ring-slate-700' : ''} 
-                    ${status === 'not-visited' ? 'none' : 'rounded-full'}`}
-                  onClick={() => console.log(`Navigating to question ${index + 1}`)}
-                >
-                  {status === 'marked-for-review' || status === 'answered-and-marked' ? (
-                    <svg className="w-8 h-8" viewBox="0 0 24 24">
-                      <polygon points="12,2 22,22 2,22" fill="purple" />
-                      {status === 'answered-and-marked' && (
-                        <g transform="translate(12, 13)">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="10"
-                            height="10" 
-                            viewBox="0 0 24 24"
-                          >   
-                            <g>
-                              <circle cx="12" cy="12" r="10" fill="#4ade80" /> 
-                              <text 
-                                x="12" 
-                                y="16" 
-                                fontSize="16"
-                                textAnchor="middle" 
-                                fill="white" 
-                                fontWeight="bold"
-                              >
-                                !
-                              </text>
-                            </g>
-                          </svg>
-                        </g>   
-                      )}
-                      <text 
-                        x="50%" 
-                        y="70%" 
-                        textAnchor="middle" 
-                        fill="white" 
-                        fontSize="10px" 
-                        fontWeight="normal"
-                      >
-                        {index + 1}
-                      </text>
-                    </svg>
-                  ) : (
-                    <span
-                      className={`w-full h-full flex items-center justify-center
-                        ${status === 'not-visited' ? '' : 'rounded-full'}
-                        ${getButtonColor(status)}`}
+          {quizData[currentSubject]?.questions.map((question: QuizQuestion, index: number) => {
+            const status = questionStatuses[currentSubject]?.[index];
+            const isCurrent = index === currentQuestion;
+            return (
+              <div 
+                key={index} 
+                className={`w-8 h-8 flex items-center justify-center transition-all cursor-pointer
+                  ${isCurrent ? 'ring-1 ring-slate-700' : ''} 
+                  ${status === 'not-visited' ? 'none' : 'rounded-full'}`}
+                onClick={() => onNavigateToQuestion(currentSubject, index)}
+              >
+                {status === 'marked-for-review' || status === 'answered-and-marked' ? (
+                  <svg className="w-8 h-8" viewBox="0 0 24 24">
+                    <polygon points="12,2 22,22 2,22" fill="purple" />
+                    {status === 'answered-and-marked' && (
+                      <g transform="translate(12, 13)">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="10"
+                          height="10" 
+                          viewBox="0 0 24 24"
+                        >   
+                          <g>
+                            <circle cx="12" cy="12" r="10" fill="#4ade80" /> 
+                            <text 
+                              x="12" 
+                              y="16" 
+                              fontSize="16"
+                              textAnchor="middle" 
+                              fill="white" 
+                              fontWeight="bold"
+                            >
+                              !
+                            </text>
+                          </g>
+                        </svg>
+                      </g>   
+                    )}
+                    <text 
+                      x="50%" 
+                      y="70%" 
+                      textAnchor="middle" 
+                      fill="white" 
+                      fontSize="10px" 
+                      fontWeight="normal"
                     >
                       {index + 1}
-                    </span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+                    </text>
+                  </svg>
+                ) : (
+                  <span
+                    className={`w-full h-full flex items-center justify-center
+                      ${status === 'not-visited' ? '' : 'rounded-full'}
+                      ${getButtonColor(status)}`}
+                  >
+                    {index + 1}
+                  </span>
+                )}
+              </div>
+            );
+          })}
         </div>
-      </div>     
+      </div>   
+      </div>  
       {!isSidebarOpen && (
         <Button
           onClick={toggleSidebar}
           variant="ghost"
           size="icon"
-          className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md"
+          className="fixed right-0  top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md"
         >
           <ChevronLeft className="w-4 h-4 text-white" />
         </Button>

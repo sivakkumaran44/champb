@@ -5,6 +5,7 @@ import QuizHeader from './QuizHeader';
 import QuizSidebar from './QuizSidebar';
 import QuizFooter from './QuizFooter';
 import SubmitDialog from './SubmitDialog';
+
 interface QuizInterfaceProps {
   currentSubject: number;
   currentQuestion: number;
@@ -13,10 +14,9 @@ interface QuizInterfaceProps {
   onPrevious: () => void;
   onSaveNext: () => void;
   onClearResponse: () => void;
-  id?: number;   
-  text?: string; 
+  id?: number;
+  text?: string;
 }
-
 
 const QuizInterface: React.FC<QuizInterfaceProps> = ({
   currentSubject,
@@ -37,38 +37,34 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     answered: 0,
     notAnswered: 0,
     markedForReview: 0,
-    notVisited: 0
+    notVisited: 0,
   });
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [currentQuestionState, setCurrentQuestionState] = useState(currentQuestion);
+  const [currentSubjectState, setCurrentSubjectState] = useState(currentSubject);
+
   useEffect(() => {
-    const initialStatuses = quizData.map(subject => 
+    const initialStatuses = quizData.map(subject =>
       new Array(subject.questions.length).fill('not-visited')
     );
     setQuestionStatuses(initialStatuses);
-    const initialAnswers = quizData.map(subject => 
+    const initialAnswers = quizData.map(subject =>
       new Array(subject.questions.length).fill('')
     );
     setAnswers(initialAnswers);
   }, []);
 
-  const handleZoomIn = () => {
-    setFontSize((prev) => Math.min(32, prev + 2));
-  };
-  
-  const handleZoomOut = () => {
-    setFontSize((prev) => Math.max(12, prev - 2));
-  };
-  
+  const handleZoomIn = () => setFontSize(prev => Math.min(32, prev + 2));
+  const handleZoomOut = () => setFontSize(prev => Math.max(12, prev - 2));
   const handleResetFontSize = () => setFontSize(16);
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeElapsed(prevTime => prevTime + 1); 
+      setTimeElapsed(prevTime => prevTime + 1);
     }, 1000);
-  
-    return () => clearInterval(interval); // Clear interval on component unmount
+    return () => clearInterval(interval);
   }, []);
-  
+
   const updateQuestionStatus = (subjectIndex: number, questionIndex: number, status: string) => {
     const newStatuses = [...questionStatuses];
     newStatuses[subjectIndex][questionIndex] = status;
@@ -104,7 +100,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
       answered: 0,
       notAnswered: 0,
       markedForReview: 0,
-      notVisited: 0
+      notVisited: 0,
     };
 
     questionStatuses.forEach(subject => {
@@ -136,23 +132,24 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   };
 
   const handleConfirmSubmit = () => {
-    console.log("Test submitted");
+    console.log('Test submitted');
     setIsSubmitDialogOpen(false);
   };
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const handleNavigateToQuestion = (subjectIndex: number, questionIndex: number) => {
+    setCurrentSubjectState(subjectIndex);
+    setCurrentQuestionState(questionIndex);
   };
-
 
   return (
     <div className="flex flex-col h-screen">
       <div className="flex w-full flex-grow p-4 pb-20">
-        <div className={`${isSidebarOpen ? 'w-[80%]' : 'w-[100%]'} p-4  transition-all duration-300`}>
-          <QuizHeader 
-            quizData={quizData} 
-            currentSubject={currentSubject} 
-            currentQuestion={currentQuestion}
+        <div className={`${isSidebarOpen ? 'w-[80%]' : 'w-[100%]'} p-4 transition-all duration-300`}>
+          <QuizHeader
+            quizData={quizData}
+            currentSubject={currentSubjectState}
+            currentQuestion={currentQuestionState}
             timeElapsed={timeElapsed}
             marks={marks}
             handleZoomIn={handleZoomIn}
@@ -160,29 +157,30 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
             handleResetFontSize={handleResetFontSize}
           />
           <TestQuestion
-            question={quizData[currentSubject]?.questions[currentQuestion]}
+            question={quizData[currentSubjectState]?.questions[currentQuestionState]}
             selectedOption={selectedOption}
             onOptionSelect={onOptionSelect}
             fontSize={fontSize}
           />
         </div>
-        <QuizSidebar 
+        <QuizSidebar
           isSidebarOpen={isSidebarOpen}
-          currentSubject={currentSubject}
-          currentQuestion={currentQuestion}
+          currentSubject={currentSubjectState}
+          currentQuestion={currentQuestionState}
           questionStatuses={questionStatuses}
           quizData={quizData}
           toggleSidebar={toggleSidebar}
+          onNavigateToQuestion={handleNavigateToQuestion}
         />
       </div>
-      <QuizFooter 
+      <QuizFooter
         onPrevious={onPrevious}
         onClearResponse={onClearResponse}
         handleMarkForReview={handleMarkForReview}
         handleSaveNext={handleSaveNext}
         handleSubmitTest={handleSubmitTest}
       />
-      <SubmitDialog 
+      <SubmitDialog
         isOpen={isSubmitDialogOpen}
         onOpenChange={setIsSubmitDialogOpen}
         questionSummary={questionSummary}

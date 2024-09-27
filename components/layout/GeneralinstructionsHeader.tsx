@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
     <header className="flex items-center justify-between mb-4 p-8">
       <div className="bg-blue-50 h-14 flex items-center justify-between w-full rounded-xl">
-        <div className="flex items-center ml-8">
+           <div className="flex items-center ml-8">
           <Image 
             src={Logo1} 
             alt="bChamp Logo" 

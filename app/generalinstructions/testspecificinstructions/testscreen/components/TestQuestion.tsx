@@ -29,7 +29,6 @@ const TestQuestion: React.FC<TestQuestionProps> = ({ question, selectedOption, o
       </RadioGroup>
     </div>
   </div>
-  
   );
 };
 
