@@ -48,16 +48,11 @@ const Generalinstructions: React.FC = () => {
 
   const getColorClass = (color: string) => {
     switch (color) {
-      case 'gray':
-        return 'bg-slate-300';
-      case 'red':
-        return 'bg-red-500';
-      case 'green':
-        return 'bg-green-500';
-      case 'purple':
-        return 'bg-purple-500';
-      default:
-        return 'bg-gray-500';
+      case 'gray': return 'bg-slate-300';
+      case 'red': return 'bg-red-500';
+      case 'green': return 'bg-green-500';
+      case 'purple': return 'bg-purple-500';
+      default: return 'bg-gray-500';
     }
   };
 
@@ -65,37 +60,67 @@ const Generalinstructions: React.FC = () => {
     const colorClass = getColorClass(color);
     switch (shape) {
       case 'square':
-        return (
-          <div className={`w-6 h-6 ${colorClass} mr-2 border-2 border-black`} />
-        );
+        return <div className={`w-6 h-6 ${colorClass} mr-2 border-2 border-black`} />;
       case 'circle':
         return <div className={`w-6 h-6 rounded-full ${colorClass} mr-2`} />;
       case 'triangle':
         return (
-          <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24">
-            <path d="M12 2 L22 22 L2 22 Z" fill={color} />
-            {withSymbol && (
-              <text x="12" y="19" fontSize="16" fill="white" textAnchor="middle">!</text>
-            )}
-          </svg>
+        
+          <svg className="w-12 h-12 md:w-6 md:h-6 mr-2" viewBox="0 0 24 24">
+          <path d="M12 2 L22 22 L2 22 Z" fill="purple" stroke="purple" strokeWidth="2" />
+          <g transform="translate(12, 13)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="10"
+              height="10" 
+              viewBox="0 0 24 24"
+            >   
+              <g>
+                <circle cx="12" cy="12" r="10" fill="#4ade80" /> 
+                <text 
+                  x="12" 
+                  y="16" 
+                  fontSize="16"
+                  textAnchor="middle" 
+                  fill="white" 
+                  fontWeight="bold"
+                >
+                  !
+                </text>
+              </g>
+            </svg>
+          </g>       
+        </svg>
         );
       case 'empty-triangle':
         return (
-          <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24">
-            <path d="M12 2 L22 22 L2 22 Z" fill={color} stroke={color} strokeWidth="2" />
-          </svg>
+       <svg className="w-12 h-12 md:w-6 md:h-6 mr-2" viewBox="0 0 24 24">
+          <path d="M12 2 L22 22 L2 22 Z" fill={color} />
+          {withSymbol && (
+            <text x="12" y="19" fontSize="16" fill="none"stroke={color}  textAnchor="middle">!</text>
+          )}
+        </svg>
         );
       default:
         return null;
     }
   };
 
+  const renderQuestionStatus = (status: QuestionStatus) => {
+    return (
+      <div key={status.text} className="flex items-center mb-2">
+        {renderShape(status.shape, status.color)}
+        <span className="text-slate-600">{status.text}</span>
+      </div>
+    );
+  };
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen pt-32">
       <h1 className="text-xl text-center text-slate-700 font-bold p-4">
-        Please read these instructions carefully before beginning your test
+        {instructions.title}
       </h1>
-      <main className="flex-grow mt-6 mb-20 p-8">
+      <main className="flex-grow mb-20 p-8">
         <h2 className="text-lg text-slate-700 mb-4">{instructions.generalInstructions}</h2>
         {instructions.sections.map((section, index) => (
           <div key={index} className="mb-6">
@@ -109,27 +134,22 @@ const Generalinstructions: React.FC = () => {
                 </li>
               ))}
             </ul>
+            {section.title === "Navigation:" && (
+              <div className="mt-4 p-4 rounded-lg">
+                {instructions.questionStatus.map(renderQuestionStatus)}
+              </div>
+            )}
           </div>
         ))}
-        <div className="mt-6">
-          <h3 className="font-semibold text-slate-800 mb-2">Question Status:</h3>
-          {instructions.questionStatus.map((status, index) => (
-            <div key={index} className="flex items-center mb-2">
-              {renderShape(status.shape, status.color, status.shape === 'triangle')}
-              <span className="text-slate-600">{status.text}</span>
-            </div>
-          ))}
-        </div>
       </main>
       <footer className="fixed bottom-0 left-0 right-0 bg-blue-50 p-4 flex justify-end">
-      <Button
-  className="bg-[#B9E8DC] hover:bg-[#B9E8DC] font-semibold text-slate-700 px-6 py-2 rounded-lg transition duration-300 flex items-center border border-[#334155]"
-  onClick={handleNext}
->
-  Next
-  <CircleChevronRight className="ml-2 text-lg" />
-</Button>
-
+        <Button
+          className="bg-[#B9E8DC] hover:bg-[#B9E8DC] font-semibold text-slate-700 px-6 py-2 rounded-lg transition duration-300 flex items-center border border-[#334155]"
+          onClick={handleNext}
+        >
+          Next
+          <CircleChevronRight className="ml-2 text-lg" />
+        </Button>
       </footer>
     </div>
   );

@@ -5,7 +5,6 @@ import QuizHeader from './QuizHeader';
 import QuizSidebar from './QuizSidebar';
 import QuizFooter from './QuizFooter';
 import SubmitDialog from './SubmitDialog';
-
 interface QuizInterfaceProps {
   currentSubject: number;
   currentQuestion: number;
@@ -14,9 +13,10 @@ interface QuizInterfaceProps {
   onPrevious: () => void;
   onSaveNext: () => void;
   onClearResponse: () => void;
-  id: number;
-  text: string;
+  id?: number;   
+  text?: string; 
 }
+
 
 const QuizInterface: React.FC<QuizInterfaceProps> = ({
   currentSubject,

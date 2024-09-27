@@ -21,6 +21,13 @@
         "items": [
           "Use the \"Next\" and \"Previous\" buttons to move between questions.",
           "The question palette on the side shows"
+        ],
+        "questionStatus": [
+          { "color": "gray", "text": "You have not visited the question yet." },
+          { "color": "red", "text": "You have not answered the question." },
+          { "color": "green", "text": "You have answered the question." },
+          { "color": "purple", "text": "You have NOT answered the question, but have marked the question for review." },
+          { "color": "purple", "text": "The question(s) \"Answered and Marked for Review\" will be considered for evaluation." }
         ]
       },
       {
@@ -31,6 +38,7 @@
           "Click on Mark for Review & Next to save your answer for the current question, mark it for review, and then go to the next question."
         ]
       },
+      
       {
         "title": "Navigating to a Section:",
         "items": [
@@ -48,12 +56,5 @@
           "You can click on your \"Profile\" image on top right corner of your screen to change the language during the exam for entire question paper. On clicking of Profile image you will get a drop-down to change the question content to the desired language."
         ]
       }
-    ],
-    "questionStatus": [
-      { "color": "gray", "text": "You have not visited the question yet." },
-      { "color": "red", "text": "You have not answered the question." },
-      { "color": "green", "text": "You have answered the question." },
-      { "color": "purple", "text": "You have NOT answered the question, but have marked the question for review." },
-      { "color": "purple", "text": "The question(s) \"Answered and Marked for Review\" will be considered for evaluation." }
     ]
   }
