@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import TestHeader from './TestHeader';
+import TestHeader from './Testheader';
 import QuizInterface from './QuizInterface';
 
 import questionsData from '@/components/data/questionpaper.json';
