@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from 'react';
 import quizData from '@/components/data/questionpaper.json';
 import TestQuestion from './TestQuestion';
