@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
-
+import {  CircleArrowLeft  } from 'lucide-react';
 const Testspecific = () => {
   const router = useRouter();
 
@@ -15,7 +15,7 @@ const Testspecific = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen p-8 bg-slate-50">
+    <div className="flex flex-col min-h-screen p-8 pt-28">
       <h2 className="text-2xl text-slate-800 font-bold mb-6">Other Important Instructions</h2>
 
       <div className="mb-8">
@@ -44,13 +44,15 @@ const Testspecific = () => {
         </ol>
       </div>
 <div  className="flex space-x-16">
-        <Button 
+<Button 
           variant="outline" 
-          className="bg-cyan-100 text-slate-700 hover:bg-cyan-200 border border-slate-300"
+          className="bg-cyan-100 text-slate-700 hover:bg-cyan-200 border border-slate-800 mb-4 md:mb-0"
           onClick={handleGoBack}
         >
-          ← Previous
+          < CircleArrowLeft  size={14} className="mr-1" /> 
+          Previous
         </Button>
+
         <Button 
           variant="outline" 
           className="bg-slate-700 text-white hover:bg-slate-800 border border-slate-600"
