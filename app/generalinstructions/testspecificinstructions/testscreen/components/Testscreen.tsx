@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import TestHeader from './Testheader';
-import QuizInterface from './QuizInterface';
+
 import questionsData from '@/components/data/questionpaper.json';
 interface SelectedOptions {
   [key: string]: string;
@@ -50,15 +50,7 @@ const Testscreen: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <TestHeader testTitle={testTitle} />
-      <QuizInterface
-  initialSubject={currentSubject}
-  initialQuestion={currentQuestion}
-  selectedOption={selectedOptions[`${currentSubject}-${currentQuestion}`] || ''}
-  onOptionSelect={handleOptionSelect}
-  onPrevious={handlePrevious}
-  onSaveNext={handleSaveNext}
-  onClearResponse={handleClearResponse}
-/>
+     
     </div>  
   );
 };
