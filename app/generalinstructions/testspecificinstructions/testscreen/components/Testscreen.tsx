@@ -6,7 +6,7 @@ import questionsData from '@/components/data/questionpaper.json';
 interface SelectedOptions {
   [key: string]: string;
 }
-const TestScreen: React.FC = () => {
+const Testscreen: React.FC = () => {
   const testTitle = "SSC CGL Mock Test I (2024)";
   const [currentSubject, setCurrentSubject] = useState<number>(0);
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -62,4 +62,4 @@ const TestScreen: React.FC = () => {
     </div>  
   );
 };
-export default TestScreen;
+export default Testscreen;
