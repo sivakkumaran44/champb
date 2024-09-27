@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Lock, ZoomIn, ZoomOut, Clock } from 'lucide-react';
+import {  ZoomIn, ZoomOut } from 'lucide-react';
 import ReportQuestion from './ReportQuestion';
 
 interface Subject {
@@ -19,8 +19,6 @@ interface QuizHeaderProps {
 }
 
 const QuizHeader: React.FC<QuizHeaderProps> = ({
-  quizData,
-  currentSubject,
   currentQuestion,
   timeElapsed,
   marks,
@@ -29,12 +27,8 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   handleResetFontSize,
 }) => {
 
-  
-  const handleSubjectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedSubjectIndex = Number(event.target.value);
-    console.log(`Selected subject: ${quizData[selectedSubjectIndex].subject}`);
-  };
 
+ 
   const formatTime = (timeInSeconds: number) => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
@@ -43,8 +37,8 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
 
   return (
     <div className="mb-2">
-     
-      <div className={  "bg-slate-100 p-2 rounded-lg flex items-center justify-between mb-8"}>
+    
+      <div className={ "bg-slate-100 p-2 rounded-lg flex items-center justify-between mb-8"}>
         <div className="text-sm font-semibold text-slate-700">
           Question No. {currentQuestion + 1}
         </div>
