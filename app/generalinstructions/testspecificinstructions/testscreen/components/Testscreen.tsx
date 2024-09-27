@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import TestHeader from './Testheader';
 import QuizInterface from './QuizInterface';
