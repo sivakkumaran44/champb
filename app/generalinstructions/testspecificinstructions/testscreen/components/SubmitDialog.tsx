@@ -25,7 +25,6 @@ const SubmitDialog: React.FC<SubmitDialogProps> = ({
   isOpen,
   onOpenChange,
   questionSummary,
-  handleConfirmSubmit,
 }) => {
   return (
     <AlertDialog open={isOpen} onOpenChange={onOpenChange} rounded-xl >

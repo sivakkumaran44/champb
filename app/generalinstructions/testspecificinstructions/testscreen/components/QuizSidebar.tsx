@@ -50,19 +50,19 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
   return (
     <>
         <div className={`hidden lg:block ${isSidebarOpen ? 'lg:w-[20%]' : 'lg:hidden'} bg-[#F1F5F9] border border-[#D9D9D9] rounded-xl mb-2 p-4 h-full transition-all duration-300 relative`}>
-      <div className="flex items-center gap-6 mb-4">
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-          <span className="text-center text-slate-700">Student Name</span>
-        </div>
-        <div className="border-b border-[#64748B] w-full mb-2"></div>
-        <div className="bg-slate-100 p-2 rounded-lg flex flex-col items-start mb-8">
-          <div className="flex flex-col items-start w-full gap-2 mb-2">
-            <div className="flex flex-col w-full gap-2 mb-2">
-              <div className="grid grid-cols-2 gap-2">
-                <div className="flex items-center gap-2">
+  <div className="flex items-center gap-6 mb-4">
+    <Avatar>
+      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+    <span className="text-center text-slate-700">Student Name</span>
+  </div>
+  <div className="border-b border-[#64748B] w-full mb-2"></div>
+  <div className="bg-slate-100 p-2 rounded-lg flex flex-col items-start mb-8">
+    <div className="flex flex-col items-start w-full gap-2 mb-2">
+      <div className="flex flex-col w-full gap-2 mb-2">
+        <div className="grid grid-cols-2 gap-2">
+             <div className="flex items-center gap-2">
                   <div className="w-6 h-6 bg-green-500 rounded-full" />
                   <span className="text-slate-700 text-sm">Answered</span>
                 </div>
@@ -111,9 +111,9 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
               </div>
             </div>
           </div>
-          <div className="text-sm font-semibold bg-slate-700 text-slate-200 mb-2 p-2 w-full rounded">
-            {quizData[currentSubject]?.subject || "N/A"}
-          </div>
+          <div className="text-sm font-semibold bg-slate-700 text-slate-200 mb-2 p-2 w-full rounded block">
+          {quizData[currentSubject]?.subject || "N/A"}
+        </div>
           <div className="flex flex-wrap gap-4 flex items-center justify-center">
           {quizData[currentSubject]?.questions.map((question: QuizQuestion, index: number) => {
             const status = questionStatuses[currentSubject]?.[index];
