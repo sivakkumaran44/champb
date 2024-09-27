@@ -1,15 +1,13 @@
 import React from 'react';
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-
+import { Button } from '@/components/ui/button';
 interface SubmitDialogProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
@@ -26,7 +24,6 @@ const SubmitDialog: React.FC<SubmitDialogProps> = ({
   isOpen,
   onOpenChange,
   questionSummary,
-  handleConfirmSubmit,
 }) => {
   return (
     <AlertDialog open={isOpen} onOpenChange={onOpenChange} rounded-xl >
@@ -74,9 +71,20 @@ const SubmitDialog: React.FC<SubmitDialogProps> = ({
   </div>
 </div>
         <AlertDialogFooter>
-                 <AlertDialogAction className='bg-[#94A3B8]'onClick={handleConfirmSubmit}>Submit Test</AlertDialogAction>
-         <AlertDialogCancel className='bg-slate-700 text-white hover:bg-slate-700 text-white'>Continue</AlertDialogCancel>
-  
+        <Button
+      
+      className="relative inline-flex items-center justify-center px-6 py-3 text-lg font-medium tracking-tighter text-purple-600 bg-white rounded-xl group hover:text-white transition-colors duration-200 ease-in-out delay-100"
+    >
+      <span className="absolute inset-0 w-full h-full mt-1 ml-1 transition-all duration-300 ease-in-out bg-slate-700 rounded-xl group-hover:mt-0 group-hover:ml-0"></span>
+      <span className="absolute inset-0 w-full h-full bg-[#94A3B8] rounded-xl"></span>
+      <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-in-out delay-100 bg-slate-700 rounded-xl opacity-0 group-hover:opacity-100"></span>
+      <span className="relative text-white">Submit Test</span>
+    </Button>     
+    <Button
+        className="font-semibold bg-[linear-gradient(305.13deg,_#FACC15_21.87%,_#FDE68A_81.26%)] text-slate-700 px-6 py-2 rounded-lg transition duration-300 flex items-center"
+      >
+      Continue
+      </Button>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

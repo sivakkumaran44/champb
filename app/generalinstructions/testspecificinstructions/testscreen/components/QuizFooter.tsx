@@ -48,19 +48,17 @@ const QuizFooter: React.FC<QuizFooterProps> = ({
         Save & Next
       </Button>
     </div>
-    <div className="flex">
-    <button
+    <div className="flex  ">
+    <Button
       onClick={handleSubmitTest}
-      className="relative inline-block text-lg group"
+      className="relative inline-flex items-center justify-center px-6 py-3 text-lg font-medium tracking-tighter text-purple-600 bg-white rounded-xl group hover:text-white transition-colors duration-200 ease-in-out delay-100"
     >
-      <span className="relative z-10 block px-6 py-2 overflow-hidden font-medium leading-tight text-white transition-colors duration-300 ease-out bg-[#94A3B8] border-2 border-[#334155] rounded-full ">
-        <span className="absolute inset-0 w-full h-full px-6 py-2 rounded-lg bg-[#94A3B8]"></span>
-        <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900"></span>
-        <span className="relative">Submit Test</span>
-      </span>
-      <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-full"></span>
-    </button>
-      
+      <span className="absolute inset-0 w-full h-full mt-1 ml-1 transition-all duration-300 ease-in-out bg-slate-700 rounded-xl group-hover:mt-0 group-hover:ml-0"></span>
+      <span className="absolute inset-0 w-full h-full bg-[#94A3B8] rounded-xl"></span>
+      <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-in-out delay-100 bg-slate-700 rounded-xl opacity-0 group-hover:opacity-100"></span>
+      <span className="relative text-white">Submit Test</span>
+    </Button>
+    
     </div>
   </footer>
   )

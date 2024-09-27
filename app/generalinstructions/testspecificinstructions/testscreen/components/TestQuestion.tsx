@@ -16,7 +16,7 @@ const TestQuestion: React.FC<TestQuestionProps> = ({ question, selectedOption, o
   return (
     <div className="mb-6 text-slate-700">
     <div 
-    className="overflow-y-auto max-h-[400px] p-2 border-none rounded-md" // Using Tailwind classes
+    className="overflow-y-auto custom-scrollbar max-h-[400px] p-2 border-none rounded-md"
   >
       <p className="font-medium mb-8" style={{ fontSize: `${fontSize}px` }}>{question.question}</p>
       <RadioGroup defaultValue="comfortable" value={selectedOption} onValueChange={onOptionSelect}>

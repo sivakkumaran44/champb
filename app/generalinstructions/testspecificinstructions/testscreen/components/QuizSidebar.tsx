@@ -68,7 +68,7 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
                   <span className="text-slate-700 text-sm">Not answered</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 bg-gray-300" />
+                  <div className="w-6 h-6 bg-gray-300 border border-slate-700" />
                   <span className="text-slate-700 text-sm">Not visited</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -119,8 +119,8 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
                 <div 
                   key={index} 
                   className={`w-8 h-8 flex items-center justify-center transition-all
-                    ${isCurrent ? 'ring-2 ring-blue-500' : ''} 
-                    ${status === 'not-visited' ? 'none' : 'none'}`}
+                    ${isCurrent ? 'ring-1 ring-slate-700' : ''} 
+                    ${status === 'not-visited' ? 'none' : 'rounded-full'}`}
                   onClick={() => console.log(`Navigating to question ${index + 1}`)}
                 >
                   {status === 'marked-for-review' || status === 'answered-and-marked' ? (

@@ -37,7 +37,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
 
   return (
     <>
-      <div className="flex flex-nowrap overflow-x-auto gap-2 mb-4">
+      <div className="flex flex-nowrap overflow-y-auto custom-scrollbar  gap-2 mb-4">
         {quizData.map((subject, index) => (
           <Button
             key={index}

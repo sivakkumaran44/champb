@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -61,7 +60,37 @@ body {
 body {
   font-family: var(--font-anek-tamil);
 }
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+ 
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 
+.custom-scrollbars::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbars::-webkit-scrollbar-track {
+
+  border-radius: 10px;
+}
+.custom-scrollbars::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+.custom-scrollbars::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+}
 @layer base {
   * {
     @apply border-border;

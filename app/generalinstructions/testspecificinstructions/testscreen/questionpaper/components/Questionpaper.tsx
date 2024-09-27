@@ -1,11 +1,12 @@
 "use client";
-import React from 'react';
-import questionsData from '@/components/data/questionpaper.json'; 
-import SidebarLegend from './SidebarLegend'; 
+import React from "react";
+import questionsData from "@/components/data/questionpaper.json";
+import SidebarLegend from "./SidebarLegend";
+
 const QuestionPaper = () => {
   return (
-    <div className="flex flex-row min-h-screen p-4 mt-28">
-      <div className="w-3/4 p-4 relative">
+    <div className="flex flex-row h-[calc(100vh-60px)] pt-[92px] p-8">
+      <div className="w-3/4 pr-4 overflow-y-auto custom-scrollbar">
         <h1 className="text-2xl font-bold mb-4">Question Paper</h1>
         {questionsData.map((subject, subjectIndex) => (
           <div key={subjectIndex} className="mb-8">
@@ -19,9 +20,9 @@ const QuestionPaper = () => {
             </ol>
           </div>
         ))}
-     </div>
-      <div className="w-1/4 p-4 bg-white">
-        <SidebarLegend /> 
+      </div>
+      <div className="w-1/4 bg-white overflow-y-auto custom-scrollbar">
+        <SidebarLegend />
       </div>
     </div>
   );
