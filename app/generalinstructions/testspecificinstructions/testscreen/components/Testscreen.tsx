@@ -54,14 +54,15 @@ const TestScreen: React.FC = () => {
     <div className="min-h-screen flex flex-col">
       <TestHeader testTitle={testTitle} />
       <QuizInterface
-        currentSubject={currentSubject}
-        currentQuestion={currentQuestion}
-        selectedOption={selectedOptions[`${currentSubject}-${currentQuestion}`] || ''}
-        onOptionSelect={handleOptionSelect}
-        onPrevious={handlePrevious}
-        onSaveNext={handleSaveNext}
-        onClearResponse={handleClearResponse}
-      />
+  initialSubject={currentSubject}
+  initialQuestion={currentQuestion}
+  selectedOption={selectedOptions[`${currentSubject}-${currentQuestion}`] || ''}
+  onOptionSelect={handleOptionSelect}
+  onPrevious={handlePrevious}
+  onSaveNext={handleSaveNext}
+  onClearResponse={handleClearResponse}
+/>
+
       
     </div>
     

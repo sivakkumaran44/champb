@@ -7,21 +7,19 @@ import QuizFooter from './QuizFooter';
 import SubmitDialog from './SubmitDialog';
 
 interface QuizInterfaceProps {
-  currentSubject: number;
-  currentQuestion: number;
-  selectedOption: string;
+  initialSubject: number;
+  initialQuestion: number;
+  selectedOption: string; // Add this line
   onOptionSelect: (value: string) => void;
   onPrevious: () => void;
   onSaveNext: () => void;
   onClearResponse: () => void;
-  id?: number;
-  text?: string;
 }
 
+
 const QuizInterface: React.FC<QuizInterfaceProps> = ({
-  currentSubject,
-  currentQuestion,
-  selectedOption,
+  initialSubject,
+  initialQuestion,
   onOptionSelect,
   onPrevious,
   onSaveNext,
@@ -40,8 +38,9 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     notVisited: 0,
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [currentQuestionState, setCurrentQuestionState] = useState(currentQuestion);
-  const [currentSubjectState, setCurrentSubjectState] = useState(currentSubject);
+  const [currentSubject, setCurrentSubject] = useState(initialSubject);
+  const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
+  const [selectedOption, setSelectedOption] = useState('');
 
   useEffect(() => {
     const initialStatuses = quizData.map(subject =>
@@ -54,10 +53,6 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     setAnswers(initialAnswers);
   }, []);
 
-  const handleZoomIn = () => setFontSize(prev => Math.min(32, prev + 2));
-  const handleZoomOut = () => setFontSize(prev => Math.max(12, prev - 2));
-  const handleResetFontSize = () => setFontSize(16);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeElapsed(prevTime => prevTime + 1);
@@ -66,33 +61,90 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   }, []);
 
   const updateQuestionStatus = (subjectIndex: number, questionIndex: number, status: string) => {
-    const newStatuses = [...questionStatuses];
-    newStatuses[subjectIndex][questionIndex] = status;
-    setQuestionStatuses(newStatuses);
+    setQuestionStatuses(prevStatuses => {
+      const newStatuses = [...prevStatuses];
+      newStatuses[subjectIndex][questionIndex] = status;
+      return newStatuses;
+    });
+  };
+
+  const handleOptionSelect = (value: string) => {
+    setSelectedOption(value);
+    onOptionSelect(value);
+    updateQuestionStatus(currentSubject, currentQuestion, 'answered');
   };
 
   const handleSaveNext = () => {
     if (selectedOption) {
       updateQuestionStatus(currentSubject, currentQuestion, 'answered');
-      const newAnswers = [...answers];
-      newAnswers[currentSubject][currentQuestion] = selectedOption;
-      setAnswers(newAnswers);
-    } else {
+      setAnswers(prevAnswers => {
+        const newAnswers = [...prevAnswers];
+        newAnswers[currentSubject][currentQuestion] = selectedOption;
+        return newAnswers;
+      });
+    } else if (questionStatuses[currentSubject][currentQuestion] === 'not-visited') {
       updateQuestionStatus(currentSubject, currentQuestion, 'not-answered');
     }
+    setSelectedOption('');
     onSaveNext();
+    navigateToNextQuestion();
+  };
+
+  const navigateToNextQuestion = () => {
+    if (currentQuestion < quizData[currentSubject].questions.length - 1) {
+      setCurrentQuestion(prevQuestion => prevQuestion + 1);
+    } else if (currentSubject < quizData.length - 1) {
+      setCurrentSubject(prevSubject => prevSubject + 1);
+      setCurrentQuestion(0);
+    }
   };
 
   const handleMarkForReview = () => {
+    const currentStatus = questionStatuses[currentSubject][currentQuestion];
+    const newStatus = selectedOption ? 'answered-and-marked' : 'marked-for-review';
+    updateQuestionStatus(currentSubject, currentQuestion, newStatus);
+    
     if (selectedOption) {
-      updateQuestionStatus(currentSubject, currentQuestion, 'answered-and-marked');
-      const newAnswers = [...answers];
-      newAnswers[currentSubject][currentQuestion] = selectedOption;
-      setAnswers(newAnswers);
-    } else {
-      updateQuestionStatus(currentSubject, currentQuestion, 'marked-for-review');
+      setAnswers(prevAnswers => {
+        const newAnswers = [...prevAnswers];
+        newAnswers[currentSubject][currentQuestion] = selectedOption;
+        return newAnswers;
+      });
     }
-    onSaveNext();
+    
+    setSelectedOption('');
+    navigateToNextQuestion();
+  };
+
+  const handleNavigateToQuestion = (subjectIndex: number, questionIndex: number) => {
+    if (currentSubject !== subjectIndex || currentQuestion !== questionIndex) {
+      const currentStatus = questionStatuses[currentSubject][currentQuestion];
+      if (currentStatus === 'not-visited' && !selectedOption) {
+        updateQuestionStatus(currentSubject, currentQuestion, 'not-answered');
+      } else if (selectedOption && currentStatus !== 'answered' && currentStatus !== 'answered-and-marked') {
+        updateQuestionStatus(currentSubject, currentQuestion, 'answered');
+        setAnswers(prevAnswers => {
+          const newAnswers = [...prevAnswers];
+          newAnswers[currentSubject][currentQuestion] = selectedOption;
+          return newAnswers;
+        });
+      }
+      
+      setCurrentSubject(subjectIndex);
+      setCurrentQuestion(questionIndex);
+      setSelectedOption(answers[subjectIndex][questionIndex] || '');
+    }
+  };
+
+  const handleClearResponse = () => {
+    setSelectedOption('');
+    updateQuestionStatus(currentSubject, currentQuestion, 'not-answered');
+    setAnswers(prevAnswers => {
+      const newAnswers = [...prevAnswers];
+      newAnswers[currentSubject][currentQuestion] = '';
+      return newAnswers;
+    });
+    onClearResponse();
   };
 
   const calculateQuestionSummary = () => {
@@ -137,10 +189,6 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   };
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  const handleNavigateToQuestion = (subjectIndex: number, questionIndex: number) => {
-    setCurrentSubjectState(subjectIndex);
-    setCurrentQuestionState(questionIndex);
-  };
 
   return (
     <div className="flex flex-col h-screen">
@@ -148,25 +196,25 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
         <div className={`${isSidebarOpen ? 'w-[80%]' : 'w-[100%]'} p-4 transition-all duration-300`}>
           <QuizHeader
             quizData={quizData}
-            currentSubject={currentSubjectState}
-            currentQuestion={currentQuestionState}
+            currentSubject={currentSubject}
+            currentQuestion={currentQuestion}
             timeElapsed={timeElapsed}
             marks={marks}
-            handleZoomIn={handleZoomIn}
-            handleZoomOut={handleZoomOut}
-            handleResetFontSize={handleResetFontSize}
+            handleZoomIn={() => setFontSize(prev => Math.min(32, prev + 2))}
+            handleZoomOut={() => setFontSize(prev => Math.max(12, prev - 2))}
+            handleResetFontSize={() => setFontSize(16)}
           />
-          <TestQuestion
-            question={quizData[currentSubjectState]?.questions[currentQuestionState]}
-            selectedOption={selectedOption}
-            onOptionSelect={onOptionSelect}
-            fontSize={fontSize}
-          />
+        <TestQuestion
+  question={quizData[currentSubject]?.questions[currentQuestion]}
+  selectedOption={selectedOption}
+  onOptionSelect={handleOptionSelect}
+  fontSize={fontSize}
+/>
         </div>
         <QuizSidebar
           isSidebarOpen={isSidebarOpen}
-          currentSubject={currentSubjectState}
-          currentQuestion={currentQuestionState}
+          currentSubject={currentSubject}
+          currentQuestion={currentQuestion}
           questionStatuses={questionStatuses}
           quizData={quizData}
           toggleSidebar={toggleSidebar}
@@ -175,7 +223,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
       </div>
       <QuizFooter
         onPrevious={onPrevious}
-        onClearResponse={onClearResponse}
+        onClearResponse={handleClearResponse}
         handleMarkForReview={handleMarkForReview}
         handleSaveNext={handleSaveNext}
         handleSubmitTest={handleSubmitTest}
