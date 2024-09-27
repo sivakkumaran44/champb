@@ -116,7 +116,7 @@ const TestHeader: React.FC<TestHeaderProps> = ({ testTitle }) => {
             <div className="flex items-center space-x-2 bg-slate-200 px-3 py-1 rounded-md">
               <Clock size={16} className="text-slate-700" />
               <span className="text-sm font-medium text-slate-700">
-                Time Left: {minutes} Minutes : {seconds} Seconds
+                Time Left: {minutes} Minues : {seconds} Seconds
               </span>
             </div>
           </div>
