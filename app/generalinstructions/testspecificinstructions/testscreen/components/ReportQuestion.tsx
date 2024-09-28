@@ -19,12 +19,11 @@ type IssueType = 'Wrong Question' | 'Formatting Issues' | 'Others';
 
 const ReportQuestion = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [ setSelectedIssue] = useState<string>(''); 
   const handleIssueSelect = (issue: IssueType) => {
-   
+    console.log(`Issue selected: ${issue}`); 
     setIsDialogOpen(true);
   };
-
+  
   return (
     <div className="relative">
       <DropdownMenu>
