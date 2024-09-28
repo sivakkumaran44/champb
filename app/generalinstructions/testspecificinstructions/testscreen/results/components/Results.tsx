@@ -51,7 +51,7 @@ const Results: React.FC = () => {
       <Card className="w-[400px] bg-white rounded-3xl shadow-lg">
         <CardHeader className="text-center">
           <Check className="w-12 h-12 mx-auto text-green-500" />
-          <CardTitle className="text-xl font-semibold mt-4">
+          <CardTitle className="text-xl font-medium mt-4">
             Your test has been submitted successfully
           </CardTitle>
         </CardHeader>

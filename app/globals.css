@@ -62,10 +62,14 @@ body {
 }
 @layer utilities {
   .custom-scrollbar::-webkit-scrollbar {
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #f1f1f1; 
+  }
+  .custom-scrollbar::-webkit-scrollbar {
     width: 8px;
+    height: 4px; 
   }
   .custom-scrollbar::-webkit-scrollbar-track {
- 
     border-radius: 10px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -75,13 +79,11 @@ body {
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-
 .custom-scrollbars::-webkit-scrollbar {
   width: 4px;
 }
 .custom-scrollbars::-webkit-scrollbar-track {
-  width: 4px;
-  border-radius: 10px;
+ border-radius: 10px;
 }
 .custom-scrollbars::-webkit-scrollbar-thumb {
   background: #888;

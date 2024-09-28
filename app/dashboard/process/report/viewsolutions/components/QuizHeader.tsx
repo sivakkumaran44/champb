@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Lock, ZoomIn, ZoomOut, Clock } from 'lucide-react';
+import { ZoomIn, ZoomOut, Clock } from 'lucide-react';
 import ReportQuestion from './ReportQuestion';
 
 interface Subject {
@@ -78,7 +78,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
         </div>
       ) : (
         <div className="hidden md:block overflow-y-auto custom-scrollbar mb-4">
-          <div className="flex flex-nowrap  gap-2 mb-1">
+          <div className="flex flex-nowrap gap-2 mb-1">
             {quizData.map((subject, index) => (
               <Button
                 key={index}
@@ -87,7 +87,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
                 onClick={() => console.log(`Selected subject: ${subject.subject}`)}
               >
                 {subject.subject}
-                {index > currentSubject && <Lock className="w-4 h-4 text-white" />}
+                {/* Removed the Lock icon here */}
               </Button>
             ))}
           </div>
@@ -104,8 +104,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
           <div className="flex items-center text-slate-700 gap-1">
             Marks
             <span className="bg-green-500 text-white text-xs px-1.5 py-0.5 rounded">+{marks.correct}</span>
-            <span className="bg-red-500 text-white text-xs px-1.5 py-0.5 rounded">{marks.incorrect}</span>
-          </div>
+                 </div>
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon" className="w-6 h-6" onClick={handleZoomIn}>
               <ZoomIn className="w-6 h-6 text-slate-700" />

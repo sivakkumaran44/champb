@@ -11,7 +11,13 @@ import QuizPage from './QuizPage';
 import ImprovementAreasChart from './areachart';
 import { TimeManagementChart } from './timemangementchart';
 import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 const Report = () => {
+  const router = useRouter(); 
+
+  const handleNavigation = () => {
+    router.push('/dashboard/process/report/viewsolutions');
+  };
   return (
     <div className="relative w-full max-w-5xl ">
       <Card className="mb-4 w-full max-w-4xl bg-slate-100 border border-custombroder rounded-lg relative mt-12">
@@ -38,12 +44,12 @@ const Report = () => {
               <span className="text-slate-500">Attempt (2)</span>
             </div>
             <Button
-          className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white py-2 px-4 rounded-lg flex items-center justify-center space-x-2 transition duration-300"
-         
-        >
-          <View className="w-3 h-3 sm:w-4 sm:h-4" />
-          <span className="text-xs sm:text-sm">View Solutions</span>
-        </Button>
+      onClick={handleNavigation}
+      className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white py-2 px-4 rounded-lg flex items-center justify-center space-x-2 transition duration-300"
+    >
+      <View className="w-3 h-3 sm:w-4 sm:h-4" />
+      <span className="text-xs sm:text-sm">View Solutions</span>
+    </Button>
           </div>
         </CardContent>
       </Card>

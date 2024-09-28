@@ -3,7 +3,8 @@
     "buttons": {
       "viewInstructions": "View Instructions",
       "viewQuestionPaper": "View Question Paper",
-      "fullScreen": "Enter Full Screen"
+      "fullScreen": "Enter Full Screen",
+      "viewAnalytics": "ViewAnalytics"
     }
   }
   
