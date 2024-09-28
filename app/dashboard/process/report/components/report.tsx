@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle, MinusCircle, PenSquare, XCircle } from 'lucide-react'; 
+import { CheckCircle, MinusCircle, PenSquare, XCircle, View } from 'lucide-react'; 
 import Barchart from './barchart';
 import { PieChartComponent } from './piechart';
 import { AccuracyComponent } from './accuracycomponent';
@@ -10,6 +10,7 @@ import {ProgressTrackingChart}from './processtracking'
 import QuizPage from './QuizPage';
 import ImprovementAreasChart from './areachart';
 import { TimeManagementChart } from './timemangementchart';
+import { Button } from '@/components/ui/button';
 const Report = () => {
   return (
     <div className="relative w-full max-w-5xl ">
@@ -36,6 +37,13 @@ const Report = () => {
               <PenSquare className="w-5 h-5 text-slate-500 mr-2" />
               <span className="text-slate-500">Attempt (2)</span>
             </div>
+            <Button
+          className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white py-2 px-4 rounded-lg flex items-center justify-center space-x-2 transition duration-300"
+         
+        >
+          <View className="w-3 h-3 sm:w-4 sm:h-4" />
+          <span className="text-xs sm:text-sm">View Solutions</span>
+        </Button>
           </div>
         </CardContent>
       </Card>

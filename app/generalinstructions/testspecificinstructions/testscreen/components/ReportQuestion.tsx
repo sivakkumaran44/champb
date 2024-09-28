@@ -1,62 +1,70 @@
-import React from 'react';
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
+import React, { useState } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { CircleAlert } from 'lucide-react';
+import { Textarea } from "@/components/ui/textarea";
+type IssueType = 'Wrong Question' | 'Formatting Issues' | 'Others';
 
 const ReportQuestion = () => {
-  const [selectedIssue, setSelectedIssue] = React.useState<string | null>(null); 
-  const [isDialogOpen, setIsDialogOpen] = React.useState(false); 
-  const [isDropdownSelected, setIsDropdownSelected] = React.useState(false); 
-  const handleSelectChange = (value: string) => {
-    setSelectedIssue(value);
-    setIsDropdownSelected(true); 
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [ setSelectedIssue] = useState<string>(''); 
+  const handleIssueSelect = (issue: IssueType) => {
+   
+    setIsDialogOpen(true);
   };
 
   return (
-    <div>
-     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogTrigger asChild>
-          <Button variant="ghost" className="text-slate-700  flex items-center gap-2">
+    <div className="relative">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="ghost"
+            className="text-slate-700 flex items-center gap-2"
+          >
             <CircleAlert className="w-5 h-5" />
             Report
           </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px] bg-white text-slate-700">
-          <DialogHeader>
-            <DialogTitle>Report Question</DialogTitle>
-            <DialogDescription>
-              Please select the issue to continue.
-            </DialogDescription>
-          </DialogHeader>
-    <div className="grid gap-4 py-4">
-            <Select onValueChange={handleSelectChange}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select an issue" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="wrong-question">Wrong Question</SelectItem>
-                <SelectItem value="formatting-issues">Formatting Issues</SelectItem>
-                <SelectItem value="others">Others</SelectItem>
-              </SelectContent>
-            </Select>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className='bg-slate-100 border-2 border-slate-950'>
+          <DropdownMenuItem onClick={() => handleIssueSelect('Wrong Question')}>
+            Wrong Question
+          </DropdownMenuItem>
+          <hr className="border-t border-slate-700 my-2" />
+          <DropdownMenuItem onClick={() => handleIssueSelect('Formatting Issues')}>
+            Formatting Issues
+          </DropdownMenuItem>
+          <hr className="border-t border-slate-700 my-2" />
+          <DropdownMenuItem onClick={() => handleIssueSelect('Others')}>
+            Others
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
-                {isDropdownSelected && (
-              <>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Input
-                    id="issue-description"
-                    placeholder={`Describe the ${selectedIssue}`}
-                    className="col-span-4"
-                  />
-                </div>
-                <DialogFooter>
-                  <Button type="submit">Submit Report</Button>
-                </DialogFooter>
-              </>
-            )}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-[425px] bg-slate-200 text-slate-700">
+          <DialogHeader>
+            <DialogTitle>Tell Us More</DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-4 py-4 ">
+            <div className="grid grid-cols-4 items-center bg-white gap-4">
+              <Textarea className="col-span-4" placeholder="Type your message here." />
+            </div>
           </div>
+          <DialogFooter>
+            <Button className='bg-slate-700' type="submit">Submit Report</Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
