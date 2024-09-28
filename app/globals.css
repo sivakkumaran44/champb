@@ -80,7 +80,7 @@ body {
   width: 4px;
 }
 .custom-scrollbars::-webkit-scrollbar-track {
-
+  width: 4px;
   border-radius: 10px;
 }
 .custom-scrollbars::-webkit-scrollbar-thumb {

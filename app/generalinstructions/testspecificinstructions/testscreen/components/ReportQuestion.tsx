@@ -15,15 +15,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { CircleAlert } from 'lucide-react';
 import { Textarea } from "@/components/ui/textarea";
+
 type IssueType = 'Wrong Question' | 'Formatting Issues' | 'Others';
 
 const ReportQuestion = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  
   const handleIssueSelect = (issue: IssueType) => {
     console.log(`Issue selected: ${issue}`); 
     setIsDialogOpen(true);
+   
   };
-  
+
   return (
     <div className="relative">
       <DropdownMenu>
