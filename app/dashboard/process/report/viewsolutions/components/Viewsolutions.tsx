@@ -1,80 +1,67 @@
-import React from 'react';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-
-interface TestQuestionProps {
-  question?: {
-    question: string;
-    options: string[];
-    correctAnswer?: string;
-    wrongAnswer?: string;
-    solution?: string;
-    explanation?: string;
-  };
-  fontSize: number;
-  currentQuestionIndex: number;
+"use client";
+import React, { useState } from 'react';
+import QuizInterface from './QuizInterface';
+import questionsData from '@/components/data/questionpaper.json';
+import ViewsolutionsHeader from './ViewsolutionsHeader';
+interface SelectedOptions {
+  [key: string]: string;
 }
+const Viewsolutions: React.FC = () => {
+  const testTitle = "SSC CGL Mock Test I (2024)";
+  const [currentSubject, setCurrentSubject] = useState<number>(0);
+  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({});
+  const handleOptionSelect = (value: string) => {
+    const key = `${currentSubject}-${currentQuestion}`;
+    setSelectedOptions((prevSelectedOptions) => ({
+      ...prevSelectedOptions,
+      [key]: value, 
+    }));
+  };
 
-const ViewSolutionsQuestion: React.FC<TestQuestionProps> = ({ 
-  question, 
-  fontSize, 
-  currentQuestionIndex 
-}) => {
-  if (!question) {
-    return <div>No question available</div>;
-  }
+  const handleSaveNext = () => {
+    if (currentQuestion < questionsData[currentSubject].questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    } else if (currentSubject < questionsData.length - 1) {
+      setCurrentSubject(currentSubject + 1);
+      setCurrentQuestion(0);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+    } else if (currentSubject > 0) {
+      const previousSubject = currentSubject - 1;
+      const lastQuestionIndex = questionsData[previousSubject].questions.length - 1;
+      setCurrentSubject(previousSubject);
+      setCurrentQuestion(lastQuestionIndex);
+    }
+  };
+
+  const handleClearResponse = () => {
+    const key = `${currentSubject}-${currentQuestion}`;
+    setSelectedOptions((prevSelectedOptions) => {
+      const newSelectedOptions = { ...prevSelectedOptions };
+      delete newSelectedOptions[key];
+      return newSelectedOptions;
+    });
+  };
 
   return (
-    <div className="mb-6 text-slate-700">
-      <div className="overflow-y-auto custom-scrollbar max-h-[400px] p-2 border-none rounded-md">
-        <p className="font-medium mb-8" style={{ fontSize: `${fontSize}px` }}>
-          Question {currentQuestionIndex + 1}: {question.question}
-        </p>
-        <RadioGroup value={question.correctAnswer}>
-          {question.options.map((option, index) => {
-            const isCorrect = question.correctAnswer ? option === question.correctAnswer : false;
-            const isWrong = question.wrongAnswer ? option === question.wrongAnswer : false;
+    <div className="min-h-screen flex flex-col">
+      <ViewsolutionsHeader testTitle={testTitle} />
+      <QuizInterface
+  initialSubject={currentSubject}
+  initialQuestion={currentQuestion}
+  selectedOption={selectedOptions[`${currentSubject}-${currentQuestion}`] || ''}
+  onOptionSelect={handleOptionSelect}
+  onPrevious={handlePrevious} 
+  onSaveNext={handleSaveNext}
+  onClearResponse={handleClearResponse}
+/>
 
-            return (
-              <div
-                key={index}
-                className={`flex items-center space-x-2 mb-4 p-2 rounded-md ${
-                  isCorrect ? "bg-emerald-500" : isWrong ? "bg-[#EF4444]" : ""
-                }`}
-              >
-                <RadioGroupItem
-                  value={option}
-                  id={`option-${index}`}
-                  disabled
-                  className={isCorrect || isWrong ? "text-white" : ""}
-                />
-                <Label
-                  htmlFor={`option-${index}`}
-                  className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${
-                    isCorrect ? "text-white font-bold" : isWrong ? "text-white font-bold" : ""
-                  }`}
-                >
-                  {option}
-                </Label>
-              </div>
-            );
-          })}
-        </RadioGroup>
-        {question.solution && (
-          <div className="mt-4">
-            <p className="font-medium text-lg">Solution:</p>
-            <p className="text-base">{question.solution}</p>
-          </div>
-        )}
-        {question.explanation && (
-          <div className="mt-4">
-            <p className="font-medium text-lg">Explanation:</p>
-            <p className="text-base">{question.explanation}</p>
-          </div>
-        )}
-      </div>
-    </div>
+    </div>  
   );
 };
-
-export default ViewSolutionsQuestion;
+export default Viewsolutions;
