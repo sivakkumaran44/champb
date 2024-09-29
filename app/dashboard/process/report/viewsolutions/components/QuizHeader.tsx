@@ -87,7 +87,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
                 onClick={() => console.log(`Selected subject: ${subject.subject}`)}
               >
                 {subject.subject}
-                {/* Removed the Lock icon here */}
+              
               </Button>
             ))}
           </div>

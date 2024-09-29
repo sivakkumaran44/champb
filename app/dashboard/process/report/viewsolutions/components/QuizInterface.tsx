@@ -14,6 +14,7 @@ interface QuizInterfaceProps {
   onSaveNext: () => void;
   onClearResponse: () => void;
 }
+
 const QuizInterface: React.FC<QuizInterfaceProps> = ({
   initialSubject,
   initialQuestion,
@@ -28,7 +29,6 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   const [currentSubject, setCurrentSubject] = useState(initialSubject);
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
   const [selectedOption, setSelectedOption] = useState('');
-
   useEffect(() => {
     const initialStatuses = quizData.map(subject =>
       new Array(subject.questions.length).fill('not-visited')
@@ -51,12 +51,13 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
     } else if (currentSubject > 0) {
-      const previousSubject = currentSubject - 1;
+       const previousSubject = currentSubject - 1;
       const lastQuestionIndex = quizData[previousSubject].questions.length - 1;
       setCurrentSubject(previousSubject);
       setCurrentQuestion(lastQuestionIndex);
     }
   };
+  
   const updateQuestionStatus = (subjectIndex: number, questionIndex: number, status: string) => {
     setQuestionStatuses(prevStatuses => {
       const newStatuses = [...prevStatuses];
@@ -109,7 +110,6 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     }
   };
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-
   return (
     <div className="flex flex-col h-screen">
       <div className="flex w-full flex-grow p-4 pb-20">
@@ -124,10 +124,11 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
             handleZoomOut={() => setFontSize(prev => Math.max(12, prev - 2))}
             handleResetFontSize={() => setFontSize(16)}
           />
-        <ViewSolutionsQuestion
-  question={quizData[currentSubject]?.questions[currentQuestion]}
-  fontSize={fontSize}
-/>
+          <ViewSolutionsQuestion
+            question={quizData[currentSubject]?.questions[currentQuestion] || undefined}
+            fontSize={fontSize}
+            currentQuestionIndex={currentQuestion}
+          />
         </div>
         <QuizSidebar
           isSidebarOpen={isSidebarOpen}
@@ -135,15 +136,17 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
           currentQuestion={currentQuestion}
           questionStatuses={questionStatuses}
           quizData={quizData}
-          toggleSidebar={toggleSidebar}
-          onNavigateToQuestion={handleNavigateToQuestion}
+          toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+          onNavigateToQuestion={(subjectIndex, questionIndex) => {
+            setCurrentSubject(subjectIndex);
+            setCurrentQuestion(questionIndex);
+          }}
         />
       </div>
       <ViewSolutionsFooter
         handlePrevious={handlePrevious}
         handleSaveNext={handleSaveNext}
       />
-     
     </div>
   );
 };

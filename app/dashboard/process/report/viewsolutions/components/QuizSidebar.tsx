@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, Filter } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -27,6 +27,7 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
   isSidebarOpen,
   currentSubject,
   currentQuestion,
+  questionStatuses,
   quizData,
   toggleSidebar,
   onNavigateToQuestion,
@@ -34,34 +35,49 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState('All');
   const filterOptions = ['All', 'Correct', 'Incorrect', 'Not Visited'];
+  const [filteredQuestions, setFilteredQuestions] = useState<number[]>([]);
+  const [localCurrentQuestion, setLocalCurrentQuestion] = useState(currentQuestion);
 
-  const getQuestionStatus = (questionIndex: number) => {
-    if (questionIndex < 8) return 'crctanswered';
-    if (questionIndex < 16) return 'wrong-answered';
-    return 'not-visited';
-  };
+  const updateFilteredQuestions = useCallback(() => {
+    const totalQuestions = questionStatuses[currentSubject]?.length || 0;
+    let newFilteredQuestions: number[] = [];
 
-  const getButtonColor = (status: string) => {
-    switch (status) {
-      case 'crctanswered':
-        return 'bg-green-500';
-      case 'wrong-answered':
-        return 'bg-red-500';
-      default:
-        return 'bg-gray-300';
+    switch (filter) {
+      case 'Correct':
+        newFilteredQuestions = Array.from({ length: 8 }, (_, i) => i);
+        break;
+      case 'Incorrect':
+        newFilteredQuestions = Array.from({ length: 8 }, (_, i) => i + 8);
+        break;
+      case 'Not Visited':
+        newFilteredQuestions = Array.from({ length: Math.max(0, totalQuestions - 16) }, (_, i) => i + 16);
+        break;
+      default: 
+        newFilteredQuestions = Array.from({ length: totalQuestions }, (_, i) => i);
     }
-  };
+    
+    setFilteredQuestions(newFilteredQuestions);
+  }, [filter, questionStatuses, currentSubject]);
 
-  const getButtonShape = (status: string) => {
-    switch (status) {
-      case 'crctanswered':
-        return 'rounded-full';
-      case 'wrong-answered':
-        return 'rounded-md';
-      default:
-        return 'rounded-sm';
+  useEffect(() => {
+    updateFilteredQuestions();
+  }, [updateFilteredQuestions]);
+
+  useEffect(() => {
+    setLocalCurrentQuestion(currentQuestion);
+  }, [currentQuestion]);
+
+  useEffect(() => {
+    if (filteredQuestions.length > 0) {
+      const firstValidQuestion = filteredQuestions.includes(localCurrentQuestion) 
+        ? localCurrentQuestion 
+        : filteredQuestions[0];
+      if (firstValidQuestion !== localCurrentQuestion) {
+        setLocalCurrentQuestion(firstValidQuestion);
+        onNavigateToQuestion(currentSubject, firstValidQuestion);
+      }
     }
-  };
+  }, [filter, currentSubject, filteredQuestions, onNavigateToQuestion, localCurrentQuestion]);
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
@@ -71,20 +87,24 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
     setFilter(option);
     setIsOpen(false);
   };
-  const filterQuestions = (questionIndex: number) => {
-    const status = getQuestionStatus(questionIndex);
-    switch (filter) {
-      case 'Correct':
-        return status === 'crctanswered';
-      case 'Incorrect':
-        return status === 'wrong-answered';
-      case 'Not Visited':
-        return status === 'not-visited';
-      default:
-        return true;
+
+  const getButtonColor = (questionIndex: number) => {
+    if (questionIndex < 8) return 'bg-green-500';
+    if (questionIndex < 16) return 'bg-red-500';
+    return 'bg-gray-300';
+  };
+
+  const getButtonShape = (questionIndex: number) => {
+    if (questionIndex < 16) return 'rounded-full';
+    return 'rounded-sm';
+  };
+
+  const handleQuestionClick = (questionIndex: number) => {
+    if (filteredQuestions.includes(questionIndex) && questionIndex !== localCurrentQuestion) {
+      setLocalCurrentQuestion(questionIndex);
+      onNavigateToQuestion(currentSubject, questionIndex);
     }
   };
-  
 
   return (
     <>
@@ -133,35 +153,29 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
             </div>
           </div>
           <div className="w-full mb-4">
-              <div className="text-sm font-semibold bg-slate-700 text-center text-slate-200 p-2 rounded">
-                {quizData[currentSubject]?.subject}
-              </div>
-              
-            </div>
-            <div className="flex flex-wrap gap-4 items-center justify-center">
-              {quizData[currentSubject]?.questions.map((question, questionIndex) => {
-                const status = getQuestionStatus(questionIndex);
-                if (!filterQuestions(questionIndex)) return null;
-                return (
-                  <div 
-                  key={questionIndex} 
-                  className={`w-8 h-8 flex items-center justify-center transition-all cursor-pointer
-                    ${questionIndex === currentQuestion ? 'ring-2 ring-slate-700' : ''} 
-                    ${getButtonShape(status)}`}
-                  onClick={() => onNavigateToQuestion(currentSubject, questionIndex)}
-                >
-                  <span
-                    className={`w-full h-full flex items-center justify-center ${getButtonShape(status)} ${getButtonColor(status)}`}
-                  >
-                    {questionIndex + 1}
-                  </span>
-                </div>
-                
-                );
-              })}
+            <div className="text-sm font-semibold bg-slate-700 text-center text-slate-200 p-2 rounded">
+              {quizData[currentSubject]?.subject}
             </div>
           </div>
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            {filteredQuestions.map((questionIndex) => (
+              <div 
+                key={questionIndex} 
+                className={`w-8 h-8 flex items-center justify-center transition-all cursor-pointer
+                  ${questionIndex === localCurrentQuestion ? 'ring-2 ring-slate-700' : ''} 
+                  ${getButtonShape(questionIndex)}`}
+                onClick={() => handleQuestionClick(questionIndex)}
+              >
+                <span
+                  className={`w-full h-full flex items-center justify-center ${getButtonShape(questionIndex)} ${getButtonColor(questionIndex)}`}
+                >
+                  {questionIndex + 1}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
     
       {!isSidebarOpen ? (
         <Button
@@ -177,7 +191,7 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
           onClick={toggleSidebar}
           variant="ghost"
           size="icon"
-          className="fixed right-[20%] top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md"
+          className="fixed right-[19%] top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md"
         >
           <ChevronLeft className="w-4 h-4 text-white rotate-180" />
         </Button>
