@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import quizData from '@/components/data/questionpaper.json';
 import QuizHeader from './QuizHeader';
