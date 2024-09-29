@@ -16,6 +16,7 @@ interface QuizHeaderProps {
   handleZoomIn: () => void;
   handleZoomOut: () => void;
   handleResetFontSize: () => void;
+  onSubjectChange: (subjectIndex: number) => void;
 }
 
 const QuizHeader: React.FC<QuizHeaderProps> = ({
@@ -27,6 +28,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   handleZoomIn,
   handleZoomOut,
   handleResetFontSize,
+  onSubjectChange,
 }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
@@ -43,9 +45,8 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleSubjectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedSubjectIndex = Number(event.target.value);
-    console.log(`Selected subject: ${quizData[selectedSubjectIndex].subject}`);
+  const handleSubjectClick = (index: number) => {
+    onSubjectChange(index);
   };
 
   const formatTime = (timeInSeconds: number) => {
@@ -59,7 +60,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
       {isMobile ? (
         <div className="flex justify-between items-center gap-1 mb-4">
           <select
-            onChange={handleSubjectChange}
+            onChange={(e) => onSubjectChange(Number(e.target.value))}
             className="text-xs sm:text-sm bg-slate-100 p-2 rounded-lg w-1/2"
             value={currentSubject}
           >
@@ -84,14 +85,14 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
                 key={index}
                 variant={index === currentSubject ? 'default' : 'ghost'}
                 className={`text-xs bg-emerald-500 text-white hover:bg-emerald-500 sm:text-sm whitespace-nowrap flex items-center gap-2 ${index === currentSubject ? 'bg-gradient-to-r from-[#6EE7B7] via-[#A3E635] to-[#A3E635]' : ''}`}
-                onClick={() => console.log(`Selected subject: ${subject.subject}`)}
+                onClick={() => handleSubjectClick(index)}
               >
                 {subject.subject}
-              
               </Button>
             ))}
           </div>
         </div>
+    
       )}
       <div className={isMobile ? 'hidden' : 'bg-slate-100 p-2 rounded-lg flex items-center justify-between mb-8'}>
         <div className="text-sm font-semibold text-slate-700">

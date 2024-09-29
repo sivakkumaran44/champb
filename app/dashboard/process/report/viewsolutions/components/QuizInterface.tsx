@@ -92,11 +92,16 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
       setCurrentQuestion(0);
     }
   };
+
+  const handleSubjectChange = (newSubjectIndex: number) => {
+    setCurrentSubject(newSubjectIndex);
+    setCurrentQuestion(0); 
+  };
   return (
     <div className="flex flex-col h-screen">
       <div className="flex w-full flex-grow p-4 pb-20">
         <div className={`${isSidebarOpen ? 'w-[80%]' : 'w-[100%]'} p-4 transition-all duration-300`}>
-          <QuizHeader
+        <QuizHeader
             quizData={quizData}
             currentSubject={currentSubject}
             currentQuestion={currentQuestion}
@@ -105,6 +110,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
             handleZoomIn={() => setFontSize(prev => Math.min(32, prev + 2))}
             handleZoomOut={() => setFontSize(prev => Math.max(12, prev - 2))}
             handleResetFontSize={() => setFontSize(16)}
+            onSubjectChange={handleSubjectChange}
           />
           <ViewSolutionsQuestion
             question={quizData[currentSubject]?.questions[currentQuestion] || undefined}

@@ -105,35 +105,39 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
       onNavigateToQuestion(currentSubject, questionIndex);
     }
   };
-
-  return (
+ return (
     <>
-      <div className={`hidden lg:block ${isSidebarOpen ? 'lg:w-[20%]' : 'lg:hidden'} bg-[#F1F5F9] border border-[#D9D9D9] rounded-xl mb-2 p-4 h-full transition-all duration-300 relative`}>
-        <div className="flex items-center gap-6 mb-4">
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-          <span className="text-center text-slate-700">Student Name</span>
-          <div className="relative flex justify-end"> 
-            <button onClick={toggleDropdown} className="flex items-end">
-              <Filter className="h-5 w-5 text-slate-700" />
-            </button>
-            {isOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md">
-                {filterOptions.map((option) => (
-                  <div
-                    key={option}
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                    onClick={() => handleFilterChange(option)}
-                  >
-                    {option}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+      <div className={`hidden lg:block ${isSidebarOpen ? 'lg:w-[19%]' : 'lg:hidden'} bg-[#F1F5F9] border border-[#D9D9D9] rounded-xl mb-2 p-4 h-full transition-all duration-300 relative`}>
+      <div className="flex items-center gap-6 mb-4">
+  <Avatar>
+    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+    <AvatarFallback>CN</AvatarFallback>
+  </Avatar>
+  <span className="flex-grow text-center text-slate-700">Student Name</span>
+    <div className="relative flex justify-end ml-auto"> 
+    <button onClick={toggleDropdown} className="flex items-end">
+    <Filter className="h-5 w-5 text-slate-700 fill-current" />
+    <span className="text-slate-700">Filter</span>
+    </button>
+    {isOpen && (
+     <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md">
+     {filterOptions.map((option, index) => (
+       <div key={option}>
+         <div
+           className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+           onClick={() => handleFilterChange(option)}
+         >
+           {option}
+         </div>
+         {index < filterOptions.length - 1 && (
+           <hr className="border-t border-slate-300 my-1" />
+         )}
+       </div>
+     ))}
+   </div>
+    )}
+  </div>
+</div>
         <div className="border-b border-[#64748B] w-full mb-2"></div>
         <div className="bg-slate-100 p-2 rounded-lg flex flex-col items-start mb-8">
           <div className="flex flex-col items-start w-full gap-2 mb-2">
@@ -142,8 +146,9 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
                 <div className="w-6 h-6 bg-green-500 rounded-full" />
                 <span className="text-slate-700 text-sm">Correct Answered</span>
               </div>
+              
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-red-500 rounded-md" />
+                <div className="w-6 h-6 bg-red-500 rounded-full" />
                 <span className="text-slate-700 text-sm">Wrong Answered</span>
               </div>
               <div className="flex items-center gap-2">
@@ -162,7 +167,7 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
               <div 
                 key={questionIndex} 
                 className={`w-8 h-8 flex items-center justify-center transition-all cursor-pointer
-                  ${questionIndex === localCurrentQuestion ? 'ring-2 ring-slate-700' : ''} 
+                  ${questionIndex === localCurrentQuestion ? '' : ''} 
                   ${getButtonShape(questionIndex)}`}
                 onClick={() => handleQuestionClick(questionIndex)}
               >
