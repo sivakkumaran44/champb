@@ -91,25 +91,6 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
       setCurrentQuestion(0);
     }
   };
-  const handleNavigateToQuestion = (subjectIndex: number, questionIndex: number) => {
-    if (currentSubject !== subjectIndex || currentQuestion !== questionIndex) {
-      const currentStatus = questionStatuses[currentSubject][currentQuestion];
-      if (currentStatus === 'not-visited' && !selectedOption) {
-        updateQuestionStatus(currentSubject, currentQuestion, 'not-answered');
-      } else if (selectedOption && currentStatus !== 'answered' && currentStatus !== 'answered-and-marked') {
-        updateQuestionStatus(currentSubject, currentQuestion, 'answered');
-        setAnswers(prevAnswers => {
-          const newAnswers = [...prevAnswers];
-          newAnswers[currentSubject][currentQuestion] = selectedOption;
-          return newAnswers;
-        });
-      }
-      setCurrentSubject(subjectIndex);
-      setCurrentQuestion(questionIndex);
-      setSelectedOption(answers[subjectIndex][questionIndex] || '');
-    }
-  };
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   return (
     <div className="flex flex-col h-screen">
       <div className="flex w-full flex-grow p-4 pb-20">
