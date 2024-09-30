@@ -196,7 +196,7 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
           onClick={toggleSidebar}
           variant="ghost"
           size="icon"
-          className="fixed right-[19%] top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md"
+          className="fixed right-[20%] top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md"
         >
           <ChevronLeft className="w-4 h-4 text-white rotate-180" />
         </Button>
