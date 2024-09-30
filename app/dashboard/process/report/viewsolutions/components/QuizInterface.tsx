@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import quizData from '@/components/data/questionpaper.json';
 import QuizHeader from './QuizHeader';
@@ -16,6 +15,15 @@ interface QuizInterfaceProps {
   onClearResponse: () => void;
 }
 
+interface Question {
+  question: string;
+  options: string[];
+  correctAnswer: string;
+  wrongAnswer?: string;
+  solution: string;
+  explanation: string;
+}
+
 const QuizInterface: React.FC<QuizInterfaceProps> = ({
   initialSubject,
   initialQuestion,
@@ -30,6 +38,8 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   const [currentSubject, setCurrentSubject] = useState(initialSubject);
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
   const [selectedOption, setSelectedOption] = useState('');
+  const [quizQuestions, setQuizQuestions] = useState<Question[][]>([]);
+
   useEffect(() => {
     const initialStatuses = quizData.map(subject =>
       new Array(subject.questions.length).fill('not-visited')
@@ -39,6 +49,18 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
       new Array(subject.questions.length).fill('')
     );
     setAnswers(initialAnswers);
+
+     const transformedQuizData = quizData.map(subject =>
+      subject.questions.map(q => ({
+        question: q.question,
+        options: q.options,
+        correctAnswer: q.correctAnswer,
+        wrongAnswer: q.wrongAnswer,
+        solution: q.solution,
+        explanation: q.explanation
+      }))
+    );
+    setQuizQuestions(transformedQuizData);
   }, []);
 
   useEffect(() => {
@@ -52,7 +74,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
     } else if (currentSubject > 0) {
-       const previousSubject = currentSubject - 1;
+      const previousSubject = currentSubject - 1;
       const lastQuestionIndex = quizData[previousSubject].questions.length - 1;
       setCurrentSubject(previousSubject);
       setCurrentQuestion(lastQuestionIndex);
@@ -66,7 +88,6 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
       return newStatuses;
     });
   };
-  
   
   const handleSaveNext = () => {
     if (selectedOption) {
@@ -97,11 +118,12 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     setCurrentSubject(newSubjectIndex);
     setCurrentQuestion(0); 
   };
+
   return (
     <div className="flex flex-col h-screen">
       <div className="flex w-full flex-grow p-4 pb-20">
         <div className={`${isSidebarOpen ? 'w-[80%]' : 'w-[100%]'} p-4 transition-all duration-300`}>
-        <QuizHeader
+          <QuizHeader
             quizData={quizData}
             currentSubject={currentSubject}
             currentQuestion={currentQuestion}
@@ -113,7 +135,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
             onSubjectChange={handleSubjectChange}
           />
           <ViewSolutionsQuestion
-            question={quizData[currentSubject]?.questions[currentQuestion] || undefined}
+            question={quizQuestions[currentSubject]?.[currentQuestion]}
             fontSize={fontSize}
             currentQuestionIndex={currentQuestion}
           />
