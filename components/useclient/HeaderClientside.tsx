@@ -21,8 +21,9 @@ const Header: React.FC = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const searchRef = useRef<HTMLDivElement | null>(null);
 
-  const allExams: Exam[] = useMemo(() => examsData, []); // Use the imported JSON data
+  const allExams: Exam[] = useMemo(() => examsData, []); 
 
   const examCategories = [
     { name: "SSC Exams", icon: FileText },
@@ -50,6 +51,9 @@ const Header: React.FC = () => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setShowDropdown(false);
+      }
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setSearchTerm('');
       }
     };
 
@@ -130,32 +134,34 @@ const Header: React.FC = () => {
                 </div>
               )}
             </div>
-            <input
-              type="text"
-              name="exam"
-              placeholder="Search your exam"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-4 pr-10 py-2 w-full bg-white border-2 border-l-0 border-slate-900 text-slate-700 rounded-r-xl shadow-[0_5px_0_0_#6EE7B7] outline-none transition-all duration-200 ease-in-out"
-            />
-            <Search className="absolute right-3 top-2.5 text-slate-500" />
-          </div>
-          {searchTerm && (
-            <div className="absolute z-10 w-full bg-white border border-slate-200 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
-              {filteredExams.length > 0 ? (
-                filteredExams.map((exam) => (
-                  <div key={exam.id} className="p-3 hover:bg-slate-100 cursor-pointer last:border-b-0">
-                    <div className="flex items-center justify-between text-sm text-slate-600">
-                      <span>{exam.name}</span>
-                      <span>{exam.type}</span>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="p-3 text-slate-700">No exam found</div>
+            <div ref={searchRef} className="relative flex-grow">
+              <input
+                type="text"
+                name="exam"
+                placeholder="Search your exam"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-4 pr-10 py-2 w-full bg-white border-2 border-l-0 border-slate-900 text-slate-700 rounded-r-xl shadow-[0_5px_0_0_#6EE7B7] outline-none transition-all duration-200 ease-in-out"
+              />
+              <Search className="absolute right-3 top-2.5 text-slate-500" />
+              {searchTerm && (
+                <div className="absolute z-10 w-full bg-white border border-slate-200 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
+                  {filteredExams.length > 0 ? (
+                    filteredExams.map((exam) => (
+                      <div key={exam.id} className="p-3 hover:bg-slate-100 cursor-pointer last:border-b-0">
+                        <div className="flex items-center justify-between text-sm text-slate-600">
+                          <span>{exam.name}</span>
+                          <span>{exam.type}</span>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="p-3 text-slate-700">No exam found</div>
+                  )}
+                </div>
               )}
             </div>
-          )}
+          </div>
         </div>
 
         <div className="relative flex flex-grow justify-end mt-2 md:mt-0">
