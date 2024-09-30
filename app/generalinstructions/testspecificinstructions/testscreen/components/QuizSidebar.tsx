@@ -180,25 +180,26 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
       </div>   
       </div>  
       {!isSidebarOpen && (
-        <Button
-          onClick={toggleSidebar}
-          variant="ghost"
-          size="icon"
-          className="fixed right-0  top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md"
-        >
-          <ChevronLeft className="w-4 h-4 text-white" />
-        </Button>
-      )}
-      {isSidebarOpen && (
-        <Button
-          onClick={toggleSidebar}
-          variant="ghost"
-          size="icon"
-          className="fixed right-[19%] top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md"
-        >
-          <ChevronLeft className="w-4 h-4 text-white" />
-        </Button>
-      )}
+  <Button
+    onClick={toggleSidebar}
+    variant="ghost"
+    size="icon"
+    className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md hidden md:block"
+  >
+    <ChevronLeft className="w-6 h-6 text-white mr-4" /> 
+  </Button>
+)}
+{isSidebarOpen && (
+  <Button
+    onClick={toggleSidebar}
+    variant="ghost"
+    size="icon"
+    className="fixed right-[19%] top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md hidden md:block"
+  >
+    <ChevronLeft className="w-6 h-6 text-white" /> 
+  </Button>
+)}
+
     </>
   );
 };

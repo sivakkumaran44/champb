@@ -1,0 +1,14 @@
+[
+    { "id": 1, "name": "SSC CGL", "type": "Combined Graduate Level", "category": "SSC Exams" },
+    { "id": 2, "name": "SSC GD", "type": "Constable, General Duty", "category": "SSC Exams" },
+    { "id": 3, "name": "SSC CHSL", "type": "Combined Higher Secondary Level", "category": "SSC Exams" },
+    { "id": 4, "name": "SSC MTS", "type": "Multitasking Staff", "category": "SSC Exams" },
+    { "id": 5, "name": "UPSC CSE", "type": "Civil Services Examination", "category": "UPSC Exams" },
+    { "id": 6, "name": "IBPS PO", "type": "Probationary Officer", "category": "Banking Exams" },
+    { "id": 7, "name": "IBPS Clerk", "type": "Clerk", "category": "Banking Exams" },
+    { "id": 8, "name": "SBI PO", "type": "Probationary Officer", "category": "Banking Exams" },
+    { "id": 9, "name": "NDA", "type": "National Defence Academy", "category": "UG Entrance Exams" },
+    { "id": 10, "name": "JEE Main", "type": "Joint Entrance Examination", "category": "UG Entrance Exams" },
+    { "id": 11, "name": "NEET", "type": "National Eligibility cum Entrance Test", "category": "UG Entrance Exams" }
+  ]
+  

@@ -186,12 +186,11 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   };
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-
   return (
     <div className="flex flex-col h-screen">
-      <div className="flex w-full flex-grow p-4 pb-20">
-        <div className={`${isSidebarOpen ? 'w-[80%]' : 'w-[100%]'} p-4 transition-all duration-300`}>
-          <QuizHeader
+   <div className="flex w-full flex-grow p-4 pb-20">
+    <div className={`${isSidebarOpen ? 'w-full md:w-[80%]' : 'w-full'} p-0 md:p-4 transition-all duration-300`}>
+           <QuizHeader
             quizData={quizData}
             currentSubject={currentSubject}
             currentQuestion={currentQuestion}
@@ -201,12 +200,12 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
             handleZoomOut={() => setFontSize(prev => Math.max(12, prev - 2))}
             handleResetFontSize={() => setFontSize(16)}
           />
-        <TestQuestion
-  question={quizData[currentSubject]?.questions[currentQuestion]}
-  selectedOption={selectedOption}
-  onOptionSelect={handleOptionSelect}
-  fontSize={fontSize}
-/>
+          <TestQuestion
+            question={quizData[currentSubject]?.questions[currentQuestion]}
+            selectedOption={selectedOption}
+            onOptionSelect={handleOptionSelect}
+            fontSize={fontSize}
+          />
         </div>
         <QuizSidebar
           isSidebarOpen={isSidebarOpen}
@@ -232,7 +231,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
         handleConfirmSubmit={handleConfirmSubmit}
       />
     </div>
-  );
+  );  
 };
 
 export default QuizInterface;

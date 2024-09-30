@@ -79,7 +79,7 @@ const TestHeader: React.FC<TestHeaderProps> = ({ testTitle }) => {
   
   return (
     <>
-      <header className="flex items-center justify-between mb-4 p-4 md:hidden">
+      <header className="flex items-center justify-between  px-4 pt-2 md:p-4  md:hidden">
         <div className="bg-blue-50 h-14 flex items-center justify-between w-full rounded-xl">
           <div className="flex items-center ml-4">
             <Image 

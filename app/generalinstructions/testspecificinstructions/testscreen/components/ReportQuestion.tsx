@@ -24,7 +24,6 @@ const ReportQuestion = () => {
   const handleIssueSelect = (issue: IssueType) => {
     console.log(`Issue selected: ${issue}`); 
     setIsDialogOpen(true);
-   
   };
 
   return (
@@ -55,17 +54,17 @@ const ReportQuestion = () => {
       </DropdownMenu>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[425px] bg-slate-200 text-slate-700">
+        <DialogContent className="max-w-[90vw] sm:max-w-[425px] bg-slate-200 text-slate-700 p-4">
           <DialogHeader>
-            <DialogTitle>Tell Us More</DialogTitle>
+            <DialogTitle className="text-lg text-center">Tell Us More</DialogTitle>
           </DialogHeader>
-          <div className="grid gap-4 py-4 ">
-            <div className="grid grid-cols-4 items-center bg-white gap-4">
-              <Textarea className="col-span-4" placeholder="Type your message here." />
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-1 gap-4">
+              <Textarea className="w-full" placeholder="Type your message here." />
             </div>
           </div>
           <DialogFooter>
-            <Button className='bg-slate-700' type="submit">Submit Report</Button>
+            <Button className='bg-slate-700 w-full' type="submit">Submit Report</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
