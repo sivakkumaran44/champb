@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 const FilterDropdown = () => {
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
