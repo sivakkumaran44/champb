@@ -115,12 +115,12 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
               {TestHeaderData.buttons.viewAnalytics}
             </button>
           </div>
-          <div className="w-full bg-slate-200 p-0 overflow-x-auto m-0 h-12 fixed left-0 z-8  relative flex items-center justify-between">
-          <div className="w-full  ml-2 flex items-center flex gap-2 items-center py-0 ">
+          <div className="w-full bg-slate-200 p-0 m-0 h-12 fixed left-0 z-8  relative flex items-center justify-between">
+          <div className="w-full overflow-x-auto ml-2 flex items-center flex gap-2 items-center py-0 ">
             {Array.from({ length: 20 }, (_, index) => (
               <Button
                 key={index}
-                className={`${getButtonColor(index)} ${getButtonShape(index)} text-white`}
+                className={`${getButtonColor(index)} ${getButtonShape(index)} mt-2 text-white`}
                 onClick={() => handleQuestionClick(index)} 
               >
                 {index + 1}
