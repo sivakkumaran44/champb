@@ -7,10 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useRouter } from 'next/navigation';
 
 const FilterDropdown = () => {
-  const router = useRouter();
 
   return (
     <DropdownMenu>
