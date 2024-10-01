@@ -107,19 +107,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
             </div>
           </div>
 
-          <div className="flex justify-between items-center">
-            <div className="text-sm font-semibold text-slate-700">
-              Question No. {currentQuestion + 1}
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-slate-700 ml-1">Time:</span>
-              <span className="text-sm font-medium text-slate-700">
-                {formatTime(timeElapsed)}
-              </span>
-            </div>
-            <ReportQuestion />
-          </div>
-
+        
           <div className="w-full bg-slate-200 p-0 m-0 fixed left-0 z-8 relative flex items-center">
             <Button className="bg-gray-800 text-white w-12 h-20 fixed left-0 z-10 relative">
             <FilterDialog/>
@@ -138,7 +126,21 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
                 ))}
               </div>
             </div>
+            
           </div>
+          <div className="flex justify-between items-center">
+            <div className="text-sm font-semibold text-slate-700">
+              Question No. {currentQuestion + 1}
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-medium text-slate-700 ml-1">Time:</span>
+              <span className="text-sm font-medium text-slate-700">
+                {formatTime(timeElapsed)}
+              </span>
+            </div>
+            <ReportQuestion />
+          </div>
+
         </div>
       ) : (
         <div className="hidden md:block mb-4">

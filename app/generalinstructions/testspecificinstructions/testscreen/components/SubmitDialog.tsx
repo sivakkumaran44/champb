@@ -38,8 +38,7 @@ const SubmitDialog: React.FC<SubmitDialogProps> = ({
 
   return (
     <AlertDialog open={isOpen} onOpenChange={onOpenChange} rounded-2xl >
-      {/* Adjust padding for different screen sizes */}
-      <AlertDialogContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+      <AlertDialogContent className="p-4 sm:p-6 md:p-8 lg:p-10 ">
         <AlertDialogHeader>
           <AlertDialogTitle className='text-slate-700 text-lg md:text-xl'>
             Are you sure you want to submit the test?
