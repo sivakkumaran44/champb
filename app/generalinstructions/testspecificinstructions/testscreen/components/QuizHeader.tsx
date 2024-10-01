@@ -26,7 +26,6 @@ interface Subject {
   currentSubject: number;
   questions: QuizQuestion[]; 
 }
-
 const QuizHeader: React.FC<QuizHeaderProps> = ({
   quizData,
   currentSubject,
@@ -78,9 +77,15 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  
   const handleSubjectChange = (index: number) => {
-    console.log(`Selected subject: ${quizData[index].subject}`);
+    onNavigateToQuestion(index, 0); 
   };
+
+  const handleQuestionNavigation = (questionIndex: number) => {
+    onNavigateToQuestion(currentSubject, questionIndex);
+  };
+
 
   const formatTime = (timeInSeconds: number) => {
     const minutes = Math.floor(timeInSeconds / 60);
@@ -110,7 +115,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
         
           <div className="w-full bg-slate-200 p-0 m-0 fixed left-0 z-8 relative flex items-center">
             <Button className="bg-gray-800 text-white w-12 h-20 fixed left-0 z-10 relative">
-            <FilterDialog/>
+              <FilterDialog/>
             </Button>
             <div className="w-full overflow-x-auto ml-8 flex items-center">
               <div className="flex gap-4 items-center py-4">
@@ -118,13 +123,14 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
                   <QuestionButton
                     key={index}
                     index={index}
-                    status={questionStatuses[currentSubject]?.[index]}
+                    status={questionStatuses[currentSubject]?.[index] || 'not-visited'}
                     isCurrent={index === currentQuestion}
-                    onNavigateToQuestion={onNavigateToQuestion}
+                    onNavigateToQuestion={handleQuestionNavigation}
                     getButtonColor={getButtonColor}
                   />
                 ))}
               </div>
+            
             </div>
             
           </div>
