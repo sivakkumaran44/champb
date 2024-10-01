@@ -13,7 +13,7 @@ const FilterDropdown = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="bg-gray-800 text-white w-12 h-14 fixed left-0 z-10 relative">
+        <Button className="bg-gray-800 text-white w-12 h-12 fixed left-0 z-10 relative">
           <Filter size={24} className="text-slate-300"/>
         </Button>
       </DropdownMenuTrigger>
