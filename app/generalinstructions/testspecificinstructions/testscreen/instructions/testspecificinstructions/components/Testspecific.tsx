@@ -15,7 +15,7 @@ const Testspecific = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen p-8 pt-28">
+    <div className="flex flex-col min-h-screen p-8 ">
       <h2 className="text-2xl text-slate-800 font-bold mb-6">Other Important Instructions</h2>
 
       <div className="mb-8">
