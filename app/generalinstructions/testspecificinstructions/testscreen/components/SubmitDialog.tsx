@@ -38,7 +38,8 @@ const SubmitDialog: React.FC<SubmitDialogProps> = ({
 
   return (
     <AlertDialog open={isOpen} onOpenChange={onOpenChange} rounded-2xl >
-      <AlertDialogContent className="p-4 bg-slate-200 sm:p-6 md:p-8 lg:p-10 w-[300px] rounded-2xl">
+      <AlertDialogContent className="p-4 bg-slate-200 sm:p-6 md:p-8 lg:p-10  w-full 
+     w-[300px] lg:w-[500px] xl:w-[600px] rounded-2xl">
         <AlertDialogHeader>
           <AlertDialogTitle className='text-slate-700 text-lg md:text-xl'>
             Are you sure you want to submit the test?

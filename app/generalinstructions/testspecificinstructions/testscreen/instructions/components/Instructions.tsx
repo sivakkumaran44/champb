@@ -116,7 +116,7 @@ const Instructions: React.FC = () => {
     };
   
     return (
-      <div className="flex flex-col min-h-screen pt-32">
+      <div className="flex flex-col min-h-screen ">
         <h1 className="text-xl text-center text-slate-700 font-bold p-4">
           {instructions.title}
         </h1>

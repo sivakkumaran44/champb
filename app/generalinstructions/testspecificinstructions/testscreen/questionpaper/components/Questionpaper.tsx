@@ -14,7 +14,7 @@ const QuestionPaper = () => {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-60px)] pt-[92px] p-8">
+    <div className="flex flex-col h-[calc(100vh-60px)] p-8">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-lg md:text-2xl font-bold flex-grow text-center md:text-left">
           Question Paper

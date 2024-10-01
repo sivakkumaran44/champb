@@ -115,9 +115,9 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
               {TestHeaderData.buttons.viewAnalytics}
             </button>
           </div>
-          <div className="w-full bg-slate-200 p-0 m-0 fixed left-0 z-8 relative flex items-center justify-between">
-          <FilterDialog />
-          <div className="flex overflow-x-auto gap-2 mb-2mt-0 mx-auto"> 
+          <div className="w-full bg-slate-200 p-0 m-0 fixed left-0 z-8  relative flex items-center justify-between">
+         
+          <div className="flex overflow-x-auto gap-2 mb-2  mt-0 mx-auto"> 
             {Array.from({ length: 20 }, (_, index) => (
               <Button
                 key={index}
@@ -128,6 +128,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
               </Button>
             ))}
           </div>
+          <FilterDialog />
         </div>
     
           <div className="flex justify-between items-center">
