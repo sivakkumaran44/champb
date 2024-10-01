@@ -11,7 +11,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import TestHeaderData from '@/components/data/testheader.json';
-import FilterDropdown from './FilterDialogComponents';
 
 interface Subject {
   subject: string;
@@ -28,7 +27,7 @@ interface QuizHeaderProps {
   handleZoomOut: () => void;
   handleResetFontSize: () => void;
   onSubjectChange: (subjectIndex: number) => void;
-  setCurrentQuestion: (index: number) => void; // New prop to update the current question
+  setCurrentQuestion: (index: number) => void; 
 }
 
 const QuizHeader: React.FC<QuizHeaderProps> = ({
