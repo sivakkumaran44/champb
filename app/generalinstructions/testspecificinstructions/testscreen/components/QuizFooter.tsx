@@ -1,14 +1,14 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 interface QuizFooterProps {
-  onPrevious: () => void;
+  handlePrevious: () => void;
   onClearResponse: () => void;
   handleMarkForReview: () => void;
   handleSaveNext: () => void;
   handleSubmitTest: () => void;
 }
 const QuizFooter: React.FC<QuizFooterProps> = ({
-  onPrevious,
+  handlePrevious,
   onClearResponse,
   handleMarkForReview,
   handleSaveNext,
@@ -19,7 +19,7 @@ const QuizFooter: React.FC<QuizFooterProps> = ({
       <footer className="hidden md:flex fixed bottom-0 left-0 right-0 bg-blue-50 p-4 flex items-center justify-between border-t border-slate-700 z-10">
         <div className="flex gap-2">
           <Button
-            onClick={onPrevious}
+            onClick={handlePrevious}
             variant={'ghost'}
             className="font-medium text-slate-700 px-6 py-2 rounded-lg transition duration-300 flex items-center border border-[#334155] border-opacity-70"
           >
@@ -61,7 +61,7 @@ const QuizFooter: React.FC<QuizFooterProps> = ({
       </footer>
       <footer className="md:hidden fixed bottom-0 left-0 right-0 bg-blue-50 p-4 grid grid-cols-2 gap-4 border-t border-slate-700 z-10">
       <Button
-            onClick={onPrevious}
+            onClick={handlePrevious}
             variant={'ghost'}
             className="font-medium text-slate-700 px-6 py-2 rounded-lg transition duration-300 flex items-center border border-[#334155] border-opacity-70"
           >

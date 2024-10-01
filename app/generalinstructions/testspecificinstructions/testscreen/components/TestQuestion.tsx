@@ -1,5 +1,5 @@
 import React from 'react';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-grouptest';
 import { Label } from '@/components/ui/label';
 
 interface TestQuestionProps {
@@ -19,7 +19,14 @@ const TestQuestion: React.FC<TestQuestionProps> = ({ question, selectedOption, o
 
   return (
     <div className="mb-6 text-slate-700">
-      <div className="overflow-y-auto custom-scrollbar max-h-[400px] p-2 border-none rounded-md">
+      <div
+        className="overflow-y-auto custom-scrollbar p-2 border-none rounded-md"
+        style={{
+          maxHeight: '400px',
+          scrollBehavior: 'smooth',
+          WebkitOverflowScrolling: 'touch', 
+        }}
+      >
         <p className="font-medium mb-8" style={{ fontSize: `${fontSize}px` }}>
           {question.question}
         </p>
@@ -27,7 +34,10 @@ const TestQuestion: React.FC<TestQuestionProps> = ({ question, selectedOption, o
           {question.options.map((option, index) => (
             <div key={index} className="flex items-center space-x-2 mb-4">
               <RadioGroupItem value={option} id={`option-${index}`} />
-              <Label htmlFor={`option-${index}`} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              <Label
+                htmlFor={`option-${index}`}
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
                 {option}
               </Label>
             </div>

@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ZoomIn, ZoomOut, Clock } from 'lucide-react';
+import { ZoomIn, ZoomOut } from 'lucide-react';
 import ReportQuestion from './ReportQuestion';
-
+import { useRouter } from 'next/navigation';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import TestHeaderData from '@/components/data/testheader.json';
 interface Subject {
   subject: string;
+  testTitle: string;
 }
-
 interface QuizHeaderProps {
   quizData: Subject[];
   currentSubject: number;
@@ -18,7 +25,6 @@ interface QuizHeaderProps {
   handleResetFontSize: () => void;
   onSubjectChange: (subjectIndex: number) => void;
 }
-
 const QuizHeader: React.FC<QuizHeaderProps> = ({
   quizData,
   currentSubject,
@@ -28,11 +34,10 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   handleZoomIn,
   handleZoomOut,
   handleResetFontSize,
-  onSubjectChange,
 }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  useEffect(() => {
+ const router = useRouter();
+   useEffect(() => {
     const handleResize = () => {
       if (typeof window !== 'undefined') {
         setIsMobile(window.innerWidth < 768);
@@ -44,9 +49,11 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  const handleSubjectClick = (index: number) => {
-    onSubjectChange(index);
+  const handleViewAnalytics = () => {
+    router.push('/dashboard/process/report');
+  };
+  const handleSubjectChange = (index: number) => {
+    console.log(`Selected subject: ${quizData[index].subject}`);
   };
 
   const formatTime = (timeInSeconds: number) => {
@@ -58,41 +65,66 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   return (
     <div className="mb-2">
       {isMobile ? (
-        <div className="flex justify-between items-center gap-1 mb-4">
-          <select
-            onChange={(e) => onSubjectChange(Number(e.target.value))}
-            className="text-xs sm:text-sm bg-slate-100 p-2 rounded-lg w-1/2"
-            value={currentSubject}
-          >
-            {quizData.map((subject, index) => (
-              <option key={index} value={index}>
-                {subject.subject}
-              </option>
-            ))}
-          </select>
-          <div className="flex items-center space-x-2 bg-slate-200 px-3 py-1 rounded-md justify-end">
-            <Clock size={16} className="text-slate-700" />
+        <div className="flex flex-col gap-4 mb-4">
+        <div className="flex justify-between items-center gap-1">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="w-1/2 bg-slate-700 text-white">
+                {quizData[currentSubject].subject}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='bg-slate-700 text-white'>
+              {quizData.map((subject, index) => (
+                <DropdownMenuItem
+                  key={index}
+                  onClick={() => handleSubjectChange(index)}
+                >
+                  {subject.subject}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <button
+              className="px-3 py-1 text-sm bg-slate-100 border border-gray-300 rounded-xl hover:bg-gray-50"
+              onClick={handleViewAnalytics}
+            >
+              {TestHeaderData.buttons.viewAnalytics}
+            </button>
+        </div>
+        <div className="flex justify-between items-center">
+          <div className="text-sm font-semibold text-slate-700">
+            Question No. {currentQuestion + 1}
+          </div>
+          <div className="flex items-center gap-2">
+          <span className="text-sm font-medium text-slate-700 ml-1">Time: </span>
             <span className="text-sm font-medium text-slate-700">
-              Time Left: {formatTime(timeElapsed)}
+              {formatTime(timeElapsed)}
             </span>
           </div>
+          <ReportQuestion />
         </div>
-      ) : (
-        <div className="hidden md:block overflow-y-auto custom-scrollbar mb-4">
-          <div className="flex flex-nowrap gap-2 mb-1">
-            {quizData.map((subject, index) => (
-              <Button
-                key={index}
-                variant={index === currentSubject ? 'default' : 'ghost'}
-                className={`text-xs bg-emerald-500 text-white hover:bg-emerald-500 sm:text-sm whitespace-nowrap flex items-center gap-2 ${index === currentSubject ? 'bg-gradient-to-r from-[#6EE7B7] via-[#A3E635] to-[#A3E635]' : ''}`}
-                onClick={() => handleSubjectClick(index)}
-              >
-                {subject.subject}
-              </Button>
-            ))}
+        
+      </div>
+        ) : (
+          <div className="hidden md:block overflow-y-auto custom-scrollbar mb-4">
+            <div className="flex flex-nowrap gap-2 mb-1">
+              {quizData.map((subject, index) => (
+                <Button
+                  key={index}
+                  variant={index === currentSubject ? 'default' : 'ghost'}
+                  className={`text-xs bg-emerald-500 text-white hover:bg-emerald-500 sm:text-sm whitespace-nowrap flex items-center gap-2 ${
+                    index === currentSubject
+                      ? 'bg-gradient-to-r from-[#6EE7B7] via-[#A3E635] to-[#A3E635]'
+                      : ''
+                  }`}
+                  onClick={() => handleSubjectChange(index)}
+                >
+                  {subject.subject}
+                 
+                </Button>
+              ))}
+            </div>
           </div>
-        </div>
-    
       )}
       <div className={isMobile ? 'hidden' : 'bg-slate-100 p-2 rounded-lg flex items-center justify-between mb-8'}>
         <div className="text-sm font-semibold text-slate-700">

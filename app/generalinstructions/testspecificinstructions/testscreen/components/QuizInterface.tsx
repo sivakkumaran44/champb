@@ -5,6 +5,15 @@ import QuizHeader from './QuizHeader';
 import QuizSidebar from './QuizSidebar';
 import QuizFooter from './QuizFooter';
 import SubmitDialog from './SubmitDialog';
+interface Subject {
+  subject: string;
+  currentSubject: number;
+  questions: QuizQuestion[];
+}
+interface QuizQuestion {
+  id: number;
+  questionText: string;
+}
 
 interface QuizInterfaceProps {
   initialSubject: number;
@@ -15,11 +24,11 @@ interface QuizInterfaceProps {
   onSaveNext: () => void;
   onClearResponse: () => void;
 }
+
 const QuizInterface: React.FC<QuizInterfaceProps> = ({
   initialSubject,
   initialQuestion,
   onOptionSelect,
-  onPrevious,
   onSaveNext,
   onClearResponse,
 }) => {
@@ -29,6 +38,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   const [marks] = useState({ correct: 2, incorrect: -0.5 });
   const [answers, setAnswers] = useState<string[][]>([]);
   const [isSubmitDialogOpen, setIsSubmitDialogOpen] = useState(false);
+  const [transformedQuizData, setTransformedQuizData] = useState<Subject[]>([]);
   const [questionSummary, setQuestionSummary] = useState({
     answered: 0,
     notAnswered: 0,
@@ -39,7 +49,6 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   const [currentSubject, setCurrentSubject] = useState(initialSubject);
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
   const [selectedOption, setSelectedOption] = useState('');
-
   useEffect(() => {
     const initialStatuses = quizData.map(subject =>
       new Array(subject.questions.length).fill('not-visited')
@@ -50,7 +59,17 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     );
     setAnswers(initialAnswers);
   }, []);
-
+  useEffect(() => {
+    const transformed = quizData.map((subject, index) => ({
+      subject: subject.subject,
+      currentSubject: index,
+      questions: subject.questions.map((q, qIndex) => ({
+        id: qIndex,
+        questionText: q.question,
+      })),
+    }));
+    setTransformedQuizData(transformed);
+  }, []);
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeElapsed(prevTime => prevTime + 1);
@@ -58,6 +77,17 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     return () => clearInterval(interval);
   }, []);
 
+  const handlePrevious = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+    } else if (currentSubject > 0) {
+      const previousSubject = currentSubject - 1;
+      const lastQuestionIndex = quizData[previousSubject].questions.length - 1;
+      setCurrentSubject(previousSubject);
+      setCurrentQuestion(lastQuestionIndex);
+    }
+  };
+  
   const updateQuestionStatus = (subjectIndex: number, questionIndex: number, status: string) => {
     setQuestionStatuses(prevStatuses => {
       const newStatuses = [...prevStatuses];
@@ -190,16 +220,22 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     <div className="flex flex-col h-screen">
    <div className="flex w-full flex-grow p-4 pb-20">
     <div className={`${isSidebarOpen ? 'w-full md:w-[80%]' : 'w-full'} p-0 md:p-4 transition-all duration-300`}>
-           <QuizHeader
-            quizData={quizData}
-            currentSubject={currentSubject}
-            currentQuestion={currentQuestion}
-            timeElapsed={timeElapsed}
-            marks={marks}
-            handleZoomIn={() => setFontSize(prev => Math.min(32, prev + 2))}
-            handleZoomOut={() => setFontSize(prev => Math.max(12, prev - 2))}
-            handleResetFontSize={() => setFontSize(16)}
-          />
+    {questionStatuses.length > 0 && (
+               <QuizHeader
+                  quizData={transformedQuizData}
+                  currentSubject={currentSubject}
+                  currentQuestion={currentQuestion}
+                  timeElapsed={timeElapsed}
+                  marks={marks}
+                  handleZoomIn={() => setFontSize(prev => Math.min(32, prev + 2))}
+                  handleZoomOut={() => setFontSize(prev => Math.max(12, prev - 2))}
+                  handleResetFontSize={() => setFontSize(16)}
+                  onNavigateToQuestion={handleNavigateToQuestion}
+                  questionStatuses={questionStatuses}
+                />
+           
+          )}
+
           <TestQuestion
             question={quizData[currentSubject]?.questions[currentQuestion]}
             selectedOption={selectedOption}
@@ -218,7 +254,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
         />
       </div>
       <QuizFooter
-        onPrevious={onPrevious}
+        handlePrevious={handlePrevious}
         onClearResponse={handleClearResponse}
         handleMarkForReview={handleMarkForReview}
         handleSaveNext={handleSaveNext}

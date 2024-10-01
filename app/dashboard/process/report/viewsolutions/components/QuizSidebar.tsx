@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, Filter } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Filter } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface QuizQuestion {
@@ -107,8 +107,8 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
   };
  return (
     <>
-      <div className={`hidden lg:block ${isSidebarOpen ? 'lg:w-[19%]' : 'lg:hidden'} bg-[#F1F5F9] border border-[#D9D9D9] rounded-xl mb-2 p-4 h-full transition-all duration-300 relative`}>
-      <div className="flex items-center gap-6 mb-4">
+   <div className={`hidden lg:block ${isSidebarOpen ? 'lg:w-[20%]' : 'lg:hidden'} bg-[#F1F5F9] border border-[#D9D9D9] rounded-xl mb-2 p-4 h-full transition-all duration-300 relative`}>
+   <div className="flex items-center gap-6 mb-4">
   <Avatar>
     <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
     <AvatarFallback>CN</AvatarFallback>
@@ -183,23 +183,23 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
       </div>
     
       {!isSidebarOpen ? (
+       <Button
+       onClick={toggleSidebar}
+       variant="ghost"
+       size="icon"
+       className="fixed right-2 top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md hidden md:block p-2"
+     >
+       <ChevronLeft className="w-5 h-5 text-white  ml-1" />
+     </Button>
+          ) : (
         <Button
-          onClick={toggleSidebar}
-          variant="ghost"
-          size="icon"
-          className="fixed right-2 top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md"
-        >
-          <ChevronLeft className="w-4 h-4 text-white" />
-        </Button>
-      ) : (
-        <Button
-          onClick={toggleSidebar}
-          variant="ghost"
-          size="icon"
-          className="fixed right-[20%] top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md"
-        >
-          <ChevronLeft className="w-4 h-4 text-white rotate-180" />
-        </Button>
+        onClick={toggleSidebar}
+        variant="ghost"
+        size="icon"
+        className="fixed right-[20%] top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md hidden md:block p-2"
+      >
+        <ChevronRight className="w-5 h-5 text-white  ml-1" />
+      </Button>      
       )}
     </>
   );

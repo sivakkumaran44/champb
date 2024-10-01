@@ -1,9 +1,10 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from 'react';
 import { Check, Circle, Triangle, Square } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+
 interface QuestionSummary {
   answered: number;
   'not-answered': number;
@@ -34,6 +35,7 @@ const Results: React.FC = () => {
       setQuestionSummary(JSON.parse(storedSummary));
     }
   }, []);
+
   const SummaryItem: React.FC<SummaryItemProps> = ({ Icon, color, label, value, iconFill }) => (
     <div className="flex items-center space-x-2">
       <Icon className={`${color} ${iconFill}`} /> {/* Applying fill color */}
@@ -47,8 +49,8 @@ const Results: React.FC = () => {
   };
 
   return (
-    <div className='bg-[#10B981] min-h-screen flex items-center justify-center'>
-      <Card className="w-[400px] bg-white rounded-3xl shadow-lg">
+    <div className='bg-[#10B981] min-h-screen flex items-center justify-center px-4 sm:px-8 md:px-16'>
+      <Card className="w-full max-w-md bg-white rounded-3xl shadow-lg">
         <CardHeader className="text-center">
           <Check className="w-12 h-12 mx-auto text-green-500" />
           <CardTitle className="text-xl font-medium mt-4">
@@ -64,7 +66,7 @@ const Results: React.FC = () => {
               value={questionSummary.answered}
               iconFill="fill-green-500"
             />
-             <hr className="border-t border-slate-700 my-2" />
+            <hr className="border-t border-slate-700 my-2" />
             <SummaryItem
               Icon={Circle}
               color="text-red-500"
@@ -72,7 +74,7 @@ const Results: React.FC = () => {
               value={questionSummary['not-answered']}
               iconFill="fill-red-500"
             />
-             <hr className="border-t border-slate-700 my-2" />
+            <hr className="border-t border-slate-700 my-2" />
             <SummaryItem
               Icon={Triangle}
               color="text-purple-500"
@@ -80,7 +82,7 @@ const Results: React.FC = () => {
               value={questionSummary['marked-for-review']}
               iconFill="fill-purple-500"
             />
-             <hr className="border-t border-slate-700 my-2" />
+            <hr className="border-t border-slate-700 my-2" />
             <SummaryItem
               Icon={Square}
               color="text-gray-400"

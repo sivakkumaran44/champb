@@ -60,7 +60,7 @@ const ReportQuestion = () => {
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-1 gap-4">
-              <Textarea className="w-full" placeholder="Type your message here." />
+              <Textarea className="w-full bg-white h-24" placeholder="Type your message here." />
             </div>
           </div>
           <DialogFooter>
