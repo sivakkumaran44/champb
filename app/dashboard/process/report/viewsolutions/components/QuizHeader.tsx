@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import TestHeaderData from '@/components/data/testheader.json';
+import FilterDropdown from './FilterDialogComponents';
 
 interface Subject {
   subject: string;
@@ -117,7 +118,8 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
           </div>
           <div className="w-full bg-slate-200 p-0 m-0 fixed left-0 z-8  relative flex items-center justify-between">
          
-          <div className="flex overflow-x-auto gap-2 mb-2  mt-0 mx-auto"> 
+          <div className="w-full overflow-x-auto ml-2 flex items-center flex gap-2 items-center py-0 ">
+
             {Array.from({ length: 20 }, (_, index) => (
               <Button
                 key={index}
