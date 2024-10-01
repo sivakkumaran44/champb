@@ -111,14 +111,10 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
               </span>
             </div>
           </div>
-
-        
-          <div className="w-full bg-slate-200 p-0 m-0 fixed left-0 z-8 relative flex items-center">
-            <Button className="bg-gray-800 text-white w-12 h-20 fixed left-0 z-10 relative">
-              <FilterDialog/>
-            </Button>
+          <div className="w-full bg-slate-200 p-0 m-0 h-12 fixed left-0 right-0 z-8  relative flex items-center justify-between">
+               <FilterDialog/>
             <div className="w-full overflow-x-auto ml-8 flex items-center">
-              <div className="flex gap-4 items-center py-4">
+              <div className="flex gap-4 items-center py-0 ">
                 {quizData[currentSubject]?.questions.map((question, index) => (
                   <QuestionButton
                     key={index}

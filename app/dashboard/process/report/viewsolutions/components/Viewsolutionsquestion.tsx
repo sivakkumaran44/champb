@@ -19,7 +19,8 @@ interface TestQuestionProps {
 
 const ViewSolutionsQuestion: React.FC<TestQuestionProps> = ({ 
   question, 
-  fontSize,  
+  fontSize, 
+   
 }) => {
   if (!question) {
     return <div>No question available</div>;

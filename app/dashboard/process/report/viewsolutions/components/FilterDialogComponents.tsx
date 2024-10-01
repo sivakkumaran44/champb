@@ -20,13 +20,13 @@ const FilterDropdown = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-slate-200 rounded-2xl w-48">
-        <DropdownMenuItem onClick={() => router.push('/path-for-correct')}>
+        <DropdownMenuItem>
           <span className="text-green-500">Correct Answer</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push('/path-for-wrong')}>
+        <DropdownMenuItem >
           <span className="text-red-500">Wrong Answer</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push('/path-for-unvisited')}>
+        <DropdownMenuItem >
           <span className="text-gray-500">Unvisited</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

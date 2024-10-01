@@ -59,7 +59,7 @@ const QuizFooter: React.FC<QuizFooterProps> = ({
           </Button>
         </div>
       </footer>
-      <footer className="md:hidden fixed bottom-0 left-0 right-0 bg-blue-50 p-4 grid grid-cols-2 gap-4 border-t border-slate-700 z-10">
+      <footer className="md:hidden text-xs fixed bottom-0 left-0  right-0 bg-blue-50 p-4 grid grid-cols-2 gap-4 border-t border-slate-700 z-10">
       <Button
             onClick={handlePrevious}
             variant={'ghost'}
@@ -69,7 +69,7 @@ const QuizFooter: React.FC<QuizFooterProps> = ({
           </Button>
 <Button
      onClick={handleMarkForReview}
-    className="font-semibold bg-slate-700 text-white px-6 py-2 rounded-lg transition duration-300 flex items-center"
+    className="font-semibold text-xs bg-slate-700 text-white px-6 py-2 rounded-lg transition duration-300 flex items-center"
   >
     Mark for review & Next
   </Button>

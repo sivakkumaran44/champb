@@ -83,7 +83,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   };
 
   const handleQuestionClick = (index: number) => {
-    setCurrentQuestion(index); // Update current question
+    setCurrentQuestion(index); 
   };
 
   return (

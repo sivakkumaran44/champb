@@ -13,13 +13,13 @@ const FilterDialog = () => {
 
     <Dialog >
       <DialogTrigger asChild>
-        <Button className="bg-gray-800 text-white w-12 h-20 fixed left-0 z-10 relative">
+        <Button className="bg-gray-800 text-white w-12 h-12 fixed left-0 z-10 relative">
           <Filter size={24} className="text-slate-300"/>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[90vw] sm:max-w-[425px] bg-slate-200 rounded-2xl">
-        <div className="space-y-2">
-          <div className="flex justify-between items-center">
+        <div className="space-y-1">
+          <div className="flex justify-between items-center mt-4">
             <span>Correct Answer</span>
             <span className="text-green-500">+2 Marks</span>
           </div>
@@ -27,7 +27,7 @@ const FilterDialog = () => {
             <span>Incorrect Answer</span>
             <span className="text-red-500">- 0.5 Marks</span>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-4 mt-2">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 rounded-full bg-green-500"></div>
               <span>Answered</span>
@@ -52,8 +52,8 @@ const FilterDialog = () => {
               </div>
               <span>Answered and Marked for Review</span>
             </div>
-            <div className="text-xs text-gray-500 ml-6">(will be considered for evaluation)</div>
-          </div>
+            <span>(will be considered for evaluation)</span>
+              </div>
           <Button
         variant="ghost"
         className="w-full hover:bg-slate-200"

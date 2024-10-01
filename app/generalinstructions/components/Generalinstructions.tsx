@@ -23,10 +23,10 @@ interface TestInstructionsData {
   questionStatus: QuestionStatus[];
 }
 
-const Generalinstructions: React.FC = () => {
+const GeneralInstructions: React.FC = () => {
   const [instructions, setInstructions] = useState<TestInstructionsData | null>(null);
   const router = useRouter();
-
+  
   const handleNext = () => {
     router.push(`/generalinstructions/testspecificinstructions`);
   };
@@ -65,41 +65,26 @@ const Generalinstructions: React.FC = () => {
         return <div className={`w-6 h-6 rounded-full ${colorClass} mr-2`} />;
       case 'triangle':
         return (
-        
           <svg className="w-12 h-12 md:w-6 md:h-6 mr-2" viewBox="0 0 24 24">
-          <path d="M12 2 L22 22 L2 22 Z" fill="purple" stroke="purple" strokeWidth="2" />
-          <g transform="translate(12, 13)">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="10"
-              height="10" 
-              viewBox="0 0 24 24"
-            >   
-              <g>
-                <circle cx="12" cy="12" r="10" fill="#4ade80" /> 
-                <text 
-                  x="12" 
-                  y="16" 
-                  fontSize="16"
-                  textAnchor="middle" 
-                  fill="white" 
-                  fontWeight="bold"
-                >
-                  !
-                </text>
-              </g>
-            </svg>
-          </g>       
-        </svg>
+            <path d="M12 2 L22 22 L2 22 Z" fill="purple" stroke="purple" strokeWidth="2" />
+            <g transform="translate(12, 13)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24">   
+                <g>
+                  <circle cx="12" cy="12" r="10" fill="#4ade80" /> 
+                  <text x="12" y="16" fontSize="16" textAnchor="middle" fill="white" fontWeight="bold">!</text>
+                </g>
+              </svg>
+            </g>       
+          </svg>
         );
       case 'empty-triangle':
         return (
-       <svg className="w-12 h-12 md:w-6 md:h-6 mr-2" viewBox="0 0 24 24">
-          <path d="M12 2 L22 22 L2 22 Z" fill={color} />
-          {withSymbol && (
-            <text x="12" y="19" fontSize="16" fill="none"stroke={color}  textAnchor="middle">!</text>
-          )}
-        </svg>
+          <svg className="w-12 h-12 md:w-6 md:h-6 mr-2" viewBox="0 0 24 24">
+            <path d="M12 2 L22 22 L2 22 Z" fill={color} />
+            {withSymbol && (
+              <text x="12" y="19" fontSize="16" fill="none" stroke={color} textAnchor="middle">!</text>
+            )}
+          </svg>
         );
       default:
         return null;
@@ -116,12 +101,16 @@ const Generalinstructions: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen pt-32">
-      <h1 className="text-xl text-center text-slate-700 font-bold p-4">
-        {instructions.title}
-      </h1>
-      <main className="flex-grow mb-20 p-8">
-        <h2 className="text-lg text-slate-700 mb-4">{instructions.generalInstructions}</h2>
+    <div className="flex flex-col min-h-screen">
+      <header className="bg-white sticky top-0 z-10">
+        <h1 className="text-xl text-center text-slate-700 font-bold p-4">
+          {instructions.title}
+        </h1>
+        <div className="p-4 bg-white">
+          <h2 className="text-lg text-slate-700">{instructions.generalInstructions}</h2>
+        </div>
+      </header>
+      <main className="flex-grow mb-20 p-8 overflow-y-auto">
         {instructions.sections.map((section, index) => (
           <div key={index} className="mb-6">
             <h3 className="font-semibold text-slate-800">
@@ -155,4 +144,4 @@ const Generalinstructions: React.FC = () => {
   );
 };
 
-export default Generalinstructions;
+export default GeneralInstructions;
