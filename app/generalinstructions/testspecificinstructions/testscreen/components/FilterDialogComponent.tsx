@@ -41,7 +41,9 @@ const FilterDialog = () => {
               <span>Not Visited</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-purple-500" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
+               <svg className="w-6 h-6 md:w-6 md:h-6 mr-2" viewBox="0 0 24 24">
+            <path d="M12 2 L22 22 L2 22 Z" fill="purple" stroke="purple" strokeWidth="2" />
+   </svg>
               <span>Marked for review</span>
             </div>
             <div className="flex items-center space-x-2">
