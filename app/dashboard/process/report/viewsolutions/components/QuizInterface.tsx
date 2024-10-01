@@ -5,6 +5,22 @@ import QuizHeader from './QuizHeader';
 import QuizSidebar from './QuizSidebar';
 import ViewSolutionsFooter from './ViewSolutionsFooter';
 import ViewSolutionsQuestion from './Viewsolutionsquestion';
+
+interface Question {
+  question: string;
+  options: string[];
+  correctAnswer: string;
+  wrongAnswer?: string;
+  solution: string;
+  explanation: string;
+}
+
+interface Subject {
+  subject: string;
+  testTitle: string;
+  questions: Question[];
+}
+
 interface QuizInterfaceProps {
   initialSubject: number;
   initialQuestion: number;
@@ -15,14 +31,6 @@ interface QuizInterfaceProps {
   onClearResponse: () => void;
 }
 
-interface Question {
-  question: string;
-  options: string[];
-  correctAnswer: string;
-  wrongAnswer?: string;
-  solution: string;
-  explanation: string;
-}
 const QuizInterface: React.FC<QuizInterfaceProps> = ({
   initialSubject,
   initialQuestion,
@@ -37,20 +45,13 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   const [currentSubject, setCurrentSubject] = useState(initialSubject);
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
   const [selectedOption, setSelectedOption] = useState('');
-  const [quizQuestions, setQuizQuestions] = useState<Question[][]>([]);
+  const [quizQuestions, setQuizQuestions] = useState<Subject[]>([]);
 
   useEffect(() => {
-    const initialStatuses = quizData.map(subject =>
-      new Array(subject.questions.length).fill('not-visited')
-    );
-    setQuestionStatuses(initialStatuses);
-    const initialAnswers = quizData.map(subject =>
-      new Array(subject.questions.length).fill('')
-    );
-    setAnswers(initialAnswers);
-
-     const transformedQuizData = quizData.map(subject =>
-      subject.questions.map(q => ({
+    const transformedQuizData: Subject[] = quizData.map(subject => ({
+      subject: subject.subject,
+      testTitle: subject.subject, 
+      questions: subject.questions.map(q => ({
         question: q.question,
         options: q.options,
         correctAnswer: q.correctAnswer,
@@ -58,8 +59,18 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
         solution: q.solution,
         explanation: q.explanation
       }))
-    );
+    }));
     setQuizQuestions(transformedQuizData);
+
+    const initialStatuses = transformedQuizData.map(subject =>
+      new Array(subject.questions.length).fill('not-visited')
+    );
+    setQuestionStatuses(initialStatuses);
+
+    const initialAnswers = transformedQuizData.map(subject =>
+      new Array(subject.questions.length).fill('')
+    );
+    setAnswers(initialAnswers);
   }, []);
 
   useEffect(() => {
@@ -74,7 +85,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
       setCurrentQuestion(currentQuestion - 1);
     } else if (currentSubject > 0) {
       const previousSubject = currentSubject - 1;
-      const lastQuestionIndex = quizData[previousSubject].questions.length - 1;
+      const lastQuestionIndex = quizQuestions[previousSubject].questions.length - 1;
       setCurrentSubject(previousSubject);
       setCurrentQuestion(lastQuestionIndex);
     }
@@ -105,9 +116,9 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   };
 
   const navigateToNextQuestion = () => {
-    if (currentQuestion < quizData[currentSubject].questions.length - 1) {
+    if (currentQuestion < quizQuestions[currentSubject].questions.length - 1) {
       setCurrentQuestion(prevQuestion => prevQuestion + 1);
-    } else if (currentSubject < quizData.length - 1) {
+    } else if (currentSubject < quizQuestions.length - 1) {
       setCurrentSubject(prevSubject => prevSubject + 1);
       setCurrentQuestion(0);
     }
@@ -121,20 +132,33 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   return (
     <div className="flex flex-col h-screen">
       <div className="flex w-full flex-grow p-4 pb-20">
-      <div className={`${isSidebarOpen ? 'w-full md:w-[80%]' : 'w-full'} p-0 md:p-4 transition-all duration-300`}>
-      
-          <ViewSolutionsQuestion
-            question={quizQuestions[currentSubject]?.[currentQuestion]}
-            fontSize={fontSize}
-            currentQuestionIndex={currentQuestion}
+        <div className={`${isSidebarOpen ? 'w-full md:w-[80%]' : 'w-full'} p-0 md:p-4 transition-all duration-300`}>
+          <QuizHeader
+            quizData={quizQuestions}
+            currentSubject={currentSubject}
+            currentQuestion={currentQuestion}
+            timeElapsed={timeElapsed}
+            marks={marks}
+            handleZoomIn={() => setFontSize(prev => Math.min(32, prev + 2))}
+            handleZoomOut={() => setFontSize(prev => Math.max(12, prev - 2))}
+            handleResetFontSize={() => setFontSize(16)}
+            onSubjectChange={handleSubjectChange}
+            setCurrentQuestion={setCurrentQuestion}
           />
+          {quizQuestions.length > 0 && quizQuestions[currentSubject]?.questions[currentQuestion] && (
+            <ViewSolutionsQuestion
+              question={quizQuestions[currentSubject].questions[currentQuestion]}
+              fontSize={fontSize}
+              currentQuestionIndex={currentQuestion}
+            />
+          )}
         </div>
         <QuizSidebar
           isSidebarOpen={isSidebarOpen}
           currentSubject={currentSubject}
           currentQuestion={currentQuestion}
           questionStatuses={questionStatuses}
-          quizData={quizData}
+          quizData={quizQuestions}
           toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
           onNavigateToQuestion={(subjectIndex, questionIndex) => {
             setCurrentSubject(subjectIndex);

@@ -19,8 +19,7 @@ interface TestQuestionProps {
 
 const ViewSolutionsQuestion: React.FC<TestQuestionProps> = ({ 
   question, 
-  fontSize, 
-  currentQuestionIndex 
+  fontSize,  
 }) => {
   if (!question) {
     return <div>No question available</div>;
@@ -30,7 +29,7 @@ const ViewSolutionsQuestion: React.FC<TestQuestionProps> = ({
     <div className="mb-6 text-slate-700">
       <div className="overflow-y-auto custom-scrollbar max-h-[400px] p-2 border-none rounded-md">
         <p className="font-medium mb-8" style={{ fontSize: `${fontSize}px` }}>
-          Question {currentQuestionIndex + 1}: {question.question}
+         {question.question}
         </p>
         <RadioGroup value={question.correctAnswer}>
           {question.options.map((option, index) => {
