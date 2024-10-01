@@ -28,14 +28,14 @@ const ViewSolutionsQuestion: React.FC<TestQuestionProps> = ({
 
   return (
     <div className="mb-6 text-slate-700">
-      <div className="overflow-y-auto custom-scrollbar max-h-[400px] p-2 border-none rounded-md">
+      <div className="overflow-y-auto custom-scrollbar p-2 border-none rounded-md">
         <p className="font-medium mb-8" style={{ fontSize: `${fontSize}px` }}>
          {question.question}
         </p>
         <RadioGroup value={question.correctAnswer}>
           {question.options.map((option, index) => {
             const isCorrect = option === question.correctAnswer;
-            const isWrong = question.wrongAnswer ? option === question.wrongAnswer : false;
+           const isWrong = question.wrongAnswer ? option === question.wrongAnswer : false;
 
             return (
               <div
