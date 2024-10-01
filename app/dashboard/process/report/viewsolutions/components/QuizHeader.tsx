@@ -39,7 +39,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   handleZoomIn,
   handleZoomOut,
   handleResetFontSize,
-  setCurrentQuestion, // Destructure the new prop
+  setCurrentQuestion,
 }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const router = useRouter();
@@ -47,7 +47,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   useEffect(() => {
     const handleResize = () => {
       if (typeof window !== 'undefined') {
-        setIsMobile(window.innerWidth < 768);
+        setIsMobile(window.innerWidth < 1024);
       }
     };
 
@@ -115,8 +115,8 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
               {TestHeaderData.buttons.viewAnalytics}
             </button>
           </div>
-          <div className="w-full bg-slate-200 p-0 m-0 h-12 fixed left-0 z-8  relative flex items-center justify-between">
-          <div className="w-full overflow-x-auto ml-2 flex items-center flex gap-2 items-center py-0 ">
+          <div className="w-full bg-slate-200 p-0 overflow-x-auto m-0 h-12 fixed left-0 z-8  relative flex items-center justify-between">
+          <div className="w-full  ml-2 flex items-center flex gap-2 items-center py-0 ">
             {Array.from({ length: 20 }, (_, index) => (
               <Button
                 key={index}
@@ -144,7 +144,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
           </div>
         </div>
       ) : (
-        <div className="hidden md:block overflow-y-auto custom-scrollbar mb-4">
+        <div className="hidden lg:block overflow-y-auto custom-scrollbar mb-4">
           <div className="flex flex-nowrap gap-2 mb-1">
             {quizData.map((subject, index) => (
               <Button

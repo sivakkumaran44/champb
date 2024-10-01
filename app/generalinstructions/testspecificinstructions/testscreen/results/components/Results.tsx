@@ -38,7 +38,7 @@ const Results: React.FC = () => {
 
   const SummaryItem: React.FC<SummaryItemProps> = ({ Icon, color, label, value, iconFill }) => (
     <div className="flex items-center space-x-2">
-      <Icon className={`${color} ${iconFill}`} /> {/* Applying fill color */}
+      <Icon className={`${color} ${iconFill}`} /> 
       <span className="flex-1">{label}</span>
       <span>{value}</span>
     </div>

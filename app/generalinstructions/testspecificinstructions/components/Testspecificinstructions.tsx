@@ -68,7 +68,7 @@ const Testspecificinstructions = () => {
           </label>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between">
+        <div className="flex flex-col lg:flex-row gap-2 justify-between">
           <Button 
             variant="outline" 
             className="bg-white text-emerald-800 hover:bg-gray-100 border border-[#065F46] mb-2 md:mb-0" 

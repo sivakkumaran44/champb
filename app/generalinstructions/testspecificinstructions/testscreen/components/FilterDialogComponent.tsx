@@ -18,7 +18,7 @@ const FilterDialog = () => {
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[90vw] sm:max-w-[425px] bg-slate-200 rounded-2xl">
-        <div className="space-y-1">
+        <div className="space-y-1  ">
           <div className="flex justify-between items-center mt-4">
             <span>Correct Answer</span>
             <span className="text-green-500">+2 Marks</span>
@@ -27,7 +27,7 @@ const FilterDialog = () => {
             <span>Incorrect Answer</span>
             <span className="text-red-500">- 0.5 Marks</span>
           </div>
-          <div className="space-y-4 mt-2">
+          <div className="space-y-4  ">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 rounded-full bg-green-500"></div>
               <span>Answered</span>
@@ -45,10 +45,20 @@ const FilterDialog = () => {
               <span>Marked for review</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-purple-500 relative" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}>
+ <svg className="w-6 h-6 md:w-6 md:h-6 mr-2" viewBox="0 0 24 24">
+            <path d="M12 2 L22 22 L2 22 Z" fill="purple" stroke="purple" strokeWidth="2" />
+            <g transform="translate(12, 13)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24">   
+                <g>
+                  <circle cx="12" cy="12" r="10" fill="#4ade80" /> 
+                  <text x="12" y="16" fontSize="16" textAnchor="middle" fill="white" fontWeight="bold">!</text>
+                </g>
+              </svg>
+            </g>       
+          </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                </div>
+                
               </div>
               <span>Answered and Marked for Review</span>
             </div>

@@ -184,7 +184,7 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
     onClick={toggleSidebar}
     variant="ghost"
     size="icon"
-    className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md hidden md:block"
+    className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md hidden lg:block"
   >
     <ChevronLeft className="w-6 h-6 text-white mr-4" /> 
   </Button>
@@ -194,7 +194,7 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
     onClick={toggleSidebar}
     variant="ghost"
     size="icon"
-    className="fixed right-[19%] top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md hidden md:block"
+    className="fixed right-[19%] top-1/2 transform -translate-y-1/2 bg-[#64748B] hover:bg-[#64748B] rounded-full shadow-md hidden lg:block"
   >
     <ChevronLeft className="w-6 h-6 text-white" /> 
   </Button>

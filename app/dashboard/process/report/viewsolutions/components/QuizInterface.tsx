@@ -132,7 +132,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   return (
     <div className="flex flex-col h-screen">
       <div className="flex w-full flex-grow p-4 pb-20">
-        <div className={`${isSidebarOpen ? 'w-full md:w-[80%]' : 'w-full'} p-0 md:p-4 transition-all duration-300`}>
+        <div className={`${isSidebarOpen ? 'w-full lg:w-[80%]' : 'w-full'} p-0 lg:p-4 transition-all duration-300`}>
           <QuizHeader
             quizData={quizQuestions}
             currentSubject={currentSubject}

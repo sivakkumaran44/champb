@@ -39,7 +39,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   questionStatuses,
 }) => {
   const totalTime = 3600; 
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState<boolean>(false);
   const [timeLeft, setTimeLeft] = useState<number>(totalTime);
 
   const getButtonColor = (status: string) => {
@@ -68,7 +68,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   useEffect(() => {
     const handleResize = () => {
       if (typeof window !== 'undefined') {
-        setIsMobile(window.innerWidth < 768);
+        setIsMobileOrTablet(window.innerWidth < 1024);
       }
     };
 
@@ -95,7 +95,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
 
   return (
     <div className="mt-0 mb-4">
-      {isMobile ? (
+      {isMobileOrTablet ? (
         <div className="flex flex-col gap-4">
           <div className="flex justify-between items-center gap-1">
             <SubjectDropdown
@@ -143,7 +143,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
 
         </div>
       ) : (
-        <div className="hidden md:block mb-4">
+        <div className="hidden lg:block mb-4">
           <div className="flex flex-nowrap gap-2 mb-1">
             {quizData.map((subject, index) => (
               <Button
