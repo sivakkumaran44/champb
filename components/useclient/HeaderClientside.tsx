@@ -6,6 +6,16 @@ import Logo from "@/public/assets/img/LOGO SVG.svg";
 import OtpVerification from '@/components/Auth/OtpVerification';
 import { Search, ChevronDown, Briefcase, GraduationCap, FileText } from "lucide-react";
 import examsData from '../data/exam.json';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal,
+} from "@/components/ui/dropdown-menu"
 
 interface Exam {
   id: number;
@@ -18,17 +28,16 @@ const Header: React.FC = () => {
   const [showOtpVerification, setShowOtpVerification] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredExams, setFilteredExams] = useState<Exam[]>([]);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const searchRef = useRef<HTMLDivElement | null>(null);
 
   const allExams: Exam[] = useMemo(() => examsData, []); 
 
   const examCategories = [
-    { name: "SSC Exams", icon: FileText },
-    { name: "Banking Exams", icon: Briefcase },
-    { name: "UG Entrance Exams", icon: GraduationCap }
+    { name: "All", subcategories: [] },
+    { name: "SSC Exams", icon: FileText, subcategories: ["CGL", "CHSL", "MTS"] },
+    { name: "Banking Exams", icon: Briefcase, subcategories: ["IBPS PO", "SBI PO", "RBI Grade B"] },
+    { name: "UG Entrance Exams", icon: GraduationCap, subcategories: ["JEE Main", "NEET", "CLAT"] }
   ];
 
   const memoizedFilteredExams = useMemo(() => {
@@ -38,20 +47,17 @@ const Header: React.FC = () => {
         exam.type.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-    return selectedCategory
+    return selectedCategory !== "All"
       ? allExams.filter(exam => exam.category === selectedCategory)
-      : allExams.filter(exam => exam.category === "SSC Exams");
-  }, [searchTerm, selectedCategory, allExams]); 
+      : allExams;
+  }, [searchTerm, selectedCategory, allExams]);
   
   useEffect(() => {
     setFilteredExams(memoizedFilteredExams);
-  }, [memoizedFilteredExams]); 
+  }, [memoizedFilteredExams]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setShowDropdown(false);
-      }
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setSearchTerm('');
       }
@@ -71,17 +77,6 @@ const Header: React.FC = () => {
     setShowOtpVerification(false);
   };
 
-  const toggleDropdown = () => {
-    setShowDropdown(prev => !prev);
-    if (!showDropdown) {
-      setSelectedCategory("SSC Exams");
-    }
-  };
-
-  const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category);
-  };
-
   return (
     <>
       <header className="flex flex-col md:flex-row justify-between items-center px-4 py-2 bg-white relative">
@@ -94,74 +89,76 @@ const Header: React.FC = () => {
         </div>
 
         <div className="relative flex-grow max-w-md mx-8 mt-2 md:mt-0">
-          <div className="flex items-center">
-            <div className="relative" ref={dropdownRef}>
-              <button
-                onClick={toggleDropdown}
-                className="flex items-center justify-between px-4 py-2 bg-slate-200 border-2 font-normal border-slate-900 text-slate-700 rounded-l-xl shadow-[0_5px_0_0_#6EE7B7] outline-none transition-all duration-200 ease-in-out"
-              >
-                All
-                <ChevronDown className="ml-2" size={20} />
-              </button>
-              {showDropdown && (
-                <div className="absolute z-20 mt-1 w-full md:w-[600px] bg-white border border-slate-200 rounded-lg shadow-lg p-4">
-                  <div className="flex flex-col md:flex-row">
-                    <div className="md:w-1/3 border-r border-slate-200 pr-4">
-                      {examCategories.map((category, index) => (
-                        <div 
-                          key={index} 
-                          className={`flex items-center mb-4 cursor-pointer hover:bg-emerald-200 p-2 rounded ${selectedCategory === category.name ? 'bg-emerald-200' : ''}`}
-                          onClick={() => handleCategoryClick(category.name)}
-                        >
-                          <category.icon className="mr-2" size={20} />
-                          <span className="text-sm font-medium text-emerald-700">{category.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="md:w-2/3 pl-4">
-                      <div className="grid grid-cols-3 gap-4">
-                        {memoizedFilteredExams.map((exam) => (
-                          <div
-                            key={exam.id}
-                            className="bg-emerald-200 p-2 rounded cursor-pointer hover:bg-green-200 transition-transform duration-200 ease-in-out transform hover:scale-105"
-                          >
-                            <span className="text-xs text-slate-700">{exam.name}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div ref={searchRef} className="relative flex-grow">
+          <div className="flex items-center border-2 border-slate-700 rounded-full overflow-hidden shadow-[0_5px_0_0_#6EE7B7]">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="px-4 py-2 bg-white text-slate-700 hover:bg-slate-100 focus:ring-0 border-r border-emerald-500">
+                  {selectedCategory}
+                  <ChevronDown className="ml-2" size={20} />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                {examCategories.map((category) => (
+                  <React.Fragment key={category.name}>
+                    {category.subcategories.length > 0 ? (
+                      <DropdownMenuSub>
+                        <DropdownMenuSubTrigger>
+                          {category.icon && <category.icon className="mr-2" size={20} />}
+                          {category.name}
+                        </DropdownMenuSubTrigger>
+                        <DropdownMenuPortal>
+                          <DropdownMenuSubContent>
+                            {category.subcategories.map((subcategory) => (
+                              <DropdownMenuItem
+                                key={subcategory}
+                                onSelect={() => setSelectedCategory(subcategory)}
+                              >
+                                {subcategory}
+                              </DropdownMenuItem>
+                            ))}
+                          </DropdownMenuSubContent>
+                        </DropdownMenuPortal>
+                      </DropdownMenuSub>
+                    ) : (
+                      <DropdownMenuItem onSelect={() => setSelectedCategory(category.name)}>
+                        {category.icon && <category.icon className="mr-2" size={20} />}
+                        {category.name}
+                      </DropdownMenuItem>
+                    )}
+                  </React.Fragment>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <div ref={searchRef} className="flex-grow relative">
               <input
                 type="text"
                 name="exam"
                 placeholder="Search your exam"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-4 pr-10 py-2 w-full bg-white border-2 border-l-0 border-slate-900 text-slate-700 rounded-r-xl shadow-[0_5px_0_0_#6EE7B7] outline-none transition-all duration-200 ease-in-out"
+                className="w-full px-4 py-2 bg-white text-slate-700 focus:outline-none"
               />
-              <Search className="absolute right-3 top-2.5 text-slate-500" />
-              {searchTerm && (
-                <div className="absolute z-10 w-full bg-white border border-slate-200 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
-                  {filteredExams.length > 0 ? (
-                    filteredExams.map((exam) => (
-                      <div key={exam.id} className="p-3 hover:bg-slate-100 cursor-pointer last:border-b-0">
-                        <div className="flex items-center justify-between text-sm text-slate-600">
-                          <span>{exam.name}</span>
-                          <span>{exam.type}</span>
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="p-3 text-slate-700">No exam found</div>
-                  )}
-                </div>
-              )}
+              <Button variant="ghost" className="absolute right-0 top-0 h-full p-2 bg-white hover:bg-slate-100 focus:ring-0">
+                <Search className="text-slate-500" size={20} />
+              </Button>
             </div>
           </div>
+          {searchTerm && (
+            <div className="absolute z-10 w-full bg-white border border-slate-200 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
+              {filteredExams.length > 0 ? (
+                filteredExams.map((exam) => (
+                  <div key={exam.id} className="p-3 hover:bg-slate-100 cursor-pointer last:border-b-0">
+                    <div className="flex items-center justify-between text-sm text-slate-600">
+                      <span>{exam.name}</span>
+                      <span>{exam.type}</span>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="p-3 text-slate-700">No exam found</div>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="relative flex flex-grow justify-end mt-2 md:mt-0">
