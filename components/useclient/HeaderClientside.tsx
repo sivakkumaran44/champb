@@ -19,7 +19,12 @@ import {
   DropdownMenuPortal,
 } from "@/components/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 interface Exam {
   id: number;
@@ -106,7 +111,7 @@ const Header: React.FC = () => {
     setShowOtpVerification(false);
   };
   const SearchBar = ({ isMobile = false }) => (
-    <div className={`relative flex-grow ${isMobile ? 'w-full' : 'w-full max-w-3xl mx-8 mt-2 md:mt-0'}`}>
+    <div className={`relative flex-grow ${isMobile ? 'w-full' : 'md:w-[600px] w-full max-w-3xl mx-8 mt-2 md:mt-0'}`}>
       <div className="flex items-center border-2 border-slate-700 rounded-full overflow-hidden shadow-[0_5px_0_0_#6EE7B7]">
         {!isMobile && (
           <DropdownMenu>
@@ -184,7 +189,7 @@ const Header: React.FC = () => {
       )}
     </div>
   );
-
+  
   return (
     <>
       <header className="flex flex-col md:flex-row justify-between items-center px-4 py-2 bg-white relative">
@@ -210,38 +215,49 @@ const Header: React.FC = () => {
                 <h2 className="text-lg font-semibold">Search</h2>
               </div>
               <SearchBar isMobile={true} />
-              <Tabs defaultValue="categories" className="mt-4">
-                <TabsList className="grid w-full grid-cols-1">
-                  <TabsTrigger value="categories">Categories</TabsTrigger>
-                </TabsList>
-                <TabsContent value="categories" className="mt-4">
-                  <div className="grid grid-cols-1 gap-4">
-                    {examCategories.map((category) => (
-                      <DropdownMenu key={category.name}>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="outline" className="w-full justify-between">
-                            <span className="flex items-center">
-                              {category.icon && <category.icon className="mr-2" size={20} />}
-                              {category.name}
-                            </span>
-                            <ChevronDown size={20} />
+              <Accordion type="single" collapsible className="w-full mt-4">
+                {examCategories.map((category) => (
+                  <AccordionItem value={category.name} key={category.name}>
+                    <AccordionTrigger className="flex items-center font-semibold">
+                      {category.icon && <category.icon className="mr-2" size={20} />}
+                      {category.name}
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      {category.subcategories.length > 0 ? (
+                        category.subcategories.map((subcategory) => (
+                          <Button
+                            key={subcategory.name}
+                            variant="ghost"
+                            className="w-full justify-start text-left pl-8 py-2"
+                            onClick={() => {
+                              setSelectedCategory(subcategory.name);
+                              setIsDrawerOpen(false);
+                            }}
+                          >
+                            {subcategory.name}
                           </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent className="w-56">
-                          {allExams
-                            .filter(exam => exam.category === category.name || category.name === "All")
-                            .map(exam => (
-                              <DropdownMenuItem key={exam.id}>
-                                {exam.name}
-                              </DropdownMenuItem>
-                            ))
-                          }
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    ))}
-                  </div>
-                </TabsContent>
-              </Tabs>
+                        ))
+                      ) : (
+                        allExams
+                          .filter(exam => exam.category === category.name || category.name === "All")
+                          .map(exam => (
+                            <Button
+                              key={exam.id}
+                              variant="ghost"
+                              className="w-full justify-start text-left pl-8 py-2"
+                              onClick={() => {
+                                setSelectedCategory(exam.name);
+                                setIsDrawerOpen(false);
+                              }}
+                            >
+                              {exam.name}
+                            </Button>
+                          ))
+                      )}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </SheetContent>
           </Sheet>
         </div>

@@ -24,22 +24,22 @@ const dataSets = {
   generalIntelligence: [
     { name: 'Uncovered', value: 33, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 59, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 8, color: '#cbd5e1', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 8, color: '#047857', inactiveColor: '#94A3B8' },
   ],
   generalAwareness: [
     { name: 'Uncovered', value: 20, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 70, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 10, color: '#cbd5e1', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 10, color: '#047857', inactiveColor: '#94A3B8' },
   ],
   quantitativeAptitude: [
     { name: 'Uncovered', value: 15, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 75, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 10, color: '#cbd5e1', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 10, color: '#047857', inactiveColor: '#94A3B8' },
   ],
   englishComprehension: [
     { name: 'Uncovered', value: 25, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 65, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 10, color: '#cbd5e1', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 10, color: '#047857', inactiveColor: '#94A3B8' },
   ],
 };
 
