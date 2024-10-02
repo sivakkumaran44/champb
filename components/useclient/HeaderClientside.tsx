@@ -13,6 +13,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal,
 } from "@/components/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -35,10 +39,34 @@ const Header: React.FC = () => {
   const allExams: Exam[] = useMemo(() => examsData, []); 
  
   const examCategories = [
-    { name: "All", icon: FileText },
-    { name: "SSC Exams", icon: FileText },
-    { name: "Banking Exams", icon: Briefcase },
-    { name: "UG Entrance Exams", icon: GraduationCap },
+    { name: "All", subcategories: [] },
+    { 
+      name: "SSC Exams", 
+      icon: FileText, 
+      subcategories: [
+        { name: "CGL", description: "Combined Graduate Level Examination" },
+        { name: "CHSL", description: "Combined Higher Secondary Level Examination" },
+        { name: "MTS", description: "Multi Tasking Staff Examination" }
+      ] 
+    },
+    { 
+      name: "Banking Exams", 
+      icon: Briefcase, 
+      subcategories: [
+        { name: "IBPS PO", description: "Institute of Banking Personnel Selection - Probationary Officer" },
+        { name: "SBI PO", description: "State Bank of India - Probationary Officer" },
+        { name: "RBI Grade B", description: "Reserve Bank of India - Grade B Officer" }
+      ] 
+    },
+    { 
+      name: "UG Entrance Exams", 
+      icon: GraduationCap, 
+      subcategories: [
+        { name: "JEE Main", description: "Joint Entrance Examination - Main" },
+        { name: "NEET", description: "National Eligibility cum Entrance Test" },
+        { name: "CLAT", description: "Common Law Admission Test" }
+      ] 
+    }
   ];
 
   const memoizedFilteredExams = useMemo(() => {
@@ -77,24 +105,49 @@ const Header: React.FC = () => {
   const handleOtpVerificationClose = () => {
     setShowOtpVerification(false);
   };
-
   const SearchBar = ({ isMobile = false }) => (
-    <div className={`relative flex-grow ${isMobile ? 'w-full' : 'max-w-md mx-8 mt-2 md:mt-0'}`}>
+    <div className={`relative flex-grow ${isMobile ? 'w-full' : 'w-full max-w-3xl mx-8 mt-2 md:mt-0'}`}>
       <div className="flex items-center border-2 border-slate-700 rounded-full overflow-hidden shadow-[0_5px_0_0_#6EE7B7]">
         {!isMobile && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="px-4 py-2 bg-white text-slate-700 hover:bg-slate-100 focus:ring-0 border-r border-emerald-500">
+              <Button variant="ghost" className="px-6 py-3 bg-white text-slate-700 hover:bg-slate-100 focus:ring-0 border-r border-emerald-500 text-lg">
                 {selectedCategory}
-                <ChevronDown className="ml-2" size={20} />
+                <ChevronDown className="ml-2" size={24} />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
               {examCategories.map((category) => (
-                <DropdownMenuItem key={category.name} onSelect={() => setSelectedCategory(category.name)}>
-                  <category.icon className="mr-2" size={20} />
-                  {category.name}
-                </DropdownMenuItem>
+                <React.Fragment key={category.name}>
+                  {category.subcategories.length > 0 ? (
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger>
+                        {category.icon && <category.icon className="mr-2" size={20} />}
+                        {category.name}
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuPortal>
+                        <DropdownMenuSubContent className="w-64">
+                          {category.subcategories.map((subcategory) => (
+                            <DropdownMenuItem
+                              key={subcategory.name}
+                              onSelect={() => setSelectedCategory(subcategory.name)}
+                            >
+                              <div>
+                                <div>{subcategory.name}</div>
+                                <p className="text-xs text-muted-foreground">{subcategory.description}</p>
+                              </div>
+                            </DropdownMenuItem>
+                          ))}
+                        </DropdownMenuSubContent>
+                      </DropdownMenuPortal>
+                    </DropdownMenuSub>
+                  ) : (
+                    <DropdownMenuItem onSelect={() => setSelectedCategory(category.name)}>
+                      {category.icon && <category.icon className="mr-2" size={20} mb-4 />}
+                      {category.name}
+                    </DropdownMenuItem>
+                  )}
+                </React.Fragment>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
@@ -114,7 +167,7 @@ const Header: React.FC = () => {
         </div>
       </div>
       {searchTerm && (
-        <div className="absolute z-10 w-full w-bg-white border border-slate-200 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
+        <div className="absolute z-10 w-full bg-white border border-slate-200 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
           {filteredExams.length > 0 ? (
             filteredExams.map((exam) => (
               <div key={exam.id} className="p-3 hover:bg-slate-100 cursor-pointer last:border-b-0">
@@ -168,7 +221,7 @@ const Header: React.FC = () => {
                         <DropdownMenuTrigger asChild>
                           <Button variant="outline" className="w-full justify-between">
                             <span className="flex items-center">
-                              <category.icon className="mr-2" size={20} />
+                              {category.icon && <category.icon className="mr-2" size={20} />}
                               {category.name}
                             </span>
                             <ChevronDown size={20} />
@@ -204,7 +257,7 @@ const Header: React.FC = () => {
         </div>
       </header>
       
-      {showOtpVerification && (
+      {typeof window !== 'undefined' && showOtpVerification && (
         <OtpVerification 
           isOpen={showOtpVerification} 
           onClose={handleOtpVerificationClose} 
