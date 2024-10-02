@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Logo from "@/public/assets/img/LOGO SVG.svg";
 import OtpVerification from '@/components/Auth/OtpVerification';
-import { Search, ChevronDown, Briefcase, GraduationCap, FileText, X } from "lucide-react";
+import { Search, ChevronDown, Briefcase, GraduationCap, FileText } from "lucide-react";
 import examsData from '../data/exam.json';
 import {
   DropdownMenu,

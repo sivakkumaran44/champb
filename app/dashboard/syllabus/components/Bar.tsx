@@ -1,13 +1,11 @@
-"use client"
-
-import React, { useState } from 'react'
-import { BarChart, Bar, XAxis, YAxis, LabelList, Cell } from "recharts"
-import { CircleArrowDown } from "lucide-react"
+import React, { useState } from 'react';
+import { BarChart, Bar, XAxis, YAxis, LabelList } from "recharts";
+import { CircleArrowDown } from "lucide-react";
 
 interface ChartData {
-  month: string
-  desktop: number
-  text: string
+  month: string;
+  desktop: number;
+  text: string;
 }
 
 const chartData: ChartData[] = [
@@ -16,31 +14,49 @@ const chartData: ChartData[] = [
   { month: "March", desktop: 40, text: "Lorem Ipsum 3" },
   { month: "April", desktop: 70, text: "Lorem Ipsum 4" },
   { month: "May", desktop: 90, text: "Lorem Ipsum 5" },
-]
+];
 
 const SubChart: React.FC<{ data: ChartData; index: number; subIndex: number }> = ({ data, index, subIndex }) => {
-  const getColors = (index: number) => {
-    switch (index) {
-      case 0: return ['#fda4af', '#E3E3E3']
-      case 1: return ['#4ade80', '#fda4af', '#E3E3E3']
-      case 2: return ['#4ade80', '#fda4af']
-      case 3: return ['#E3E3E3']
-      case 4: return ['#fda4af', '#E3E3E3']
-      default: return ['#E3E3E3']
-    }
-  }
-
-  const colors = getColors(index)
-
   return (
     <div className="flex justify-center items-center mt-2 ml-14"> 
       <BarChart width={650} height={60} data={[data]} layout="vertical">
+        <defs>
+          <linearGradient id={`subColorGradient${index}-${subIndex}`} x1="0" y1="0" x2="1" y2="0">
+            {index === 0 && (
+              <>
+                <stop offset="60%" stopColor="#fda4af" />
+                <stop offset="60%" stopColor="#E3E3E3" />
+              </>
+            )}
+            {index === 1 && (
+              <>
+                <stop offset="40%" stopColor="#4ade80" />
+                <stop offset="70%" stopColor="#fda4af" />
+                <stop offset="70%" stopColor="#E3E3E3" />
+              </>
+            )}
+            {index === 2 && (
+              <>
+                <stop offset="50%" stopColor="#4ade80" />
+                <stop offset="50%" stopColor="#fda4af" />
+              </>
+            )}
+            {index === 3 && (
+              <>
+                <stop offset="100%" stopColor="#E3E3E3" />
+              </>
+            )}
+            {index === 4 && (
+              <>
+                <stop offset="50%" stopColor="#fda4af" />
+                <stop offset="50%" stopColor="#E3E3E3" />
+              </>
+            )}
+          </linearGradient>
+        </defs>
         <XAxis type="number" dataKey="desktop" hide />
         <YAxis dataKey="month" type="category" hide />
-        <Bar dataKey="desktop" radius={8}>
-          {colors.map((color, i) => (
-            <Cell key={`cell-${i}`} fill={color} />
-          ))}
+        <Bar dataKey="desktop" fill={`url(#subColorGradient${index}-${subIndex})`} radius={8}>
           <LabelList
             dataKey="text"
             position="inside"
@@ -49,37 +65,26 @@ const SubChart: React.FC<{ data: ChartData; index: number; subIndex: number }> =
         </Bar>
       </BarChart>
     </div>
-  )
-}
+  );
+};
 
-export default function BarComponent() {
-  const [expandedBarIndex, setExpandedBarIndex] = useState<number | null>(null)
+export function BarComponent() {
+  const [expandedBarIndex, setExpandedBarIndex] = useState<number | null>(null);
 
   const toggleBar = (index: number) => {
-    setExpandedBarIndex(prevIndex => (prevIndex === index ? null : index))
-  }
-
-  const getColors = (index: number) => {
-    switch (index) {
-      case 0: return ['#fda4af', '#E3E3E3']
-      case 1: return ['#4ade80', '#fda4af', '#E3E3E3']
-      case 2: return ['#4ade80', '#fda4af']
-      case 3: return ['#E3E3E3']
-      case 4: return ['#fda4af', '#E3E3E3']
-      default: return ['#E3E3E3']
-    }
-  }
+    setExpandedBarIndex(prevIndex => (prevIndex === index ? null : index));
+  };
 
   return (
     <div className="space-y-4">
       {chartData.map((data, index) => (
-        <div
-          key={index}
-          className={`relative border w-10/12 border-custombroder bg-slate-100 text-slate-700 text-lg sm:text-xl p-4 sm:p-6 rounded-lg ${
-            expandedBarIndex === index ? 'h-auto' : 'h-24'
-          } transition-all duration-300 ease-in-out overflow-hidden mx-auto`} 
-        >
-          <CircleArrowDown
+       <div
+       key={index}
+       className={`relative border w-10/12 border-custombroder bg-slate-100 text-slate-700 text-lg sm:text-xl p-4 sm:p-6 rounded-lg ${
+         expandedBarIndex === index ? 'h-auto' : 'h-24'
+       } transition-all duration-300 ease-in-out overflow-hidden mx-auto`} 
+     >
+               <CircleArrowDown
             className={`absolute top-2 right-2 h-5 w-5 text-slate-700 cursor-pointer transition-transform duration-300 ${
               expandedBarIndex === index ? 'rotate-180' : ''
             }`}
@@ -87,17 +92,48 @@ export default function BarComponent() {
           />
           <div className="flex justify-center items-center">
             <BarChart width={650} height={60} data={[data]} layout="vertical">
+              <defs>
+                <linearGradient id={`colorGradient${index}`} x1="0" y1="0" x2="1" y2="0">
+                  {index === 0 && (
+                    <>
+                      <stop offset="60%" stopColor="#fda4af" />
+                      <stop offset="60%" stopColor="#E3E3E3" />
+                    </>
+                  )}
+                  {index === 1 && (
+                    <>
+                      <stop offset="40%" stopColor="#4ade80" />
+                      <stop offset="70%" stopColor="#fda4af" />
+                      <stop offset="70%" stopColor="#E3E3E3" />
+                    </>
+                  )}
+                  {index === 2 && (
+                    <>
+                      <stop offset="50%" stopColor="#4ade80" />
+                      <stop offset="50%" stopColor="#fda4af" />
+                    </>
+                  )}
+                  {index === 3 && (
+                    <>
+                      <stop offset="100%" stopColor="#E3E3E3" />
+                    </>
+                  )}
+                  {index === 4 && (
+                    <>
+                      <stop offset="50%" stopColor="#fda4af" />
+                      <stop offset="50%" stopColor="#E3E3E3" />
+                    </>
+                  )}
+                </linearGradient>
+              </defs>
               <XAxis type="number" dataKey="desktop" hide />
               <YAxis dataKey="month" type="category" hide />
-              <Bar dataKey="desktop" radius={5}>
-                {getColors(index).map((color, i) => (
-                  <Cell key={`cell-${i}`} fill={color} />
-                ))}
-                <LabelList
-                  dataKey="text"
-                  position="inside"
-                  style={{ fill: '#047857', fontWeight: 'bold' }} 
-                />
+              <Bar dataKey="desktop" fill={`url(#colorGradient${index})`} radius={5}>
+  <LabelList
+    dataKey="text"
+    position="inside"
+    style={{ fill: '#047857', fontWeight: 'bold' }} 
+  />
               </Bar>
             </BarChart>
           </div>
@@ -109,5 +145,5 @@ export default function BarComponent() {
         </div>
       ))}
     </div>
-  )
+  );
 }
