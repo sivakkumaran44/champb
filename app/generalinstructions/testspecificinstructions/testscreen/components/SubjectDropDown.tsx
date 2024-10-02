@@ -28,7 +28,7 @@ const SubjectDropdown: React.FC<SubjectDropdownProps> = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="w-1/2 bg-slate-700 text-white flex items-center justify-between">
+        <Button variant="outline" className="w-1/2 bg-slate-700 rounded-xl text-white flex items-center justify-between">
           {currentSubjectName}
           <ChevronDown className="ml-2 w-5 h-5 text-white" /> 
         </Button>
