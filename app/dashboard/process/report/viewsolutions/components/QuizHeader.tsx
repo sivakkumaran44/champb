@@ -39,6 +39,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   handleZoomIn,
   handleZoomOut,
   handleResetFontSize,
+  onSubjectChange,
   setCurrentQuestion,
 }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -63,6 +64,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
 
   const handleSubjectChange = (index: number) => {
     console.log(`Selected subject: ${quizData[index].subject}`);
+    onSubjectChange(index); 
   };
 
   const formatTime = (timeInSeconds: number) => {
@@ -145,24 +147,25 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
         </div>
       ) : (
         <div className="hidden lg:block overflow-y-auto custom-scrollbar mb-4">
-          <div className="flex flex-nowrap gap-2 mb-1">
-            {quizData.map((subject, index) => (
-              <Button
-                key={index}
-                variant={index === currentSubject ? 'default' : 'ghost'}
-                className={`text-xs bg-emerald-500 text-white hover:bg-emerald-500 sm:text-sm whitespace-nowrap flex items-center gap-2 ${
-                  index === currentSubject
-                    ? 'bg-gradient-to-r from-[#6EE7B7] via-[#A3E635] to-[#A3E635]'
-                    : ''
-                }`}
-                onClick={() => handleSubjectChange(index)}
-              >
-                {subject.subject}
-              </Button>
-            ))}
-          </div>
+        <div className="flex flex-nowrap gap-2 mb-1">
+          {quizData.map((subject, index) => (
+            <Button
+              key={index}
+              variant={index === currentSubject ? 'default' : 'ghost'}
+              className={`text-xs bg-emerald-500 text-white hover:bg-emerald-500 sm:text-sm whitespace-nowrap flex items-center gap-2 ${
+                index === currentSubject
+                  ? 'bg-gradient-to-r from-[#6EE7B7] via-[#A3E635] to-[#A3E635]'
+                  : ''
+              }`}
+              onClick={() => handleSubjectChange(index)}
+            >
+              {subject.subject}
+            </Button>
+          ))}
         </div>
-      )}
+      </div>
+    )}
+
 
       <div className={isMobile ? 'hidden' : 'bg-slate-100 p-2 rounded-lg flex items-center justify-between mb-8'}>
         <div className="text-sm font-semibold text-slate-700">
