@@ -112,8 +112,8 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
             />
             <div className="flex-grow text-center">
               <Hourglass size={16} className="inline-block text-slate-700 mr-1" />
-              <span className="text-sm font-medium text-slate-700 ml-1">Time Left:</span>
-              <span className="text-sm font-medium text-slate-700">
+              <span className="text-sm font-medium text-slate-700 ml-1">Time Left : </span>
+              <span className="text-sm font-semibold text-slate-700">
                 {formatTime(timeLeft)}
               </span>
             </div>

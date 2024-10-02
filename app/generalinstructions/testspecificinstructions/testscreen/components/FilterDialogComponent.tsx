@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from "@/components/ui/button"
-import { Filter } from 'lucide-react';
+import { Info } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import {
   Dialog,
@@ -14,7 +14,7 @@ const FilterDialog = () => {
     <Dialog >
       <DialogTrigger asChild>
         <Button className="bg-gray-800 text-white w-12 h-12 fixed left-0 z-10 relative">
-          <Filter size={24} className="text-slate-300"/>
+          <Info size={24} className="text-slate-300"/>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[90vw] sm:max-w-[425px] bg-slate-200 rounded-2xl">
