@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ZoomIn, ZoomOut } from 'lucide-react';
+import { ZoomIn, ZoomOut,ChevronDown } from 'lucide-react';
 import ReportQuestion from './ReportQuestion';
 import FilterDialog from './FilterDialogComponents';
 import { useRouter } from 'next/navigation';
@@ -95,11 +95,12 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
           <div className="flex justify-between items-center gap-1">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="w-1/2 bg-slate-700 text-white">
+                <Button variant="outline" className="w-1/2 bg-slate-500 text-white">
                   {quizData[currentSubject].subject}
+                  <ChevronDown className="ml-2 w-5 h-5 text-white" /> 
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className='bg-slate-700 text-white'>
+              <DropdownMenuContent className='bg-slate-500 text-white  border-none'>
                 {quizData.map((subject, index) => (
                   <DropdownMenuItem
                     key={index}
@@ -131,8 +132,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
           </div>
           <FilterDialog />
         </div>
-    
-          <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center">
             <div className="text-sm font-semibold text-slate-700">
               Question No. {currentQuestion + 1}
             </div>
@@ -165,8 +165,6 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
         </div>
       </div>
     )}
-
-
       <div className={isMobile ? 'hidden' : 'bg-slate-100 p-2 rounded-lg flex items-center justify-between mb-8'}>
         <div className="text-sm font-semibold text-slate-700">
           Question No. {currentQuestion + 1}
