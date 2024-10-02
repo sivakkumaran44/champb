@@ -32,12 +32,36 @@ const Header: React.FC = () => {
   const searchRef = useRef<HTMLDivElement | null>(null);
 
   const allExams: Exam[] = useMemo(() => examsData, []); 
-
+ 
   const examCategories = [
     { name: "All", subcategories: [] },
-    { name: "SSC Exams", icon: FileText, subcategories: ["CGL", "CHSL", "MTS"] },
-    { name: "Banking Exams", icon: Briefcase, subcategories: ["IBPS PO", "SBI PO", "RBI Grade B"] },
-    { name: "UG Entrance Exams", icon: GraduationCap, subcategories: ["JEE Main", "NEET", "CLAT"] }
+    { 
+      name: "SSC Exams", 
+      icon: FileText, 
+      subcategories: [
+        { name: "CGL", description: "Combined Graduate Level Examination" },
+        { name: "CHSL", description: "Combined Higher Secondary Level Examination" },
+        { name: "MTS", description: "Multi Tasking Staff Examination" }
+      ] 
+    },
+    { 
+      name: "Banking Exams", 
+      icon: Briefcase, 
+      subcategories: [
+        { name: "IBPS PO", description: "Institute of Banking Personnel Selection - Probationary Officer" },
+        { name: "SBI PO", description: "State Bank of India - Probationary Officer" },
+        { name: "RBI Grade B", description: "Reserve Bank of India - Grade B Officer" }
+      ] 
+    },
+    { 
+      name: "UG Entrance Exams", 
+      icon: GraduationCap, 
+      subcategories: [
+        { name: "JEE Main", description: "Joint Entrance Examination - Main" },
+        { name: "NEET", description: "National Eligibility cum Entrance Test" },
+        { name: "CLAT", description: "Common Law Admission Test" }
+      ] 
+    }
   ];
 
   const memoizedFilteredExams = useMemo(() => {
@@ -98,36 +122,39 @@ const Header: React.FC = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
-                {examCategories.map((category) => (
-                  <React.Fragment key={category.name}>
-                    {category.subcategories.length > 0 ? (
-                      <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
-                          {category.icon && <category.icon className="mr-2" size={20} />}
-                          {category.name}
-                        </DropdownMenuSubTrigger>
-                        <DropdownMenuPortal>
-                          <DropdownMenuSubContent>
-                            {category.subcategories.map((subcategory) => (
-                              <DropdownMenuItem
-                                key={subcategory}
-                                onSelect={() => setSelectedCategory(subcategory)}
-                              >
-                                {subcategory}
-                              </DropdownMenuItem>
-                            ))}
-                          </DropdownMenuSubContent>
-                        </DropdownMenuPortal>
-                      </DropdownMenuSub>
-                    ) : (
-                      <DropdownMenuItem onSelect={() => setSelectedCategory(category.name)}>
-                        {category.icon && <category.icon className="mr-2" size={20} />}
-                        {category.name}
-                      </DropdownMenuItem>
-                    )}
-                  </React.Fragment>
-                ))}
-              </DropdownMenuContent>
+  {examCategories.map((category) => (
+    <React.Fragment key={category.name}>
+      {category.subcategories.length > 0 ? (
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            {category.icon && <category.icon className="mr-2" size={20} />}
+            {category.name}
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent className="w-64">
+              {category.subcategories.map((subcategory) => (
+                <DropdownMenuItem
+                  key={subcategory.name}
+                  onSelect={() => setSelectedCategory(subcategory.name)}
+                >
+                  <div>
+                    <div>{subcategory.name}</div>
+                    <p className="text-xs text-muted-foreground">{subcategory.description}</p>
+                  </div>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+      ) : (
+        <DropdownMenuItem onSelect={() => setSelectedCategory(category.name)}>
+          {category.icon && <category.icon className="mr-2" size={20} />}
+          {category.name}
+        </DropdownMenuItem>
+      )}
+    </React.Fragment>
+  ))}
+</DropdownMenuContent>
             </DropdownMenu>
             <div ref={searchRef} className="flex-grow relative">
               <input
