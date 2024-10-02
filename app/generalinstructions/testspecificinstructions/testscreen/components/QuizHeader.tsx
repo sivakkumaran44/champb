@@ -16,10 +16,12 @@ interface QuizHeaderProps {
   handleResetFontSize: () => void;
   onNavigateToQuestion: (subjectIndex: number, questionIndex: number) => void;
   questionStatuses: string[][];
+  unlockedSubjects: number[];
 }
 interface QuizQuestion {
   id: number;
   questionText: string;
+  
 }
 interface Subject {
   subject: string;
@@ -37,6 +39,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   handleResetFontSize,
   onNavigateToQuestion,
   questionStatuses,
+  unlockedSubjects,
 }) => {
   const totalTime = 3600; 
   const [isMobileOrTablet, setIsMobileOrTablet] = useState<boolean>(false);
@@ -77,9 +80,12 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  
   const handleSubjectChange = (index: number) => {
-    onNavigateToQuestion(index, 0); 
+    if (unlockedSubjects.includes(index)) {
+      onNavigateToQuestion(index, 0);
+    } else {
+      console.log("This subject is locked. Complete the current subject to unlock it.");
+    }
   };
 
   const handleQuestionNavigation = (questionIndex: number) => {
@@ -102,6 +108,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
               quizData={quizData}
               currentSubject={currentSubject}
               handleSubjectChange={handleSubjectChange}
+              
             />
             <div className="flex-grow text-center">
               <Hourglass size={16} className="inline-block text-slate-700 mr-1" />
@@ -149,11 +156,12 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
                 variant={index === currentSubject ? 'default' : 'ghost'}
                 className={`text-xs bg-emerald-500 text-white hover:bg-emerald-500 sm:text-sm whitespace-nowrap flex items-center gap-2 ${
                   index === currentSubject ? 'bg-gradient-to-r from-[#6EE7B7] via-[#A3E635] to-[#A3E635]' : ''
-                }`}
+                } ${!unlockedSubjects.includes(index) ? 'opacity-50 cursor-not-allowed' : ''}`}
                 onClick={() => handleSubjectChange(index)}
+                disabled={!unlockedSubjects.includes(index)}
               >
                 {subject.subject}
-                {index > currentSubject && <Lock className="w-4 h-4 text-white" />}
+                {!unlockedSubjects.includes(index) && <Lock className="w-4 h-4 text-white" />}
               </Button>
             ))}
           </div>

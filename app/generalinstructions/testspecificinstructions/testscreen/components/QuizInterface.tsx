@@ -39,6 +39,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   const [answers, setAnswers] = useState<string[][]>([]);
   const [isSubmitDialogOpen, setIsSubmitDialogOpen] = useState(false);
   const [transformedQuizData, setTransformedQuizData] = useState<Subject[]>([]);
+  const [unlockedSubjects, setUnlockedSubjects] = useState<number[]>([0]);
   const [questionSummary, setQuestionSummary] = useState({
     answered: 0,
     notAnswered: 0,
@@ -80,11 +81,49 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   const handlePrevious = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
-    } else if (currentSubject > 0) {
+    } else if (currentSubject > 0 && unlockedSubjects.includes(currentSubject - 1)) {
       const previousSubject = currentSubject - 1;
       const lastQuestionIndex = quizData[previousSubject].questions.length - 1;
       setCurrentSubject(previousSubject);
       setCurrentQuestion(lastQuestionIndex);
+    }
+  };
+
+  const navigateToNextQuestion = () => {
+    if (currentQuestion < quizData[currentSubject].questions.length - 1) {
+      setCurrentQuestion(prevQuestion => prevQuestion + 1);
+    } else if (currentSubject < quizData.length - 1) {
+      const nextSubject = currentSubject + 1;
+      if (!unlockedSubjects.includes(nextSubject)) {
+        setUnlockedSubjects(prev => [...prev, nextSubject]);
+      }
+      setCurrentSubject(nextSubject);
+      setCurrentQuestion(0);
+    }
+  };
+
+  const handleNavigateToQuestion = (subjectIndex: number, questionIndex: number) => {
+    if (unlockedSubjects.includes(subjectIndex)) {
+      if (currentSubject !== subjectIndex || currentQuestion !== questionIndex) {
+        const currentStatus = questionStatuses[currentSubject][currentQuestion];
+        if (currentStatus === 'not-visited' && !selectedOption) {
+          updateQuestionStatus(currentSubject, currentQuestion, 'not-answered');
+        } else if (selectedOption && currentStatus !== 'answered' && currentStatus !== 'answered-and-marked') {
+          updateQuestionStatus(currentSubject, currentQuestion, 'answered');
+          setAnswers(prevAnswers => {
+            const newAnswers = [...prevAnswers];
+            newAnswers[currentSubject][currentQuestion] = selectedOption;
+            return newAnswers;
+          });
+        }
+        
+        setCurrentSubject(subjectIndex);
+        setCurrentQuestion(questionIndex);
+        setSelectedOption(answers[subjectIndex][questionIndex] || '');
+      }
+    } else {
+      // Optionally, show a message that this subject is locked
+      console.log("This subject is locked. Complete the current subject to unlock it.");
     }
   };
   
@@ -118,15 +157,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     navigateToNextQuestion();
   };
 
-  const navigateToNextQuestion = () => {
-    if (currentQuestion < quizData[currentSubject].questions.length - 1) {
-      setCurrentQuestion(prevQuestion => prevQuestion + 1);
-    } else if (currentSubject < quizData.length - 1) {
-      setCurrentSubject(prevSubject => prevSubject + 1);
-      setCurrentQuestion(0);
-    }
-  };
-
+  
   const handleMarkForReview = () => {
     const newStatus = selectedOption ? 'answered-and-marked' : 'marked-for-review';
     updateQuestionStatus(currentSubject, currentQuestion, newStatus);
@@ -143,26 +174,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
     navigateToNextQuestion();
   };
 
-  const handleNavigateToQuestion = (subjectIndex: number, questionIndex: number) => {
-    if (currentSubject !== subjectIndex || currentQuestion !== questionIndex) {
-      const currentStatus = questionStatuses[currentSubject][currentQuestion];
-      if (currentStatus === 'not-visited' && !selectedOption) {
-        updateQuestionStatus(currentSubject, currentQuestion, 'not-answered');
-      } else if (selectedOption && currentStatus !== 'answered' && currentStatus !== 'answered-and-marked') {
-        updateQuestionStatus(currentSubject, currentQuestion, 'answered');
-        setAnswers(prevAnswers => {
-          const newAnswers = [...prevAnswers];
-          newAnswers[currentSubject][currentQuestion] = selectedOption;
-          return newAnswers;
-        });
-      }
-      
-      setCurrentSubject(subjectIndex);
-      setCurrentQuestion(questionIndex);
-      setSelectedOption(answers[subjectIndex][questionIndex] || '');
-    }
-  };
-
+  
   const handleClearResponse = () => {
     setSelectedOption('');
     updateQuestionStatus(currentSubject, currentQuestion, 'not-answered');
@@ -216,24 +228,25 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({
   };
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  
   return (
     <div className="flex flex-col h-screen">
-   <div className="flex w-full flex-grow p-4 pb-20">
-    <div className={`${isSidebarOpen ? 'w-full lg:w-[80%]' : 'w-full'} p-0 lg:p-4 transition-all duration-300`}>
-    {questionStatuses.length > 0 && (
-               <QuizHeader
-                  quizData={transformedQuizData}
-                  currentSubject={currentSubject}
-                  currentQuestion={currentQuestion}
-                  timeElapsed={timeElapsed}
-                  marks={marks}
-                  handleZoomIn={() => setFontSize(prev => Math.min(32, prev + 2))}
-                  handleZoomOut={() => setFontSize(prev => Math.max(12, prev - 2))}
-                  handleResetFontSize={() => setFontSize(16)}
-                  onNavigateToQuestion={handleNavigateToQuestion}
-                  questionStatuses={questionStatuses}
-                />
-           
+      <div className="flex w-full flex-grow p-4 pb-20">
+        <div className={`${isSidebarOpen ? 'w-full lg:w-[80%]' : 'w-full'} p-0 lg:p-4 transition-all duration-300`}>
+          {questionStatuses.length > 0 && (
+            <QuizHeader
+              quizData={transformedQuizData}
+              currentSubject={currentSubject}
+              currentQuestion={currentQuestion}
+              timeElapsed={timeElapsed}
+              marks={marks}
+              handleZoomIn={() => setFontSize(prev => Math.min(32, prev + 2))}
+              handleZoomOut={() => setFontSize(prev => Math.max(12, prev - 2))}
+              handleResetFontSize={() => setFontSize(16)}
+              onNavigateToQuestion={handleNavigateToQuestion}
+              questionStatuses={questionStatuses}
+              unlockedSubjects={unlockedSubjects}
+            />
           )}
 
           <TestQuestion

@@ -6,6 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ChevronDown } from 'lucide-react';
 
 interface Subject {
   subject: string;
@@ -27,10 +28,12 @@ const SubjectDropdown: React.FC<SubjectDropdownProps> = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="w-1/2 bg-slate-700 text-white">
+        <Button variant="outline" className="w-1/2 bg-slate-700 text-white flex items-center justify-between">
           {currentSubjectName}
+          <ChevronDown className="ml-2 w-5 h-5 text-white" /> 
         </Button>
       </DropdownMenuTrigger>
+      
       <DropdownMenuContent className='bg-slate-700 text-white'>
         {quizData.map((subject, index) => (
           <DropdownMenuItem
