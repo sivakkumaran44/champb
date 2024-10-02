@@ -38,7 +38,7 @@ const SyllabusCoverage = () => {
           Incorrect Answers in Covered Syllabus
         </div>
         <div className="flex items-center mr-4">
-          <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gray-200 rounded-full mr-2"></div>
+          <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gray-300 rounded-full mr-2"></div>
           Uncovered Syllabus
         </div>
       </div>

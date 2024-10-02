@@ -24,29 +24,29 @@ const dataSets = {
   generalIntelligence: [
     { name: 'Uncovered', value: 33, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 59, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 8, color: '#E2E8F0', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 8, color: '#cbd5e1', inactiveColor: '#94A3B8' },
   ],
   generalAwareness: [
     { name: 'Uncovered', value: 20, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 70, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 10, color: '#E2E8F0', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 10, color: '#cbd5e1', inactiveColor: '#94A3B8' },
   ],
   quantitativeAptitude: [
     { name: 'Uncovered', value: 15, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 75, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 10, color: '#E2E8F0', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 10, color: '#cbd5e1', inactiveColor: '#94A3B8' },
   ],
   englishComprehension: [
     { name: 'Uncovered', value: 25, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 65, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 10, color: '#E2E8F0', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 10, color: '#cbd5e1', inactiveColor: '#94A3B8' },
   ],
 };
 
 const DashboardCard: React.FC<DashboardCardProps> = ({ title, data, isOpen, isActive, onToggle }) => {
   return (
     <div>
-      <Card className={`relative w-full max-w-4xl border border-slate-200 mb-4 ${!isActive ? 'opacity-70' : ''}`}>
+      <Card className={`relative w-full bg-slate-100 max-w-4xl border border-slate-200 mb-4 ${!isActive ? 'opacity-70' : ''}`}>
         <CardContent className="flex flex-row items-center justify-between p-4">
           <div className="w-1/4 lg:w-1/3 h-24 lg:h-40">
             <ResponsiveContainer width="100%" height="100%">
