@@ -10,7 +10,7 @@ interface Exam {
   type: string;
 }
 
-const SearchBar: React.FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
+const SearchBar: React.FC<{ isMobile?: boolean }> = ({ }) => {
   const searchRef = useRef<HTMLDivElement | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   
@@ -51,7 +51,7 @@ const SearchBar: React.FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
         </div>
     
       {searchTerm && (
-        <div className="absolute z-10 w-7/12 bg-white border border-slate-200 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
+        <div className="absolute z-10 w-full lg:w-5/12 bg-white border border-slate-200 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
           {filteredExams.length > 0 ? (
             filteredExams.map(exam => (
               <div key={exam.id} className="p-3 hover:bg-slate-100 cursor-pointer last:border-b-0">
