@@ -1,8 +1,8 @@
 "use client"
 
-import React, { useState } from 'react'
+import React from 'react'
 import { BarChart, Bar, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts'
-import { CircleArrowDown } from 'lucide-react'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 interface ChartData {
   month: string
@@ -69,37 +69,22 @@ const ThreeColorBar: React.FC<ThreeColorBarProps> = ({ data, isActive, isMainBar
   )
 }
 
-export function BarComponent() {
-  const [expandedBarIndex, setExpandedBarIndex] = useState<number | null>(null)
-
-  const toggleBar = (index: number) => {
-    setExpandedBarIndex(prevIndex => (prevIndex === index ? null : index))
-  }
-
+export  function BarComponent() {
   return (
-    <div className="space-y-4">
+    <Accordion type="single" collapsible className="w-10/12 mx-auto space-y-4">
       {chartData.map((data, index) => (
-        <div
-          key={index}
-          className={`relative border w-10/12 border-gray-200 bg-slate-100 text-slate-700 text-lg sm:text-xl p-4 sm:p-6 rounded-lg ${
-            expandedBarIndex === index ? 'h-auto' : 'h-24'
-          } transition-all duration-300 ease-in-out overflow-hidden mx-auto`}
-        >
-          <CircleArrowDown
-            className={`absolute top-2 right-2 h-5 w-5 text-slate-700 cursor-pointer transition-transform duration-300 ${
-              expandedBarIndex === index ? 'rotate-180' : ''
-            }`}
-            onClick={() => toggleBar(index)}
-          />
-          <div className="flex justify-center items-center h-full">
-            <ThreeColorBar 
-              data={data} 
-              isActive={expandedBarIndex === null || expandedBarIndex === index} 
-              isMainBar={true} 
-            />
-          </div>
-          {expandedBarIndex === index && (
-            <div className="mt-4 space-y-2">
+        <AccordionItem key={index} value={`item-${index}`} className="border border-gray-200 bg-slate-100 rounded-lg overflow-hidden">
+          <AccordionTrigger className="hover:no-underline ">
+            <div className="flex justify-center items-center w-full h-24 py-2 ">
+              <ThreeColorBar 
+                data={data} 
+                isActive={true} 
+                isMainBar={true} 
+              />
+            </div>
+          </AccordionTrigger>
+          <AccordionContent>
+            <div className="space-y-2 py-4">
               {[...Array(3)].map((_, i) => (
                 <div key={i} className="flex justify-center items-center mb-1">
                   <ThreeColorBar 
@@ -114,9 +99,9 @@ export function BarComponent() {
                 </div>
               ))}
             </div>
-          )}
-        </div>
+          </AccordionContent>
+        </AccordionItem>
       ))}
-    </div>
+    </Accordion>
   )
 }
