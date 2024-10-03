@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
@@ -9,7 +8,14 @@ import examsData from '../data/exam.json';
 import SearchBar from '@/app/(homepage)/components/SearchBar';
 import MobileSearch from '@/app/(homepage)/components/MobileSearch';
 
-interface Exam {
+export interface Exam {
+  id: string;
+  name: string;
+  type: string;
+  category: string;
+}
+
+interface RawExam {
   id: number;
   name: string;
   type: string;
@@ -23,7 +29,12 @@ const Header: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const allExams: Exam[] = useMemo(() => examsData, []); 
+  const allExams: Exam[] = useMemo(() => {
+    return (examsData as RawExam[]).map(exam => ({
+      ...exam,
+      id: exam.id.toString()
+    }));
+  }, []);
  
   const memoizedFilteredExams = useMemo(() => {
     if (searchTerm) {
@@ -36,7 +47,7 @@ const Header: React.FC = () => {
       ? allExams.filter(exam => exam.category === selectedCategory)
       : allExams;
   }, [searchTerm, selectedCategory, allExams]);
-  
+ 
   useEffect(() => {
     setFilteredExams(memoizedFilteredExams);
   }, [memoizedFilteredExams]);
@@ -48,29 +59,29 @@ const Header: React.FC = () => {
   const handleOtpVerificationClose = () => {
     setShowOtpVerification(false);
   };
-  
+ 
   return (
     <>
       <header className="flex flex-col md:flex-row justify-between items-center px-4 py-2 bg-white relative">
         <div className="flex items-center">
           <Image
             src={Logo}
-            alt="bChamp Logo"   
-            className="w-auto h-16" 
+            alt="bChamp Logo"  
+            className="w-auto h-16"
           />
         </div>
         <div className="hidden md:block">
-          <SearchBar 
-            searchTerm={searchTerm} 
-            setSearchTerm={setSearchTerm} 
-            selectedCategory={selectedCategory} 
+          <SearchBar
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
             filteredExams={filteredExams}
           />
         </div>
         <div className="md:hidden">
-          <MobileSearch 
-            isDrawerOpen={isDrawerOpen} 
+          <MobileSearch
+            isDrawerOpen={isDrawerOpen}
             setIsDrawerOpen={setIsDrawerOpen}
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
@@ -79,9 +90,8 @@ const Header: React.FC = () => {
             allExams={allExams}
           />
         </div>
-
         <div className="relative flex flex-grow justify-end mt-2 md:mt-0">
-          <Button 
+          <Button
             size="sm"
             className="rounded-xl bg-emerald-700 hover:bg-emerald-800 text-base font-semibold text-white px-6 py-2 text-sm"
             onClick={handleSignInClick}
@@ -90,11 +100,11 @@ const Header: React.FC = () => {
           </Button>
         </div>
       </header>
-      
+     
       {typeof window !== 'undefined' && showOtpVerification && (
-        <OtpVerification 
-          isOpen={showOtpVerification} 
-          onClose={handleOtpVerificationClose} 
+        <OtpVerification
+          isOpen={showOtpVerification}
+          onClose={handleOtpVerificationClose}
         />
       )}
     </>
