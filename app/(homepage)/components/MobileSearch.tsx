@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -23,9 +23,6 @@ const MobileSearch: React.FC<MobileSearchProps> = ({
   setIsDrawerOpen,
   allExams,
 }) => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
-
   return (
     <Sheet open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
       <SheetTrigger asChild>
@@ -40,9 +37,9 @@ const MobileSearch: React.FC<MobileSearchProps> = ({
         <SearchBar
           isMobile={true}
           allExams={allExams} 
-             />
+        />
         <MobileAccordion
-          setSelectedCategory={setSelectedCategory}
+          setSelectedCategory={() => {}} 
           setIsDrawerOpen={setIsDrawerOpen}
           allExams={allExams}
         />
