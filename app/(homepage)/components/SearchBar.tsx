@@ -38,7 +38,7 @@ const SearchBar: React.FC<{ isMobile?: boolean }> = ({ }) => {
 
   return (
       <div className="relative ml-auto flex-1 md:grow-0">
-        <div ref={searchRef} className="flex-grow relative">
+        <div ref={searchRef} className="flex-grow relative ">
           <Search className="absolute left-2.5 top-3.5 h-4 w-4 text-muted-foreground" />
           <Input
             type="text"
