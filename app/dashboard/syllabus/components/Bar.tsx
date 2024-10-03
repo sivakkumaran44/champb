@@ -43,7 +43,7 @@ const ThreeColorBar: React.FC<ThreeColorBarProps> = ({ data, isActive, isMainBar
 
   return (
     <div className={`relative w-full h-full flex items-center justify-center ${!isMainBar ? 'ml-12' : ''}`}>
-      <div className="w-4/5 h-16">
+      <div className="w-4/5 h-12">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={[data]} layout="vertical">
             <XAxis type="number" domain={[0, 100]} hide />
@@ -71,10 +71,10 @@ const ThreeColorBar: React.FC<ThreeColorBarProps> = ({ data, isActive, isMainBar
 
 export  function BarComponent() {
   return (
-    <Accordion type="single" collapsible className="w-10/12 mx-auto space-y-4">
+    <Accordion type="single" collapsible className="w-9/12 mx-auto space-y-2">
       {chartData.map((data, index) => (
         <AccordionItem key={index} value={`item-${index}`} className="border border-gray-200 bg-slate-100 rounded-lg overflow-hidden">
-          <AccordionTrigger className="hover:no-underline ">
+          <AccordionTrigger className="hover:no-underline ml-4">
             <div className="flex justify-center items-center w-full h-24 py-2 ">
               <ThreeColorBar 
                 data={data} 
