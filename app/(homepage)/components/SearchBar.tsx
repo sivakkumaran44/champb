@@ -13,8 +13,6 @@ interface Exam {
 const SearchBar: React.FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
   const searchRef = useRef<HTMLDivElement | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  
-  // Convert exam data to the desired format
   const allExams: Exam[] = examsData.map(exam => ({
     ...exam,
     id: exam.id.toString(),
