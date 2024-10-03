@@ -4,6 +4,11 @@ import { Search } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import SearchBar from './SearchBar';
 import MobileAccordion from './MobileAccordion';
+interface Exam {
+  id: string;
+  name: string;
+  category: string;
+}
 
 interface MobileSearchProps {
   isDrawerOpen: boolean;
@@ -12,7 +17,7 @@ interface MobileSearchProps {
   setSearchTerm: (term: string) => void;
   selectedCategory: string;
   setSelectedCategory: (category: string) => void;
-  allExams: any[];
+  allExams: Exam[]; 
 }
 
 const MobileSearch: React.FC<MobileSearchProps> = ({
@@ -24,7 +29,8 @@ const MobileSearch: React.FC<MobileSearchProps> = ({
   setSelectedCategory,
   allExams,
 }) => {
-  const [filteredExams, setFilteredExams] = useState<any[]>([]);
+  const [filteredExams, setFilteredExams] = useState<Exam[]>([]); 
+
   useEffect(() => {
     if (searchTerm) {
       const filtered = allExams.filter((exam) =>
@@ -53,7 +59,7 @@ const MobileSearch: React.FC<MobileSearchProps> = ({
           setSearchTerm={setSearchTerm}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
-          filteredExams={filteredExams} 
+          filteredExams={filteredExams as Exam[]} 
         />
         <MobileAccordion
           setSelectedCategory={setSelectedCategory}

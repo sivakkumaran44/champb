@@ -4,13 +4,19 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import CategoryDropdown from './CategoryDropdown';
 
+interface Exam {
+  id: string;
+  name: string;
+  type: string;
+}
+
 interface SearchBarProps {
   isMobile?: boolean;
   searchTerm: string;
   setSearchTerm: (term: string) => void;
   selectedCategory: string;
   setSelectedCategory: (category: string) => void;
-  filteredExams: any[];
+  filteredExams: Exam[];
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ 

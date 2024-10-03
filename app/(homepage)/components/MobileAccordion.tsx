@@ -8,6 +8,17 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import examCategoriesData from '@/components/data/examCategories.json';
+interface Exam {
+  id: string;
+  name: string;
+  category: string;
+}
+
+interface MobileAccordionProps {
+  setSelectedCategory: (category: string) => void;
+  setIsDrawerOpen: (isOpen: boolean) => void;
+  allExams: Exam[]; 
+}
 
 const iconMap = {
   FileText,
@@ -15,22 +26,16 @@ const iconMap = {
   GraduationCap
 };
 
-interface MobileAccordionProps {
-  setSelectedCategory: (category: string) => void;
-  setIsDrawerOpen: (isOpen: boolean) => void;
-  allExams: any[];
-}
-
-const MobileAccordion: React.FC<MobileAccordionProps> = ({ 
-  setSelectedCategory, 
-  setIsDrawerOpen, 
-  allExams 
+const MobileAccordion: React.FC<MobileAccordionProps> = ({
+  setSelectedCategory,
+  setIsDrawerOpen,
+  allExams
 }) => (
   <Accordion type="single" collapsible className="w-full mt-4">
     {examCategoriesData.examCategories.map((category) => (
       <AccordionItem value={category.name} key={category.name}>
         <AccordionTrigger className="flex items-center font-semibold">
-          {category.icon && iconMap[category.icon as keyof typeof iconMap] && 
+          {category.icon && iconMap[category.icon as keyof typeof iconMap] &&
             React.createElement(iconMap[category.icon as keyof typeof iconMap], { className: "mr-2", size: 20 })}
           {category.name}
         </AccordionTrigger>
