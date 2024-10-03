@@ -78,8 +78,8 @@ const Testspecificinstructions = () => {
             {instructions.buttons[1].text}
           </Button>
           <Button 
-            variant="outline" 
-            className=" text-emerald-800 hover:bg-green-200 border border-[#334155]" 
+            variant="secondary" 
+            className=" text-slate-700 hover:bg-slate-200 border border-[#334155]" 
             onClick={handleGoBack} 
           >
             <CircleChevronLeft className="mr-2 text-lg" />
