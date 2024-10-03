@@ -8,6 +8,7 @@ interface Exam {
   id: string;
   name: string;
   category: string;
+  type: string; 
 }
 
 interface MobileSearchProps {
