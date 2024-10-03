@@ -65,7 +65,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
         { icon: Target, label: 'Exam Selection Progress', href: '/dashboard/selectionprocess'},
       ]
     },
-    { icon: CreditCard, label: 'Subscription' },
+    { icon: CreditCard, label: 'Subscription',href: '/dashboard/subscription' },
   ];
   const handleItemClick = (label: string) => {
     if (!isExpanded) {
@@ -79,8 +79,12 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ isExpanded, toggleExpan
     } else if (label === 'Progress') {
       setActiveTestType('Test Progress');
       router.push('/dashboard/process');
+    } else if (label === 'Subscription') {
+   
+      router.push('/dashboard/subscription');
     }
   };
+  
 
   const handleSubItemClick = (label: TestType, href: string) => {
     setActiveTestType(label);
