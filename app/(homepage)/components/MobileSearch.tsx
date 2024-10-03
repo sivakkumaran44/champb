@@ -1,28 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import SearchBar from './SearchBar';
 import MobileAccordion from './MobileAccordion';
+import examsData from '@/components/data/exam.json';
 
 interface Exam {
   id: string;
   name: string;
   category: string;
-  type: string; 
+  type: string;
 }
 
-interface MobileSearchProps {
-  isDrawerOpen: boolean;
-  setIsDrawerOpen: (isOpen: boolean) => void;
-  allExams: Exam[]; 
-}
+const MobileSearch: React.FC = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-const MobileSearch: React.FC<MobileSearchProps> = ({
-  isDrawerOpen,
-  setIsDrawerOpen,
-  allExams,
-}) => {
+  const allExams: Exam[] = examsData.map(exam => ({
+    ...exam,
+    id: exam.id.toString(),
+  }));
+
+  const handleCategorySelect = (category: string) => {
+    setIsDrawerOpen(false);
+  };
+
   return (
     <Sheet open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
       <SheetTrigger asChild>
@@ -34,12 +36,10 @@ const MobileSearch: React.FC<MobileSearchProps> = ({
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">Search</h2>
         </div>
-        <SearchBar
-          isMobile={true}
-          allExams={allExams} 
-        />
+
+        <SearchBar isMobile={true} />
         <MobileAccordion
-          setSelectedCategory={() => {}} 
+          setSelectedCategory={handleCategorySelect}
           setIsDrawerOpen={setIsDrawerOpen}
           allExams={allExams}
         />

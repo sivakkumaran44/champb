@@ -1,38 +1,15 @@
 "use client";
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import Logo from "@/public/assets/img/LOGO SVG.svg";
 import OtpVerification from '@/components/Auth/OtpVerification';
-import examsData from '../data/exam.json';
 import SearchBar from '@/app/(homepage)/components/SearchBar';
 import MobileSearch from '@/app/(homepage)/components/MobileSearch';
 
-export interface Exam {
-  id: string;
-  name: string;
-  type: string;
-  category: string;
-}
-
-interface RawExam {
-  id: number;
-  name: string;
-  type: string;
-  category: string;
-}
-
 const Header: React.FC = () => {
   const [showOtpVerification, setShowOtpVerification] = useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const allExams: Exam[] = useMemo(() => {
-    return (examsData as RawExam[]).map(exam => ({
-      ...exam,
-      id: exam.id.toString()
-    }));
-  }, []);
-  
   const handleSignInClick = () => {
     setShowOtpVerification(true);
   };
@@ -51,15 +28,13 @@ const Header: React.FC = () => {
             className="w-auto h-16"
           />
         </div>
+       
         <div className="hidden md:block">
-          <SearchBar allExams={allExams} /> 
+          <SearchBar isMobile={false} /> 
         </div>
+    
         <div className="md:hidden">
-          <MobileSearch
-            isDrawerOpen={isDrawerOpen}
-            setIsDrawerOpen={setIsDrawerOpen}
-            allExams={allExams} 
-          />
+          <MobileSearch />
         </div>
         <div className="relative flex flex-grow justify-end mt-2 md:mt-0">
           <Button

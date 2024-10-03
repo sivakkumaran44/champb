@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import CategoryDropdown from './CategoryDropdown';
+import examsData from '@/components/data/exam.json';  
 
 interface Exam {
   id: string;
@@ -13,16 +14,16 @@ interface Exam {
 
 interface SearchBarProps {
   isMobile?: boolean;
-  allExams: Exam[]; 
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ 
-  isMobile = false, 
-  allExams 
-}) => {
+const SearchBar: React.FC<SearchBarProps> = ({ isMobile = false }) => {
   const searchRef = useRef<HTMLDivElement | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const allExams: Exam[] = examsData.map(exam => ({
+    ...exam,
+    id: exam.id.toString(),
+  }));
 
   const filteredExams = allExams.filter((exam) => {
     return (
