@@ -37,7 +37,7 @@ const FilterDialog = () => {
               <span>Not Answered</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 rounded border border-slate-900 bg-slate-200"></div>
+              <div className="w-6 h-6 rounded border border-slate-900 bg-gray-300"></div>
               <span>Not Visited</span>
             </div>
             <div className="flex items-center space-x-2">

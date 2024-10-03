@@ -76,7 +76,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
   const getButtonColor = (questionIndex: number) => {
     if (questionIndex < 8) return 'bg-green-500';
     if (questionIndex < 16) return 'bg-red-500';
-    return 'bg-slate-500 text-slate-950';
+    return 'bg-gray-300  border border-slate-700';
   };
 
   const getButtonShape = (questionIndex: number) => {
@@ -123,7 +123,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
             {Array.from({ length: 20 }, (_, index) => (
               <Button
                 key={index}
-                className={`${getButtonColor(index)} ${getButtonShape(index)} mt-2 text-white`}
+                className={`${getButtonColor(index)} ${getButtonShape(index)} mt-2 text-slate-950 hover:bg-slate-300`}
                 onClick={() => handleQuestionClick(index)} 
               >
                 {index + 1}

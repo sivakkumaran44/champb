@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-const FilterDropdown = () => {
+export default function FilterDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -20,15 +20,13 @@ const FilterDropdown = () => {
         <DropdownMenuItem>
           <span className="text-green-500">Correct Answer</span>
         </DropdownMenuItem>
-        <DropdownMenuItem >
+        <DropdownMenuItem>
           <span className="text-red-500">Wrong Answer</span>
         </DropdownMenuItem>
-        <DropdownMenuItem >
+        <DropdownMenuItem>
           <span className="text-gray-500">Unvisited</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
-
-export default FilterDropdown;
+}

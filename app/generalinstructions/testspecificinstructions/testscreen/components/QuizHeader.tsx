@@ -56,7 +56,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({
       case 'answered-and-marked':
         return 'bg-purple-500';
       default:
-        return 'bg-slate-400';
+        return 'bg-gray-300 border border-slate-600 text-slate-950';
     }
   };
 
