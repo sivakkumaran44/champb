@@ -21,34 +21,34 @@ interface DashboardCardProps {
 }
 
 const dataSets = {
-  generalIntelligence: [
+  GeneralIntelligence: [
     { name: 'Uncovered', value: 33, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 59, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 8, color: '#047857', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 8, color: '#E2E8F0', inactiveColor: '#94A3B8' },
   ],
-  generalAwareness: [
+  GeneralAwareness: [
     { name: 'Uncovered', value: 20, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 70, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 10, color: '#047857', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 10, color: '#E2E8F0', inactiveColor: '#94A3B8' },
   ],
-  quantitativeAptitude: [
+  QuantitativeAptitude: [
     { name: 'Uncovered', value: 15, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 75, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 10, color: '#047857', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 10, color: '#E2E8F0', inactiveColor: '#94A3B8' },
   ],
-  englishComprehension: [
+  EnglishComprehension: [
     { name: 'Uncovered', value: 25, color: '#10B981', inactiveColor: '#94A3B8' },
     { name: 'Correct', value: 65, color: '#F87171', inactiveColor: '#94A3B8' },
-    { name: 'Incorrect', value: 10, color: '#047857', inactiveColor: '#94A3B8' },
+    { name: 'Incorrect', value: 10, color: '#E2E8F0', inactiveColor: '#94A3B8' },
   ],
 };
 
 const DashboardCard: React.FC<DashboardCardProps> = ({ title, data, isOpen, isActive, onToggle }) => {
   return (
-    <div>
-      <Card className={`relative w-full bg-slate-100 max-w-4xl border border-slate-200 mb-4 ${!isActive ? 'opacity-70' : ''}`}>
-        <CardContent className="flex flex-row items-center justify-between p-4">
-          <div className="w-1/4 lg:w-1/3 h-24 lg:h-40">
+    <div className="mb-4">
+      <Card className={`relative w-full bg-slate-100 max-w-4xl h-24 sm:h-28 md:h-40 border border-slate-200 mb-8`}>
+        <CardContent className="flex flex-row items-center justify-between p-2 sm:p-3 md:p-4 h-full">
+          <div className="w-1/4 h-full">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -66,26 +66,26 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ title, data, isOpen, isAc
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <div className="w-3/4 lg:w-2/3 pl-4">
-            <h2 className={`text-xs lg:text-lg font-semibold mb-1 lg:mb-2 ${!isActive ? 'text-slate-400' : ''}`}>{title}</h2>
-            <div className="flex flex-wrap gap-2">
+          <div className="w-3/4 pl-2 sm:pl-3 md:pl-4">
+            <h2 className={`text-xs sm:text-sm md:text-base font-semibold text-slate-700 mb-1 sm:mb-2`}>{title}</h2>
+            <div className="flex flex-wrap gap-1 sm:gap-2">
               {data.map((item, index) => (
                 <div key={index} className="flex items-center">
                   <div
-                    className="w-2 h-2 lg:w-3 lg:h-3 rounded-full mr-1 lg:mr-2"
+                    className="w-2 h-2 sm:w-3 sm:h-3 rounded-full mr-1 sm:mr-2"
                     style={{ backgroundColor: isActive ? item.color : item.inactiveColor }}
                   ></div>
-                  <span className={`text-xs lg:text-sm font-semibold ${!isActive ? 'text-slate-400' : ''}`}>{item.value}%</span>
+                  <span className={`text-xs sm:text-sm font-semibold`}>{item.value}%</span>
                 </div>
               ))}
             </div>
           </div>
         </CardContent>
         <button 
-          className={`absolute top-1 right-1 lg:top-2 lg:right-2 flex items-center ${isActive ? 'text-black hover:text-black' : 'text-slate-400 hover:text-slate-400'} text-xs lg:text-sm`}
+          className={`absolute top-1 right-1 sm:top-2 sm:right-2 flex items-center ${isActive ? 'text-black hover:text-black' : 'text-slate-400 hover:text-slate-400'} text-xs sm:text-sm`}
           onClick={onToggle} 
         >
-          <CircleChevronRight className="ml-1 w-4 h-4 lg:w-6 lg:h-6" />
+          <CircleChevronRight className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`} />
         </button>
       </Card>
       {isOpen && <BarComponent />} 
@@ -101,7 +101,7 @@ const GeneralIntelligence: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="space-y-4">
       {Object.entries(dataSets).map(([key, data], index) => (
         <DashboardCard 
           key={key}
