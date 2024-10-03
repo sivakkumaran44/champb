@@ -26,7 +26,7 @@ const CategoryDropdown: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="px-6 py-3 bg-white text-slate-700 hover:bg-slate-100 focus:ring-0 border-r border-emerald-500 text-lg">
+        <Button variant="ghost" className="px-6 py-3 bg-white text-slate-700 hover:bg-slate-100 focus:ring-0 text-lg">
           {selectedCategory}
           <ChevronDown className="ml-2" size={24} />
         </Button>
