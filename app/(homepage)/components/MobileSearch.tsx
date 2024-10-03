@@ -21,7 +21,7 @@ const MobileSearch: React.FC = () => {
     id: exam.id.toString(),
   }));
 
-  const handleCategorySelect = (category: string) => {
+  const handleCategorySelect = () => {
     setIsDrawerOpen(false);
   };
 
