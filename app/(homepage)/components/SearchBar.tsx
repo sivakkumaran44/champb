@@ -13,6 +13,7 @@ interface Exam {
 const SearchBar: React.FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
   const searchRef = useRef<HTMLDivElement | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  
   const allExams: Exam[] = examsData.map(exam => ({
     ...exam,
     id: exam.id.toString(),
@@ -36,7 +37,6 @@ const SearchBar: React.FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
   }, []);
 
   return (
-    <div className={`relative flex-grow ${isMobile ? 'w-full' : 'md:w-[600px] w-full max-w-3xl mx-8 mt-2 md:mt-0'}`}>
       <div className="relative ml-auto flex-1 md:grow-0">
         <div ref={searchRef} className="flex-grow relative">
           <Search className="absolute left-2.5 top-3.5 h-4 w-4 text-muted-foreground" />
@@ -49,7 +49,7 @@ const SearchBar: React.FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-      </div>
+    
       {searchTerm && (
         <div className="absolute z-10 w-7/12 bg-white border border-slate-200 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
           {filteredExams.length > 0 ? (
