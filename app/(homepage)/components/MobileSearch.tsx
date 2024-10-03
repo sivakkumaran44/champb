@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import SearchBar from './SearchBar';
 import MobileAccordion from './MobileAccordion';
+
 interface Exam {
   id: string;
   name: string;
@@ -14,34 +15,16 @@ interface Exam {
 interface MobileSearchProps {
   isDrawerOpen: boolean;
   setIsDrawerOpen: (isOpen: boolean) => void;
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-  selectedCategory: string;
-  setSelectedCategory: (category: string) => void;
   allExams: Exam[]; 
 }
 
 const MobileSearch: React.FC<MobileSearchProps> = ({
   isDrawerOpen,
   setIsDrawerOpen,
-  searchTerm,
-  setSearchTerm,
-  selectedCategory,
-  setSelectedCategory,
   allExams,
 }) => {
-  const [filteredExams, setFilteredExams] = useState<Exam[]>([]); 
-
-  useEffect(() => {
-    if (searchTerm) {
-      const filtered = allExams.filter((exam) =>
-        exam.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredExams(filtered);
-    } else {
-      setFilteredExams(allExams);
-    }
-  }, [searchTerm, allExams]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   return (
     <Sheet open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
@@ -56,12 +39,8 @@ const MobileSearch: React.FC<MobileSearchProps> = ({
         </div>
         <SearchBar
           isMobile={true}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          filteredExams={filteredExams as Exam[]} 
-        />
+          allExams={allExams} 
+             />
         <MobileAccordion
           setSelectedCategory={setSelectedCategory}
           setIsDrawerOpen={setIsDrawerOpen}

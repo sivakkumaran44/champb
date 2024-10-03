@@ -1,5 +1,5 @@
-"use client"
-import React, { useState, useEffect, useMemo } from 'react';
+"use client";
+import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import Logo from "@/public/assets/img/LOGO SVG.svg";
@@ -24,9 +24,6 @@ interface RawExam {
 
 const Header: React.FC = () => {
   const [showOtpVerification, setShowOtpVerification] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredExams, setFilteredExams] = useState<Exam[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const allExams: Exam[] = useMemo(() => {
@@ -35,23 +32,7 @@ const Header: React.FC = () => {
       id: exam.id.toString()
     }));
   }, []);
- 
-  const memoizedFilteredExams = useMemo(() => {
-    if (searchTerm) {
-      return allExams.filter(exam =>
-        exam.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        exam.type.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-    return selectedCategory !== "All"
-      ? allExams.filter(exam => exam.category === selectedCategory)
-      : allExams;
-  }, [searchTerm, selectedCategory, allExams]);
- 
-  useEffect(() => {
-    setFilteredExams(memoizedFilteredExams);
-  }, [memoizedFilteredExams]);
-
+  
   const handleSignInClick = () => {
     setShowOtpVerification(true);
   };
@@ -71,23 +52,13 @@ const Header: React.FC = () => {
           />
         </div>
         <div className="hidden md:block">
-          <SearchBar
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            filteredExams={filteredExams}
-          />
+          <SearchBar allExams={allExams} /> 
         </div>
         <div className="md:hidden">
           <MobileSearch
             isDrawerOpen={isDrawerOpen}
             setIsDrawerOpen={setIsDrawerOpen}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            allExams={allExams}
+            allExams={allExams} 
           />
         </div>
         <div className="relative flex flex-grow justify-end mt-2 md:mt-0">

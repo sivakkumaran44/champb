@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
@@ -8,26 +8,28 @@ interface Exam {
   id: string;
   name: string;
   type: string;
+  category: string;
 }
 
 interface SearchBarProps {
   isMobile?: boolean;
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-  selectedCategory: string;
-  setSelectedCategory: (category: string) => void;
-  filteredExams: Exam[];
+  allExams: Exam[]; 
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ 
   isMobile = false, 
-  searchTerm, 
-  setSearchTerm, 
-  selectedCategory, 
-  setSelectedCategory, 
-  filteredExams 
+  allExams 
 }) => {
   const searchRef = useRef<HTMLDivElement | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+
+  const filteredExams = allExams.filter((exam) => {
+    return (
+      exam.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (selectedCategory === "All" || exam.category === selectedCategory)
+    );
+  });
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -40,11 +42,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [setSearchTerm]);
+  }, []);
 
   return (
     <div className={`relative flex-grow ${isMobile ? 'w-full' : 'md:w-[600px] w-full max-w-3xl mx-8 mt-2 md:mt-0'}`}>
-      <div className="flex items-center border-2 border-slate-700 rounded-full overflow-hidden shadow-[0_5px_0_0_#6EE7B7]">
+      <div className="flex items-center border-2 border-slate-700 rounded-full overflow-hidden shadow-[0_5px_0_0_0_#6EE7B7]">
         {!isMobile && <CategoryDropdown selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />}
         <div ref={searchRef} className="flex-grow relative">
           <Input
