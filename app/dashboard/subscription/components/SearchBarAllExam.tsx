@@ -21,14 +21,14 @@ const SearchBar: React.FC<{ isMobile?: boolean }> = ({ }) => {
   }, []);
 
   return (
-    <div className="relative ml-auto flex-1 md:grow-0">
-      <div ref={searchRef} className="flex-grow relative">
+    <div className="flex items-center justify-center ">
+      <div ref={searchRef} className="relative w-full max-w-md"> 
         <Search className="absolute left-2.5 top-3.5 h-4 w-4 text-muted-foreground" />
         <Input
           type="text"
           name="exam"
           placeholder="Search your exam"
-          className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+          className="w-full rounded-lg bg-background pl-8 border-2"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
