@@ -43,15 +43,15 @@ export default function SearchableSubscriptionCards() {
   return (
     <div>
       <SearchBar onSearch={handleSearch} />
-      <div className="flex flex-col items-center mb-6">
+      <div className="flex flex-col items-center mb-2">
         <SortOut onCategoryChange={handleCategoryChange} />
-        <div className="flex justify-start items-center">
-  <p className="mt-4 text-sm text-slate-700">
-    Showing {cardCount} {cardCount === 1 ? 'card' : 'cards'} for "{activeCategory}"
-  </p>
-</div>
       </div>
-    
+      <div className="flex justify-start items-center pl-20">
+            
+            <p className=" text-lg text-slate-700">
+            Sort in: Showing  {cardCount} {cardCount === 1 ? 'card' : 'cards'} goals for "{activeCategory}"
+            </p>
+          </div>
       <GoldCard subscriptions={filteredSubscriptions} />
     </div>
   );
