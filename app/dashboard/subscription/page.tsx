@@ -1,7 +1,5 @@
 import React from 'react';
 import Banner from './components/Banner';
-import GoldCard from './components/GoldCard';
-import SearchBar from './components/SearchBarAllExam';
 import SearchableSubscriptionCards from './components/SearchableSubscriptionCards';
 const page = () => {
   return (
