@@ -1,6 +1,5 @@
 import React from 'react'
-import Subscription from './Subscription'
-
+import Subscription from '@/app/dashboard/subscription/components/Subscriptionpage'
 const page = () => {
   return (
     <div>

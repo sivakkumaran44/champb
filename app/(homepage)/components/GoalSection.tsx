@@ -11,7 +11,6 @@ const GoalSection = () => {
         <p className="leading-7 text-center mx-auto sm:mr-0 sm:ml-0 md:mr-[285px] text-sm sm:text-base mb-4 sm:mb-8 text-slate-700 max-w-[90%] sm:max-w-full">
           Start Progressing your goal and achieve it
         </p>
-
        <GoalSectionClientside />
       </div>
     </div>

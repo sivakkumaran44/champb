@@ -13,7 +13,7 @@ const AppCta = () => {
       </h2>
       
       <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
-        <div className="flex flex-col items-center hidden md:flex">
+        <div className=" flex-col items-center hidden md:flex">
           <div className="border-2 border-slate-950 p-0 rounded-lg">
             <Image
               src={qrCodeImage}
