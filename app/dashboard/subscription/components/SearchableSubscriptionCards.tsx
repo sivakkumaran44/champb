@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useCallback, useMemo } from 'react';
 import GoldCard from './GoldCard'; 
 import SearchBar from './SearchBarAllExam';
@@ -46,13 +46,11 @@ export default function SearchableSubscriptionCards() {
       <div className="flex flex-col items-center mb-2">
         <SortOut onCategoryChange={handleCategoryChange} />
       </div>
-      <div className="flex justify-start items-center ">
-            
-      <p className="text-lg text-slate-700">
-  Best Match: Showing {cardCount} {cardCount === 1 } goals for &quot;{activeCategory}&quot;
-</p>
-
-          </div>
+      <div className="flex justify-start items-center">
+        <p className="text-lg text-slate-700">
+          Best Match: Showing {cardCount} {cardCount === 1 ? 'goal' : 'goals'} for &quot;{searchTerm}&quot;
+        </p>
+      </div>
       <GoldCard subscriptions={filteredSubscriptions} />
     </div>
   );
