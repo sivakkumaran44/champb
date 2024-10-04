@@ -46,7 +46,7 @@ export default function SearchableSubscriptionCards() {
       <div className="flex flex-col items-center mb-2">
         <SortOut onCategoryChange={handleCategoryChange} />
       </div>
-      <div className="flex justify-start items-center pl-20">
+      <div className="flex justify-start items-center ">
             
       <p className="text-lg text-slate-700">
   Sort in: Showing {cardCount} {cardCount === 1 ? 'card' : 'cards'} goals for &quot;{activeCategory}&quot;
