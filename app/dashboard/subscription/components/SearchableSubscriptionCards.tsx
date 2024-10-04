@@ -48,9 +48,10 @@ export default function SearchableSubscriptionCards() {
       </div>
       <div className="flex justify-start items-center pl-20">
             
-            <p className=" text-lg text-slate-700">
-            Sort in:&quot; Showing  {cardCount} {cardCount === 1 ? 'card' : 'cards'} goals for "{activeCategory}"
-            </p>
+      <p className="text-lg text-slate-700">
+  Sort in: Showing {cardCount} {cardCount === 1 ? 'card' : 'cards'} goals for &quot;{activeCategory}&quot;
+</p>
+
           </div>
       <GoldCard subscriptions={filteredSubscriptions} />
     </div>
