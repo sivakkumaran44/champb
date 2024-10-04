@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
+  searchTerm: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {

@@ -1,16 +1,17 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
+import categorizedSubscriptionData from '@/components/data/subscriptionData.json'; 
 
 type Tab = 'Upcoming' | 'Popular' | 'All';
 
 interface SortOutProps {
   onCategoryChange: (category: string) => void;
+  activeCategory: keyof typeof categorizedSubscriptionData; 
 }
 
 const SortOut: React.FC<SortOutProps> = ({ onCategoryChange }) => {
   const [activeTab, setActiveTab] = useState<Tab>('All');
-  const tabs: Tab[] = ['Upcoming', 'Popular', 'All'];
+  const tabs: Tab[] = ['All', 'Upcoming', 'Popular'];
 
   const handleTabClick = (tab: Tab) => {
     setActiveTab(tab);

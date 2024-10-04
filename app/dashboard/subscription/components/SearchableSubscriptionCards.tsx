@@ -24,6 +24,7 @@ export default function SearchableSubscriptionCards() {
 
   const handleCategoryChange = useCallback((category: string) => {
     setActiveCategory(category as keyof CategorizedSubscriptionData);
+    setSearchTerm(''); 
   }, []);
 
   const handleSearch = useCallback((term: string) => {
@@ -31,27 +32,37 @@ export default function SearchableSubscriptionCards() {
   }, []);
 
   const filteredSubscriptions = useMemo(() => {
-    return (categorizedSubscriptionData as CategorizedSubscriptionData)[activeCategory].filter(
-      (subscription) =>
-        subscription.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        subscription.description.toLowerCase().includes(searchTerm.toLowerCase())
+    const categoryData = (categorizedSubscriptionData as CategorizedSubscriptionData)[activeCategory];
+    if (!searchTerm) return categoryData;
+    return categoryData.filter((subscription) =>
+      subscription.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      subscription.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [activeCategory, searchTerm]);
 
   const cardCount = filteredSubscriptions.length;
 
+  const displayText = useMemo(() => {
+    const categoryName = activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1);
+    if (searchTerm) {
+      return `Best Match: Showing ${cardCount} ${cardCount === 1 ? 'goal' : 'goals'} for "${searchTerm}" in "${categoryName}"`;
+    } else {
+      return `${categoryName}: Showing ${cardCount} ${cardCount === 1 ? 'goal' : 'goals'}`;
+    }
+  }, [activeCategory, searchTerm, cardCount]);
+
   return (
-    <div>
-      <SearchBar onSearch={handleSearch} />
+    <div className="container mx-auto px-4">
+      <SearchBar onSearch={handleSearch} searchTerm={searchTerm} />
       <div className="flex flex-col items-center mb-2">
-        <SortOut onCategoryChange={handleCategoryChange} />
+        <SortOut onCategoryChange={handleCategoryChange} activeCategory={activeCategory} />
       </div>
-      <div className="flex justify-start items-center">
-        <p className="text-lg text-slate-700">
-          Best Match: Showing {cardCount} {cardCount === 1 ? 'goal' : 'goals'} for &quot;{searchTerm}&quot;
-        </p>
+      <div className="max-w-6xl mx-auto">
+      <div className="text-lg font-semibold text-slate-700 mb-4  text-center md:text-left">
+  {displayText}
+</div>
+        <GoldCard subscriptions={filteredSubscriptions} />
       </div>
-      <GoldCard subscriptions={filteredSubscriptions} />
     </div>
   );
 }
