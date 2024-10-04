@@ -49,7 +49,7 @@ export default function SearchableSubscriptionCards() {
       <div className="flex justify-start items-center ">
             
       <p className="text-lg text-slate-700">
-  Sort in: Showing {cardCount} {cardCount === 1 ? 'card' : 'cards'} goals for &quot;{activeCategory}&quot;
+  Best Match: Showing {cardCount} {cardCount === 1 } goals for &quot;{activeCategory}&quot;
 </p>
 
           </div>
