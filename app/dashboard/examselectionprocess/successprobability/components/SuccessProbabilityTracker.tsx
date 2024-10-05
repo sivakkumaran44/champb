@@ -146,89 +146,90 @@ export default function SuccessProbabilityTracker() {
           )}
         </div>
       </CardHeader>
-
       <CardContent>
-        <div className="h-[200px] sm:h-[250px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart
-              data={monthlyData[selectedMonth]}
-              margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
-            >
-              <defs>
-                <linearGradient
-                  id="colorProbability"
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2="1"
-                >
-                  <stop
-                    offset="5%"
-                    stopColor="#4ade80"
-                    stopOpacity={0.8}
-                  />
-                  <stop
-                    offset="95%"
-                    stopColor="#4ade80"
-                    stopOpacity={0.1}
-                  />
-                </linearGradient>
-              </defs>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                vertical={false}
-                stroke="#e5e7eb"
-              />
-              <XAxis
-                dataKey="month"
-                axisLine={false}
-                tickLine={false}
-                tick={{ fill: "#9ca3af", fontSize: 10, dy: 10 }}
-                padding={{ left: 10, right: 10 }}
-              />
-              <YAxis
-                axisLine={false}
-                tickLine={false}
-                tick={{ fill: "#9ca3af", fontSize: 10 }}
-                domain={[0, 100]}
-                ticks={[0, 25, 50, 75, 100]}
-                tickFormatter={(value) => `${value}%`}
-              />
-              <Area
-                type="monotone"
-                dataKey="probability"
-                stroke="#4ade80"
-                strokeWidth={2}
-                fillOpacity={1}
-                fill="url(#colorProbability)"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
+  <div className="h-[200px] sm:h-[250px] w-full">
+    <ResponsiveContainer width="100%" height="100%">
+      <AreaChart
+        data={monthlyData[selectedMonth]}
+        margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+      >
+        <defs>
+          <linearGradient
+            id="colorProbability"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="1"
+          >
+            <stop
+              offset="5%"
+              stopColor="#4ade80"
+              stopOpacity={0.8}
+            />
+            <stop
+              offset="95%"
+              stopColor="#4ade80"
+              stopOpacity={0.1}
+            />
+          </linearGradient>
+        </defs>
+        <CartesianGrid
+          strokeDasharray="3 3"
+          vertical={false}
+          stroke="#e5e7eb"
+        />
+        <XAxis
+          dataKey="month"
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: "#9ca3af", fontSize: 10, dy: 10 }}
+          padding={{ left: 10, right: 10 }}
+        />
+        <YAxis
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: "#9ca3af", fontSize: 10 }}
+          domain={[0, 100]}
+          ticks={[0, 25, 50, 75, 100]}
+          tickFormatter={(value) => `${value}%`}
+        />
+        <Area
+          type="monotone"
+          dataKey="probability"
+          stroke="#4ade80"
+          strokeWidth={2}
+          fillOpacity={1}
+          fill="url(#colorProbability)"
+        />
+      </AreaChart>
+    </ResponsiveContainer>
+  </div>
 
-        <div className="flex flex-wrap justify-between mt-4 gap-2">
-          {(Object.keys(monthlyData) as Array<keyof MonthlyData>).map((month) => (
-            <Button
-              key={month}
-              variant={selectedMonth === month ? "default" : "ghost"}
-              size="sm"
-              onClick={() => setSelectedMonth(month)}
-              className={`${
-                selectedMonth === month
-                  ? "bg-slate-700 text-white"
-                  : "text-emerald-700"
-              } rounded-2xl text-xs sm:text-sm`}
-            >
-              {month}
-            </Button>
-          ))}
-        </div>
+  {/* Centering buttons on mobile */}
+  <div className="flex flex-wrap justify-center sm:justify-between mt-4 gap-2">
+    {(Object.keys(monthlyData) as Array<keyof MonthlyData>).map((month) => (
+      <Button
+        key={month}
+        variant={selectedMonth === month ? "default" : "ghost"}
+        size="sm"
+        onClick={() => setSelectedMonth(month)}
+        className={`${
+          selectedMonth === month
+            ? "bg-slate-700 text-white"
+            : "text-emerald-700"
+        } rounded-2xl text-xs sm:text-sm`}
+      >
+        {month}
+      </Button>
+    ))}
+  </div>
 
-        <div className="flex items-center justify-start mt-4 text-xs sm:text-sm text-slate-700">
-          <div className="w-3 h-3 bg-emerald-500 rounded-full mr-2"></div>
-          Exam Success Probability
-        </div>
-      </CardContent>
+  <div className="flex items-center justify-start mt-4 text-xs sm:text-sm text-slate-700">
+    <div className="w-3 h-3 bg-emerald-500 rounded-full mr-2"></div>
+    Exam Success Probability
+  </div>
+</CardContent>
+
     </Card>
   )
 }

@@ -18,7 +18,7 @@ export default function Component() {
             <div className="w-full mr-4 relative">
               <Progress 
                 value={55} 
-                className="h-8 bg-gradient-to-r from-[#fbe68a] to-[#facc15] via-[#38b2ac]"
+                className="h-8 bg-gradient-to-r from-[#fbe68a] to-[#facc15]"
               />
               <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 text-white px-2 py-1 text-xs rounded-full">
                 55%
