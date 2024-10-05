@@ -14,7 +14,7 @@ const data = [
 
 export default function SuccessProbabilityProgressChart() {
   return (
-    <Card className="w-full max-w-3xl mx-auto bg-slate-100 border border-custombroder rounded-xl p-2 sm:p-4">
+    <Card className="w-full max-w-3xl mx-auto bg-slate-100 border border-custombroder rounded-xl p-4 sm:p-6">
     <CardHeader>
         <CardTitle className="text-sm md:text-base lg:text-lg font-semibold flex items-center space-x-2">
           <svg

@@ -12,7 +12,7 @@ export default function Component() {
 
   return (
     <div>
-      <Card className="w-full max-w-7xl mb-2 mx-auto bg-slate-50 border border-custombroder rounded-xl p-4 sm:p-6">
+      <Card className="w-full max-w-7xl mb-2 mx-auto bg-slate-100 border border-custombroder rounded-xl p-4 sm:p-6">
         <CardContent className="pt-2 pb-2">
           <div className="flex items-center justify-between mb-2">
             <div className="w-full mr-4 relative">

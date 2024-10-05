@@ -11,7 +11,6 @@ interface TestInfo {
   questions: number;
   isFree: boolean;
 }
-
 const tests: TestInfo[] = [
   {
     id: "1",
@@ -46,7 +45,6 @@ const tests: TestInfo[] = [
     isFree: true,
   },
 ];
-
 const TestInfoCard: React.FC = () => {
   return (
     <div className="container mx-auto p-2">
