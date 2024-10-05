@@ -35,7 +35,7 @@ export default function Component() {
               <span className="text-sm font-semibold mt-1 text-emerald-500">SSC CGL</span>
             </div>
           </div>
-          <p className="text-lg font-semibold text-slate-700">
+          <p className="text-lg font-medium text-slate-700">
             You&apos;re showing promise with a 55% success rate. Let&apos;s work on boosting that number!
           </p>
         </CardContent>
