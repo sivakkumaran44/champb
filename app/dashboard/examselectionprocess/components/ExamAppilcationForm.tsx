@@ -33,7 +33,7 @@ export default function ExamApplicationForm() {
 
       <CheckboxAgreement isChecked={isChecked} onCheckedChange={handleCheckedChange} />
 <div className='flex justify-center'>   
- <Button className=" text-white hover:bg-emerald-500" onClick={handleNavigate}>
+ <Button className=" text-white bg-emerald-500 hover:bg-emerald-500" onClick={handleNavigate}>
         Check success probability
       </Button>
       </div>

@@ -7,7 +7,7 @@ import SuccessRate from './SuccessRate'
 const SuccessProbabilityChart = () => {
   return (
     <div className="container mx-auto px-4">
-      <h2 className="text-xl text-slate-700  font-bold mb-6 text-center">Success Probability Charts</h2>
+      <h2 className="text-xl text-slate-700  font-bold mb-6 text-center">Success Probability </h2>
     <div>
       <SuccessRate/>
     </div>
