@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import Image, { StaticImageData }  from 'next/image';
@@ -13,7 +12,6 @@ interface ExamCardProps {
   icon?: string;
   imageSrc?: StaticImageData;
 }
-
 const exams = [
   { name: "IBPS PO", imageSrc: spiIcon },
   { name: "IBPS Clerk", imageSrc: spsIcon },
@@ -24,7 +22,6 @@ const exams = [
   { name: "NEET UG", imageSrc: ipsIcon },
   { name: "IPS", imageSrc: ipsIcon }, 
 ];
-
 const ExamCard: React.FC<ExamCardProps> = ({ name, icon, imageSrc }) => (
   <Card className="inline-block w-54 bg-emerald-50 shadow-sm hover:shadow-md transition-shadow duration-300 flex-shrink-0">
     <CardContent className="flex items-center p-4 space-x-3">
@@ -37,19 +34,15 @@ const ExamCard: React.FC<ExamCardProps> = ({ name, icon, imageSrc }) => (
     </CardContent>
   </Card>
 );
-
 const RunningExamCarousel: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     const scrollContent = contentRef.current;
     if (!scrollContainer || !scrollContent) return;
-
     const cardWidth = 240; 
     const totalWidth = exams.length * cardWidth;
-
     const cloneCards = () => {
       const currentCards = Array.from(scrollContent.children) as HTMLElement[];
       currentCards.forEach(card => {
@@ -57,11 +50,8 @@ const RunningExamCarousel: React.FC = () => {
         scrollContent.appendChild(clone);
       });
     };
-
     cloneCards(); 
-
     let scrollPosition = 0;
-
     const scroll = () => {
       scrollPosition += 1;
       if (scrollPosition >= totalWidth) {
@@ -70,27 +60,21 @@ const RunningExamCarousel: React.FC = () => {
       } else {
         scrollContainer.scrollLeft = scrollPosition;
       }
-
       if (scrollPosition > totalWidth - scrollContainer.offsetWidth) {
         cloneCards();
       }
-
       while (scrollContent.children.length > exams.length * 3) {
         scrollContent.removeChild(scrollContent.firstChild as ChildNode);
       }
     };
-
     const intervalId = setInterval(scroll, 20);
-
     return () => clearInterval(intervalId);
   }, []);
-
   return (
     <div 
       ref={scrollRef}
       className="w-full overflow-hidden p-4"
-    >
-      <div 
+    >      <div 
         ref={contentRef}
         className="flex space-x-4"
       >
@@ -101,5 +85,4 @@ const RunningExamCarousel: React.FC = () => {
     </div>
   );
 };
-
 export default RunningExamCarousel;

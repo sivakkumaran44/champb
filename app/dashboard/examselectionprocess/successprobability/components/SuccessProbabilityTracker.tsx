@@ -22,7 +22,6 @@ type MonthlyData = {
   [key: string]: MonthData;
 };
 
-// Sample monthly data
 const monthlyData: MonthlyData = {
   Today: [
     { month: "April", probability: 32 },
@@ -78,7 +77,6 @@ export default function SuccessProbabilityTracker() {
   const [selectedMonth, setSelectedMonth] = useState<keyof MonthlyData>("Aug")
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [selectedRange, setSelectedRange] = useState("Last 6 months")
-
   const rangeOptions = [
     "Last 3 months",
     "Last 6 months",
@@ -92,6 +90,10 @@ export default function SuccessProbabilityTracker() {
   const handleRangeSelect = (range: string) => {
     setSelectedRange(range)
     setIsDropdownOpen(false)
+  }
+
+  const handleMonthClick = (month: string) => {
+    setSelectedMonth(month as keyof MonthlyData)
   }
 
   return (
@@ -111,11 +113,10 @@ export default function SuccessProbabilityTracker() {
             <path d="M3 3v18h18" />
             <path d="m19 9-5 5-4-4-3 3" />
           </svg>
-          <CardTitle className="text-lg sm:text-xl font-semibold text-slate-700">
+          <CardTitle className="text-sm md:text-base lg:text-lg font-semibold text-slate-700">
             Overall Success Probability Tracker
           </CardTitle>
         </div>
-
         <div className="relative">
           <Button
             variant="outline"
@@ -126,7 +127,6 @@ export default function SuccessProbabilityTracker() {
             {selectedRange}
             <ChevronDown className="ml-1 h-4 w-4" />
           </Button>
-
           {isDropdownOpen && (
             <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg">
               {rangeOptions.map((range) => (
@@ -147,89 +147,87 @@ export default function SuccessProbabilityTracker() {
         </div>
       </CardHeader>
       <CardContent>
-  <div className="h-[200px] sm:h-[250px] w-full">
-    <ResponsiveContainer width="100%" height="100%">
-      <AreaChart
-        data={monthlyData[selectedMonth]}
-        margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
-      >
-        <defs>
-          <linearGradient
-            id="colorProbability"
-            x1="0"
-            y1="0"
-            x2="0"
-            y2="1"
-          >
-            <stop
-              offset="5%"
-              stopColor="#4ade80"
-              stopOpacity={0.8}
-            />
-            <stop
-              offset="95%"
-              stopColor="#4ade80"
-              stopOpacity={0.1}
-            />
-          </linearGradient>
-        </defs>
-        <CartesianGrid
-          strokeDasharray="3 3"
-          vertical={false}
-          stroke="#e5e7eb"
-        />
-        <XAxis
-          dataKey="month"
-          axisLine={false}
-          tickLine={false}
-          tick={{ fill: "#9ca3af", fontSize: 10, dy: 10 }}
-          padding={{ left: 10, right: 10 }}
-        />
-        <YAxis
-          axisLine={false}
-          tickLine={false}
-          tick={{ fill: "#9ca3af", fontSize: 10 }}
-          domain={[0, 100]}
-          ticks={[0, 25, 50, 75, 100]}
-          tickFormatter={(value) => `${value}%`}
-        />
-        <Area
-          type="monotone"
-          dataKey="probability"
-          stroke="#4ade80"
-          strokeWidth={2}
-          fillOpacity={1}
-          fill="url(#colorProbability)"
-        />
-      </AreaChart>
-    </ResponsiveContainer>
-  </div>
-
-  {/* Centering buttons on mobile */}
-  <div className="flex flex-wrap justify-center sm:justify-between mt-4 gap-2">
-    {(Object.keys(monthlyData) as Array<keyof MonthlyData>).map((month) => (
-      <Button
-        key={month}
-        variant={selectedMonth === month ? "default" : "ghost"}
-        size="sm"
-        onClick={() => setSelectedMonth(month)}
-        className={`${
-          selectedMonth === month
-            ? "bg-slate-700 text-white"
-            : "text-emerald-700"
-        } rounded-2xl text-xs sm:text-sm`}
-      >
-        {month}
-      </Button>
-    ))}
-  </div>
-
-  <div className="flex items-center justify-start mt-4 text-xs sm:text-sm text-slate-700">
-    <div className="w-3 h-3 bg-emerald-500 rounded-full mr-2"></div>
-    Exam Success Probability
-  </div>
-</CardContent>
-
+        <div className="h-[200px] sm:h-[250px] w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart
+              data={monthlyData[selectedMonth]}
+              margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+            >
+              <defs>
+                <linearGradient
+                  id="colorProbability"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="5%"
+                    stopColor="#4ade80"
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="#4ade80"
+                    stopOpacity={0.1}
+                  />
+                </linearGradient>
+              </defs>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                vertical={false}
+                stroke="#e5e7eb"
+              />
+              <XAxis
+                dataKey="month"
+                axisLine={false}
+                tickLine={false}
+                tick={(props) => {
+                  const { x, y, payload } = props;
+                  return (
+                    <g transform={`translate(${x},${y})`}>
+                      <text
+                        x={0}
+                        y={0}
+                        dy={16}
+                        textAnchor="middle"
+                        fill={selectedMonth === payload.value ? "#4ade80" : "#9ca3af"}
+                        fontSize={10}
+                        fontWeight={selectedMonth === payload.value ? "bold" : "normal"}
+                        className="cursor-pointer"
+                        onClick={() => handleMonthClick(payload.value)}
+                      >
+                        {payload.value}
+                      </text>
+                    </g>
+                  );
+                }}
+                padding={{ left: 10, right: 10 }}
+              />
+              <YAxis
+                axisLine={false}
+                tickLine={false}
+                tick={{ fill: "#9ca3af", fontSize: 10 }}
+                domain={[0, 100]}
+                ticks={[0, 25, 50, 75, 100]}
+                tickFormatter={(value) => `${value}%`}
+              />
+              <Area
+                type="monotone"
+                dataKey="probability"
+                stroke="#4ade80"
+                strokeWidth={2}
+                fillOpacity={1}
+                fill="url(#colorProbability)"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="flex items-center justify-start mt-4 text-xs sm:text-sm text-slate-700">
+          <div className="w-3 h-3 bg-emerald-500 rounded-full mr-2"></div>
+          Exam Success Probability
+        </div>
+      </CardContent>
     </Card>
   )
 }

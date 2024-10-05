@@ -1,7 +1,8 @@
-
-"use client"
+"use client";
 import React from 'react';
 import TestCard from "@/components/useclient/MockTestPageClient";
+import {Card, CardTitle } from "@/components/ui/card"; 
+import { ChevronsUp } from 'lucide-react'; 
 interface TestInfo {
   id: string;
   title: string;
@@ -10,6 +11,7 @@ interface TestInfo {
   questions: number;
   isFree: boolean;
 }
+
 const tests: TestInfo[] = [
   {
     id: "1",
@@ -47,19 +49,22 @@ const tests: TestInfo[] = [
 
 const TestInfoCard: React.FC = () => {
   return (
-    <div className="container mx-auto p-2 ">
-      <div className=" space-y-2 sm:space-y-4">
+    <div className="container mx-auto p-2">
+   <div className="space-y-2 sm:space-y-4">
+    <div className='w-full bg-slate-100 border border-slate-300 rounded-md'>     
+    <CardTitle className="text-sm md:text-base lg:text-lg text-slate-700 font-semibold flex items-center space-x-2">
+  <ChevronsUp />
+  <span>Boost your chances by taking more tests in</span>
+</CardTitle>
+        </div>
         {tests.map((test) => (
-          <div
-            key={test.id}
-            className="relative"
-          >
+          <div key={test.id} className="relative">
             <div>
               <TestCard {...test} />
             </div>
             {test.id === "4" && (
               <div className="absolute inset-0 flex items-center justify-center mr-60 z-10">
-          
+              
               </div>
             )}
           </div>
