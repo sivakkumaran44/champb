@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import TestCard from "@/components/useclient/MockTestPageClient";
-import {Card, CardTitle } from "@/components/ui/card"; 
+import { CardTitle } from "@/components/ui/card"; 
 import { ChevronsUp } from 'lucide-react'; 
 interface TestInfo {
   id: string;
