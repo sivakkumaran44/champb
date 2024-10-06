@@ -37,7 +37,7 @@ const ExamCard: React.FC<ExamCardProps> = ({ name, imageSrc }) => (
 );
 
 const RunningExamCarousel: React.FC = () => {
-  const [emblaRef] = useEmblaCarousel({ loop: true,   watchDrag: false }, [
+  const [emblaRef] = useEmblaCarousel({ loop: true, watchDrag: false }, [
     AutoScroll({ playOnInit: true, speed: 2 }),
   ]);
 
