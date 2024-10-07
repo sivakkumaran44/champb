@@ -1,27 +1,34 @@
-import React from 'react'
-import { Frame } from 'lucide-react'
-interface MobilePreviewProps {
-  url: string
-}
-export default function Component({ url }: MobilePreviewProps = { url: 'https://champb.vercel.app/iframe' }) {
+import React from 'react';
+import successOddsImage from '@/public/assets/img/Features 3.svg'; 
+import Image from 'next/image';
+
+const SuccessOddsAnalyzer = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="relative w-[320px] h-[640px] bg-white rounded-[40px] shadow-xl overflow-hidden border-8 border-gray-800">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-800 rounded-b-2xl"></div>
-        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-16 h-2 bg-gray-600 rounded-full"></div>
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gray-600 rounded-full"></div>
-        <iframe
-          src={url}
-          className="w-full h-full"
-          style={{ border: 'none' }}
-          title="Mobile Preview"
+    <div className="flex flex-col md:flex-row items-center justify-between p-8 bg-white">
+      <div className="w-full md:w-1/2 mb-8 md:mb-0 relative">
+        <Image
+          src={successOddsImage}
+          alt="Success Odds Analysis"
+          width={500}
+          height={500}
+          className="w-full h-auto object-contain"
+         
         />
-        {!url && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
-            <Frame className="w-16 h-16 text-gray-400" />
-          </div>
-        )}
+      </div>
+      
+      <div className="w-full md:w-1/2 md:pl-8 ">
+        <h3 className="scroll-m-20 text-2xl mb-6 text-emerald-500 font-semibold tracking-tight">
+          Success Odds Analyzer
+        </h3>
+        <p className="text-lg text-slate-700">
+
+          Gain valuable insights into your exam readiness with bChamp&apos;s predictive analytics. Our system assesses
+          your performance data to estimate your selection probability, helping you focus your efforts where they
+          matter most.
+        </p>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default SuccessOddsAnalyzer;
