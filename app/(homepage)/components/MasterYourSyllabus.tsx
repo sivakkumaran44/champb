@@ -19,7 +19,7 @@ const MasterYourSyllabus = () => {
           <div className="h-[64px] w-[3px] bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
           <div className="rounded-[2rem] overflow-hidden w-[272px] h-[572px] bg-white dark:bg-gray-800">
             <iframe
-              src="http://localhost:3000/iframe/masteryoursyllabus"
+              src="https://champb.vercel.app/iframe/masteryoursyllabus"
               className="w-full h-full scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
               allow="fullscreen"
               sandbox="allow-same-origin allow-scripts"
