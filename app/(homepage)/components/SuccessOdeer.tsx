@@ -21,7 +21,7 @@ export default function Component() {
         </div>
       </div>
       <div className="w-full md:w-1/2 md:pl-8 relative z-10">
-        <h3 className="scroll-m-20 text-2xl mb-6 text-emerald-500 font-semibold tracking-tight">
+        <h3 className="scroll-m-20 text-2xl mb-4 text-emerald-500 font-semibold tracking-tight">
           Success Odds Analyzer
         </h3>
         <p className="text-lg text-slate-700 max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-emerald-400 scrollbar-track-gray-100">
