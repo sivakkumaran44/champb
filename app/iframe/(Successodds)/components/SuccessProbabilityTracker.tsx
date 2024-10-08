@@ -98,9 +98,9 @@ export default function SuccessProbabilityTracker() {
   }
 
   return (
-    <Card className="w-[220px] h-[260px] mx-auto bg-slate-100 border border-custombroder rounded-xl p-2">
-      <CardHeader className="flex flex-col items-start justify-between space-y-1 pb-2 px-0">
-        <div className="flex items-center space-x-1">
+    <Card className="w-[220px] h-[230px] mx-auto bg-slate-100 border border-customborder rounded-xl p-2 flex flex-col">
+      <CardHeader className="p-1">
+        <CardTitle className="text-[10px] font-semibold flex items-center space-x-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -117,7 +117,7 @@ export default function SuccessProbabilityTracker() {
           <CardTitle className="text-[10px] font-semibold text-slate-700">
             Overall Success Probability Tracker
           </CardTitle>
-        </div>
+        </CardTitle>
         <div className="relative w-full">
           <Button
             variant="outline"
@@ -222,9 +222,9 @@ export default function SuccessProbabilityTracker() {
             />
           </AreaChart>
         </ResponsiveContainer>
-        <div className="flex items-center justify-start mt-1 text-[8px] text-slate-700">
-          <div className="w-2 h-2 bg-emerald-500 rounded-full mr-1"></div>
-          Exam Success Probability
+        <div className="text-center text-[8px] text-muted-foreground mt-1">
+          <span className="inline-block w-2 h-2 bg-emerald-300 rounded-full mr-1"></span>
+         Exam Success Probability
         </div>
       </CardContent>
     </Card>

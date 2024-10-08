@@ -32,7 +32,6 @@ const ImprovementAreasChart = () => {
         <CardContent className="space-y-4">
           {improvementAreas.map((area, index) => (
             <div key={index} className="flex items-center h-6 sm:h-8">
-              {/* Progress bar with rounded ends */}
               <div
                 className="bg-blue-400 h-full rounded-full flex items-center pl-3"
                 style={{ width: `${area.progress}%` }}
@@ -43,7 +42,7 @@ const ImprovementAreasChart = () => {
               </div>
               <div className="ml-2">
                 <span 
-                  className="text-xs sm:text-sm font-semibold rounded-full px-2"
+                  className="text-xs sm:text-xl font-semibold rounded-full px-2"
                   style={{ 
                     backgroundColor: statusColors[area.status].bg,
                     color: statusColors[area.status].text
