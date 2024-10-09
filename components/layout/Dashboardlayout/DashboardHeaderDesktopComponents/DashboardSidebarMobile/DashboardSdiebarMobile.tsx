@@ -1,6 +1,7 @@
 "use client"
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
+
+import React, { useState, useEffect } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -62,27 +63,54 @@ const menuItems: MenuItem[] = [
   { icon: CreditCard, label: 'Subscription', href: '/dashboard/subscription' },
 ]
 
-export default function DashboardSdiebarMobile() {
-  const [expandedSection, setExpandedSection] = useState<string | null>(null)
-  const { activeTestType, setActiveTestType } = useTestType()
-  const router = useRouter()
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 768)
+    checkIsMobile()
+    window.addEventListener('resize', checkIsMobile)
+    return () => window.removeEventListener('resize', checkIsMobile)
+  }, [])
+
+  return isMobile
+}
+
+export default function Component() {
+  const [expandedSection, setExpandedSection] = useState<string>('Tests');
+  const [isOpen, setIsOpen] = useState(false);
+  const { activeTestType, setActiveTestType } = useTestType();
+  const router = useRouter();
+  const pathname = usePathname();
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    const currentPath = pathname.split('/').pop();
+    const currentItem = menuItems.flatMap(item => item.subItems || []).find(subItem => subItem.href.includes(currentPath || ''));
+    if (currentItem) {
+      setActiveTestType(currentItem.label as TestType);
+      setExpandedSection(menuItems.find(item => item.subItems?.includes(currentItem))?.label || '');
+    }
+  }, [pathname, setActiveTestType]);
 
   const handleItemClick = (label: string, href?: string) => {
-    setExpandedSection(prev => prev === label ? null : label)
-
+    setExpandedSection(prev => prev === label ? '' : label);
+  
     if (href) {
-      setActiveTestType(label as TestType)
-      router.push(href)
+      setActiveTestType(label as TestType);
+      router.push(href);
+      setIsOpen(false);
     }
-  }
+  };
 
   const handleSubItemClick = (label: TestType, href: string) => {
-    setActiveTestType(label)
-    router.push(href)
-  }
+    setActiveTestType(label);
+    router.push(href);
+    setIsOpen(false);
+  };
 
   const renderMenuItem = (item: MenuItem) => (
-    <div key={item.label} className="mb-1">
+    <div key={item.label} className="mt-8 mb-1">
       <Button
         variant="ghost"
         className={cn(
@@ -101,13 +129,13 @@ export default function DashboardSdiebarMobile() {
         )}
       </Button>
       {item.subItems && expandedSection === item.label && (
-        <div className="ml-4 mt-1 space-y-1">
+        <div className="mt-1 space-y-1">
           {item.subItems.map((subItem) => (
             <Button
               key={subItem.label}
               variant="ghost"
               className={cn(
-                "w-full justify-start",
+                "w-full justify-start ",
                 activeTestType === subItem.label && "bg-emerald-500 text-white"
               )}
               onClick={() => handleSubItemClick(subItem.label as TestType, subItem.href)}
@@ -156,16 +184,24 @@ export default function DashboardSdiebarMobile() {
   )
 
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="fixed top-4 left-4 z-40 md:hidden">
-          <Menu className="h-4 w-4" />
-          <span className="sr-only">Toggle navigation menu</span>
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="left" className="w-[240px] p-0">
-        {sidebarContent}
-      </SheetContent>
-    </Sheet>
+    <>
+      {isMobile ? (
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="fixed top-4 left-4 z-40 md:hidden">
+              <Menu className="h-4 w-4" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-[240px] p-0">
+            {sidebarContent}
+          </SheetContent>
+        </Sheet>
+      ) : (
+        <aside className="hidden md:block w-[240px] h-screen overflow-y-auto bg-slate-100">
+          {sidebarContent}
+        </aside>
+      )}
+    </>
   )
 }

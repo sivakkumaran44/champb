@@ -97,7 +97,7 @@ function CustomTooltip({ children, content }: { children: React.ReactNode; conte
 }
 
 export default function Component() {
-  const [isExpanded, setIsExpanded] = useState(false);  // Changed to false
+  const [isExpanded, setIsExpanded] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string>('Tests');
   const [isMobile, setIsMobile] = useState(false);
   const { activeTestType, setActiveTestType } = useTestType();
@@ -106,7 +106,7 @@ export default function Component() {
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
-      // Removed setIsExpanded(window.innerWidth >= 768);
+     
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -142,7 +142,7 @@ export default function Component() {
             <Button
               variant="ghost"
               className={cn(
-                "w-full justify-start transition-all duration-300 ease-in-out",
+                "w-full justify-start transition-all duration-300 ease-in-out bg-transparent hover:bg-transparent",
                 isExpanded ? "px-4" : "px-2 flex items-center justify-center",
                 expandedSection === item.label && "bg-emerald-500 text-white rounded-2xl"
               )}
@@ -174,7 +174,7 @@ export default function Component() {
               key={subItem.label}
               variant="ghost"
               className={cn(
-                "w-full justify-start transition-all duration-300 ease-in-out",
+                "w-full justify-start transition-all duration-300 ease-in-out bg-transparent  hover:bg-transparent",
                 activeTestType === subItem.label && "bg-emerald-500 text-white hover:bg-emerald-500"
               )}
               onClick={() => handleSubItemClick(subItem.label as TestType, subItem.href)}
@@ -225,7 +225,7 @@ export default function Component() {
     <Button
       variant="ghost"
       size="icon"
-      className="p-0 bg-transparent flex items-center justify-center hover:bg-transparent "  
+      className="p-0 bg-transparent  hover:bg-transparent "  
       onClick={toggleExpanded}
     >
       <PanelLeftOpen size={20} className="text-emerald-700 " />
@@ -234,20 +234,20 @@ export default function Component() {
   </div>
 )}
     
-      <div className="p-4 border-t">
+      <div className="p-4 border-t ">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <CustomTooltip content="Settings">
               <Button 
                 variant="ghost" 
                 className={cn(
-                  "w-full justify-start transition-all duration-300 ease-in-out",
+                  "w-full justify-start transition-all duration-300 ease-in-out bg-transparent  hover:bg-transparent",
                   isExpanded ? "px-4 py-2" : "px-2 py-2 flex items-center justify-center"
                 )}
               >
                 <Settings className="h-5 w-5 transition-all duration-300 ease-in-out" />
                 <span className={cn(
-                  "ml-3 transition-all duration-300 ease-in-out",
+                  " transition-all duration-300 ease-in-out",
                   isExpanded ? "opacity-100 max-w-full" : "opacity-0 max-w-0 overflow-hidden"
                 )}>
                   Settings
@@ -276,7 +276,9 @@ export default function Component() {
 
   return (
     <>
+    <div className='md:hidden'>
       <DashboardSidebarMobile />
+      </div>
       <aside
         className={cn(
           "hidden h-screen flex-col border-r bg-slate-200 md:flex transition-all duration-300 ease-in-out",
