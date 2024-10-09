@@ -97,42 +97,42 @@ function CustomTooltip({ children, content }: { children: React.ReactNode; conte
 }
 
 export default function Component() {
-  const [isExpanded, setIsExpanded] = useState(true)
-  const [expandedSection, setExpandedSection] = useState<string>('Tests')
-  const [isMobile, setIsMobile] = useState(false)
-  const { activeTestType, setActiveTestType } = useTestType()
-  const router = useRouter()
+  const [isExpanded, setIsExpanded] = useState(false);  // Changed to false
+  const [expandedSection, setExpandedSection] = useState<string>('Tests');
+  const [isMobile, setIsMobile] = useState(false);
+  const { activeTestType, setActiveTestType } = useTestType();
+  const router = useRouter();
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-      setIsExpanded(window.innerWidth >= 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
+      setIsMobile(window.innerWidth < 768);
+      // Removed setIsExpanded(window.innerWidth >= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleItemClick = (label: string, href?: string) => {
     if (!isExpanded && !isMobile) {
-      setIsExpanded(true)
+      setIsExpanded(true);
     }
-    setExpandedSection(prev => prev === label ? '' : label)
+    setExpandedSection(prev => prev === label ? '' : label);
 
     if (href) {
-      setActiveTestType(label as TestType)
-      router.push(href)
+      setActiveTestType(label as TestType);
+      router.push(href);
     }
-  }
+  };
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };
 
   const handleSubItemClick = (label: TestType, href: string) => {
-    setActiveTestType(label)
-    router.push(href)
-  }
+    setActiveTestType(label);
+    router.push(href);
+  };
 
   const renderMenuItem = (item: MenuItem) => (
     <div key={item.label} className="mb-1">
@@ -149,12 +149,13 @@ export default function Component() {
               onClick={() => handleItemClick(item.label, item.href)}
             >
               <item.icon className="h-4 w-4" />
-              {isExpanded && (
-                <span className="ml-3 transition-opacity duration-300">{item.label}</span>
-              )}
+              <span className={cn(
+                "ml-3 transition-all duration-300",
+                isExpanded ? "opacity-100 max-w-full" : "opacity-0 max-w-0 overflow-hidden"
+              )}>{item.label}</span>
               {isExpanded && item.subItems && (
                 <ChevronRight className={cn(
-                  "ml-auto h-4 w-4 transition-transform",
+                  "ml-auto h-4 w-4 transition-transform duration-300",
                   expandedSection === item.label && "rotate-90"
                 )} />
               )}
@@ -163,8 +164,11 @@ export default function Component() {
           {!isExpanded && <TooltipContent side="right" className="bg-emerald-500 text-white border-emerald-500">{item.label}</TooltipContent>}
         </Tooltip>
       </TooltipProvider>
-      {isExpanded && item.subItems && expandedSection === item.label && (
-        <div className="mt-1 space-y-1  overflow-hidden transition-all duration-300 ease-in-out">
+      {item.subItems && (
+        <div className={cn(
+          "mt-1 space-y-1 overflow-hidden transition-all duration-300 ease-in-out",
+          isExpanded && expandedSection === item.label ? "max-h-96" : "max-h-0"
+        )}>
           {item.subItems.map((subItem) => (
             <Button
               key={subItem.label}
@@ -182,31 +186,21 @@ export default function Component() {
         </div>
       )}
     </div>
-  )
+  );
 
   const sidebarContent = (
     <div className="flex h-full flex-col bg-background">
-      <div className="flex items-center justify-between p-4 ">
-        <div className="flex-shrink-0">
-          {isExpanded ? (
-            <Image 
-              src={Logo} 
-              alt="bChamp Logo" 
-              width={120} 
-              height={20} 
-              priority 
-            />
-          ) : (
-            <Image 
-              src={LogoSmall} 
-              alt="bChamp Logo" 
-              width={40} 
-              height={40} 
-              priority 
-            />
-          )}
+      <div className="flex items-center justify-between p-4">
+        <div className="flex-shrink-0 transition-all duration-300 ease-in-out">
+          <Image 
+            src={isExpanded ? Logo : LogoSmall} 
+            alt="bChamp Logo" 
+            width={isExpanded ? 120 : 40} 
+            height={isExpanded ? 20 : 40} 
+            priority 
+            className="transition-all duration-300 ease-in-out"
+          />
         </div>
-        
         {!isMobile && isExpanded && (
   <CustomTooltip content="Close Sidebar">
     <Button
@@ -219,8 +213,8 @@ export default function Component() {
     </Button>
   </CustomTooltip>
 )}
-  </div>
-            <ScrollArea className="flex-1 px-3 py-2">
+      </div>
+      <ScrollArea className="flex-1 px-3 py-2">
         <nav className="flex flex-col space-y-1">
           {menuItems.map(renderMenuItem)}
         </nav>
@@ -239,7 +233,7 @@ export default function Component() {
   </CustomTooltip>
   </div>
 )}
-
+    
       <div className="p-4 border-t">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -247,19 +241,17 @@ export default function Component() {
               <Button 
                 variant="ghost" 
                 className={cn(
-                  "w-full justify-start",
+                  "w-full justify-start transition-all duration-300 ease-in-out",
                   isExpanded ? "px-4 py-2" : "px-2 py-2 flex items-center justify-center"
                 )}
               >
-                <Settings className={cn(
-                  "transition-all duration-300",
-                  isExpanded ? "h-5 w-5 mr-3" : "h-4 w-4"
-                )} />
-                {isExpanded && (
-                  <span className="transition-opacity duration-300">
-                    Settings
-                  </span>
-                )}
+                <Settings className="h-5 w-5 transition-all duration-300 ease-in-out" />
+                <span className={cn(
+                  "ml-3 transition-all duration-300 ease-in-out",
+                  isExpanded ? "opacity-100 max-w-full" : "opacity-0 max-w-0 overflow-hidden"
+                )}>
+                  Settings
+                </span>
               </Button>
             </CustomTooltip>
           </DropdownMenuTrigger>
@@ -280,19 +272,21 @@ export default function Component() {
         </DropdownMenu>
       </div>
     </div>
-  )
+  );
 
   return (
     <>
-          <DashboardSidebarMobile />
+      <DashboardSidebarMobile />
       <aside
         className={cn(
-          "hidden h-screen flex-col border-r bg-slate-200 md:flex transition-all duration-300 ease-in-out relative",
+          "hidden h-screen flex-col border-r bg-slate-200 md:flex transition-all duration-300 ease-in-out",
           isExpanded ? "w-64" : "w-[80px]"
         )}
       >
         {sidebarContent}
       </aside>
     </>
-  )
+  );
 }
+        
+     
