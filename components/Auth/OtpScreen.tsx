@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
@@ -10,18 +10,30 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import DetailsFormDialog from './DetailsFormDialog';
+import ReactCountryFlag from "react-country-flag";
+import NumberVerificationScreen from './NumberVerificationScreen'; 
 
 interface OtpScreenProps {
   isOpen: boolean;
   onClose: () => void;
   countryCode: string;
   mobileNumber: string;
+  onUpdateMobileNumber: (newNumber: string) => void;
 }
 
-const OtpScreen: React.FC<OtpScreenProps> = ({ isOpen, onClose, countryCode, mobileNumber }) => {
+export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, onUpdateMobileNumber }: OtpScreenProps) {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [showDetailsForm, setShowDetailsForm] = useState(false);
+  const [showNumberVerification, setShowNumberVerification] = useState(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setOtp(['', '', '', '', '', '']);
+      setShowDetailsForm(false);
+      setShowNumberVerification(false);
+    }
+  }, [isOpen]);
 
   const handleOtpChange = (index: number, value: string) => {
     if (value.length <= 1) {
@@ -50,77 +62,104 @@ const OtpScreen: React.FC<OtpScreenProps> = ({ isOpen, onClose, countryCode, mob
     onClose(); 
   };
 
+  const handleEditClick = () => {
+    setShowNumberVerification(true); 
+  };
+
+  const handleNumberVerificationClose = (updatedNumber?: string) => {
+    setShowNumberVerification(false);
+    if (updatedNumber) {
+      onUpdateMobileNumber(updatedNumber);
+    }
+  };
+
+  if (!isOpen) {
+    return null;
+  }
+
   return (
     <>
-      <AlertDialog open={isOpen && !showDetailsForm} onOpenChange={onClose}>
-  <AlertDialogContent 
-    className="w-[90vw] max-w-[400px] p-4 sm:p-6 rounded-lg"
-  >
-    <Button
-      onClick={onClose}
-      type="button"
-      id="close-button"
-      name="close"
-      variant="ghost"
-      className="absolute right-2 top-2 w-8 h-8 p-0"
-    >
-      <X className="h-5 w-5" />
-    </Button>
-    <AlertDialogHeader className="flex flex-col items-center space-y-2">
-      <AlertDialogTitle className="text-slate-700 text-xl font-semibold text-center">
-        Verify Phone Number
-      </AlertDialogTitle>
-      <AlertDialogDescription className='text-slate-500 text-sm text-center'>
-        Please enter the 6 digit code sent to <br/>
-        <b className='text-gray-900'>{countryCode} {mobileNumber}</b>
-      </AlertDialogDescription>
-    </AlertDialogHeader>
-    <div className="flex flex-wrap justify-center gap-2 mt-4">
-  {otp.map((digit, index) => (
-    <Input
-      key={index}
-      ref={(el) => {
-        inputRefs.current[index] = el;
-      }}
-      id={`otp-${index}`}
-      name={`otp-${index}`}
-      type="text"
-      inputMode="numeric"
-      maxLength={1}
-      value={digit}
-      onChange={(e) => handleOtpChange(index, e.target.value)}
-      onKeyDown={(e) => handleKeyDown(index, e)}
-      className="w-12 h-12 text-center text-xl bg-slate-200 border-none"
-    />
-
-            ))}
-          </div>
-          <div className="flex justify-center">
-            <Button 
-              onClick={handleVerifyOtp} 
-              type="button"
-              id="verify-otp-button"
-              name="verify-otp-button"
-              className="w-5/6 sm:w-4/6 lg:w-3/6 bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-300 py-2 text-lg font-medium rounded-md"
+      <AlertDialog open={isOpen && !showDetailsForm && !showNumberVerification}>
+        <AlertDialogContent className="w-[90vw] max-w-[400px] p-4 sm:p-6 rounded-lg">
+          <Button
+            onClick={onClose}
+            type="button"
+            id="close-button"
+            name="close"
+            variant="ghost"
+            className="absolute right-2 top-2 w-8 h-8 p-0"
+          >
+            <X className="h-5 w-5" />
+          </Button>
+          <AlertDialogHeader className="flex flex-col items-center space-y-2">
+            <AlertDialogTitle className="text-slate-700 text-xl font-semibold text-center">
+              Enter OTP
+            </AlertDialogTitle>
+            <AlertDialogDescription className='text-slate-500 text-sm text-center'>
+              We've sent an OTP to your registered mobile number
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="mt-4 p-3 bg-slate-100 rounded-md flex items-center justify-between">
+            <div className="flex items-center">
+              <ReactCountryFlag
+                countryCode={countryCode.slice(1) === '91' ? 'IN' : 'US'}
+                svg
+                className="mr-2 h-4 w-6"
+              />
+              <span className="font-semibold">{countryCode}</span>
+              <span className="ml-2">{mobileNumber}</span>
+            </div>
+            <Button
+              variant="ghost"
+              className="text-sm text-blue-600 hover:text-blue-800"
+              onClick={handleEditClick} 
             >
-              Verify OTP
+              Edit
             </Button>
           </div>
-          <div className="space-y-2">
-            <a href="#" className="text-sm text-slate-500 block">Resend OTP in 00:24</a>
-            <div className="text-sm text-slate-500">
-              <span className="mr-1">Having trouble?</span>
-              <a href="#" className="text-emerald-600 font-medium">Help Centre</a>
-            </div>
+          <div className="flex flex-wrap justify-center gap-2 mt-4">
+            {otp.map((digit, index) => (
+              <Input
+                key={index}
+                ref={(el) => {
+                  inputRefs.current[index] = el;
+                }}
+                id={`otp-${index}`}
+              name={`otp-${index}`}
+                type="text"
+                inputMode="numeric"
+                maxLength={1}
+                value={digit}
+                onChange={(e) => handleOtpChange(index, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(index, e)}
+                className="w-12 h-12 text-center text-xl bg-slate-200 border-none"
+              />
+            ))}
           </div>
+          <Button 
+            onClick={handleVerifyOtp} 
+            type="button"
+            id="verify-otp-button"
+            name="verify-otp-button"
+            className="w-5/6 sm:w-4/6 lg:w-3/6 bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-300 py-2 text-lg font-medium rounded-md"
+          >
+            Verify OTP
+          </Button>
         </AlertDialogContent>
       </AlertDialog>
-      
+
+      {showNumberVerification && (
+        <NumberVerificationScreen 
+          isOpen={showNumberVerification} 
+          onClose={handleNumberVerificationClose} 
+          countryCode={countryCode} 
+          mobileNumber={mobileNumber} 
+        />
+      )}
+
       {showDetailsForm && (
         <DetailsFormDialog isOpen={showDetailsForm} onClose={handleDetailsFormClose} />
       )}
     </>
   );
-};
-
-export default OtpScreen;
+}
