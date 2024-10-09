@@ -8,7 +8,7 @@ interface CheckboxAgreementProps {
 
 export default function CheckboxAgreement({ isChecked, onCheckedChange }: CheckboxAgreementProps) {
   return (
-    <div className="flex flex-col items-center p-4  border-t border-slate-300">
+    <div className="flex flex-col items-center p-4  ">
       <div className="flex items-center">
         <Checkbox 
           id="agreement" 

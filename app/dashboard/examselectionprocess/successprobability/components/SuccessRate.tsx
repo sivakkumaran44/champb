@@ -29,6 +29,9 @@ export default function Component() {
                   <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-gray-700 rotate-45"></div>
                 </div>
               </div>
+              <p className="text-xl font-medium text-center text-slate-700 ">
+            You&apos;re showing promise with a 55% success rate. Let&apos;s work on boosting that number!
+          </p>
             </div>
             <div className="flex flex-col items-center">
               <Image
@@ -41,9 +44,7 @@ export default function Component() {
               <span className="text-sm font-semibold mt-1 text-emerald-500">SSC CGL</span>
             </div>
           </div>
-          <p className="text-lg font-medium text-slate-700">
-            You&apos;re showing promise with a 55% success rate. Let&apos;s work on boosting that number!
-          </p>
+         
         </CardContent>
       </Card>
       <div className="flex justify-end space-x-2 mb-2">

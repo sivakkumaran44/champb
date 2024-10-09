@@ -97,7 +97,7 @@ export default function SuccessProbabilityTracker() {
   }
 
   return (
-    <Card className="w-full max-w-3xl mb-2 mx-auto bg-slate-100 border border-custombroder rounded-xl p-4 sm:p-6">
+    <Card className="w-full max-w-3xl h-[500px] mb-4 mx-auto bg-slate-100 border border-custombroder rounded-xl p-4 sm:p-6">
       <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-2 sm:space-y-0 pb-4 sm:pb-6">
         <div className="flex items-center space-x-2">
           <svg

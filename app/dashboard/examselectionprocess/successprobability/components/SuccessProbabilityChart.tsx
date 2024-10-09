@@ -17,7 +17,7 @@ const SuccessProbabilityChart = () => {
         <div className="w-full">
         <SuccessProbabilityProcessChart />    
         </div>
-        <div className="w-full">
+        <div className="w-full ">
    <SuccessProbabilityTracker />
         </div>
         </div>

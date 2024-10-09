@@ -1,9 +1,8 @@
-import React from 'react'
-import { Button } from "@/components/ui/button"
+import React from 'react';
+import { Button } from "@/components/ui/button";
+import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import SSCLogo from '@/public/assets/img/Banner.png'
-import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
-
 export default function Banner() {
   return (
     <div className="flex flex-col-reverse sm:flex-row justify-between items-center p-4 sm:p-6 rounded-lg bg-gradient-to-b from-yellow-200/70 to-yellow-400/70 space-y-4 sm:space-y-0 sm:space-x-4">
@@ -23,14 +22,27 @@ export default function Banner() {
       </div>
       <div className="flex-shrink-0 mb-4 sm:mb-0">
         <Image 
-          src={SSCLogo} 
-          alt="SSC Logo" 
+          src={SSCLogo}
+          alt="SSC Logo"
           width={352}
           height={240}
-          className="w-64 h-auto sm:w-72 sm:h-auto md:w-88 md:h-60"
+          className="w-64 h-auto sm:hidden" 
         />
-        
+        <Image 
+          src={SSCLogo} 
+          alt="SSC Logo"
+          width={352}
+          height={240}
+          className="hidden sm:block md:hidden"
+        />
+        <Image 
+          src={SSCLogo}
+          alt="SSC Logo"
+          width={480}
+          height={240}
+          className="hidden md:block" 
+        />
       </div>
     </div>
-  )
+  );
 }
