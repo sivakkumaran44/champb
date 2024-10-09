@@ -111,9 +111,9 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
 
   const getResendText = () => {
     if (resendCount === 0) {
-      return "Didn't receive OTP?";
+      return "Didn’t receive the OTP? Resend it";
     } else if (resendCount === 1) {
-      return "Still didn't receive?";
+      return "Still didn't receive the OTP?";
     } else if (resendCount < 3) {
       return "Try again";
     } else {
