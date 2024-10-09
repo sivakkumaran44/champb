@@ -25,15 +25,39 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [showDetailsForm, setShowDetailsForm] = useState(false);
   const [showNumberVerification, setShowNumberVerification] = useState(false);
+  const [timer, setTimer] = useState(30);
+  const [canResend, setCanResend] = useState(false);
+  const [resendCount, setResendCount] = useState(0);
+  const [otpMessage, setOtpMessage] = useState("We’ve sent an OTP to your registered mobile number");
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isOpen && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else if (timer === 0) {
+      setCanResend(true);
+    }
+    return () => clearInterval(interval);
+  }, [isOpen, timer]);
+
+  useEffect(() => {
     if (!isOpen) {
-      setOtp(['', '', '', '', '', '']);
-      setShowDetailsForm(false);
-      setShowNumberVerification(false);
+      resetOtpScreen();
     }
   }, [isOpen]);
+
+  const resetOtpScreen = () => {
+    setOtp(['', '', '', '', '', '']);
+    setShowDetailsForm(false);
+    setShowNumberVerification(false);
+    setTimer(30);
+    setCanResend(false);
+    setResendCount(0);
+    setOtpMessage("We’ve sent an OTP to your registered mobile number"); 
+  };
 
   const handleOtpChange = (index: number, value: string) => {
     if (value.length <= 1) {
@@ -73,6 +97,30 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
     }
   };
 
+  const handleResendOtp = () => {
+    if (canResend && resendCount < 3) { 
+      console.log('Resending OTP');
+      setTimer(30);
+      setCanResend(false);
+      setResendCount((prevCount) => prevCount + 1);
+      setOtpMessage("We resent an OTP to your registered mobile number");
+    } else if (resendCount >= 3) {
+      setOtpMessage("You have reached the maximum number of resends.");
+    }
+  };
+
+  const getResendText = () => {
+    if (resendCount === 0) {
+      return "Didn't receive OTP?";
+    } else if (resendCount === 1) {
+      return "Still didn't receive?";
+    } else if (resendCount < 3) {
+      return "Try again";
+    } else {
+      return "Maximum resends reached"; 
+    }
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -96,7 +144,7 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
               Enter OTP
             </AlertDialogTitle>
             <AlertDialogDescription className='text-slate-500 text-sm text-center'>
-              We&apos;ve sent an OTP to your registered mobile number
+              {otpMessage}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className="mt-4 p-3 bg-slate-100 rounded-md flex items-center justify-between">
@@ -125,7 +173,7 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
                   inputRefs.current[index] = el;
                 }}
                 id={`otp-${index}`}
-              name={`otp-${index}`}
+                name={`otp-${index}`}
                 type="text"
                 inputMode="numeric"
                 maxLength={1}
@@ -136,33 +184,38 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
               />
             ))}
           </div>
-          <div className="flex justify-center items-center">
-  <Button 
-      onClick={handleVerifyOtp} 
-      type="button"
-      id="verify-otp-button"
-      name="verify-otp-button"
-      className="w-5/6 sm:w-4/6 lg:w-3/6 bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-300 py-2 text-lg font-medium rounded-md"
-  >
-      Verify OTP
-  </Button>
-</div>
-
+          <div className="flex justify-center items-center mt-4">
+            <Button 
+              onClick={handleVerifyOtp} 
+              type="button"
+              id="verify-otp-button"
+              name="verify-otp-button"
+              className="w-5/6 sm:w-4/6 lg:w-3/6 bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-300 py-2 text-lg font-medium rounded-md"
+            >
+              Verify OTP
+            </Button>
+          </div>
+          <div className="flex flex-col items-center mt-4">
+            <button
+              onClick={handleResendOtp}
+              disabled={resendCount >= 3}
+              className={`text-blue-600 hover:text-blue-800 text-sm ${resendCount >= 3 ? 'cursor-not-allowed' : ''}`}
+            >
+              {getResendText()} {resendCount < 3 && <span>({timer}s)</span>}
+            </button>
+          </div>
         </AlertDialogContent>
       </AlertDialog>
-
-      {showNumberVerification && (
-        <NumberVerificationScreen 
-          isOpen={showNumberVerification} 
-          onClose={handleNumberVerificationClose} 
-          countryCode={countryCode} 
-          mobileNumber={mobileNumber} 
-        />
-      )}
-
-      {showDetailsForm && (
-        <DetailsFormDialog isOpen={showDetailsForm} onClose={handleDetailsFormClose} />
-      )}
+      <DetailsFormDialog 
+        isOpen={showDetailsForm} 
+        onClose={handleDetailsFormClose} 
+      />
+      <NumberVerificationScreen 
+        isOpen={showNumberVerification} 
+        onClose={handleNumberVerificationClose} 
+        countryCode={countryCode} 
+        mobileNumber={mobileNumber} 
+      />
     </>
   );
 }
