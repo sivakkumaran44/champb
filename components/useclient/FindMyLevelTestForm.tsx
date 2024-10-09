@@ -19,6 +19,10 @@ const FindMyLevelTestForm = () => {
     setShowOtpVerification(false);
   };
 
+  const handleUpdateMobileNumber = (newMobileNumber: string) => {
+    setMobileNumber(newMobileNumber);
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -96,6 +100,7 @@ const FindMyLevelTestForm = () => {
           onClose={handleOtpVerificationClose}
           countryCode={countryCode}
           mobileNumber={mobileNumber}
+          onUpdateMobileNumber={handleUpdateMobileNumber}
         />
       )}
     </>
