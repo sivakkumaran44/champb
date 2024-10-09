@@ -10,7 +10,7 @@ import {
   AlertDialogTitle,
   AlertDialogDescription,
 } from "@/components/ui/alert-dialog";
-import OtpScreen from './OtpScreen'; 
+import OtpScreen from './OtpScreen';
 import { X } from "lucide-react";
 
 interface OtpVerificationProps {
@@ -29,7 +29,11 @@ const OtpVerification: React.FC<OtpVerificationProps> = ({ isOpen, onClose }) =>
 
   const handleOtpScreenClose = () => {
     setIsOtpScreenOpen(false);
-    onClose(); 
+    onClose();
+  };
+
+  const handleUpdateMobileNumber = (newNumber: string) => {
+    setMobileNumber(newNumber);
   };
 
   if (!isOpen) return null;
@@ -58,19 +62,19 @@ const OtpVerification: React.FC<OtpVerificationProps> = ({ isOpen, onClose }) =>
             <label htmlFor="mobileNumber" className="block text-sm font-medium text-slate-500 text-center mb-2">Enter Mobile number</label>
             <div className="flex items-center border-b-2 border-emerald-700">
               <span className="text-zinc-950 mr-2">+91</span>
-              <Input
-  id="mobileNumber"
-  name="mobileNumber"
-  value={mobileNumber}
-  onChange={(e) => setMobileNumber(e.target.value)}
-  className="flex-1 border-none outline-none focus:ring-0 focus:outline-none hover:border-transparent active:border-transparent p-2 text-lg"
-  style={{
-    boxShadow: 'none',
-    '--tw-ring-color': 'transparent',
-  } as React.CSSProperties}
-/>
-    </div>
-          </div>  
+              <Input 
+                id="mobileNumber"
+                name="mobileNumber"
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
+                className="flex-1 border-none outline-none focus:ring-0 focus:outline-none hover:border-transparent active:border-transparent p-2 text-lg"
+                style={{
+                  boxShadow: 'none',
+                  '--tw-ring-color': 'transparent',
+                } as React.CSSProperties}
+              />
+            </div>
+          </div>
           <Button
             onClick={handleGetOtp}
             type="button"
@@ -87,6 +91,7 @@ const OtpVerification: React.FC<OtpVerificationProps> = ({ isOpen, onClose }) =>
           onClose={handleOtpScreenClose}
           countryCode="+91"
           mobileNumber={mobileNumber}
+          onUpdateMobileNumber={handleUpdateMobileNumber}
         />
       )}
     </>
