@@ -136,15 +136,18 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
               />
             ))}
           </div>
-          <Button 
-            onClick={handleVerifyOtp} 
-            type="button"
-            id="verify-otp-button"
-            name="verify-otp-button"
-            className="w-5/6 sm:w-4/6 lg:w-3/6 bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-300 py-2 text-lg font-medium rounded-md"
-          >
-            Verify OTP
-          </Button>
+          <div className="flex justify-center items-center">
+  <Button 
+      onClick={handleVerifyOtp} 
+      type="button"
+      id="verify-otp-button"
+      name="verify-otp-button"
+      className="w-5/6 sm:w-4/6 lg:w-3/6 bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-300 py-2 text-lg font-medium rounded-md"
+  >
+      Verify OTP
+  </Button>
+</div>
+
         </AlertDialogContent>
       </AlertDialog>
 
