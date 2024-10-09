@@ -1,14 +1,11 @@
 "use client";
 import React from 'react';
-import { Trophy, CircleChevronDown, Menu, User, BookmarkIcon, Bell, Settings,DiamondPlus, LogOut } from 'lucide-react';
+import { Trophy, CircleChevronDown, User, BookmarkIcon, Bell, Settings,DiamondPlus, LogOut } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-const Dashboardheader: React.FC<{ toggleSidebar: () => void }> = ({ toggleSidebar }) => (
+const Dashboardheader: React.FC = () => (
   <header className="bg-slate-200 p-6 flex justify-between items-center">
-    <Button variant="ghost" size="icon" onClick={toggleSidebar} className="lg:hidden">
-      <Menu className="h-6 w-6" />
-    </Button>
     <div className="flex-1 flex justify-center">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

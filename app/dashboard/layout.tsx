@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 import { usePathname } from 'next/navigation';
-import DashboardHeader from "@/components/layout/DashboardHeader";
+import DashboardHeader from "@/components/layout/Dashboardlayout/DashboardHeader";
 import { TestTypeProvider } from '@/app/usecontext/TestTypeContext';
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
