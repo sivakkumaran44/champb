@@ -5,7 +5,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,14 +29,15 @@ import {
   Sliders,
   BookmarkIcon,
   Menu,
+  X,
 } from 'lucide-react'
 import { useTestType, TestType } from '@/app/usecontext/TestTypeContext'
 
 interface MenuItem {
-  icon: React.ElementType
   label: string
+  icon: React.ElementType
   href?: string
-  subItems?: { icon: React.ElementType; label: string; href: string }[]
+  subItems?: MenuItem[]
 }
 
 const menuItems: MenuItem[] = [
@@ -77,40 +78,49 @@ function useIsMobile() {
 }
 
 export default function Component() {
-  const [expandedSection, setExpandedSection] = useState<string>('Tests');
-  const [isOpen, setIsOpen] = useState(false);
-  const { activeTestType, setActiveTestType } = useTestType();
-  const router = useRouter();
-  const pathname = usePathname();
-  const isMobile = useIsMobile();
+  const [expandedSection, setExpandedSection] = useState<string>('Tests')
+  const [isOpen, setIsOpen] = useState(false)
+  const { activeTestType, setActiveTestType } = useTestType()
+  const router = useRouter()
+  const pathname = usePathname()
+  const isMobile = useIsMobile()
 
   useEffect(() => {
-    const currentPath = pathname.split('/').pop();
-    const currentItem = menuItems.flatMap(item => item.subItems || []).find(subItem => subItem.href.includes(currentPath || ''));
+    const currentPath = pathname.split('/').pop()
+    const currentItem = menuItems.flatMap(item => item.subItems || []).find(subItem => subItem.href?.includes(currentPath || ''))
     if (currentItem) {
-      setActiveTestType(currentItem.label as TestType);
-      setExpandedSection(menuItems.find(item => item.subItems?.includes(currentItem))?.label || '');
+      setActiveTestType(currentItem.label as TestType)
+      const parentItem = menuItems.find(item => item.subItems?.includes(currentItem))
+      if (parentItem) {
+        setExpandedSection(parentItem.label)
+      }
     }
-  }, [pathname, setActiveTestType]);
+  }, [pathname, setActiveTestType])
 
   const handleItemClick = (label: string, href?: string) => {
-    setExpandedSection(prev => prev === label ? '' : label);
-  
-    if (href) {
-      setActiveTestType(label as TestType);
-      router.push(href);
-      setIsOpen(false);
-    }
-  };
+    setExpandedSection(prev => prev === label ? '' : label)
 
-  const handleSubItemClick = (label: TestType, href: string) => {
-    setActiveTestType(label);
-    router.push(href);
-    setIsOpen(false);
-  };
+    if (href) {
+      setActiveTestType(label as TestType)
+      router.push(href)
+      setIsOpen(false)
+    } else {
+      console.warn(`No href defined for ${label}`);
+    }
+  }
+
+  const handleSubItemClick = (label: TestType, href?: string) => {
+    if (href) {
+      setActiveTestType(label)
+      router.push(href)
+      setIsOpen(false)
+    } else {
+      console.warn(`No href defined for ${label}`);
+    }
+  }
 
   const renderMenuItem = (item: MenuItem) => (
-    <div key={item.label} className="mt-8 mb-1">
+    <div key={item.label} className="mt-4 mb-1">
       <Button
         variant="ghost"
         className={cn(
@@ -135,7 +145,7 @@ export default function Component() {
               key={subItem.label}
               variant="ghost"
               className={cn(
-                "w-full justify-start ",
+                "w-full justify-start",
                 activeTestType === subItem.label && "bg-emerald-500 text-white"
               )}
               onClick={() => handleSubItemClick(subItem.label as TestType, subItem.href)}
@@ -151,6 +161,16 @@ export default function Component() {
 
   const sidebarContent = (
     <div className="flex h-full flex-col bg-slate-100">
+      {isMobile && (
+        <div className="flex justify-end p-4">
+          <SheetClose asChild>
+            <Button variant="ghost" size="icon" className="h-6 w-6">
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </Button>
+          </SheetClose>
+        </div>
+      )}
       <ScrollArea className="flex-1 px-3 py-2">
         <nav className="flex flex-col space-y-1">
           {menuItems.map(renderMenuItem)}
@@ -165,15 +185,15 @@ export default function Component() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setIsOpen(false)}>
               <User className="mr-2 h-4 w-4" />
               <span>Profile Settings</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setIsOpen(false)}>
               <Sliders className="mr-2 h-4 w-4" />
               <span>Notifications Preferences</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setIsOpen(false)}>
               <BookmarkIcon className="mr-2 h-4 w-4" />
               <span>Saved Tests</span>
             </DropdownMenuItem>

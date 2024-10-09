@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import disclaimerData from "@/components/data/disclaimer.json";
 
 const DisclaimerDialog = () => {
   return (
@@ -11,15 +12,16 @@ const DisclaimerDialog = () => {
           View Disclaimer
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="max-w-md max-h-[80vh] overflow-y-auto"> 
         <AlertDialogHeader>
-          <AlertDialogTitle>Exam Selection Probability Disclaimer</AlertDialogTitle>
+          <AlertDialogTitle>{disclaimerData.title}</AlertDialogTitle>
           <AlertDialogDescription>
             <div className="space-y-4 text-slate-700 text-base mb-12">
-              <p>1. <strong>Integrity:</strong> We expect users to approach these mock tests with honesty and integrity. Your genuine progress is the most valuable outcome of this feature.</p>
-              <p>2. <strong>Fair Practice:</strong> Any form of malpractice or cheating is strongly discouraged. Such actions will skew your Exam Selection Probability and hinder your actual preparation and growth.</p>
-              <p>3. <strong>Learning from Mistakes:</strong> Errors in your mock tests should be viewed as learning opportunities. We encourage you to analyze these mistakes to enhance your understanding and improve your performance.</p>
-              <p>4. <strong>Continuous Improvement:</strong> Each mock test you take contributes to refining your Exam Selection Probability. Consistent effort and persistence are key to seeing improvement in this metric.</p>
+              {disclaimerData.content.map((item, index) => (
+                <p key={index}>
+                  {index + 1}. <strong>{item.title}:</strong> {item.description}
+                </p>
+              ))}
             </div>
           </AlertDialogDescription>
         </AlertDialogHeader>

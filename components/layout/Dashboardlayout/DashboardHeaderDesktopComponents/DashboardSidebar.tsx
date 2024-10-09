@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -41,7 +42,10 @@ import { useTestType, TestType } from '@/app/usecontext/TestTypeContext'
 
 import Logo from '@/public/assets/img/LOGO SVG.svg'
 import LogoSmall from '@/public/assets/img/Logo.svg'
-
+interface CustomTooltipProps {
+  children: React.ReactNode;
+  content: string;
+}
 interface MenuItem {
   icon: React.ElementType
   label: string
@@ -73,28 +77,36 @@ const menuItems: MenuItem[] = [
   { icon: CreditCard, label: 'Subscription', href: '/dashboard/subscription' },
 ]
 
-function CustomTooltip({ children, content }: { children: React.ReactNode; content: string }) {
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent className="bg-white text-black rounded-2xl shadow-lg py-2 px-3 flex items-center space-x-2 relative">
-          <svg
-            className="absolute left-0 top-1/2 transform -translate-x-full -translate-y-1/2"
-            width="9"
-            height="16"
-            viewBox="0 0 9 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M0 0C5 0 9 4 9 8C9 12 5 16 0 16V0Z" fill="white" />
-          </svg>
-          <span className="font-semibold text-gray-800">{content}</span>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  )
-}
+
+const CustomTooltip = React.forwardRef<HTMLDivElement, CustomTooltipProps>(
+  ({ children, content }, ref) => {
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div ref={ref}>{children}</div>
+          </TooltipTrigger>
+          <TooltipContent className="bg-white text-black rounded-2xl shadow-lg py-2 px-3 flex items-center space-x-2 relative left-full ml-[-4px]">
+            <svg
+              className="absolute left-0 top-1/2 transform -translate-x-full -translate-y-1/2"
+              width="9"
+              height="16"
+              viewBox="0 0 9 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 0C5 0 9 4 9 8C9 12 5 16 0 16V0Z" fill="white" />
+            </svg>
+            <span className="font-semibold text-gray-800">{content}</span>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    );
+  }
+);
+
+CustomTooltip.displayName = 'CustomTooltip';
+
 
 export default function Component() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -106,7 +118,6 @@ export default function Component() {
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
-     
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -136,52 +147,48 @@ export default function Component() {
 
   const renderMenuItem = (item: MenuItem) => (
     <div key={item.label} className="mb-1">
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="ghost"
-              className={cn(
-                "w-full justify-start transition-all duration-300 ease-in-out bg-transparent hover:bg-transparent",
-                isExpanded ? "px-4" : "px-2 flex items-center justify-center",
-                expandedSection === item.label && "bg-emerald-500 text-white rounded-2xl"
-              )}
-              onClick={() => handleItemClick(item.label, item.href)}
-            >
-              <item.icon className="h-4 w-4" />
-              <span className={cn(
-                "ml-3 transition-all duration-300",
-                isExpanded ? "opacity-100 max-w-full" : "opacity-0 max-w-0 overflow-hidden"
-              )}>{item.label}</span>
-              {isExpanded && item.subItems && (
-                <ChevronRight className={cn(
-                  "ml-auto h-4 w-4 transition-transform duration-300",
-                  expandedSection === item.label && "rotate-90"
-                )} />
-              )}
-            </Button>
-          </TooltipTrigger>
-          {!isExpanded && <TooltipContent side="right" className="bg-emerald-500 text-white border-emerald-500">{item.label}</TooltipContent>}
-        </Tooltip>
-      </TooltipProvider>
+      <CustomTooltip content={item.label}>
+        <Button
+          variant="ghost"
+          className={cn(
+            "w-full justify-start transition-all duration-300 ease-in-out bg-transparent hover:bg-emerald-500 rounded-2xl",
+            isExpanded ? "px-4" : "px-2 flex items-center justify-center",
+            expandedSection === item.label && "bg-emerald-500 text-white rounded-2xl"
+          )}
+          onClick={() => handleItemClick(item.label, item.href)}
+        >
+          <item.icon className="h-4 w-4" />
+          <span className={cn(
+            "flex items-center justify-center transition-all duration-300",
+            isExpanded ? "opacity-100 max-w-full ml-2" : "opacity-0 max-w-0 overflow-hidden"
+          )}>{item.label}</span>
+          {isExpanded && item.subItems && (
+            <ChevronRight className={cn(
+              "ml-auto h-4 w-4 transition-transform duration-300",
+              expandedSection === item.label && "rotate-90"
+            )} />
+          )}
+        </Button>
+      </CustomTooltip>
       {item.subItems && (
         <div className={cn(
           "mt-1 space-y-1 overflow-hidden transition-all duration-300 ease-in-out",
           isExpanded && expandedSection === item.label ? "max-h-96" : "max-h-0"
         )}>
           {item.subItems.map((subItem) => (
-            <Button
-              key={subItem.label}
-              variant="ghost"
-              className={cn(
-                "w-full justify-start transition-all duration-300 ease-in-out bg-transparent  hover:bg-transparent",
-                activeTestType === subItem.label && "bg-emerald-500 text-white hover:bg-emerald-500"
-              )}
-              onClick={() => handleSubItemClick(subItem.label as TestType, subItem.href)}
-            >
-              <subItem.icon className="h-4 w-4" />
-              <span className="ml-3">{subItem.label}</span>
-            </Button>
+            <CustomTooltip key={subItem.label} content={subItem.label}>
+              <Button
+                variant="ghost"
+                className={cn(
+                  "w-full justify-start transition-all duration-300 ease-in-out bg-transparent hover:bg-transparent",
+                  activeTestType === subItem.label && "bg-emerald-500 rounded-2xl text-white hover:bg-emerald-500"
+                )}
+                onClick={() => handleSubItemClick(subItem.label as TestType, subItem.href)}
+              >
+                <subItem.icon className="h-4 w-4" />
+                <span className="ml-3">{subItem.label}</span>
+              </Button>
+            </CustomTooltip>
           ))}
         </div>
       )}
@@ -202,17 +209,17 @@ export default function Component() {
           />
         </div>
         {!isMobile && isExpanded && (
-  <CustomTooltip content="Close Sidebar">
-    <Button
-      variant="ghost"
-      size="icon"
-      className="p-0 bg-transparent hover:bg-transparent"
-      onClick={toggleExpanded} 
-    >
-      <PanelLeftClose size={20} className='text-emerald-700' />
-    </Button>
-  </CustomTooltip>
-)}
+          <CustomTooltip content="Close Sidebar">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="p-0 bg-transparent hover:bg-transparent"
+              onClick={toggleExpanded} 
+            >
+              <PanelLeftClose size={20} className='text-emerald-700' />
+            </Button>
+          </CustomTooltip>
+        )}
       </div>
       <ScrollArea className="flex-1 px-3 py-2">
         <nav className="flex flex-col space-y-1">
@@ -221,34 +228,33 @@ export default function Component() {
       </ScrollArea>
       {!isMobile && !isExpanded && (
         <div className='flex items-center justify-center'>
-  <CustomTooltip content="Open Sidebar">
-    <Button
-      variant="ghost"
-      size="icon"
-      className="p-0 bg-transparent  hover:bg-transparent "  
-      onClick={toggleExpanded}
-    >
-      <PanelLeftOpen size={20} className="text-emerald-700 " />
-    </Button>
-  </CustomTooltip>
-  </div>
-)}
-    
-      <div className="p-4 border-t ">
+          <CustomTooltip content="Open Sidebar">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="p-0 bg-transparent hover:bg-transparent"  
+              onClick={toggleExpanded}
+            >
+              <PanelLeftOpen size={20} className="text-emerald-700" />
+            </Button>
+          </CustomTooltip>
+        </div>
+      )}
+      <div className="p-4 border-t">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <CustomTooltip content="Settings">
               <Button 
                 variant="ghost" 
                 className={cn(
-                  "w-full justify-start transition-all duration-300 ease-in-out bg-transparent  hover:bg-transparent",
+                  "w-full justify-start transition-all duration-300 ease-in-out bg-transparent hover:bg-transparent",
                   isExpanded ? "px-4 py-2" : "px-2 py-2 flex items-center justify-center"
                 )}
               >
                 <Settings className="h-5 w-5 transition-all duration-300 ease-in-out" />
                 <span className={cn(
-                  " transition-all duration-300 ease-in-out",
-                  isExpanded ? "opacity-100 max-w-full" : "opacity-0 max-w-0 overflow-hidden"
+                  "transition-all duration-300 ease-in-out",
+                  isExpanded ? "ml-4 opacity-100 max-w-full" : "opacity-0 max-w-0 overflow-hidden"
                 )}>
                   Settings
                 </span>
@@ -276,8 +282,8 @@ export default function Component() {
 
   return (
     <>
-    <div className='md:hidden'>
-      <DashboardSidebarMobile />
+      <div className='md:hidden'>
+        <DashboardSidebarMobile />
       </div>
       <aside
         className={cn(
@@ -290,5 +296,3 @@ export default function Component() {
     </>
   );
 }
-        
-     
