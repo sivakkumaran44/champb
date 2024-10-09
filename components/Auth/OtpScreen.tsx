@@ -96,7 +96,7 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
               Enter OTP
             </AlertDialogTitle>
             <AlertDialogDescription className='text-slate-500 text-sm text-center'>
-              We've sent an OTP to your registered mobile number
+              We&apos;ve sent an OTP to your registered mobile number
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className="mt-4 p-3 bg-slate-100 rounded-md flex items-center justify-between">
