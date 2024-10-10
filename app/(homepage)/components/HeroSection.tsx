@@ -8,7 +8,7 @@ import AppCta from './AppCta';
 import Footer from './Footer';
 import Image from 'next/image';
 import illustrationImage from '@/public/assets/img/Group 1198.svg'
-import HeroSectionClientsid from '@/components/useclient/HeroSectionClientside.tsx';
+import HeroSectionClientsid from '@/components/useclient/HeroSectionClientside';
 import CardCarsoel from './CardCarsoel';
 
 const HeroSection: React.FC = () => {

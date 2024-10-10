@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import GeneralIntelligence from "./GeneralIntelligence";
+import TestTypeNavigation from "../../process/components/TestTypeNavigation";
 
 const SyllabusCoverage = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -11,6 +12,7 @@ const SyllabusCoverage = () => {
 
   return (
     <div className="relative w-full max-w-5xl px-4 sm:px-0">
+      <TestTypeNavigation/>
       <div className="pr-10 h-14 mb-6 border border-custombroder bg-slate-100 text-slate-700 text-lg sm:text-xl p-4 sm:p-6 rounded-lg flex justify-center items-center">
         Syllabus Coverage
       </div>

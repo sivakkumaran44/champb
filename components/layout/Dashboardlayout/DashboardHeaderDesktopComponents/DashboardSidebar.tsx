@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -42,6 +41,7 @@ import { useTestType, TestType } from '@/app/usecontext/TestTypeContext'
 
 import Logo from '@/public/assets/img/LOGO SVG.svg'
 import LogoSmall from '@/public/assets/img/Logo.svg'
+
 interface CustomTooltipProps {
   children: React.ReactNode;
   content: string;
@@ -50,6 +50,7 @@ interface MenuItem {
   icon: React.ElementType
   label: string
   href?: string
+  defaultSubItem?: string
   subItems?: { icon: React.ElementType; label: string; href: string }[]
 }
 
@@ -57,6 +58,7 @@ const menuItems: MenuItem[] = [
   {
     icon: BookOpen,
     label: 'Tests',
+    defaultSubItem: 'All',
     subItems: [
       { icon: FileText, label: 'All', href: '/dashboard' },
       { icon: PenTool, label: 'Practice Test', href: '/dashboard/practicetest' },
@@ -68,16 +70,19 @@ const menuItems: MenuItem[] = [
   {
     icon: TrendingUp,
     label: 'Progress',
+    defaultSubItem: 'Test Progress',
     subItems: [
       { icon: BarChart2, label: 'Test Progress', href: '/dashboard/process' },
       { icon: Clock, label: 'Syllabus Coverage', href: '/dashboard/syllabus' },
       { icon: Target, label: 'Exam Selection Progress', href: '/dashboard/examselectionprocess'},
     ]
   },
-  { icon: CreditCard, label: 'Subscription', href: '/dashboard/subscription' },
+  {
+    icon: CreditCard,
+    label: 'Subscription',
+    href: '/dashboard/subscription'
+  }
 ]
-
-
 const CustomTooltip = React.forwardRef<HTMLDivElement, CustomTooltipProps>(
   ({ children, content }, ref) => {
     return (
@@ -104,9 +109,7 @@ const CustomTooltip = React.forwardRef<HTMLDivElement, CustomTooltipProps>(
     );
   }
 );
-
 CustomTooltip.displayName = 'CustomTooltip';
-
 
 export default function Component() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -123,19 +126,24 @@ export default function Component() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  const handleItemClick = (label: string, href?: string) => {
+  const handleItemClick = (item: MenuItem) => {
     if (!isExpanded && !isMobile) {
       setIsExpanded(true);
     }
-    setExpandedSection(prev => prev === label ? '' : label);
-
-    if (href) {
-      setActiveTestType(label as TestType);
-      router.push(href);
+    
+    if (item.subItems) {
+      setExpandedSection(prev => prev === item.label ? '' : item.label);
+      const defaultSubItem = item.subItems.find(subItem => subItem.label === item.defaultSubItem);
+      if (defaultSubItem) {
+        setActiveTestType(defaultSubItem.label as TestType);
+        router.push(defaultSubItem.href);
+      }
+    } else if (item.href) {
+      setExpandedSection('');
+      setActiveTestType(item.label as TestType);
+      router.push(item.href);
     }
   };
-
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };
@@ -144,7 +152,6 @@ export default function Component() {
     setActiveTestType(label);
     router.push(href);
   };
-
   const renderMenuItem = (item: MenuItem) => (
     <div key={item.label} className="mb-1">
       <CustomTooltip content={item.label}>
@@ -153,9 +160,9 @@ export default function Component() {
           className={cn(
             "w-full justify-start transition-all duration-300 ease-in-out bg-transparent hover:bg-emerald-500 rounded-2xl",
             isExpanded ? "px-4" : "px-2 flex items-center justify-center",
-            expandedSection === item.label && "bg-emerald-500 text-white rounded-2xl"
+            (expandedSection === item.label || (!item.subItems && activeTestType === item.label)) && "bg-emerald-500 text-white rounded-2xl"
           )}
-          onClick={() => handleItemClick(item.label, item.href)}
+          onClick={() => handleItemClick(item)}
         >
           <item.icon className="h-4 w-4" />
           <span className={cn(
@@ -194,7 +201,6 @@ export default function Component() {
       )}
     </div>
   );
-
   const sidebarContent = (
     <div className="flex h-full flex-col bg-background">
       <div className="flex items-center justify-between p-4">

@@ -4,6 +4,7 @@ import { CheckCircle, XCircle, MinusCircle, PenSquare, View } from 'lucide-react
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import TestTypeNavigation from './TestTypeNavigation';
 
 const iconMap = {
   CheckCircle,
@@ -45,6 +46,7 @@ const TestProgress: React.FC<TestProgressProps> = ({ data }) => { const router =
 
   return (
     <div className="relative w-full max-w-5xl">
+      <TestTypeNavigation/>
       <div className="pr-10 h-14 mb-6 border border-custombroder bg-slate-100 text-slate-700 text-xl p-6 rounded-lg flex justify-between items-center cursor-pointer">
         Test Progress
       </div>

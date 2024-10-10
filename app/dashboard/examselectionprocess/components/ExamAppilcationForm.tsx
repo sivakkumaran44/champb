@@ -5,6 +5,7 @@ import SelectYear from './SelectYear';
 import Disclaimer from './Disclaimer';
 import CheckboxAgreement from './CheckboxAgreement';
 import { Button } from '@/components/ui/button';
+import TestTypeNavigation from '../../process/components/TestTypeNavigation';
 
 export default function ExamApplicationForm() {
   const [isChecked, setIsChecked] = useState(false);
@@ -23,7 +24,8 @@ export default function ExamApplicationForm() {
   };
 
   return (
-    <div className="w-full p-4">
+    <div className="relative w-full max-w-5xl">
+    <TestTypeNavigation/>
       <div className="hidden lg:flex h-14 mb-6 border border-slate-200 bg-slate-100 text-slate-700 text-xl rounded-lg justify-center items-center">
         Exam Selection Probability
       </div>

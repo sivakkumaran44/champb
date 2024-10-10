@@ -24,8 +24,6 @@ export default function Component({ subscriptions }: SubscriptionCardsProps) {
               <Image 
                 src={card}
                 alt={`${subscription.title} Logo`}
-                width={200}
-                height={200}
                 className="object-contain "
               />
             </CardHeader>

@@ -7,8 +7,8 @@ export default function Banner() {
   return (
     <div className="flex flex-col-reverse sm:flex-row justify-between items-center p-4 sm:p-6 rounded-lg bg-gradient-to-b from-yellow-200/70 to-yellow-400/70 space-y-4 sm:space-y-0 sm:space-x-4">
       <div className="flex flex-col space-y-2 sm:space-y-4 text-left w-full sm:w-auto">
-        <p className="text-base sm:text-lg text-slate-700">Start Achieving your goal</p>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-700">SSC CGL</h2>
+      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-700">Start Achieving your goal</p>
+<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-700">SSC CGL</h2>
         <ul className="list-disc list-inside text-xs sm:text-sm text-slate-700 space-y-1">
           <li>Full syllabus coverage for all SSC CGL Tiers (I, II, III, and IV)</li>
           <li>50+ full-length mock tests</li>
@@ -27,14 +27,15 @@ export default function Banner() {
           width={352}
           height={240}
           className="w-64 h-auto lg:hidden" 
+          priority={true} 
         />
-     
         <Image 
           src={SSCLogo}
           alt="SSC Logo"
           width={480}
           height={240}
-          className="hidden lg:block" 
+          className=" hidden lg:block" 
+          priority={true} 
         />
       </div>
     </div>
