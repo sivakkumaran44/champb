@@ -17,7 +17,7 @@ const TestTypeNavigation: React.FC = () => {
     setActiveTestType(item);
     switch (item) {
       case 'Test Progress':
-        router.push('/dashboard/ process');
+        router.push('/dashboard/process');
         break;
       case 'Syllabus Coverage':
         router.push('/dashboard/syllabus');
