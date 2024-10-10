@@ -26,21 +26,15 @@ export default function Banner() {
           alt="SSC Logo"
           width={352}
           height={240}
-          className="w-64 h-auto sm:hidden" 
+          className="w-64 h-auto lg:hidden" 
         />
-        <Image 
-          src={SSCLogo} 
-          alt="SSC Logo"
-          width={352}
-          height={240}
-          className="hidden sm:block md:hidden"
-        />
+     
         <Image 
           src={SSCLogo}
           alt="SSC Logo"
           width={480}
           height={240}
-          className="hidden md:block" 
+          className="hidden lg:block" 
         />
       </div>
     </div>
