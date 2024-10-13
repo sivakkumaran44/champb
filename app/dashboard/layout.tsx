@@ -1,12 +1,27 @@
-"use client"
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { usePathname } from 'next/navigation';
 import DashboardHeader from "@/components/layout/Dashboardlayout/DashboardHeader";
 import { TestTypeProvider } from '@/app/usecontext/TestTypeContext';
+import Loading from './loading';
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   const hideHeaderAndSidebar = pathname === '/dashboard/process/report/viewsolutions';
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); 
+    }, 2000); 
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <Loading />; 
+   }
 
   return (
     <TestTypeProvider>

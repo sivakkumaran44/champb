@@ -4,6 +4,7 @@ import { Trophy, CircleChevronDown, User, BookmarkIcon, Bell, Settings,DiamondPl
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from 'next/link';
 const Dashboardheader: React.FC = () => (
   <header className="bg-slate-200 p-6 flex justify-between items-center">
     <div className="flex-1 flex justify-center">
@@ -53,24 +54,26 @@ const Dashboardheader: React.FC = () => (
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-64 bg-emerald-300 text-emerald-700 rounded-md shadow-lg p-1">
+      <DropdownMenuItem className="flex items-center px-4 py-3 hover:bg-emerald-300 focus:bg-emerald-300">
+  <Link href="/dashboard/goals" className="flex items-center w-full">
+    <User className="mr-3 h-5 w-5" />
+    <span className="text-base md:text-lg lg:text-xl">Goals</span>
+  </Link>
+</DropdownMenuItem>
+        <div className="h-px bg-slate-700 my-2" />
         <DropdownMenuItem className="flex items-center px-4 py-3 hover:bg-emerald-300 focus:bg-emerald-300">
-          <User className="mr-3 h-5 w-5" />
+          <BookmarkIcon className="mr-3 h-5 w-5" />
           <span className="text-base md:text-lg lg:text-xl">Profile</span>
         </DropdownMenuItem>
         <div className="h-px bg-slate-700 my-2" />
         <DropdownMenuItem className="flex items-center px-4 py-3 hover:bg-emerald-300 focus:bg-emerald-300">
-          <BookmarkIcon className="mr-3 h-5 w-5" />
-          <span className="text-base md:text-lg lg:text-xl">Saved Tests</span>
-        </DropdownMenuItem>
-        <div className="h-px bg-slate-700 my-2" />
-        <DropdownMenuItem className="flex items-center px-4 py-3 hover:bg-emerald-300 focus:bg-emerald-300">
           <Bell className="mr-3 h-5 w-5" />
-          <span className="text-base md:text-lg lg:text-xl">Notifications Preferences</span>
+          <span className="text-base md:text-lg lg:text-xl">Tests</span>
         </DropdownMenuItem>
         <div className="h-px bg-slate-700 my-2" />
         <DropdownMenuItem className="flex items-center px-4 py-3 hover:bg-emerald-300 focus:bg-emerald-300">
           <Settings className="mr-3 h-5 w-5" />
-          <span className="text-base md:text-lg lg:text-xl">Settings</span>
+          <span className="text-base md:text-lg lg:text-xl">Progress</span>
         </DropdownMenuItem>
         <div className="h-px bg-slate-700 my-2" />
         <DropdownMenuItem className="flex items-center px-4 py-3 hover:bg-emerald-300 focus:bg-emerald-300">

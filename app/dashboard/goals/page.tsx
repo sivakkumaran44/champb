@@ -1,11 +1,9 @@
 import React from 'react'
-
-import MockTestPage from './components/MockTestPage'
-
+import SubscriptionPlan from './components/goals'
 const page = () => {
   return (
     <div>
-      <MockTestPage/>
+        <SubscriptionPlan/>
     </div>
   )
 }
