@@ -1,7 +1,6 @@
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -11,13 +10,14 @@ import {
 } from "@/components/ui/select";
 
 interface SettingsContentProps {
-    isEditing: boolean;
-  }
-  
-  export default function SettingsContent({ isEditing }: SettingsContentProps) {
-    return (
+  isEditing: boolean;
+}
+
+export default function SettingsContent({ isEditing }: SettingsContentProps) {
+  return (
     <div className="space-y-4 pl-6">
-      <div className="grid grid-cols-2 gap-4">
+      {/* Adjusting grid layout for mobile and larger devices */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="fullName">Full Name</Label>
           <Input
@@ -65,11 +65,10 @@ interface SettingsContentProps {
         </div>
         <div>
           <Label htmlFor="gender">Gender</Label>
-          <Select defaultValue="male">
+          <Select defaultValue="male" disabled={!isEditing}>
             <SelectTrigger
               id="gender"
               className="border border-gray-300 rounded-md p-2 focus:border-black-500 focus:outline-none"
-              disabled={!isEditing}
             >
               <SelectValue placeholder="Select gender" />
             </SelectTrigger>
@@ -81,9 +80,9 @@ interface SettingsContentProps {
           </Select>
         </div>
       </div>
-      <div className="flex justify-end space-x-2">
-        <Button variant="outline" className="border border-emerald-700 text-emerald-700">Cancel</Button>
-        <Button className="bg-emerald-700 hover:bg-emerald-700">Save Changes</Button>
+
+     <div className="hidden md:block">
+        <p>Last sign in: today at 18:54, Android Device</p>
       </div>
     </div>
   );
