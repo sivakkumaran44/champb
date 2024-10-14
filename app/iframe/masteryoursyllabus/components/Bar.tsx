@@ -1,5 +1,4 @@
 "use client"
-
 import React from 'react'
 import { BarChart, Bar, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"

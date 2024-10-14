@@ -1,0 +1,354 @@
+{
+    "subjects": [
+      {
+        "name": "Mathematics",
+        "correctanswered": 35,
+        "Incorrectanswered": 25,
+        "UncoveredAnswered":40,
+        "color1": "#4ade80",
+        "color2": "#fda4af",
+        "color3": "#E3E3E3",
+        "chapter": [
+          {
+            "name": "Algebra",
+            "correctanswered": 40,
+            "Incorrectanswered": 30,
+            "UncoveredAnswered":30,
+            "text": "Algebra Basics",
+            "color1": "#4ade80",
+            "color2": "#fda4af",
+            "color3": "#E3E3E3",
+            "topics": [
+              {
+                "name": "Linear Equations",
+                "correctanswered": 35,
+                "Incorrectanswered": 25,
+                "UncoveredAnswered":40
+              },
+              {
+                "name": "Quadratic Equations",
+                "correctanswered": 30,
+                "Incorrectanswered": 20,
+                "UncoveredAnswered":50
+              },
+              {
+                "name": "Polynomials",
+                "correctanswered": 25,
+                "Incorrectanswered": 15,
+                "UncoveredAnswered":60
+              }
+            ]
+          },
+          {
+            "name": "Geometry",
+            "correctanswered": 35,
+            "Incorrectanswered": 25,
+            "UncoveredAnswered":40,
+            "text": "Geometric Concepts",
+            "color1": "#4ade80",
+            "color2": "#fda4af",
+            "color3": "#E3E3E3",
+            "topics": [
+              {
+                "name": "Triangles",
+                "correctanswered": 30,
+                "Incorrectanswered": 20,
+                "UncoveredAnswered":50
+              },
+              {
+                "name": "Circles",
+                "correctanswered": 25,
+                "Incorrectanswered": 15,
+                "UncoveredAnswered":60
+              },
+              {
+                "name": "Polygons",
+                "correctanswered": 20,
+                "Incorrectanswered": 10,
+                "UncoveredAnswered":70
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Physics",
+        "correctanswered": 35,
+        "Incorrectanswered": 25,
+        "UncoveredAnswered":40,
+        "color1": "#4ade80",
+        "color2": "#fda4af",
+        "color3": "#E3E3E3",
+        "chapter": [
+          {
+            "name": "Mechanics",
+            "correctanswered": 45,
+            "Incorrectanswered": 35,
+            "UncoveredAnswered":20,
+            "text": "Classical Mechanics",
+            "color1": "#4ade80",
+            "color2": "#fda4af",
+            "color3": "#E3E3E3",
+            "topics": [
+              {
+                "name": "Newton's Laws",
+                "correctanswered": 40,
+                "Incorrectanswered": 30,
+                "UncoveredAnswered":30
+              },
+              {
+                "name": "Energy and Work",
+                "correctanswered": 35,
+                "Incorrectanswered": 25,
+                "UncoveredAnswered":60
+              },
+              {
+                "name": "Rotational Motion",
+                "correctanswered": 30,
+                "Incorrectanswered": 20,
+                "UncoveredAnswered":50
+              }
+            ]
+          },
+          {
+            "name": "Thermodynamics",
+            "correctanswered": 40,
+            "Incorrectanswered": 30,
+            "UncoveredAnswered":30,
+            "text": "Heat and Energy",
+            "color1": "#4ade80",
+            "color2": "#fda4af",
+            "color3": "#E3E3E3",
+            "topics": [
+              {
+                "name": "Laws of Thermodynamics",
+                "correctanswered": 35,
+                "Incorrectanswered": 25,
+                "UncoveredAnswered":40
+              },
+              {
+                "name": "Heat Engines",
+                "correctanswered": 30,
+                "Incorrectanswered": 20,
+                "UncoveredAnswered":50
+              },
+              {
+                "name": "Entropy",
+                "correctanswered": 25,
+                "Incorrectanswered": 15,
+                "UncoveredAnswered":60
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chemistry",
+        "correctanswered": 35,
+        "Incorrectanswered": 25,
+        "UncoveredAnswered":40,
+        "color1": "#4ade80",
+        "color2": "#fda4af",
+        "color3": "#E3E3E3",
+        "chapter": [
+          {
+            "name": "Organic Chemistry",
+            "correctanswered": 50,
+            "Incorrectanswered": 40,  "UncoveredAnswered":10,
+            "text": "Carbon Compounds",
+            "color1": "#4ade80",
+            "color2": "#fda4af",
+            "color3": "#E3E3E3",
+            "topics": [
+              {
+                "name": "Hydrocarbons",
+                "correctanswered": 45,
+                "Incorrectanswered": 35,
+                "UncoveredAnswered":30
+              },
+              {
+                "name": "Alcohols and Ethers",
+                "correctanswered": 40,
+                "Incorrectanswered": 30,
+                "UncoveredAnswered":30
+              },
+              {
+                "name": "Carbonyl Compounds",
+                "correctanswered": 35,
+                "Incorrectanswered": 25,
+                "UncoveredAnswered":40
+              }
+            ]
+          },
+          {
+            "name": "Inorganic Chemistry",
+            "correctanswered": 45,
+            "Incorrectanswered": 35,  "UncoveredAnswered":20,
+            "text": "Elements and Compounds",
+            "color1": "#4ade80",
+            "color2": "#fda4af",
+            "color3": "#E3E3E3",
+            "topics": [
+              {
+                "name": "Periodic Table",
+                "correctanswered": 40,
+                "Incorrectanswered": 30,
+                "UncoveredAnswered":30
+              },
+              {
+                "name": "Chemical Bonding",
+                "correctanswered": 35,
+                "Incorrectanswered": 25,
+                "UncoveredAnswered":40
+              },
+              {
+                "name": "Coordination Compounds",
+                "correctanswered": 30,
+                "Incorrectanswered": 20,
+                "UncoveredAnswered":50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Biology",
+        "correctanswered": 35,
+        "Incorrectanswered": 25,
+        "UncoveredAnswered":40,
+        "color1": "#4ade80",
+        "color2": "#fda4af",
+        "color3": "#E3E3E3",
+        "chapter": [
+          {
+            "name": "Genetics",
+            "correctanswered": 55,
+            "Incorrectanswered": 45,
+            "text": "Heredity and Variation",
+            "color1": "#4ade80",
+            "color2": "#fda4af",
+            "color3": "#E3E3E3",
+            "topics": [
+              {
+                "name": "Mendelian Genetics",
+                "correctanswered": 50,
+                "Incorrectanswered": 40,
+                "UncoveredAnswered":10
+              },
+              {
+                "name": "DNA Structure and Replication",
+                "correctanswered": 45,
+                "Incorrectanswered": 35,
+                "UncoveredAnswered":20
+              },
+              {
+                "name": "Gene Expression",
+                "correctanswered": 40,
+                "Incorrectanswered": 30,
+                "UncoveredAnswered":30
+              }
+            ]
+          },
+          {
+            "name": "Ecology",
+            "correctanswered": 50,
+            "Incorrectanswered": 40,
+            "UncoveredAnswered":10,
+            "text": "Organisms and Environment",
+            "color1": "#4ade80",
+            "color2": "#fda4af",
+            "color3": "#E3E3E3",
+            "topics": [
+              {
+                "name": "Ecosystems",
+                "correctanswered": 45,
+                "Incorrectanswered": 35,
+                "UncoveredAnswered":20
+              },
+              {
+                "name": "Biodiversity",
+                "correctanswered": 40,
+                "Incorrectanswered": 30,
+                "UncoveredAnswered":30
+              },
+              {
+                "name": "Conservation Biology",
+                "correctanswered": 35,
+                "Incorrectanswered": 25,
+                "UncoveredAnswered":40
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Computer Science",
+        "correctanswered": 35,
+        "Incorrectanswered": 25,
+        "UncoveredAnswered":40,
+        "color1": "#4ade80",
+        "color2": "#fda4af",
+        "color3": "#E3E3E3",
+        "chapter": [
+          {
+            "name": "Programming",
+            "correctanswered": 60,
+            "Incorrectanswered": 50,
+            "text": "Coding Fundamentals",
+            "color1": "#4ade80",
+            "color2": "#fda4af",
+            "color3": "#E3E3E3",
+            "topics": [
+              {
+                "name": "Data Structures",
+                "correctanswered": 55,
+                "Incorrectanswered": 45,
+                "UncoveredAnswered":10
+              },
+              {
+                "name": "Algorithms",
+                "correctanswered": 50,
+                "Incorrectanswered": 40,
+                "UncoveredAnswered":10
+              },
+              {
+                "name": "Object-Oriented Programming",
+                "correctanswered": 45,
+                "Incorrectanswered": 35,
+                "UncoveredAnswered":20
+              }
+            ]
+          },
+          {
+            "name": "Databases",
+            "correctanswered": 55,
+            "Incorrectanswered": 45,
+            "text": "Data Management",
+            "color1": "#4ade80",
+            "color2": "#fda4af",
+            "color3": "#E3E3E3",
+            "topics": [
+              {
+                "name": "SQL",
+                "correctanswered": 50,
+                "Incorrectanswered": 40,
+                "UncoveredAnswered":10
+              },
+              {
+                "name": "Database Design",
+                "correctanswered": 45,
+                "Incorrectanswered": 35,
+                "UncoveredAnswered":20
+              },
+              {
+                "name": "NoSQL Databases",
+                "correctanswered": 40,
+                "Incorrectanswered": 30,
+                "UncoveredAnswered":30
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
