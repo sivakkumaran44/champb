@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export default function PrivacyContent() {
   return (
     <div className="mt-4 pl-6">
-      <p className="mb-12 text-slate-700">
+      <p className=" text-slate-700 mb-72">
         View our{' '}
         <Link href="/privacypolicy">
           <span className="underline hover:text-emerald-700 transition duration-300 ease-in-out">

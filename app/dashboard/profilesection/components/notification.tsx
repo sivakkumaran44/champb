@@ -1,6 +1,6 @@
+'use client'
 import React, { useState } from "react";
-import { Switch } from "@/components/ui/switch";
-
+import { Check } from "lucide-react";
 export default function NotificationContent() {
   return (
     <div className="p-6 max-w-8xl mx-auto">
@@ -69,7 +69,7 @@ interface NotificationRowProps {
   isGreen?: boolean;
 }
 
-function NotificationRow({ title, description, emailChecked, smsChecked,   }: NotificationRowProps) {
+function NotificationRow({ title, description, emailChecked, smsChecked, isGreen }: NotificationRowProps) {
   const [emailToggle, setEmailToggle] = useState(emailChecked);
   const [smsToggle, setSmsToggle] = useState(smsChecked);
 
@@ -80,15 +80,17 @@ function NotificationRow({ title, description, emailChecked, smsChecked,   }: No
         <p className="text-xs text-gray-500">{description}</p>
       </div>
       <div className="flex justify-center">
-        <Switch 
+        <CustomSwitch 
           checked={emailToggle}
-          onCheckedChange={(value) => setEmailToggle(value)}
+          onCheckedChange={setEmailToggle}
+          isGreen={isGreen}
         />
       </div>
       <div className="flex justify-center">
-        <Switch 
+        <CustomSwitch 
           checked={smsToggle}
-          onCheckedChange={(value) => setSmsToggle(value)}
+          onCheckedChange={setSmsToggle}
+          isGreen={isGreen}
         />
       </div>
     </>
@@ -110,13 +112,56 @@ function MobileNotificationSection({ title, subtitle, notifications }: MobileNot
         {notifications.map((notification, index) => (
           <div key={index} className="flex justify-between items-center">
             <span className="text-sm text-gray-800">{notification.title}</span>
-            <Switch 
+            <CustomSwitch 
               checked={notification.checked}
-              onCheckedChange={() => { }}
+              onCheckedChange={() => {}}
+              isGreen={notification.isGreen}
             />
           </div>
         ))}
       </div>
     </div>
+  );
+}
+
+interface CustomSwitchProps {
+  checked: boolean;
+  onCheckedChange: (checked: boolean) => void;
+  isGreen?: boolean;
+}
+
+function CustomSwitch({ checked, onCheckedChange, isGreen }: CustomSwitchProps) {
+  const handleCheckboxChange = () => {
+    onCheckedChange(!checked);
+  };
+
+  return (
+    <label className='flex cursor-pointer select-none items-center'>
+      <div className='relative'>
+        <input
+          type='checkbox'
+          checked={checked}
+          onChange={handleCheckboxChange}
+          className='sr-only'
+        />
+        <div 
+          className={`flex items-center justify-end w-12 h-6 rounded-full transition-colors ${
+            checked 
+              ? (isGreen ? 'bg-green-500' : 'bg-green-500') 
+              : 'bg-gray-300'
+          }`}
+        >
+          <div
+            className={`flex items-center justify-center w-5 h-5 rounded-full bg-white shadow-md transition-transform ${
+              checked ? 'translate-x-0.5' : '-translate-x-6'
+            }`}
+          >
+            <Check 
+              className={`w-3 h-3 ${checked ? (isGreen ? 'text-green-500' : 'text-green-500') : 'text-gray-400'}`} 
+            />
+          </div>
+        </div>
+      </div>
+    </label>
   );
 }
