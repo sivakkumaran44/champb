@@ -1,0 +1,9 @@
+[
+    { "section": "Eng", "totalQuestions": 5.5, "unattendedQuestions": 2, "timeSpent": 9.5 },
+    { "section": "GF", "totalQuestions": 6.5, "unattendedQuestions": 3, "timeSpent": 8 },
+    { "section": "GK", "totalQuestions": 7.5, "unattendedQuestions": 1.5, "timeSpent": 6 },
+    { "section": "Ana", "totalQuestions": 8, "unattendedQuestions": 1.8, "timeSpent": 8.5 },
+    { "section": "Cla", "totalQuestions": 7, "unattendedQuestions": 2.8, "timeSpent": 9.3 },
+    { "section": "Int", "totalQuestions": 3.7, "unattendedQuestions": 1.5, "timeSpent": 7.2 }
+  ]
+  

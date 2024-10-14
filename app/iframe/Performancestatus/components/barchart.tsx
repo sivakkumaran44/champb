@@ -1,13 +1,9 @@
+"use client"
+
 import React, { useEffect, useState } from 'react';
 import { Bar, BarChart, XAxis, YAxis, LabelList, CartesianGrid, Tooltip } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-const chartData = [
-  { subject: "English", score: 186 },
-  { subject: "G Factor", score: 305 },
-  { subject: "Gen. Know.", score: 237 },
-  { subject: "Quant. Apt.", score: 73 },
-];
+import chartData from '@/components/data/barchart.json';
 
 const Barchart = () => {
   const [isClient, setIsClient] = useState(false);
@@ -17,7 +13,7 @@ const Barchart = () => {
   }, []);
 
   if (!isClient) {
-    return null; // Prevent rendering on the server side
+    return null; 
   }
 
   return (

@@ -5,12 +5,7 @@ import { Label, Pie, PieChart, Sector } from "recharts"
 import { PieSectorDataItem } from "recharts/types/polar/Pie"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChartConfig, ChartContainer, ChartStyle, ChartTooltip } from "@/components/ui/chart"
-
-const desktopData = [
-  { month: "Attempted", fill: "#10B981", desktop: 75 },
-  { month: "Correct", fill: "#60A5FA", desktop: 50 },
-];
-
+import desktopData from "@/components/data/accuracycomponent.json"
 interface CustomTooltipProps {
   active?: boolean;
   payload?: Array<{ name: string; value: number; payload: { month: string; desktop: number } }>;
@@ -70,13 +65,10 @@ export function AccuracyComponent() {
               activeIndex={hoverIndex !== undefined ? hoverIndex : activeIndex}
               onMouseEnter={onPieEnter}
               onMouseLeave={onPieLeave}
-              activeShape={({
-                outerRadius = 0,
-                ...props
-              }: PieSectorDataItem) => (
+              activeShape={(props: PieSectorDataItem) => (
                 <g>
-                  <Sector {...props} outerRadius={outerRadius + 5} cornerRadius={5} />
-                  <Sector {...props} outerRadius={outerRadius + 10} innerRadius={outerRadius + 6} cornerRadius={5} />
+                  <Sector {...props} outerRadius={props.outerRadius! + 5} cornerRadius={5} />
+                  <Sector {...props} outerRadius={props.outerRadius! + 10} innerRadius={props.outerRadius! + 6} cornerRadius={5} />
                 </g>
               )}
             >

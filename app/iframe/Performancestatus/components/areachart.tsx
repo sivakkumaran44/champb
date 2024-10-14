@@ -3,23 +3,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { View } from 'lucide-react';
 
+import data from '@/components/data/ImprovementAreasChart.json';
 type Status = "Critical" | "Improve" | "Focus";
-
-const improvementAreas = [
-  { name: "Analogy", progress: 100, status: "Critical" as Status },
-  { name: "Decimals", progress: 60, status: "Improve" as Status },
-  { name: "Reasoning", progress: 50, status: "Improve" as Status },
-  { name: "Percentage", progress: 40, status: "Focus" as Status },
-  { name: "Current Affairs", progress: 30, status: "Focus" as Status },
-];
-
-const statusColors: Record<Status, { bg: string; text: string }> = {
-  Critical: { bg: "#FF8877", text: "#AA2727" },
-  Improve: { bg: "#FED7AA", text: "#C2410C" },
-  Focus: { bg: "#FEF08A", text: "#CA8A04" },
-};
-
 const ImprovementAreasChart = () => {
+  const { improvementAreas, statusColors } = data;
   return (
     <div className="px-4 py-6">
       <Card className="bg-slate-100 border border-custombroder mb-6">
@@ -44,8 +31,8 @@ const ImprovementAreasChart = () => {
                 <span 
                   className="text-xs sm:text-xl font-semibold rounded-full px-2"
                   style={{ 
-                    backgroundColor: statusColors[area.status].bg,
-                    color: statusColors[area.status].text
+                    backgroundColor: statusColors[area.status as Status].bg,
+                    color: statusColors[area.status as Status].text
                   }}
                 >
                   {area.status}

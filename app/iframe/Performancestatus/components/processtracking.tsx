@@ -1,16 +1,9 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts";
 import { Card, CardContent } from "@/components/ui/card";
-
-const chartData = [
-  { attempt: "01", score: 30 },
-  { attempt: "02", score: 60 },
-  { attempt: "03", score: 70 },
-  { attempt: "04", score: 85 },
-  { attempt: "05", score: 95 },
-];
+import chartData from "@/components/data/processtracking.json"; 
 
 export default function CompactProgressTrackingChart() {
   return (
@@ -27,8 +20,8 @@ export default function CompactProgressTrackingChart() {
           <AreaChart data={chartData} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
             <defs>
               <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#4ade80" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="#4ade80" stopOpacity={0.1}/>
+                <stop offset="5%" stopColor="#4ade80" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#4ade80" stopOpacity={0.1} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />

@@ -12,15 +12,7 @@ import {
   RectangleProps,
 } from "recharts";
 import { Card, CardContent } from "@/components/ui/card";
-
-const chartData = [
-  { section: "Eng", totalQuestions: 5.5, unattendedQuestions: 2, timeSpent: 9.5 },
-  { section: "GF", totalQuestions: 6.5, unattendedQuestions: 3, timeSpent: 8 },
-  { section: "GK", totalQuestions: 7.5, unattendedQuestions: 1.5, timeSpent: 6 },
-  { section: "Ana", totalQuestions: 8, unattendedQuestions: 1.8, timeSpent: 8.5 },
-  { section: "Cla", totalQuestions: 7, unattendedQuestions: 2.8, timeSpent: 9.3 },
-  { section: "Int", totalQuestions: 3.7, unattendedQuestions: 1.5, timeSpent: 7.2 },
-];
+import chartData from "@/components/data/timemangementdata.json"; 
 
 const CustomBar: React.FC<RectangleProps> = (props) => {
   const { x = 0, y = 0, width = 0, height = 0, fill } = props;
@@ -41,7 +33,7 @@ export function TimeManagementChart() {
         <div className="w-[240px] h-[200px]">
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart
-              data={chartData}
+              data={chartData} 
               margin={{ top: 5, right: 5, left: -20, bottom: 5 }}
               barGap={0}
               barCategoryGap="10%"

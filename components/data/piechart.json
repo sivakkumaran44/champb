@@ -1,0 +1,7 @@
+{
+    "desktopData": [
+      { "month": "Correct", "desktop": 186, "fill": "var(--color-Correct)" },
+      { "month": "Wrong", "desktop": 305, "fill": "var(--color-Wrong)" },
+      { "month": "Skipped", "desktop": 236, "fill": "var(--color-Skipped)" }
+    ]
+  }

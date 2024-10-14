@@ -1,0 +1,15 @@
+{
+    "improvementAreas": [
+      { "name": "Analogy", "progress": 100, "status": "Critical" },
+      { "name": "Decimals", "progress": 60, "status": "Improve" },
+      { "name": "Reasoning", "progress": 50, "status": "Improve" },
+      { "name": "Percentage", "progress": 40, "status": "Focus" },
+      { "name": "Current Affairs", "progress": 30, "status": "Focus" }
+    ],
+    "statusColors": {
+      "Critical": { "bg": "#FF8877", "text": "#AA2727" },
+      "Improve": { "bg": "#FED7AA", "text": "#C2410C" },
+      "Focus": { "bg": "#FEF08A", "text": "#CA8A04" }
+    }
+  }
+  

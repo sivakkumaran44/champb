@@ -1,32 +1,18 @@
-import React from 'react';
-import { ResponsiveScatterPlot, ScatterPlotSvgProps, ScatterPlotRawSerie } from '@nivo/scatterplot';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+"use client"
 
-type DataPoint = { x: string; y: number };
+import React from 'react';
+import { ResponsiveScatterPlot, ScatterPlotSvgProps } from '@nivo/scatterplot';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import speedData from '@/components/data/Speed.json';
+
+interface DataPoint {
+  x: string;
+  y: number;
+}
 
 const Speed: React.FC = () => {
-  const data: ScatterPlotRawSerie<DataPoint>[] = [
-    {
-      id: "Answers",
-      data: [
-        { x: "1-10", y: 3 },
-        { x: "10-30", y: 2 },
-        { x: "10-30", y: 6 },
-        { x: "10-30", y: 3 },
-        { x: "30-50", y: 4 },
-        { x: "30-50", y: 7 },
-        { x: "30-50", y: 9 },
-        { x: "50-70", y: 7 },
-        { x: "50-70", y: 10 },
-        { x: "50-70", y: 8 },
-        { x: "70-100", y: 9 },
-        { x: "70-100", y: 11 },
-        { x: "70-100", y: 8 },
-      ]
-    }
-  ];
   const chartProps: Omit<ScatterPlotSvgProps<DataPoint>, 'height' | 'width'> = {
-    data,
+    data: speedData.data,
     margin: { top: 20, right: 20, bottom: 60, left: 60 },
     xScale: { type: 'point' },
     yScale: { type: 'linear', min: 0, max: 12 },
@@ -52,7 +38,7 @@ const Speed: React.FC = () => {
     },
     colors: "#3b82f6",
     nodeSize: 8,
-     useMesh: true,
+    useMesh: true,
     gridYValues: [0, 4, 8, 12],
     theme: {
       background: "#f1f5f9",
@@ -76,7 +62,6 @@ const Speed: React.FC = () => {
           },
         },
       },
-     
     },
   };
   
