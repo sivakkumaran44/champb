@@ -31,7 +31,7 @@ export default function ProfileComponent() {
     <div className="w-full px-4 sm:px-0">
       <Card className="w-full border-2 overflow-hidden mb-4">
         <div className="h-40 sm:h-60 relative">
-          <Image src={Banner} alt="Profile banner" layout="fill" objectFit="cover" priority={true} />
+          <Image src={Banner} alt="Profile banner" fill style={{ objectFit: 'cover' }} priority />
         </div>
         <CardContent className="relative pt-0 pb-0">
           <div className="flex flex-col sm:flex-row items-center sm:items-start -mt-12 mb-4">
@@ -45,12 +45,12 @@ export default function ProfileComponent() {
             </div>
           </div>
           <div>
-          <div className="flex justify-end">
-            {!isEditing && (
-              <Button variant="outline" onClick={handleEditProfile} className="border border-emerald-700 bg-white text-emerald-700 text-xs sm:text-sm">
-                Edit Profile
-              </Button>
-                )}
+            <div className="flex justify-end">
+              {!isEditing && (
+                <Button variant="outline" onClick={handleEditProfile} className="border border-emerald-700 bg-white text-emerald-700 text-xs sm:text-sm">
+                  Edit Profile
+                </Button>
+              )}
               {isEditing && (
                 <div className="flex justify-end space-x-2 mt-4 mb-4 lg:hidden">
                   <Button variant="outline" onClick={handleCancelEdit} className="border border-emerald-700 text-emerald-700 text-xs sm:text-sm">
@@ -61,8 +61,7 @@ export default function ProfileComponent() {
                   </Button>
                 </div>
               )}
-          
-          </div>
+            </div>
           </div>
         </CardContent>
         {!isEditing && (
@@ -86,23 +85,22 @@ export default function ProfileComponent() {
       </div>
       {isEditing && (
         <div className="hidden lg:block">
-        <div className="flex justify-end space-x-2 mt-4">
-          <Button
-            variant="outline"
-            onClick={handleCancelEdit}
-            className="border border-emerald-700 text-emerald-700 text-xs sm:text-sm"
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={handleSaveProfile}
-            className="bg-emerald-700 hover:bg-emerald-800 text-xs sm:text-sm"
-          >
-            Save Changes
-          </Button>
+          <div className="flex justify-end space-x-2 mt-4">
+            <Button
+              variant="outline"
+              onClick={handleCancelEdit}
+              className="border border-emerald-700 text-emerald-700 text-xs sm:text-sm"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSaveProfile}
+              className="bg-emerald-700 hover:bg-emerald-800 text-xs sm:text-sm"
+            >
+              Save Changes
+            </Button>
+          </div>
         </div>
-      </div>
-      
       )}
     </div>
   )
