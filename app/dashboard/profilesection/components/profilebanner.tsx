@@ -112,6 +112,7 @@ interface TabButtonProps {
   onClick: () => void
 }
 
+
 function TabButton({ children, active = false, onClick }: TabButtonProps) {
   return (
     <button
@@ -121,8 +122,9 @@ function TabButton({ children, active = false, onClick }: TabButtonProps) {
           : "text-muted-foreground hover:text-primary"
       }`}
       onClick={onClick}
+      aria-label={`${children} tab`}
     >
       {children}
     </button>
-  )
+  );
 }
