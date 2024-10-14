@@ -7,13 +7,13 @@ export default function PrivacyContent() {
     <div className="mt-4 pl-6">
       <p className="text-slate-700 mb-72">
         View our{' '}
-        <Link href="/privacypolicy" target="_blank" rel="noopener noreferrer">
+        <Link href="/dashboard/privacypolicy" target="_blank" rel="noopener noreferrer">
           <span className="underline hover:text-emerald-700 transition duration-300 ease-in-out">
             Privacy Policy
           </span>
         </Link>{' '}
         and{' '}
-        <Link href="/privacypolicy/termsandconditions" target="_blank" rel="noopener noreferrer">
+        <Link href="/dashboard/termsandconditions" target="_blank" rel="noopener noreferrer">
           <span className="underline hover:text-emerald-700 transition duration-300 ease-in-out">
             Terms and Conditions
           </span>

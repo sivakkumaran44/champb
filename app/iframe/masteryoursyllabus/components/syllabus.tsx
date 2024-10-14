@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import GeneralIntelligence from "./GeneralIntelligence";
+import GeneralIntelligence from "./SubjectDashboard";
 const SyllabusCoverage = () => {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {

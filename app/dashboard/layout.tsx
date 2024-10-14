@@ -1,45 +1,24 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import { usePathname } from 'next/navigation';
+import { headers } from 'next/headers';
 import DashboardHeader from "@/components/layout/Dashboardlayout/DashboardHeader";
 import { TestTypeProvider } from '@/app/usecontext/TestTypeContext';
-import Loading from './loading';
+import DashboardClient from '@/components/layout/Dashboardlayout/Dashboardloadinglayout';
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  const pathname = usePathname();
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const headersList = headers();
+  const pathname = headersList.get('x-invoke-path') || '';
   const hideHeaderAndSidebar = pathname === '/dashboard/process/report/viewsolutions';
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false); 
-    }, 2000); 
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <Loading />; 
-   }
 
   return (
     <TestTypeProvider>
-      <div className="h-screen flex flex-col">
+      <DashboardClient hideHeaderAndSidebar={hideHeaderAndSidebar}>
         {hideHeaderAndSidebar ? (
-          <div className="h-full overflow-auto">
-            {children}
-          </div>
+          children
         ) : (
           <DashboardHeader>
-            <div>
-              {children}
-            </div>
+            {children}
           </DashboardHeader>
         )}
-      </div>
+      </DashboardClient>
     </TestTypeProvider>
   );
-};
-
-export default DashboardLayout;
+}

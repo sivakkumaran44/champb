@@ -18,7 +18,7 @@ interface ThreeColorBarProps {
   isMainBar: boolean
 }
 
-export default function ThreeColorBar({ data, isActive, isMainBar }: ThreeColorBarProps) {
+const ThreeColorBar: React.FC<ThreeColorBarProps> = ({ data, isActive, isMainBar }) => {
   const totalAnswers = data.correctanswered + data.Incorrectanswered + data.UncoveredAnswered
   const centerText = totalAnswers > 0 ? `${((data.correctanswered / totalAnswers) * 100).toFixed(1)}%` : '0%'
 
@@ -55,5 +55,7 @@ export default function ThreeColorBar({ data, isActive, isMainBar }: ThreeColorB
         <span className="text-xs font-medium text-gray-700">{data.text}</span>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default ThreeColorBar
