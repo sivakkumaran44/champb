@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { toPng } from 'html-to-image';
@@ -34,6 +34,12 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ isOpen, onClose }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[600px] w-full max-w-[95vw] bg-white overflow-y-auto max-h-[90vh]">
+        <DialogHeader>
+          <DialogTitle> </DialogTitle>
+          <DialogDescription>
+          
+          </DialogDescription>
+        </DialogHeader>
         <div className="mt-4">
           <div ref={contentRef} className="bg-white p-4 sm:p-8">
             <div className="flex justify-between items-center mb-8">
@@ -109,7 +115,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ isOpen, onClose }) => {
               </div>
             </div>
           </div>
-          <div className="absolute top-4 right-4 sm:top-8 sm:right-8">
+          <div className="absolute top-12 right-4 sm:top-12 sm:right-8">
             <Button onClick={handleDownload} variant="outline" className="text-green-600 border-green-600 hover:bg-green-50 text-xs sm:text-sm px-2 sm:px-4">
               <Download className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" /> Download Invoice
             </Button>

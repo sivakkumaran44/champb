@@ -1,9 +1,10 @@
 import React from 'react'
-import Goal from './components/goals'
+import TermsandConditions from './components/termsandconditions'
+
 const page = () => {
   return (
     <div>
-        <Goal/>
+        <TermsandConditions/>
     </div>
   )
 }

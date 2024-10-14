@@ -1,9 +1,10 @@
 import React from 'react'
-import Goal from './components/goals'
+import PrivacyPolicy from './components/privacypolicy'
+
 const page = () => {
   return (
     <div>
-        <Goal/>
+        <PrivacyPolicy/>
     </div>
   )
 }

@@ -11,7 +11,7 @@ export default function Currentgoal() {
   const closeInvoiceModal = () => setIsInvoiceModalOpen(false);
     return (
       <Card className="bg-[#10B9811A] border border-slate-200 mb-4">
-    <CardHeader className="bg-sky-50 min-h-[8rem] m-2 rounded-xl p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <CardHeader className="bg-white min-h-[8rem] m-2 rounded-xl p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex flex-col">
         <CardTitle className="text-xl font-bold text-gray-800">
           {planData.title}
@@ -22,7 +22,7 @@ export default function Currentgoal() {
       </div>
       <Button 
         variant="secondary" 
-        className="bg-yellow-300 hover:bg-yellow-400 text-gray-800 text-sm font-medium whitespace-nowrap px-4 py-2 h-auto w-full sm:w-auto rounded-full"
+        className="bg-yellow-300 hover:bg-yellow-400 text-gray-800 text-sm font-medium whitespace-nowrap px-4 py-2 h-auto w-full sm:w-auto rounded-xl"
       >
         <Trophy className="mr-2 h-4 w-4" />
         Your Current Goal

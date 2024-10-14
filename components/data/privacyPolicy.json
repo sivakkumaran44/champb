@@ -1,0 +1,82 @@
+{
+    "lastUpdated": "23/09/2024",
+    "privacyPolicy": [
+      {
+        "title": "1. Introduction",
+        "content": "Welcome to bChamp. We are committed to protecting your privacy and providing a safe, secure experience for all our users. This Privacy Policy explains how we collect, use, share, and protect your personal information."
+      },
+      {
+        "title": "2. Information We Collect",
+        "sections": [
+          {
+            "subtitle": "2.1 Personal Information",
+            "content": [
+              "Name",
+              "Email address",
+              "Phone number",
+              "Educational background",
+              "Profile picture (optional)"
+            ]
+          },
+          {
+            "subtitle": "2.2 Usage Data",
+            "content": [
+              "Test scores and performance history",
+              "Study patterns and habits",
+              "Interaction with content",
+              "Time spent on platform"
+            ]
+          },
+          {
+            "subtitle": "2.3 Device Information",
+            "content": [
+              "IP address",
+              "Browser type",
+              "Operating system",
+              "Device type"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. How We Use Your Information",
+        "content": [
+          "Provide and improve our services",
+          "Personalize your learning experience",
+          "Communicate with you about your account and our services",
+          "Analyze usage patterns to enhance our platform",
+          "Comply with legal obligations"
+        ]
+      },
+      {
+        "title": "4. Data Sharing and Disclosure",
+        "content": [
+          "Service providers who assist in our operations",
+          "Educational institutions or employers, with your explicit consent",
+          "Legal authorities when required by law"
+        ]
+      },
+      {
+        "title": "5. Data Security",
+        "content": "We implement robust security measures to protect your data, including encryption, access controls, and regular security audits."
+      },
+      {
+        "title": "6. Your Rights and Choices",
+        "content": [
+          "Access and update your personal information",
+          "Opt-out of marketing communications",
+          "Request deletion of your account and associated data",
+          "Object to the processing of your personal data"
+        ]
+      },
+      {
+        "title": "7. Changes to This Policy",
+        "content": "We may update this policy periodically. We will notify you of any significant changes via email or through a prominent notice on our platform."
+      },
+      {
+        "title": "8. Contact Us",
+        "content": "If you have any questions about this policy, please contact us."
+      }
+    ]
+  }
+  

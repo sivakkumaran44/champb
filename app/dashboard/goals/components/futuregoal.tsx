@@ -11,24 +11,22 @@ export default function Futuregoal() {
   const closeInvoiceModal = () => setIsInvoiceModalOpen(false);
   return (
       <Card className="bg-[#10B9811A] border border-slate-200 mt-4">
-          <CardHeader className="bg-white mt-2 mx-2 rounded-xl p-4">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="flex-grow">
-          <CardTitle className="text-xl sm:text-2xl font-semibold text-slate-700">
-            {planData.title}
-          </CardTitle>
-          <p className="text-sm text-muted-foreground mt-1">{planData.accessPeriod}</p>
-        </div>
-        <div className="w-full sm:w-auto flex justify-end">
-          <Button 
-            variant="secondary" 
-            className="bg-transparent border border-emerald-700 text-emerald-700 whitespace-nowrap"
-          >
-            <Crosshair className="mr-2 h-4 w-4" />
-            Set as my Current Goal
-          </Button>
-        </div>
+         <CardHeader className="bg-white min-h-[8rem] m-2 rounded-xl p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col">
+        <CardTitle className="text-xl font-bold text-gray-800">
+          {planData.title}
+        </CardTitle>
+        <span className="text-sm text-gray-600 mt-1">
+          {planData.accessPeriod}
+        </span>
       </div>
+      <Button 
+        variant="secondary" 
+        className="bg-transparent border border-emerald-700 text-emerald-700 whitespace-nowrap flex-shrink-0"
+      >
+        <Crosshair className="mr-2 h-4 w-4" />
+        Set as my Current Goal
+      </Button>
     </CardHeader>
         <CardContent className="pt-6">
           <h3 className="text-lg font-semibold mb-4 text-slate-700">Plan Details</h3>

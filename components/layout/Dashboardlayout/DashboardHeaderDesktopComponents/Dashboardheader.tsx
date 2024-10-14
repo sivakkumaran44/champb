@@ -62,8 +62,10 @@ const Dashboardheader: React.FC = () => (
 </DropdownMenuItem>
         <div className="h-px bg-slate-700 my-2" />
         <DropdownMenuItem className="flex items-center px-4 py-3 hover:bg-emerald-300 focus:bg-emerald-300">
+        <Link href="/dashboard/profilesection" className="flex items-center w-full">
           <BookmarkIcon className="mr-3 h-5 w-5" />
           <span className="text-base md:text-lg lg:text-xl">Profile</span>
+        </Link>
         </DropdownMenuItem>
         <div className="h-px bg-slate-700 my-2" />
         <DropdownMenuItem className="flex items-center px-4 py-3 hover:bg-emerald-300 focus:bg-emerald-300">

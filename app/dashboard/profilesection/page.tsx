@@ -1,9 +1,10 @@
 import React from 'react'
-import Goal from './components/goals'
+import ProfileBanner from './components/profilebanner'
+
 const page = () => {
   return (
     <div>
-        <Goal/>
+        <ProfileBanner/>
     </div>
   )
 }
