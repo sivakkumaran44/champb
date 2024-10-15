@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 import { useRouter, usePathname } from 'next/navigation';
 import Logo1 from '@/public/assets/img/Frame 427321252.svg';
 

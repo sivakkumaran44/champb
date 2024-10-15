@@ -1,6 +1,6 @@
 import React from 'react';
-import Generalinstructions from "@/components/layout/GeneralinstructionsHeader";
-import HeaderToggle from '@/components/layout/HeaderToggle';
+import Generalinstructions from "@/components/layout/Generalinstructionslayout/GeneralinstructionsHeader";
+import HeaderToggle from '@/components/layout/Generalinstructionslayout/HeaderToggle';
 
 export default function MainLayout({
   children,
