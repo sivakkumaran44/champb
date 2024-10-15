@@ -1,8 +1,8 @@
 "use client"
 import React from 'react';
-import Barchart from './Barchart';
+import Barchart from './barchart';
 import { PieChartComponent } from './PieChartComponent';
-import { AccuracyComponent } from './AccuracyComponent';
+import { AccuracyComponent } from './accuracycomponent';
 import Speed from './Speed';
 import ProgressTrackingChart from './ProgressTrackingChart';
 import ImprovementAreasChart from './ImprovementAreasChart';
