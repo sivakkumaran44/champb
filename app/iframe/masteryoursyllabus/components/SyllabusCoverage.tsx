@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import GeneralIntelligence from "./SubjectDashboard";
+import SubjectDashboard from "./SubjectDashboard";
 const SyllabusCoverage = () => {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
@@ -27,7 +27,7 @@ const SyllabusCoverage = () => {
       </div>
         {isMounted && (
         <>
-          <GeneralIntelligence />
+          <SubjectDashboard />
         </>
       )}
     </div>

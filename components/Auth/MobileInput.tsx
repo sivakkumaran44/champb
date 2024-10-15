@@ -1,12 +1,10 @@
 'use client'
-
 import React, { useState, useEffect } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import ReactCountryFlag from "react-country-flag";
 import { CountryFlagInput } from '@/app/(homepage)/components/CountryFlagInput';
-
 interface MobileInputProps {
   initialCountryCode?: string;
   initialMobileNumber?: string;
@@ -14,7 +12,6 @@ interface MobileInputProps {
   onSubmit?: () => void;
   buttonText?: string;
 }
-
 const MobileInput: React.FC<MobileInputProps> = ({
   initialCountryCode = "+91",
   initialMobileNumber = "",
@@ -24,7 +21,6 @@ const MobileInput: React.FC<MobileInputProps> = ({
 }) => {
   const [countryCode, setCountryCode] = useState(initialCountryCode);
   const [mobileNumber, setMobileNumber] = useState(initialMobileNumber);
-
   useEffect(() => {
     onInputChange(countryCode, mobileNumber);
   }, [countryCode, mobileNumber, onInputChange]);
@@ -32,18 +28,15 @@ const MobileInput: React.FC<MobileInputProps> = ({
   const handleCountryCodeChange = (value: string) => {
     setCountryCode(value);
   };
-
   const handleMobileNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMobileNumber(e.target.value);
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (onSubmit) {
       onSubmit();
     }
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 mb-4">

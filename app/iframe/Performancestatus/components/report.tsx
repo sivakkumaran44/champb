@@ -1,12 +1,12 @@
 "use client"
 import React from 'react';
-import Barchart from './barchart';
-import { PieChartComponent } from './piechart';
-import { AccuracyComponent } from './accuracycomponent';
+import Barchart from './Barchart';
+import { PieChartComponent } from './PieChartComponent';
+import { AccuracyComponent } from './AccuracyComponent';
 import Speed from './Speed';
-import ProgressTrackingChart from './processtracking';
-import ImprovementAreasChart from './areachart';
-import { TimeManagementChart } from './timemangementchart';
+import ProgressTrackingChart from './ProgressTrackingChart';
+import ImprovementAreasChart from './ImprovementAreasChart';
+import { TimeManagementChart } from './TimeManagementChart';
 
 const Report = () => {
   return (

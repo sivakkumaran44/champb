@@ -1,6 +1,5 @@
 import React from 'react'
-import SyllabusCoverage from './components/syllabus'
-
+import SyllabusCoverage from './components/SyllabusCoverage'
 const page = () => {
   return (
     <div>

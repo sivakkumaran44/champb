@@ -4,7 +4,7 @@ import React from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import subjectsData from '@/components/data/subjectdata.json'
-import DashboardCard from './PieChartCard'
+import  PieChartCard from './PieChartCard'
 import ThreeColorBar from './Threecolorbar'
 
 const SubjectDashboard: React.FC = () => {
@@ -15,7 +15,7 @@ const SubjectDashboard: React.FC = () => {
           <Card className="w-[230px] bg-gray-100 border-none shadow-sm">
             <CardContent className="p-0">
               <AccordionTrigger className="hover:no-underline w-full px-2 py-1">
-                <DashboardCard 
+                <PieChartCard 
                   title={subject.name} 
                   data={[
                     {
