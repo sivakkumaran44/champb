@@ -1,5 +1,5 @@
 import React from 'react'
-import CustomTest from './customtest'
+import CustomTest from './components/customtest'
 
 const page = () => {
   return (
