@@ -10,8 +10,8 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import DetailsFormDialog from './DetailsFormDialog';
-import ReactCountryFlag from "react-country-flag";
 import NumberVerificationScreen from './NumberVerificationScreen'; 
+import MobileInput from './MobileInput';
 
 interface OtpScreenProps {
   isOpen: boolean;
@@ -28,7 +28,7 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
   const [timer, setTimer] = useState(30);
   const [canResend, setCanResend] = useState(false);
   const [resendCount, setResendCount] = useState(0);
-  const [otpMessage, setOtpMessage] = useState("We’ve sent an OTP to your registered mobile number");
+  const [otpMessage, setOtpMessage] = useState("We've sent an OTP to your registered mobile number");
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
     setTimer(30);
     setCanResend(false);
     setResendCount(0);
-    setOtpMessage("We’ve sent an OTP to your registered mobile number"); 
+    setOtpMessage("We've sent an OTP to your registered mobile number"); 
   };
 
   const handleOtpChange = (index: number, value: string) => {
@@ -78,6 +78,7 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
 
   const handleVerifyOtp = () => {
     console.log('Verifying OTP:', otp.join(''));
+    
     setShowDetailsForm(true);
   };
 
@@ -111,7 +112,7 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
 
   const getResendText = () => {
     if (resendCount === 0) {
-      return "Didn’t receive the OTP? Resend it";
+      return "Didn't receive the OTP? Resend it";
     } else if (resendCount === 1) {
       return "Still didn't receive the OTP?";
     } else if (resendCount < 3) {
@@ -121,6 +122,10 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
     }
   };
 
+  const handleMobileInputChange = (newCountryCode: string, newMobileNumber: string) => {
+    onUpdateMobileNumber(`${newCountryCode}${newMobileNumber}`);
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -128,7 +133,7 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
   return (
     <>
       <AlertDialog open={isOpen && !showDetailsForm && !showNumberVerification}>
-        <AlertDialogContent className="w-[90vw] max-w-[400px] p-4 sm:p-6 rounded-lg">
+        <AlertDialogContent className="w-[90vw] max-w-[520px] p-4 sm:p-6 rounded-lg">
           <Button
             onClick={onClose}
             type="button"
@@ -147,16 +152,12 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
               {otpMessage}
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <div className="mt-4 p-3 bg-slate-100 rounded-md flex items-center justify-between">
-            <div className="flex items-center">
-              <ReactCountryFlag
-                countryCode={countryCode.slice(1) === '91' ? 'IN' : 'US'}
-                svg
-                className="mr-2 h-4 w-6"
-              />
-              <span className="font-semibold">{countryCode}</span>
-              <span className="ml-2">{mobileNumber}</span>
-            </div>
+          <div className="mt-1 p-3 bg-slate-100 rounded-md flex items-center justify-between">
+            <MobileInput
+              initialCountryCode={countryCode}
+              initialMobileNumber={mobileNumber}
+              onInputChange={handleMobileInputChange}
+            />
             <Button
               variant="ghost"
               className="text-sm text-blue-600 hover:text-blue-800"
@@ -165,7 +166,8 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
               Edit
             </Button>
           </div>
-          <div className="flex flex-wrap justify-center gap-2 mt-4">
+         
+          <div className="flex flex-wrap justify-center gap-2 mt-1">
             {otp.map((digit, index) => (
               <Input
                 key={index}
@@ -190,7 +192,7 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
               type="button"
               id="verify-otp-button"
               name="verify-otp-button"
-              className="w-5/6 sm:w-4/6 lg:w-3/6 bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-300 py-2 text-lg font-medium rounded-md"
+              className="w-5/6 sm:w-5/6 lg:w-4/6 bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-300 py-2 text-lg font-medium rounded-md"
             >
               Verify OTP
             </Button>
@@ -204,7 +206,7 @@ export default function OtpScreen({ isOpen, onClose, countryCode, mobileNumber, 
               {getResendText()} {resendCount < 3 && <span>({timer}s)</span>}
             </button>
           </div>
-        </AlertDialogContent>
+       </AlertDialogContent>
       </AlertDialog>
       <DetailsFormDialog 
         isOpen={showDetailsForm} 
