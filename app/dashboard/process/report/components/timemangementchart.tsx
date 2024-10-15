@@ -35,8 +35,7 @@ const CustomBar: React.FC<RectangleProps> = (props) => {
   );
 };
 
-
-export function TimeManagementChart() {
+const TimeManagementChart: React.FC = () => {
   return (
     <Card className="bg-slate-100 border border-slate-200 rounded-xl w-full">
       <CardContent className="p-6">
@@ -110,3 +109,4 @@ export function TimeManagementChart() {
     </Card>
   );
 }
+export default TimeManagementChart

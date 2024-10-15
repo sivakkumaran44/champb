@@ -47,8 +47,7 @@ const tests: TestInfo[] = [
     isFree: true,
   },
 ];
-
-export default function MockTestPage() {
+const MockTestPage: React.FC = () => {
   return (
     <div className="container mx-auto p-4">
       <TestTypeNavigation />
@@ -69,3 +68,4 @@ export default function MockTestPage() {
     </div>
   );
 }
+export default MockTestPage

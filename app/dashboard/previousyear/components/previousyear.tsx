@@ -5,16 +5,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { CircleChevronDown, Clock, HelpCircle, PenLine } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-const CustomTest: React.FC = () => {
+const Previousyear: React.FC = () => {
   const [section, setSection] = useState('');
   const [isYearSelectionOpen, setIsYearSelectionOpen] = useState(false);
   const sections = ['2021', '2022', '2023', '2024'];
-
   const toggleYearSelection = () => {
     setIsYearSelectionOpen(!isYearSelectionOpen);
   };
-
   return (
     <div className="container mx-auto p-4 space-y-6">
       <TestTypeNavigation />  
@@ -77,4 +74,4 @@ const CustomTest: React.FC = () => {
          </div>
   );
 };
-export default CustomTest;
+export default Previousyear;

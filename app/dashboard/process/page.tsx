@@ -1,6 +1,6 @@
-import TestProgress from './components/process';
+import TestProgress from './components/testprocess';
 import testData from '@/components/data/test.json';
-import { TestData } from './components/process'; 
+import { TestData } from './components/testprocess'; 
 
 const Page = () => {
   return (

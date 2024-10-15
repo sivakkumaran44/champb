@@ -1,7 +1,6 @@
 import React from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {  ChevronsRight ,Wand } from "lucide-react"
-
 const opportunities = [
   "SSC CHSL (Combined Higher Secondary Level)",
   "SSC JE (Junior Engineer)",
@@ -10,8 +9,7 @@ const opportunities = [
   "SSC GD (General Duty)",
   "SSC MTS (Multi Tasking Staff)",
 ]
-
-export default function RelativeOpportunitiesCard() {
+const RelativeOpportunitiesCard: React.FC = () => {
   return (
     <Card className="w-full max-w-3xl mx-auto bg-slate-100 border border-customborder rounded-xl">
     <CardHeader className="pb-2 border-b border-[#D9D9D9]">
@@ -32,6 +30,6 @@ export default function RelativeOpportunitiesCard() {
       ))}
     </CardContent>
   </Card>
-  
   )
 }
+export default RelativeOpportunitiesCard

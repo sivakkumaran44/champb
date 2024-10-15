@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { X } from 'lucide-react'; 
 import disclaimerData from "@/components/data/disclaimer.json";
-export default function DisclaimerDialog() {
+const DisclaimerDialog: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false); 
   const onClose = () => {
     setIsOpen(false);
@@ -47,6 +47,6 @@ export default function DisclaimerDialog() {
         </AlertDialogDescription>
       </AlertDialogContent>
     </AlertDialog>
-  );
-};
-
+  )
+}
+export default DisclaimerDialog

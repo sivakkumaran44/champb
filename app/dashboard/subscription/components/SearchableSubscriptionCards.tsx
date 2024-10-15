@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useCallback, useMemo } from 'react';
 import GoldCard from './GoldCard'; 
-import SearchBar from './SearchBarAllExam';
+import SearchBar from './SearchBar';
 import SortOut from './SortOut';
 import categorizedSubscriptionData from '@/components/data/subscriptionData.json';
 
@@ -18,7 +18,7 @@ interface CategorizedSubscriptionData {
   all: Subscription[];
 }
 
-export default function SearchableSubscriptionCards() {
+const SearchableSubscriptionCards: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<keyof CategorizedSubscriptionData>('all');
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -66,3 +66,4 @@ export default function SearchableSubscriptionCards() {
     </div>
   );
 }
+export default SearchableSubscriptionCards

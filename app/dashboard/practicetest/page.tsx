@@ -1,5 +1,12 @@
-import CustomTestPage from './components/practicetest';
+import React from 'react'
+import PracticeTest from './components/practicetest'
 
-export default function CustomTestRoute() {
-  return <CustomTestPage />;
+const page = () => {
+  return (
+    <div>
+      <PracticeTest/>
+    </div>
+  )
 }
+
+export default page

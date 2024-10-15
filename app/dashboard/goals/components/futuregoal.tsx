@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Crosshair } from "lucide-react";
 import planData from "@/components/data/goals.json";
 import InvoiceModal from "./InvoiceModal";
-export default function Futuregoal() {
+const Futuregoal: React.FC = () => {
   const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false);
   const openInvoiceModal = () => setIsInvoiceModalOpen(true);
   const closeInvoiceModal = () => setIsInvoiceModalOpen(false);
@@ -67,3 +67,4 @@ export default function Futuregoal() {
    
   );
 }
+export default Futuregoal

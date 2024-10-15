@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import SSCLogo from '@/public/assets/img/Banner.png'
-export default function Banner() {
+const Banner: React.FC = () => {
   return (
     <div className="flex flex-col-reverse sm:flex-row justify-between items-center p-4 sm:p-6 rounded-lg bg-gradient-to-b from-yellow-200/70 to-yellow-400/70 space-y-4 sm:space-y-0 sm:space-x-4">
       <div className="flex flex-col space-y-2 sm:space-y-4 text-left w-full sm:w-auto">
@@ -41,3 +41,4 @@ export default function Banner() {
     </div>
   );
 }
+export default Banner

@@ -5,9 +5,10 @@ interface CheckboxAgreementProps {
   isChecked: boolean;
   onCheckedChange: (checked: boolean) => void;
 }
-export default function CheckboxAgreement({ isChecked, onCheckedChange }: CheckboxAgreementProps) {
+
+const CheckboxAgreement: React.FC<CheckboxAgreementProps> = ({ isChecked, onCheckedChange }) => {
   return (
-    <div className="flex flex-col items-center p-4  ">
+    <div className="flex flex-col items-center p-4">
       <div className="flex items-center">
         <Checkbox 
           id="agreement" 
@@ -21,3 +22,5 @@ export default function CheckboxAgreement({ isChecked, onCheckedChange }: Checkb
     </div>
   );
 }
+
+export default CheckboxAgreement;

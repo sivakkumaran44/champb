@@ -7,7 +7,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { useTestType, TestType } from '@/app/usecontext/TestTypeContext';
+import { useTestType, TestType } from '@/app/dashboard/components/usecontext/TestTypeContext';
 
 const TestTypeNavigation: React.FC = () => {
   const { activeTestType, setActiveTestType } = useTestType();

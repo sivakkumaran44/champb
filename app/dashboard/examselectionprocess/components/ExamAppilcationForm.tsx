@@ -6,8 +6,7 @@ import Disclaimer from './Disclaimer';
 import CheckboxAgreement from './CheckboxAgreement';
 import { Button } from '@/components/ui/button';
 import TestTypeNavigation from '../../process/components/TestTypeNavigation';
-
-export default function ExamApplicationForm() {
+const ExamApplicationForm: React.FC = () => {
   const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
 
@@ -39,7 +38,7 @@ export default function ExamApplicationForm() {
         Check success probability
       </Button>
       </div>
-  
     </div>
   );
 }
+export default ExamApplicationForm

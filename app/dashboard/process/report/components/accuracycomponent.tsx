@@ -1,9 +1,7 @@
 "use client"
-
 import * as React from "react"
 import { Label, Pie, PieChart, Sector } from "recharts"
 import { PieSectorDataItem } from "recharts/types/polar/Pie"
-
 import {
   Card,
   CardContent,
@@ -17,7 +15,6 @@ import {
   ChartStyle,
   ChartTooltip,
 } from "@/components/ui/chart"
-
 export const description = "An interactive pie chart"
 const desktopData = [
   { month: "Attempted Questions", fill: "#10B981", desktop: 75 },
@@ -58,7 +55,7 @@ const chartConfig = {
 
   
 } satisfies ChartConfig
-export function AccuracyComponent() {
+const AccuracyComponent: React.FC = () => {
   const id = "pie-interactive"
   const [activeMonth] = React.useState(desktopData[0].month)
   const [hoverIndex, setHoverIndex] = React.useState<number | undefined>(undefined)
@@ -178,7 +175,7 @@ export function AccuracyComponent() {
    </div>
  ))}
 </div>
-
     </Card>
   )
 }
+export default AccuracyComponent

@@ -28,7 +28,8 @@ const chartData = [
   { attempt: "05", score: 95 },
 ]
 
-export function ProgressTrackingChart() {
+const ProgressTrackingChart: React.FC = () => {
+
   return (
     <Card className="bg-slate-100 border border-custombroder rounded-xl">
       <CardContent className="p-6">
@@ -80,3 +81,4 @@ export function ProgressTrackingChart() {
     </Card>
   )
 }
+export default ProgressTrackingChart

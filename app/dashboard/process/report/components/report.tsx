@@ -3,13 +3,13 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, MinusCircle, PenSquare, XCircle, View } from 'lucide-react'; 
 import Barchart from './barchart';
-import { PieChartComponent } from './piechart';
-import { AccuracyComponent } from './accuracycomponent';
+import  PieChartComponent from './PieChartComponent';
+import AccuracyComponent from './accuracycomponent';
 import Speed from './Speed';
-import {ProgressTrackingChart}from './processtracking'
+import ProgressTrackingChart from './processtrackingchart'
 import QuizPage from './QuizPage';
-import ImprovementAreasChart from './areachart';
-import { TimeManagementChart } from './timemangementchart';
+import ImprovementAreasChart from './ImprovementAreasChart';
+import  TimeManagementChart  from './timemangementchart';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 const Report = () => {

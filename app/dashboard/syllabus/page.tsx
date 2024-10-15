@@ -1,8 +1,9 @@
 import React from 'react'
-import Syllabus from './components/syllabus'
+
+import SyllabusCoverage from './components/syllabuscoverage'
 const page = () => {
   return (
-   <Syllabus/>
+   <SyllabusCoverage/>
   )
 }
 

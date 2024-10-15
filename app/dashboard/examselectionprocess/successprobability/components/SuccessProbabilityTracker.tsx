@@ -71,8 +71,7 @@ const monthlyData: MonthlyData = {
     { month: "Today", probability: 58 },
   ],
 }
-
-export default function SuccessProbabilityTracker() {
+const SuccessProbabilityTracker: React.FC = () => {
   const [selectedMonth, setSelectedMonth] = useState<keyof MonthlyData>("Aug")
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [selectedRange, setSelectedRange] = useState("Last 6 months")
@@ -230,3 +229,4 @@ export default function SuccessProbabilityTracker() {
     </Card>
   )
 }
+export default SuccessProbabilityTracker

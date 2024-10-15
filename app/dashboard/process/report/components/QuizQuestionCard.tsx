@@ -75,8 +75,8 @@ export function QuizQuestionCard({ question, options, userAnswer, correctAnswer,
   )
 }
 
-export default function QuizPage() {
-  const questionData: QuizQuestionProps[] = [
+const QuizPage: React.FC = () => {
+ const questionData: QuizQuestionProps[] = [
     {
       question: "Lorem ipsum dolor sit amet consectetur?",
       options: [
@@ -139,3 +139,4 @@ export default function QuizPage() {
     </div>
   )
 }
+export default QuizPage

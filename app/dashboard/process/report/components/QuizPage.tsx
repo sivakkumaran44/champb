@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,7 +16,8 @@ interface QuizQuestionProps {
   time: string;
   score: number;
 }
-export function QuizQuestionCard({ question, options, userAnswer, correctAnswer, time}: QuizQuestionProps) {
+
+const QuizQuestionCard: React.FC<QuizQuestionProps> = ({ question, options, userAnswer, correctAnswer, time }) => {
   const isCorrect = userAnswer === correctAnswer;
   const isUnattempted = userAnswer === null;
   const isImageQuestion = options[0].image !== undefined;
@@ -40,15 +40,15 @@ export function QuizQuestionCard({ question, options, userAnswer, correctAnswer,
 
   return (
     <Card className="bg-slate-100 border border-slate-200">
-    <CardContent className="p-6">
-      <div className="flex justify-between items-start mb-4">
-        <h2 className="text-lg font-semibold text-slate-700">{question}</h2>
-        <div className={`flex flex-col items-end ${getScoreColor()}`}>
-          <span className="font-bold text-lg">{getScoreText()}</span>
-          <span className="text-sm text-slate-500">{time}</span>
+      <CardContent className="p-6">
+        <div className="flex justify-between items-start mb-4">
+          <h2 className="text-lg font-semibold text-slate-700">{question}</h2>
+          <div className={`flex flex-col items-end ${getScoreColor()}`}>
+            <span className="font-bold text-lg">{getScoreText()}</span>
+            <span className="text-sm text-slate-500">{time}</span>
+          </div>
         </div>
-      </div>
-              <div className={`${isImageQuestion ? 'grid grid-cols-1 gap-4' : 'space-y-2'} mb-4`}>
+        <div className={`${isImageQuestion ? 'grid grid-cols-1 gap-4' : 'space-y-2'} mb-4`}>
           {options.map((option, index) => (
             <div key={index} className={`flex items-center ${getAnswerColor(String.fromCharCode(65 + index))}`}>
               <span className="mr-2">{String.fromCharCode(65 + index)}.</span>

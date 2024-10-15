@@ -6,11 +6,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import Banner from "@/public/assets/img/BannerPorfile.png"
-import SettingsContent from "./settings"
-import NotificationContent from "./notification"
-import PrivacyContent from "./privacy"
-
-export default function ProfileComponent() {
+import SettingsContent from "./settingscontent"
+import NotificationContent from "./notificationcontent"
+import PrivacyContent from "./privacycontent"
+const ProfileBanner: React.FC = () => {
   const [activeTab, setActiveTab] = useState("Settings")
   const [isEditing, setIsEditing] = useState(false)
 
@@ -128,3 +127,4 @@ function TabButton({ children, active = false, onClick }: TabButtonProps) {
     </button>
   );
 }
+export default ProfileBanner

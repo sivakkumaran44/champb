@@ -1,6 +1,5 @@
 import disclaimerData from '@/components/data/disclaimer.json';
-
-export default function Disclaimer() {
+const Disclaimer: React.FC = () => {
   return (
     <div className="mb-4">
       <h2 className="text-lg text-slate-700 font-bold mb-4">{disclaimerData.title}</h2>
@@ -17,3 +16,4 @@ export default function Disclaimer() {
     </div>
   );
 }
+export default Disclaimer

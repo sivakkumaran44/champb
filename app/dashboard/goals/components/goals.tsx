@@ -8,8 +8,8 @@ const goals = [
   { type: 'current', purchaseDate: new Date('2025-09-30'), renewalDate: new Date('2026-09-30') },
   { type: 'future', purchaseDate: new Date('2024-09-30'), renewalDate: new Date('2025-09-30') },
 ]
+const Goal: React.FC = () => {
 
-export default function Goal() {
   const [filter, setFilter] = useState("all")
   const [isMobile, setIsMobile] = useState(false)
   const [isSheetOpen, setIsSheetOpen] = useState(false)
@@ -82,3 +82,4 @@ export default function Goal() {
     </div>
   )
 }
+export default Goal

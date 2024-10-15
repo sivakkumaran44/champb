@@ -1,7 +1,8 @@
 'use client'
 import React, { useState } from "react";
 import { Check } from "lucide-react";
-export default function NotificationContent() {
+
+const NotificationContent: React.FC = () => {
   return (
     <div className="p-6 max-w-8xl mx-auto">
       <h2 className="text-xl font-semibold text-gray-900 mb-1">Notifications from us</h2>
@@ -165,3 +166,4 @@ function CustomSwitch({ checked, onCheckedChange, isGreen }: CustomSwitchProps) 
     </label>
   );
 }
+export default NotificationContent

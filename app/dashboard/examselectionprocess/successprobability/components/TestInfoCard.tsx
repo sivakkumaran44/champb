@@ -45,7 +45,7 @@ const tests: TestInfo[] = [
     isFree: true,
   },
 ];
-export default function TestInfoCard() {
+const TestInfoCard: React.FC = () => {
    return (
     <div className="container mx-auto p-2">
    <div className="space-y-2 sm:space-y-4">
@@ -71,5 +71,5 @@ export default function TestInfoCard() {
     </div>
   );
 };
-
+export default TestInfoCard
 

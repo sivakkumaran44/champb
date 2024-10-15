@@ -6,7 +6,7 @@ import Image from "next/image"
 import Cup from "@/public/assets/img/Cup.svg"
 import EditYearDialog from './EditYearDialog'
 import DisclaimerDialog from './DisclaimerDialog'
-export default function SuccessRate() {
+const SuccessRate: React.FC = () => {
   const [year, setYear] = useState("2024")
   const progressValue = 55
   return (
@@ -54,3 +54,4 @@ export default function SuccessRate() {
     </div>
   )
 }
+export default SuccessRate

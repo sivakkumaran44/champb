@@ -64,7 +64,8 @@ const chartConfig = {
   },
   
 } satisfies ChartConfig
-export function PieChartComponent() {
+
+const PieChartComponent: React.FC = () => {
   const id = "pie-interactive"
   const [activeMonth] = React.useState(desktopData[0].month)
   const [hoverIndex, setHoverIndex] = React.useState<number | undefined>(undefined)
@@ -190,3 +191,4 @@ export function PieChartComponent() {
     </Card>
   )
 }
+export default PieChartComponent

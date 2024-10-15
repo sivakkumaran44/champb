@@ -37,7 +37,7 @@ import {
   PanelLeftClose,
   PanelLeftOpen
 } from 'lucide-react'
-import { useTestType, TestType } from '@/app/usecontext/TestTypeContext'
+import { useTestType, TestType } from '@/app/dashboard/components/usecontext/TestTypeContext'
 
 import Logo from '@/public/assets/img/LOGO SVG.svg'
 import LogoSmall from '@/public/assets/img/Logo.svg'

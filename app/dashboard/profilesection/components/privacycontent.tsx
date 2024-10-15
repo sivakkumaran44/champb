@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export default function PrivacyContent() {
+const PrivacyContent: React.FC = () => {
   return (
     <div className="mt-4 pl-6">
       <p className="text-slate-700 mb-72">
@@ -25,3 +25,4 @@ export default function PrivacyContent() {
     </div>
   );
 }
+export default PrivacyContent

@@ -1,7 +1,7 @@
 'use client'
 
 import Lottie from 'lottie-react'
-import loadingAnimation from '@/components/data/ColorsChanging1.json'
+import loadingAnimation from '@/components/data/Loading Animation bChamp.json'
 
 export default function Loading() {
   return (
