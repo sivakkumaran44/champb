@@ -1,5 +1,6 @@
 import React from 'react'
-import CustomTest from './components/CustomTest'
+import CustomTest from './customtest'
+
 const page = () => {
   return (
     <div>
