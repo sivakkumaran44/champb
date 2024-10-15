@@ -16,7 +16,6 @@ import {
   ResponsiveContainer,
 } from "recharts"
 import { ChevronDown } from "lucide-react"
-
 type MonthData = { month: string; probability: number }[];
 type MonthlyData = {
   [key: string]: MonthData;

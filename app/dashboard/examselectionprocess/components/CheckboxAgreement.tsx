@@ -5,7 +5,6 @@ interface CheckboxAgreementProps {
   isChecked: boolean;
   onCheckedChange: (checked: boolean) => void;
 }
-
 export default function CheckboxAgreement({ isChecked, onCheckedChange }: CheckboxAgreementProps) {
   return (
     <div className="flex flex-col items-center p-4  ">

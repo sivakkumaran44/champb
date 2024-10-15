@@ -7,6 +7,7 @@ interface EditYearDialogProps {
   year: string; 
   setYear: (year: string) => void; 
 }
+
 const EditYearDialog: React.FC<EditYearDialogProps> = ({ year, setYear }) => {
   return (
     <Dialog>

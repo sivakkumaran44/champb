@@ -1,7 +1,7 @@
 {
     "desktopData": [
-      { "month": "Correct", "desktop": 186, "fill": "var(--color-Correct)" },
-      { "month": "Wrong", "desktop": 305, "fill": "var(--color-Wrong)" },
-      { "month": "Skipped", "desktop": 236, "fill": "var(--color-Skipped)" }
+      { "month": "Correct", "desktop": 65, "fill": "#10B981" },
+      { "month": "Wrong", "desktop": 25, "fill": "#60A5FA" },
+      { "month": "Skipped", "desktop": 10, "fill": "#F87171" }
     ]
   }

@@ -4,7 +4,6 @@ import Currentgoal from "./currentgoal"
 import Futuregoal from "./futuregoal"
 import FilterDropdown from "./filterdropdown"
 import FilterSheet from "./filtersheet"
-
 const goals = [
   { type: 'current', purchaseDate: new Date('2025-09-30'), renewalDate: new Date('2026-09-30') },
   { type: 'future', purchaseDate: new Date('2024-09-30'), renewalDate: new Date('2025-09-30') },

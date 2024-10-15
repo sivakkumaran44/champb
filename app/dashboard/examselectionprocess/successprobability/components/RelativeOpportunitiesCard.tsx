@@ -11,7 +11,7 @@ const opportunities = [
   "SSC MTS (Multi Tasking Staff)",
 ]
 
-export function RelativeOpportunitiesCard() {
+export default function RelativeOpportunitiesCard() {
   return (
     <Card className="w-full max-w-3xl mx-auto bg-slate-100 border border-customborder rounded-xl">
     <CardHeader className="pb-2 border-b border-[#D9D9D9]">

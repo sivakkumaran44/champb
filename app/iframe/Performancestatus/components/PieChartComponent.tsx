@@ -1,29 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { Label, Pie, PieChart, Sector } from "recharts"
+import { Label, Pie, PieChart, Sector, ResponsiveContainer, Tooltip } from "recharts"
 import { PieSectorDataItem } from "recharts/types/polar/Pie"
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartStyle,
-  ChartTooltip,
-} from "@/components/ui/chart"
-
 import chartData from '@/components/data/piechart.json'
 
-export const description = "An interactive pie chart"
-
-const desktopData = chartData.desktopData
+const pieChartData = chartData.desktopData
 
 interface CustomTooltipProps {
   active?: boolean
@@ -42,36 +24,8 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
   return null
 }
 
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-  },
-  mobile: {
-    label: "Mobile",
-  },
-  Correct: {
-    label: "Correct",
-    color: "#10B981",
-  },
-  Wrong: {
-    label: "Wrong",
-    color: "#60A5FA",
-  },
-  Skipped: {
-    label: "Skipped",
-    color: "#F87171",
-  },
-} satisfies ChartConfig
-
-export function PieChartComponent() {
-  const id = "pie-interactive"
-  const [activeMonth] = React.useState(desktopData[0].month)
+export default function PieChartComponent() {
   const [hoverIndex, setHoverIndex] = React.useState<number | undefined>(undefined)
-
-  const activeIndex = React.useMemo(
-    () => desktopData.findIndex((item) => item.month === activeMonth),
-    [activeMonth]
-  )
 
   const onPieEnter = (_: unknown, index: number) => {
     setHoverIndex(index)
@@ -81,40 +35,31 @@ export function PieChartComponent() {
     setHoverIndex(undefined)
   }
 
-  const displayData = hoverIndex !== undefined ? desktopData[hoverIndex] : desktopData[activeIndex]
-
-  const totalAnswers = desktopData.reduce((sum, item) => sum + item.desktop, 0)
-  const CorrectPercentage = Math.round((desktopData[0].desktop / totalAnswers) * 100)
+  const displayData = hoverIndex !== undefined ? pieChartData[hoverIndex] : pieChartData[0]
+  const totalAnswers = pieChartData.reduce((sum, item) => sum + item.desktop, 0)
+  const correctPercentage = Math.round((pieChartData[0].desktop / totalAnswers) * 100)
 
   return (
     <div className="pl-6">
-      <Card data-chart={id} className="bg-slate-100 border mt-6 w-[220px] h-[320px] border-custombroder">
-        <ChartStyle id={id} config={chartConfig} />
-        <CardHeader className="flex-row items-start space-y-0 pb-0">
-          <div className="grid gap-1 text-slate-700">
-            <CardTitle className="text-xs">Overall Score</CardTitle>
-            <CardDescription className="text-[10px] leading-tight">
-              Congratulations on your {CorrectPercentage}%! Use this as a stepping stone to build on and keep pushing towards your goal.
-            </CardDescription>
-          </div>
-        </CardHeader>
-        <CardContent className="flex flex-1 justify-center pb-0">
-          <ChartContainer
-            id={id}
-            config={chartConfig}
-            className="mx-auto aspect-square w-full max-w-[180px]"
-          >
+      <div className="bg-slate-100 border mt-6 w-[220px] h-[320px] border-custombroder rounded-lg overflow-hidden">
+        <div className="p-4">
+          <h3 className="text-xs font-semibold text-slate-700">Overall Score</h3>
+          <p className="text-[10px] leading-tight text-slate-600 mt-1">
+            Congratulations on your {correctPercentage}%! Use this as a stepping stone to build on and keep pushing towards your goal.
+          </p>
+        </div>
+        <div className="h-[180px]">
+          <ResponsiveContainer width="100%" height="100%">
             <PieChart>
-              <ChartTooltip cursor={false} content={<CustomTooltip />} />
               <Pie
-                data={desktopData}
+                data={pieChartData}
                 dataKey="desktop"
                 nameKey="month"
                 innerRadius={40}
                 outerRadius={70}
                 strokeWidth={5}
                 cornerRadius={8}
-                activeIndex={hoverIndex !== undefined ? hoverIndex : activeIndex}
+                activeIndex={hoverIndex}
                 onMouseEnter={onPieEnter}
                 onMouseLeave={onPieLeave}
                 activeShape={({ outerRadius = 0, ...props }: PieSectorDataItem) => (
@@ -134,11 +79,11 @@ export function PieChartComponent() {
                           textAnchor="middle"
                           dominantBaseline="middle"
                         >
-                          <tspan x={viewBox.cx} y={viewBox.cy} className="fill-foreground text-xl font-bold">
+                          <tspan x={viewBox.cx} y={viewBox.cy} className="fill-slate-700 text-xl font-bold">
                             {displayData.desktop.toLocaleString()}
                           </tspan>
-                          <tspan x={viewBox.cx} y={(viewBox.cy || 0) + 20} className="fill-muted-foreground text-[8px]">
-                            {chartConfig[displayData.month as keyof typeof chartConfig]?.label}
+                          <tspan x={viewBox.cx} y={(viewBox.cy || 0) + 20} className="fill-slate-500 text-[8px]">
+                            {displayData.month}
                           </tspan>
                         </text>
                       )
@@ -146,19 +91,19 @@ export function PieChartComponent() {
                   }}
                 />
               </Pie>
+              <Tooltip content={<CustomTooltip />} />
             </PieChart>
-          </ChartContainer>
-        </CardContent>
-        <CardFooter />
+          </ResponsiveContainer>
+        </div>
         <div className="grid grid-cols-3 gap-2 mb-2 ml-2 text-xs">
-          {desktopData.map((item) => (
+          {pieChartData.map((item) => (
             <div key={item.month} className="flex items-center">
               <span className="w-2 h-2 rounded-full mr-1" style={{ backgroundColor: item.fill }}></span>
               <span>{`${item.month} - ${item.desktop}`}</span>
             </div>
           ))}
         </div>
-      </Card>
+      </div>
     </div>
   )
 }

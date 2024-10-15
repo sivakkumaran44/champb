@@ -2,7 +2,7 @@ import React from 'react'
 import SuccessProbabilityTracker from './SuccessProbabilityTracker'
 import SuccessProbabilityProcessChart from './SuccessProbabilityProcessChart'
 import  TestInfoCard  from './TestInfoCard'
-import { RelativeOpportunitiesCard } from './RelativeOpportunitiesCard'
+import  RelativeOpportunitiesCard  from './RelativeOpportunitiesCard'
 import SuccessRate from './SuccessRate'
 const SuccessProbabilityChart = () => {
   return (

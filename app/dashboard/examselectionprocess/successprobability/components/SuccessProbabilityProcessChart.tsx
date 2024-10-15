@@ -11,7 +11,6 @@ const data = [
   { day: "Sat", probability: 57 },
   { day: "Sun", probability: 73 },
 ];
-
 export default function SuccessProbabilityProgressChart() {
   return (
     <Card className="w-full max-w-3xl mx-auto bg-slate-100 border border-custombroder rounded-xl p-4 sm:p-6">

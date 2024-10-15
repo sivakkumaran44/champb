@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CircleChevronDown, Clock, HelpCircle, View } from 'lucide-react';
 import TestTypeNavigation from '@/app/dashboard/components/TestTypeNavigation';
-const CustomTest: React.FC = () => {
+export default function CustomTest() {
 const [section, setSection] = useState('');
   const [chapter, setChapter] = useState('');
   const [topic, setTopic] = useState('');
@@ -130,4 +130,4 @@ const [section, setSection] = useState('');
   );
 };
 
-export default CustomTest;
+

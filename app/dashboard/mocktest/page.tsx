@@ -1,5 +1,12 @@
-import Mocktest from './components/mocktest';
+import React from 'react'
+import MockTestPage from './components/MockTestPage'
 
-export default function CustomTestRoute() {
-  return <Mocktest />;
+const page = () => {
+  return (
+    <div>
+      <MockTestPage/>
+    </div>
+  )
 }
+
+export default page
