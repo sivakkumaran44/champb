@@ -94,15 +94,6 @@ const FindMyLevelTestForm = () => {
         </div>
       </form>
 
-      {showOtpVerification && (
-        <OtpVerification 
-          isOpen={showOtpVerification} 
-          onClose={handleOtpVerificationClose}
-          countryCode={countryCode}
-          mobileNumber={mobileNumber}
-          onUpdateMobileNumber={handleUpdateMobileNumber}
-        />
-      )}
     </>
   );
 };
