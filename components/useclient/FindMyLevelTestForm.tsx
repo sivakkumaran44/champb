@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import OtpVerification from '@/components/Auth/OtpScreen';
+import OtpVerification from '@/components/Auth/OtpScreen/OtpScreen';
 
 const FindMyLevelTestForm = () => {
   const [showOtpVerification, setShowOtpVerification] = useState(false);
