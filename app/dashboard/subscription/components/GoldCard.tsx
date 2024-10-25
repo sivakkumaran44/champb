@@ -2,30 +2,32 @@ import React from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from 'next/image';
-import card from '@/public/assets/img/Cardimg.png';
-
 interface Subscription {
   title: string;
   description: string;
-  price: string;
+  image: {
+    src: string;
+    fallback: string;
+  };
   features: string[];
+  category: string[];
 }
-
 interface SubscriptionCardsProps {
   subscriptions: Subscription[];
 }
-
 const GoldCard: React.FC<SubscriptionCardsProps> = ({ subscriptions }) => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-        {subscriptions.map((subscription, index) => (
+        {subscriptions?.map((subscription, index) => (
           <Card key={index} className="w-full max-w-[350px] bg-white shadow-lg rounded-lg overflow-hidden flex flex-col">
             <CardHeader className="bg-pink-100 p-4 flex justify-center items-center">
               <Image 
-                src={card}
-                alt={`${subscription.title} Logo`}
-                className="object-contain"
+                src={subscription.image.src}
+                alt={subscription.image.fallback}
+                width={250}
+                height={250}
+                className="object-contain rounded-full"
               />
             </CardHeader>
             <CardContent className="p-6 flex-grow">
@@ -40,9 +42,6 @@ const GoldCard: React.FC<SubscriptionCardsProps> = ({ subscriptions }) => {
                     </li>
                   ))}
                 </ul>
-                <div className="text-2xl font-bold text-orange-500 ml-4 sm:ml-8">
-                  {subscription.price}
-                </div>
               </div>
             </CardContent>
             <CardFooter className="flex justify-between items-center p-6 bg-gray-50">
@@ -55,5 +54,4 @@ const GoldCard: React.FC<SubscriptionCardsProps> = ({ subscriptions }) => {
     </div>
   );
 }
-
 export default GoldCard;

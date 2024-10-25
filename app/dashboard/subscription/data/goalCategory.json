@@ -1,0 +1,11 @@
+{
+    "goalCategory": [
+    {
+        "id":1,
+        "name":"Trending"
+    },
+    {
+        "id":2,
+        "name":"Coming Soon"
+    }
+  ]}

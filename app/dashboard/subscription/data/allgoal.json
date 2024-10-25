@@ -1,0 +1,124 @@
+{"allgoals": [
+    {
+      "title": "SSC CGL",
+      "description": "Combined Graduate Level",
+     "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
+      "features": [
+        "Comprehensive syllabus coverage for all SSC CGL Tiers",
+        "70+ full-length mock tests",
+        "12,000+ practice questions"
+      ],
+      "category":["Trending"]
+    },
+    {
+      "title": "IBPS PO",
+      "description": "Institute of Banking Personnel Selection - Probationary Officer",
+     "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
+      "features": [
+        "Complete syllabus for IBPS PO exam",
+        "60+ mock tests with detailed analysis",
+        "9,000+ practice questions"
+      ],
+      "category":["Trending"]
+    },
+    {
+        "title": "IBPS PO",
+        "description": "Institute of Banking Personnel Selection - Probationary Officer",
+       "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
+        "features": [
+          "Complete syllabus for IBPS PO exam",
+          "60+ mock tests with detailed analysis",
+          "9,000+ practice questions"
+        ],
+        "category":["Trending"]
+      },
+    {
+      "title": "RRB NTPC",
+      "description": "Railway Recruitment Board - Non-Technical Trending Categories",
+      "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
+      "features": [
+        "Full syllabus coverage for RRB NTPC",
+        "45+ full-length mock tests",
+        "8,000+ practice questions"
+      ],
+      "category":["Coming Soon"]
+    },
+ 
+    {
+      "title": "UPSC IAS",
+      "description": "Indian Administrative Service",
+      "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
+      "features": [
+        "Complete IAS syllabus coverage",
+        "100+ mock tests for prelims and mains",
+        "15,000+ practice questions"
+      ],
+      "category":["Trending"]
+    },
+    {
+      "title": "CAT",
+      "description": "Common Admission Test",
+      "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
+      "features": [
+        "Full syllabus coverage for CAT",
+        "80+ full-length mock tests",
+        "10,000+ practice questions"
+      ],
+      "category":["Trending"]
+    },
+    {
+      "title": "GATE",
+      "description": "Graduate Aptitude Test in Engineering",
+     "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
+      "features": [
+        "Complete syllabus coverage for GATE",
+        "70+ mock tests with detailed solutions",
+        "11,000+ practice questions"
+      ],
+      "category":["Trending"]
+    },
+    {
+      "title": "SSC CGL",
+      "description": "Combined Graduate Level",
+      "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
+      "features": [
+        "Comprehensive syllabus coverage for all SSC CGL Tiers",
+        "70+ full-length mock tests",
+        "12,000+ practice questions"
+      ],
+      "category":["Coming Soon"]
+    },
+    {
+      "title": "IBPS PO",
+      "description": "Institute of Banking Personnel Selection - Probationary Officer",
+      "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
+      "features": [
+        "Complete syllabus for IBPS PO exam",
+        "60+ mock tests with detailed analysis",
+        "9,000+ practice questions"
+      ],
+      "category":["Coming Soon"]
+    },
+    {
+      "title": "RRB NTPC",
+      "description": "Railway Recruitment Board - Non-Technical Trending Categories",
+      "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
+      "features": [
+        "Full syllabus coverage for RRB NTPC",
+        "45+ full-length mock tests",
+        "8,000+ practice questions"
+      ],
+      "category":["Coming Soon"]
+    },
+    {
+      "title": "UPSC IAS",
+      "description": "Indian Administrative Service",
+      "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
+      "features": [
+        "Complete IAS syllabus coverage",
+        "100+ mock tests for prelims and mains",
+        "15,000+ practice questions"
+      ],
+      "category":["Coming Soon"]
+    }
+  ]}

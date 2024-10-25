@@ -1,42 +1,47 @@
-import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
-import categorizedSubscriptionData from '@/components/data/subscriptionData.json'; 
 
-type Tab = 'Upcoming' | 'Popular' | 'All';
+import React from 'react';
+import { Button } from "@/components/ui/button";
 
 interface SortOutProps {
   onCategoryChange: (category: string) => void;
-  activeCategory: keyof typeof categorizedSubscriptionData; 
+  activeCategory: string;
+  categories: Array<{ id: number; name: string; }>;
 }
 
-const SortOut: React.FC<SortOutProps> = ({ onCategoryChange }) => {
-  const [activeTab, setActiveTab] = useState<Tab>('All');
-  const tabs: Tab[] = ['All', 'Upcoming', 'Popular'];
-
-  const handleTabClick = (tab: Tab) => {
-    setActiveTab(tab);
-    onCategoryChange(tab.toLowerCase());
-  };
-
+const SortOut: React.FC<SortOutProps> = ({ onCategoryChange, activeCategory, categories }) => {
   return (
     <div className="flex flex-nowrap gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12 justify-center items-center overflow-auto">
-      {tabs.map((tab) => (
+      <Button
+        key="all"
+        variant={!activeCategory ? "default" : "outline"}
+        onClick={() => onCategoryChange('All')}
+        className={`
+          px-4 py-2 rounded-lg transition-all duration-300 whitespace-nowrap
+          ${!activeCategory 
+            ? 'bg-emerald-300 text-slate-700 hover:bg-emerald-300' 
+            : 'text-slate-400 bg-transparent hover:bg-slate-200 border-slate-300'
+          }
+          hover:border-transparent shadow-none
+        `}
+      >
+        All
+      </Button>
+      
+      {categories.map((category) => (
         <Button
-          key={tab}
-          id={`tab-${tab.toLowerCase()}`}
-          name={`tab-${tab.toLowerCase()}`}
-          variant={activeTab === tab ? "default" : "outline"}
-          onClick={() => handleTabClick(tab)}
+          key={category.id}
+          variant={activeCategory === category.name ? "default" : "outline"}
+          onClick={() => onCategoryChange(category.name)}
           className={`
             px-4 py-2 rounded-lg transition-all duration-300 whitespace-nowrap
-            ${activeTab === tab 
-              ? 'bg-emerald-300 text-slate-700 hover:bg-emerald-300 ' 
-              : 'text-slate-400 bg-transparent hover:bg-slate-200  border-slate-300'
+            ${activeCategory === category.name 
+              ? 'bg-emerald-300 text-slate-700 hover:bg-emerald-300' 
+              : 'text-slate-400 bg-transparent hover:bg-slate-200 border-slate-300'
             }
             hover:border-transparent shadow-none
           `}
         >
-          {tab}
+          {category.name}
         </Button>
       ))}
     </div>
