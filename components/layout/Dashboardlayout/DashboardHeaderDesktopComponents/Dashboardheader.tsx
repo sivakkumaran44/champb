@@ -31,7 +31,7 @@ const DashboardHeader= () => {
             <Button 
               variant="ghost" 
               className="flex items-center space-x-2 p-0 bg-transparent hover:bg-transparent">
-              <Trophy className="h-7 w-7 text-emerald-500" />
+              <Trophy className="h-12 w-12 text-emerald-500" />
               <span className="font-medium text-emerald-500 text-lg md:text-xl">Goal</span>
               <span className="text-sm md:text-lg">SSC - CGL</span>
               <CircleChevronDown className="h-6 w-4" />
