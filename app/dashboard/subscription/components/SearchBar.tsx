@@ -1,17 +1,13 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-
 interface SearchBarProps {
   onSearch: (term: string) => void;
   searchTerm: string;
 }
-
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const searchRef = useRef<HTMLDivElement | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
@@ -19,19 +15,16 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         onSearch('');
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onSearch]);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value;
     setSearchTerm(term);
     onSearch(term);
   };
-
   return (
     <div className="flex items-center justify-center mb-6">
       <div ref={searchRef} className="relative w-full max-w-md"> 
@@ -48,5 +41,4 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     </div>
   );
 };
-
 export default SearchBar;

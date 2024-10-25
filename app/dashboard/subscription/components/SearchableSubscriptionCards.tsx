@@ -5,12 +5,22 @@ import SearchBar from './SearchBar';
 import SortOut from './SortOut';
 import allgoalsData from '../data/allgoal.json';
 import categoryData from '../data/goalCategory.json';
+interface Subscription {
+  title: string;
+  description: string;
+  image: {
+    src: string;
+    fallback: string;
+  };
+  features: string[];
+  category: number[]; 
+}
 const SearchableSubscriptionCards: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleCategoryChange = useCallback((category: string) => {
-    setSelectedCategory(category === 'All' ? '' : category);
+  const handleCategoryChange = useCallback((categoryId: number | null) => {
+    setSelectedCategoryId(categoryId);
     setSearchTerm('');
   }, []);
 
@@ -18,13 +28,25 @@ const SearchableSubscriptionCards: React.FC = () => {
     setSearchTerm(term);
   }, []);
 
+  const getCategoryNameById = useCallback((id: number): string => {
+    return categoryData.goalCategory.find(cat => cat.id === id)?.name || 'Unknown';
+  }, []);
+
+  const formattedSubscriptions: Subscription[] = useMemo(() => {
+    return allgoalsData.allgoals.map(subscription => ({
+      ...subscription,
+      category: subscription.category.map(cat => parseInt(cat, 10))
+    }));
+  }, []);
   const filteredSubscriptions = useMemo(() => {
-    let filtered = allgoalsData.allgoals;
-    if (selectedCategory) {
+    let filtered = formattedSubscriptions;
+    
+    if (selectedCategoryId !== null) {
       filtered = filtered.filter(subscription => 
-        subscription.category.includes(selectedCategory)
+        subscription.category.includes(selectedCategoryId)
       );
     }
+    
     if (searchTerm) {
       filtered = filtered.filter(subscription =>
         subscription.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -33,16 +55,19 @@ const SearchableSubscriptionCards: React.FC = () => {
     }
 
     return filtered;
-  }, [selectedCategory, searchTerm]);
+  }, [formattedSubscriptions, selectedCategoryId, searchTerm]);
 
   const displayText = useMemo(() => {
     const count = filteredSubscriptions?.length || 0;
-    const categoryText = selectedCategory || 'All';
+    const categoryText = selectedCategoryId !== null 
+      ? getCategoryNameById(selectedCategoryId) 
+      : 'All';
+
     if (searchTerm) {
       return `Best Match: Showing ${count} ${count === 1 ? 'goal' : 'goals'} for "${searchTerm}" in "${categoryText}"`;
     }
     return `${categoryText}: Showing ${count} ${count === 1 ? 'goal' : 'goals'}`;
-  }, [filteredSubscriptions, selectedCategory, searchTerm]);
+  }, [filteredSubscriptions, selectedCategoryId, searchTerm, getCategoryNameById]);
 
   return (
     <div className="container mx-auto px-4">
@@ -50,7 +75,7 @@ const SearchableSubscriptionCards: React.FC = () => {
       <div className="flex flex-col items-center mb-2">
         <SortOut 
           onCategoryChange={handleCategoryChange} 
-          activeCategory={selectedCategory} 
+          activeCategoryId={selectedCategoryId} 
           categories={categoryData.goalCategory}
         />
       </div>
@@ -62,6 +87,6 @@ const SearchableSubscriptionCards: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SearchableSubscriptionCards;

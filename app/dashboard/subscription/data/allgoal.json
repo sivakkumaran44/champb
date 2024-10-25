@@ -8,7 +8,7 @@
         "70+ full-length mock tests",
         "12,000+ practice questions"
       ],
-      "category":["Trending"]
+      "category":["1"]
     },
     {
       "title": "IBPS PO",
@@ -19,7 +19,7 @@
         "60+ mock tests with detailed analysis",
         "9,000+ practice questions"
       ],
-      "category":["Trending"]
+      "category":["1"]
     },
     {
         "title": "IBPS PO",
@@ -30,18 +30,18 @@
           "60+ mock tests with detailed analysis",
           "9,000+ practice questions"
         ],
-        "category":["Trending"]
+        "category":["1"]
       },
     {
       "title": "RRB NTPC",
-      "description": "Railway Recruitment Board - Non-Technical Trending Categories",
+      "description": "Railway Recruitment Board - Non-Technical 1 Categories",
       "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
       "features": [
         "Full syllabus coverage for RRB NTPC",
         "45+ full-length mock tests",
         "8,000+ practice questions"
       ],
-      "category":["Coming Soon"]
+      "category":["2"]
     },
  
     {
@@ -53,7 +53,7 @@
         "100+ mock tests for prelims and mains",
         "15,000+ practice questions"
       ],
-      "category":["Trending"]
+      "category":["1"]
     },
     {
       "title": "CAT",
@@ -64,7 +64,7 @@
         "80+ full-length mock tests",
         "10,000+ practice questions"
       ],
-      "category":["Trending"]
+      "category":["1"]
     },
     {
       "title": "GATE",
@@ -75,7 +75,7 @@
         "70+ mock tests with detailed solutions",
         "11,000+ practice questions"
       ],
-      "category":["Trending"]
+      "category":["1"]
     },
     {
       "title": "SSC CGL",
@@ -86,7 +86,7 @@
         "70+ full-length mock tests",
         "12,000+ practice questions"
       ],
-      "category":["Coming Soon"]
+      "category":["2"]
     },
     {
       "title": "IBPS PO",
@@ -97,18 +97,18 @@
         "60+ mock tests with detailed analysis",
         "9,000+ practice questions"
       ],
-      "category":["Coming Soon"]
+      "category":["2"]
     },
     {
       "title": "RRB NTPC",
-      "description": "Railway Recruitment Board - Non-Technical Trending Categories",
+      "description": "Railway Recruitment Board - Non-Technical 1 Categories",
       "image":{"src":"/assets/img/Cardimg.png", "fallback":"string"},
       "features": [
         "Full syllabus coverage for RRB NTPC",
         "45+ full-length mock tests",
         "8,000+ practice questions"
       ],
-      "category":["Coming Soon"]
+      "category":["2"]
     },
     {
       "title": "UPSC IAS",
@@ -119,6 +119,6 @@
         "100+ mock tests for prelims and mains",
         "15,000+ practice questions"
       ],
-      "category":["Coming Soon"]
+      "category":["2"]
     }
   ]}
