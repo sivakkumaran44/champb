@@ -4,7 +4,6 @@ import { Search } from "lucide-react";
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
-  searchTerm: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
@@ -12,7 +11,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = () => {
       if (!isFocused) {
         setSearchTerm('');
         onSearch('');
@@ -34,9 +33,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   return (
     <div className="flex items-center justify-center mb-6">
-      <div className="relative w-full max-w-md" 
-           onFocus={() => setIsFocused(true)} 
-           onBlur={() => setIsFocused(false)}>
+      <div className="relative w-full max-w-md">
         <Search className="absolute left-2.5 top-3.5 h-4 w-4 text-muted-foreground" />
         <Input
           type="text"
@@ -45,6 +42,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           className="w-full rounded-lg bg-background pl-8 border-2"
           value={searchTerm}
           onChange={handleInputChange}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         />
       </div>
     </div>
