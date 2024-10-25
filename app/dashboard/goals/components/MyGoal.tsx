@@ -5,7 +5,7 @@ import goalData from "../data/mygoal.json";
 import GoalCard from "./GoalCard"; 
 
 export interface GoalData {
-  currentGoal?: number;  
+  currentGoal: number;
   myGoals: Array<{
     goalName: string;
     goalId: number;
@@ -16,10 +16,9 @@ export interface GoalData {
 
 const MyGoal: React.FC = () => {
   const data: GoalData = goalData;
-  const currentGoal = data.currentGoal 
-    ? data.myGoals.find((goal) => goal.goalId === data.currentGoal)
-    : data.myGoals[0];  
-    
+  const currentGoal = data.myGoals.find((goal) => goal.goalId === data.currentGoal) || 
+                     (data.myGoals.length > 0 ? data.myGoals[0] : null);
+  
   const otherGoals = currentGoal 
     ? data.myGoals.filter((goal) => goal.goalId !== currentGoal.goalId)
     : [];
