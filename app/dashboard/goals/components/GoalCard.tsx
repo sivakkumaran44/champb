@@ -1,20 +1,40 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trophy, Crosshair } from "lucide-react";
+"use client"
+
+import React, { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Trophy, Crosshair } from "lucide-react"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
 interface GoalCardProps {
-  goalName: string;
-  purchasedOn?: string;
-  renewAt?: string;
-  isCurrent?: boolean;
+  goalName: string
+  purchasedOn?: string
+  renewAt?: string
+  isCurrent?: boolean
+  goalId: number
+  onSetCurrentGoal: (goalId: number) => void
 }
-const GoalCard: React.FC<GoalCardProps> = ({
+
+export default function GoalCard({
   goalName,
   purchasedOn,
   renewAt,
   isCurrent,
+  goalId,
+  onSetCurrentGoal
+}: GoalCardProps) {
+  const [isAlertOpen, setIsAlertOpen] = useState(false)
 
-}) => {
   return (
     <Card className="bg-[#10B9811A] border border-slate-200 mt-4">
       <CardHeader className="bg-white min-h-[8rem] m-2 rounded-xl p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -34,7 +54,7 @@ const GoalCard: React.FC<GoalCardProps> = ({
           <Button
             variant="secondary"
             className="bg-transparent border border-emerald-700 text-emerald-700 whitespace-nowrap flex-shrink-0"
-          
+            onClick={() => onSetCurrentGoal(goalId)}
           >
             <Crosshair className="mr-2 h-4 w-4" />
             Set as my Current Goal
@@ -59,20 +79,32 @@ const GoalCard: React.FC<GoalCardProps> = ({
         </div>
         <div className="flex flex-row justify-end gap-4 w-full">
           {isCurrent ? (
-            <Button className="bg-slate-700 hover:bg-slate-600 text-white flex-1 sm:flex-initial">
-              Mark As Completed
-            </Button>
+            <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
+              <AlertDialogTrigger asChild>
+                <Button className="bg-slate-700 hover:bg-slate-600 text-white flex-1 sm:flex-initial">
+                  Mark As Completed
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Mark Goal as Completed</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Are you sure you want to mark this goal as completed? This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction>OK</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           ) : (
-            <>
-             
-              <Button className="bg-slate-700 hover:bg-slate-600 text-white flex-1 sm:flex-initial">
-                Renew Now
-              </Button>
-            </>
+            <Button className="bg-slate-700 hover:bg-slate-600 text-white flex-1 sm:flex-initial">
+              Renew Now
+            </Button>
           )}
         </div>
       </CardContent>
     </Card>
-  );
-};
-export default GoalCard;
+  )
+}

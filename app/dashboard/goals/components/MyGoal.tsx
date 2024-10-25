@@ -1,9 +1,7 @@
 "use client";
-
-import React from "react";
+import React, { useState } from "react";
 import goalData from "../data/mygoal.json";
 import GoalCard from "./GoalCard"; 
-
 export interface GoalData {
   currentGoal: number;
   myGoals: Array<{
@@ -13,15 +11,20 @@ export interface GoalData {
     renewAt?: string;    
   }>;
 }
-
 const MyGoal: React.FC = () => {
+  const [currentGoalId, setCurrentGoalId] = useState<number>(goalData.currentGoal);
   const data: GoalData = goalData;
-  const currentGoal = data.myGoals.find((goal) => goal.goalId === data.currentGoal) || 
-                     (data.myGoals.length > 0 ? data.myGoals[0] : null);
+
+  const currentGoal = data.myGoals.find((goal) => goal.goalId === currentGoalId) || 
+         (data.myGoals.length > 0 ? data.myGoals[0] : null);
   
   const otherGoals = currentGoal 
     ? data.myGoals.filter((goal) => goal.goalId !== currentGoal.goalId)
     : [];
+
+  const handleSetCurrentGoal = (goalId: number) => {
+    setCurrentGoalId(goalId);
+  };
  
   return (
     <div>
@@ -31,6 +34,8 @@ const MyGoal: React.FC = () => {
           purchasedOn={currentGoal.purchasedOn}
           renewAt={currentGoal.renewAt}
           isCurrent={true}
+          goalId={currentGoal.goalId}
+          onSetCurrentGoal={handleSetCurrentGoal}
         />
       )}
       {otherGoals.length > 0 && (
@@ -44,6 +49,8 @@ const MyGoal: React.FC = () => {
                 purchasedOn={goal.purchasedOn}
                 renewAt={goal.renewAt}
                 isCurrent={false}
+                goalId={goal.goalId}
+                onSetCurrentGoal={handleSetCurrentGoal}
               />
             ))}
           </div>
