@@ -1,0 +1,35 @@
+    {
+        "myGoals": [
+          {
+            "goalName": "Goal 1",
+            "goalId": 1,
+            "purchasedOn": "2024-09-30",
+            "renewAt": "2025-09-30"
+          },
+          {
+            "goalName": "Goal 2",
+            "goalId": 2,
+            "purchasedOn": "2024-09-30",
+            "renewAt": "2025-09-30"
+          },
+      {
+        "goalName": "Goal 3",
+        "goalId": 3,
+        "purchasedOn": "2024-09-30",
+        "renewAt": "2025-09-30"
+      },
+      {
+        "goalName": "Goal 4",
+        "goalId": 4,
+        "purchasedOn": "2024-09-30",
+        "renewAt": "2025-09-30"
+      },
+      {
+        "goalName": "Goal 5",
+        "goalId": 5,
+        "purchasedOn": "2024-09-30",
+        "renewAt": "2025-09-30"
+      }
+    ]
+  }
+  

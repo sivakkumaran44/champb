@@ -1,5 +1,5 @@
 import React from 'react'
-import Goal from './components/goals'
+import Goal from './components/MyGoalHeader'
 const page = () => {
   return (
     <div>
