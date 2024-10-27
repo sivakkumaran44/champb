@@ -38,13 +38,18 @@ const CustomBar: React.FC<RectangleProps> = (props) => {
 const TimeManagementChart: React.FC = () => {
   return (
     <Card className="bg-slate-100 border border-slate-200 rounded-xl w-full">
-      <CardContent className="p-6">
-        <h2 className="text-2xl font-bold text-slate-700 mb-4">Time Management</h2>
-        <div className="w-full" style={{ height: "400px" }}>
+      <CardContent className="p-2 sm:p-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-slate-700 mb-2 sm:mb-4">Time Management</h2>
+        <div className="w-full h-[300px] sm:h-[400px] -ml-4 sm:ml-0">
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart
               data={chartData}
-              margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+              margin={{
+                top: 20,
+                right: 20,
+                left: 0,
+                bottom: 40
+              }}
               barGap={0}
               barCategoryGap="20%"
             >
@@ -53,31 +58,50 @@ const TimeManagementChart: React.FC = () => {
                 dataKey="section"
                 tickLine={false}
                 axisLine={false}
-                tick={{ fill: "#6b7280", fontSize: 12 }}
+                tick={{ 
+                  fill: "#6b7280", 
+                  fontSize: 10,
+                  
+                  textAnchor: 'start',
+                  dy: 8
+                }}
+                height={60}
               />
               <YAxis
                 yAxisId="left"
                 orientation="left"
                 tickLine={false}
                 axisLine={false}
-                tick={{ fill: "#6b7280", fontSize: 12 }}
+                tick={{ fill: "#6b7280", fontSize: 10 }}
                 domain={[0, 10]}
                 ticks={[0, 2, 4, 6, 8, 10]}
+                width={30}
               />
               <YAxis
                 yAxisId="right"
                 orientation="right"
                 tickLine={false}
                 axisLine={false}
-                tick={{ fill: "#6b7280", fontSize: 12 }}
+                tick={{ fill: "#6b7280", fontSize: 10 }}
                 domain={[0, 10]}
                 ticks={[0, 2, 4, 6, 8, 10]}
+                width={30}
               />
-              <Tooltip />
+              <Tooltip 
+                contentStyle={{ fontSize: '12px' }}
+                itemStyle={{ fontSize: '12px' }}
+                labelStyle={{ fontSize: '12px' }}
+              />
               <Legend
                 verticalAlign="bottom"
                 height={36}
-                wrapperStyle={{ bottom: -10, left: 25, fontSize: "12px" }}
+                wrapperStyle={{ 
+                  bottom: -20, 
+                  left: 25, 
+                  fontSize: "10px",
+                  width: '90%'
+                }}
+                iconSize={8}
               />
               <Bar
                 yAxisId="left"
@@ -100,7 +124,7 @@ const TimeManagementChart: React.FC = () => {
                 name="Time Spent on Each Section"
                 stroke="#fcd34d"
                 strokeWidth={2}
-                dot={{ r: 4, fill: "#fcd34d", stroke: "#fcd34d" }}
+                dot={{ r: 3, fill: "#fcd34d", stroke: "#fcd34d" }}
               />
             </ComposedChart>
           </ResponsiveContainer>
@@ -109,4 +133,5 @@ const TimeManagementChart: React.FC = () => {
     </Card>
   );
 }
+
 export default TimeManagementChart

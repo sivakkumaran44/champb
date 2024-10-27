@@ -10,7 +10,7 @@ const improvementAreas = [
   { name: "Decimals", progress: 60, status: "Improve" as Status },
   { name: "Reasoning", progress: 50, status: "Improve" as Status },
   { name: "Percentage", progress: 40, status: "Focus" as Status },
-  { name: "Current Affairs", progress: 30, status: "Focus" as Status },
+  { name: "Current Affairs", progress: 80, status: "Focus" as Status },
 ];
 
 const statusColors: Record<Status, { bg: string; text: string }> = {
