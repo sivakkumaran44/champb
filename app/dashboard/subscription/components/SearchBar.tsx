@@ -4,11 +4,17 @@ import { Search } from "lucide-react";
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
+  searchTerm?: string; 
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch, searchTerm: externalSearchTerm }) => {
+  const [searchTerm, setSearchTerm] = useState(externalSearchTerm || '');
   const [isFocused, setIsFocused] = useState(false);
+  useEffect(() => {
+    if (externalSearchTerm !== undefined) {
+      setSearchTerm(externalSearchTerm);
+    }
+  }, [externalSearchTerm]);
 
   useEffect(() => {
     const handleClickOutside = () => {

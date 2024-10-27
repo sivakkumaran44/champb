@@ -13,8 +13,9 @@ interface Subscription {
     fallback: string;
   };
   features: string[];
-  category: number[]; 
+  category: number[];
 }
+
 const SearchableSubscriptionCards: React.FC = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -38,6 +39,7 @@ const SearchableSubscriptionCards: React.FC = () => {
       category: subscription.category.map(cat => parseInt(cat, 10))
     }));
   }, []);
+
   const filteredSubscriptions = useMemo(() => {
     let filtered = formattedSubscriptions;
     
