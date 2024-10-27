@@ -4,12 +4,13 @@ import { Search } from "lucide-react";
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
-  searchTerm?: string; 
+  searchTerm?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch, searchTerm: externalSearchTerm }) => {
   const [searchTerm, setSearchTerm] = useState(externalSearchTerm || '');
   const [isFocused, setIsFocused] = useState(false);
+
   useEffect(() => {
     if (externalSearchTerm !== undefined) {
       setSearchTerm(externalSearchTerm);
@@ -17,18 +18,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, searchTerm: externalSea
   }, [externalSearchTerm]);
 
   useEffect(() => {
-    const handleClickOutside = () => {
-      if (!isFocused) {
+    if (!isFocused) {
+      const handleClickOutside = () => {
         setSearchTerm('');
         onSearch('');
-      }
-    };
-    if (!isFocused) {
+      };
+      
       document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
     }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
   }, [isFocused, onSearch]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
