@@ -1,0 +1,28 @@
+{
+    "originalPrices": {
+      "monthly": 499,
+      "quarterly": 1299,
+      "yearly": 3999
+    },
+    "savingsData": {
+      "monthly": {
+        "originalPrice": 499,
+        "validity": "1 Month",
+        "savings": "₹100",
+        "percentage": "20%"
+      },
+      "quarterly": {
+        "originalPrice": 1299,
+        "validity": "3 Months",
+        "savings": "₹200",
+        "percentage": "15%"
+      },
+      "yearly": {
+        "originalPrice": 3999,
+        "validity": "1 Year",
+        "savings": "₹800",
+        "percentage": "20%"
+      }
+    }
+  }
+  

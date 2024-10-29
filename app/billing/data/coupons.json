@@ -1,0 +1,20 @@
+{
+    "coupons": [
+      {
+        "code": "BCHAMP100",
+        "discount": 100,
+        "validity": "Valid until 12/31/2024"
+      },
+      {
+        "code": "BCHAMP200",
+        "discount": 200,
+        "validity": "Valid until 12/31/2024"
+      },
+      {
+        "code": "BCHAMP500",
+        "discount": 700,
+        "validity": "Valid until 12/31/2024"
+      }
+    ]
+  }
+  
