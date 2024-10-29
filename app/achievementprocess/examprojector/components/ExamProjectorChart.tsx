@@ -13,8 +13,8 @@ import {
   TooltipProps,
 } from 'recharts';
 import data from '../../data/data.json';
+import { Card } from '@/components/ui/card';
 
-// Define the data type for the weekly data
 interface WeeklyData {
   week: string;
   goalProgress: number;
@@ -22,16 +22,14 @@ interface WeeklyData {
   actualProjection: number;
 }
 
-// Define the props for the custom tooltip
 interface CustomTooltipProps extends TooltipProps<number, string> {
   active?: boolean;
-  payload?: Array<{ payload: WeeklyData }>; // Adjusted to match your data structure
+  payload?: Array<{ payload: WeeklyData }>; 
 }
 
 const ExamProjectorChart: React.FC = () => {
   const weeklyData: WeeklyData[] = data.weeklyData;
 
-  // Custom tooltip component
   const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
     if (active && payload && payload.length) {
       const { week, goalProgress, standardProjection, actualProjection } = payload[0].payload;
@@ -48,9 +46,9 @@ const ExamProjectorChart: React.FC = () => {
   };
 
   return (
-    <div className="w-full border border-[#d9d9d9] shadow-none">
-      <h2 className="text-xl font-bold mb-6">bChamp Exam Projector</h2>
-      <div className="h-[400px] sm:h-[500px] w-full">
+    <Card className="w-full border border-[#d9d9d9]  bg-slate-50 ">
+      <h2 className="text-xl font-bold mb-6 p-6">bChamp Exam Projector</h2>
+      <div className="h-[400px] sm:h-[500px] w-full mb-10">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={weeklyData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#e0e0e0" />
@@ -66,14 +64,16 @@ const ExamProjectorChart: React.FC = () => {
               cursor={{ fill: 'rgba(0, 0, 0, 0.1)' }}
               formatter={(value, name) => [value, name]}
             />
-            <Bar dataKey="goalProgress" fill="#bef264" barSize={40} radius={[0, 0, 0, 0]} name="Goal Progress" />
+            <Bar dataKey="goalProgress" fill="#bef264" barSize={60} radius={[0, 0, 0, 0]} name="Goal Progress" />
             <Line type="monotone" dataKey="standardProjection" stroke="#3b82f6" strokeWidth={2} dot={{ r: 4, fill: '#3b82f6' }} activeDot={{ r: 6 }} name="Standard Projection" />
             <Line type="monotone" dataKey="actualProjection" stroke="#22c55e" strokeWidth={2} dot={{ r: 4, fill: '#22c55e' }} activeDot={{ r: 6 }} name="Actual Progress Projection" />
-            <Legend />
+            <Legend layout="horizontal" align="center" verticalAlign="bottom" />
+
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-    </div>
+      <Legend />
+    </Card>
   );
 };
 
