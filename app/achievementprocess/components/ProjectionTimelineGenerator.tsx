@@ -6,9 +6,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 
-export default function ExamPrepTool() {
+
+const ProjectionTimelineGenerator = () => {
   const [studyHours, setStudyHours] = useState(1);
   const router = useRouter(); 
+  
   const handleGenerateProjection = () => {
     router.push("/achievementprocess/examprojector"); 
   };
@@ -61,4 +63,6 @@ export default function ExamPrepTool() {
       </CardContent>
     </Card>
   );
-}
+};
+
+export default ProjectionTimelineGenerator;

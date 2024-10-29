@@ -14,9 +14,8 @@ interface DashboardData {
   }
 }
 
-export default function Dashboard() {
+const ExamStaticCard = () => {
   const [dashboardData] = useState<DashboardData>(data);
-
   const { summary } = dashboardData;
 
   return (
@@ -59,9 +58,10 @@ export default function Dashboard() {
           <CardTitle className="text-sm font-normal text-gray-600">Feedback</CardTitle>
         </CardHeader>
         <CardContent>
-        
+     
         </CardContent>
       </Card>
     </div>
   );
-}
+};
+export default ExamStaticCard;
