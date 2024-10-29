@@ -63,8 +63,10 @@ export default function Component({ value = 10 }: ProgressBarProps) {
               {value}%
             </div>
           </div>
-          <div style={{ width: 100, height: 100, position: 'relative' }}>
-            <div
+          
+   <div className="items-center justify-end">
+          <div className="w-24 h-24 relative ">
+              <div
               style={{
                 width: 70.71,
                 height: 70.71,
@@ -130,6 +132,7 @@ export default function Component({ value = 10 }: ProgressBarProps) {
             >
               <Trophy style={{ color: "white" }} /> 
             </div>
+          </div>
           </div>
         </div>
       </div>
