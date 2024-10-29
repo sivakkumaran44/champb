@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 "use client"
+
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
-import { cn } from "@/lib/utils"
 
+import { cn } from "@/lib/utils"
 const THEMES = { light: "", dark: ".dark" } as const
 
 export type ChartConfig = {
@@ -68,12 +67,13 @@ ChartContainer.displayName = "Chart"
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
-    ([_, config]) => config.theme || config.color
+    ([, config]) => config.theme || config.color
   )
 
   if (!colorConfig.length) {
     return null
   }
+
   return (
     <style
       dangerouslySetInnerHTML={{
@@ -314,11 +314,12 @@ const ChartLegendContent = React.forwardRef<
 )
 ChartLegendContent.displayName = "ChartLegend"
 
+// Helper to extract item config from a payload.
 function getPayloadConfigFromPayload(
   config: ChartConfig,
   payload: unknown,
   key: string
-)  {
+) {
   if (typeof payload !== "object" || payload === null) {
     return undefined
   }
@@ -331,6 +332,7 @@ function getPayloadConfigFromPayload(
       : undefined
 
   let configLabelKey: string = key
+
   if (
     key in payload &&
     typeof payload[key as keyof typeof payload] === "string"
@@ -345,6 +347,7 @@ function getPayloadConfigFromPayload(
       key as keyof typeof payloadPayload
     ] as string
   }
+
   return configLabelKey in config
     ? config[configLabelKey]
     : config[key as keyof typeof config]
