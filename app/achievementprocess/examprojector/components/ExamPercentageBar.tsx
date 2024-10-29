@@ -10,86 +10,59 @@ export default function Component({ value = 10 }: ProgressBarProps) {
   const getLevelColor = (value: number) => {
     if (value === 100) {
       return {
-        base: 'linear-gradient(180deg, #FFD700 0%, #FFA500 100%)', 
-        inner: 'linear-gradient(0deg, #FFD700 0%, #FFD700 100%)',
-        trophyColor: 'linear-gradient(180deg, #FFD700 0%, #FFA500 100%)', 
+        base: 'bg-gradient-to-b from-[#FFD700] to-[#FFA500]', 
+        inner: 'bg-gradient-to-b from-[#FFD700] to-[#FFD700]',
+        trophyColor: 'bg-gradient-to-br from-[#FFD700] to-[#FFA500]', 
         borderColor: '#FFD700', 
-        boxShadow: '0px 0px 47.34px rgba(255, 215, 0, 0.60) inset', 
+        boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_rgba(255,215,0,0.60)]', 
       };
     }
-     return {
-      base: 'linear-gradient(180deg, #99F6E4 0%, #2DD4BF 100%)',
-      inner: 'linear-gradient(0deg, #14B8A6 0%, #14B8A6 100%)',
-      trophyColor: 'linear-gradient(123deg, #61DF61 0%, #168416 100%)',
+    return {
+      base: 'bg-gradient-to-b from-[#99F6E4] to-[#2DD4BF]',
+      inner: 'bg-gradient-to-b from-[#14B8A6] to-[#14B8A6]',
+      trophyColor: 'bg-gradient-to-br from-[#61DF61] to-[#168416]',
       borderColor: '#209220',
-      boxShadow: '0px 0px 47.34px #016803 inset', 
+      boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_#016803]', 
     };
   };
 
+  const getProgressMessage = (value: number) => {
+    if (value < 25) return "Start with Find My Level test series";
+    if (value < 50) return "Keep Practicing, Stay Focused";
+    if (value < 75) return "You're Getting There, Champion!";
+    if (value < 100) return "Bravo! You're almost there!";
+    return "Congratulations! You've achieved 100%!";
+  };
+
   const { base, inner, trophyColor, borderColor, boxShadow } = getLevelColor(value);
+  const progressMessage = getProgressMessage(value);
 
   return (
     <div className="w-full px-4 md:px-8 lg:px-16 py-8">
       <div className="relative h-12">
         <div className="absolute inset-0 bg-[#E0F2FE] rounded-full overflow-hidden">
           <div
-            className={`h-full rounded-full`}
-            style={{ width: `${value}%`, background: base }}
+            className={`h-full rounded-full ${base}`}
+            style={{ width: `${value}%` }}
           />
         </div>
         <div className="absolute inset-0 flex items-center justify-between">
-          <div style={{ width: 80, height: 80, position: 'relative' }}>
+          <div className="relative w-20 h-20">
             <div
-              style={{
-                width: 80,
-                height: 80,
-                position: 'absolute',
-                background: base,
-                borderRadius: '50%',
-              }}
+              className={`absolute w-20 h-20 rounded-full ${base}`}
             />
             <div
-              style={{
-                width: 55,
-                height: 55,
-                position: 'absolute',
-                background: inner,
-                borderRadius: '50%',
-                left: 12.5,
-                top: 12.5,
-              }}
+              className={`absolute w-14 h-14 rounded-full ${inner} left-3 top-3`}
             />
             <div
-              style={{
-                width: 65,
-                height: 65,
-                position: 'absolute',
-                opacity: 0.25,
-                mixBlendMode: 'overlay',
-                borderRadius: '50%',
-                border: '1px white solid',
-                left: 7.5,
-                top: 7.5,
-              }}
+              className={`absolute w-16 h-16 opacity-25 mix-blend-overlay rounded-full border border-white left-2 top-2`}
             />
             <div
-              style={{
-                left: '50%',
-                top: '50%',
-                position: 'absolute',
-                color: 'white',
-                fontSize: 20,
-                fontFamily: 'Anek Tamil',
-                fontWeight: '600',
-                transform: 'translate(-50%, -50%)',
-                textAlign: 'center',
-              }}
+              className="absolute left-1/2 top-1/2 text-white text-xl font-semibold -translate-x-1/2 -translate-y-1/2 text-center"
             >
               {value}%
             </div>
           </div>
-
-          {/* Trophy Section */}
           <div style={{ width: 100, height: 100, position: 'relative' }}>
             <div
               style={{
@@ -126,9 +99,9 @@ export default function Component({ value = 10 }: ProgressBarProps) {
                 background: value < 100
                   ? 'radial-gradient(61.48% 60.76% at 28.57% 30.38%, #0FDB0C 0%, #089604 100%), radial-gradient(92.10% 173.57% at 628.93% -291.34%, rgba(255, 255, 255, 0.29) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, rgba(0, 89, 0, 0) 0%, rgba(0, 89, 0, 0.20) 100%)'
                   : 'linear-gradient(180deg, rgba(255, 215, 0, 0.5) 0%, rgba(255, 215, 0, 0.20) 100%)', 
-                boxShadow: boxShadow, // Dynamic box shadow based on value
+                boxShadow: boxShadow,
                 borderRadius: 5.26,
-                border: `8.42px ${borderColor} solid`, // Use borderColor for the trophy border
+                border: `8.42px ${borderColor} solid`,
               }}
             />
             <div
@@ -140,7 +113,7 @@ export default function Component({ value = 10 }: ProgressBarProps) {
                 position: 'absolute',
                 opacity: 0.47,
                 borderRadius: 14.25,
-                border: `1.02px ${borderColor} solid`, // Use borderColor for the trophy border
+                border: `1.02px ${borderColor} solid`,
               }}
             />
             <div
@@ -158,8 +131,11 @@ export default function Component({ value = 10 }: ProgressBarProps) {
               <Trophy style={{ color: "white" }} /> 
             </div>
           </div>
-
         </div>
+      </div>
+      <div className="flex justify-between mt-2 text-xs py-4">
+        <span className="text-gray-600">{progressMessage}</span>
+        <span className="text-gray-600">49 Days</span>
       </div>
     </div>
   );
