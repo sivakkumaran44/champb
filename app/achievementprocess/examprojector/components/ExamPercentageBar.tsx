@@ -1,28 +1,41 @@
 "use client";
 
 import { Trophy } from "lucide-react";
+import data from '../../data/data.json'; 
 
 interface ProgressBarProps {
   value?: number;
 }
 
-export default function Component({ value = 10 }: ProgressBarProps) {
+export default function Component({ value = data.additionalData.progress }: ProgressBarProps) {
   const getLevelColor = (value: number) => {
-    if (value === 100) {
-      return {
-        base: 'bg-gradient-to-b from-[#FFD700] to-[#FFA500]', 
-        inner: 'bg-gradient-to-b from-[#FFD700] to-[#FFD700]',
-        trophyColor: 'bg-gradient-to-br from-[#FFD700] to-[#FFA500]', 
-        borderColor: '#FFD700', 
-        boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_rgba(255,215,0,0.60)]', 
-      };
-    }
-    return {
-      base: 'bg-gradient-to-b from-[#99F6E4] to-[#2DD4BF]',
+    if (value < 25) return {
+      base: 'bg-gradient-to-b from-[#99F6E4] to-[#2DD4BF]', 
       inner: 'bg-gradient-to-b from-[#14B8A6] to-[#14B8A6]',
       trophyColor: 'bg-gradient-to-br from-[#61DF61] to-[#168416]',
       borderColor: '#209220',
-      boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_#016803]', 
+      boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_rgba(1, 96, 1, 0.60)]', 
+    };
+    if (value < 50) return {
+      base: 'bg-gradient-to-b from-[#FFC190] to-[#C35A2A]',
+      inner: 'radial-gradient(64.20% 64.20% at 32.10% 32.10%, #DA9062 0%, #C67341 100%)',
+      trophyColor: 'bg-gradient-to-br from-[#FFD700] to-[#FFA500]',
+      borderColor: '#D99B19',
+      boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_rgba(217, 155, 25, 0.60)]', 
+    };
+    if (value < 75) return {
+      base: 'bg-gradient-to-b from-[#ECEFF6] to-[#B5B5B6]',
+      inner: 'bg-gradient-to-b from-[#6B7280] to-[#6B7280]',
+      trophyColor: 'bg-gradient-to-br from-[#FFD700] to-[#FFA500]',
+      borderColor: '#D99B19',
+      boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_rgba(217, 155, 25, 0.60)]', 
+    };
+    return {
+      base: 'bg-gradient-to-b from-[#EDB120] to-[#D99B19]',
+      inner: 'bg-gradient-to-b from-[#FECC2B] to-[#FECC2B]',
+      trophyColor: 'bg-gradient-to-br from-[#FFD700] to-[#FFA500]',
+      borderColor: '#FFD700',
+      boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_rgba(255, 215, 0, 0.60)]', 
     };
   };
 
@@ -63,76 +76,76 @@ export default function Component({ value = 10 }: ProgressBarProps) {
               {value}%
             </div>
           </div>
-          
-   <div className="items-center justify-end">
-          <div className="w-24 h-24 relative ">
+
+          <div className="items-center justify-end">
+            <div className="w-24 h-24 relative ">
               <div
-              style={{
-                width: 70.71,
-                height: 70.71,
-                left: 50,
-                top: 0,
-                position: 'absolute',
-                transform: 'rotate(45deg)',
-                transformOrigin: '0 0',
-                background: trophyColor,
-                boxShadow: boxShadow,
-                borderRadius: 10.52,
-              }}
-            />
-            <div
-              style={{
-                width: 70.83,
-                height: 70.83,
-                left: 14.58,
-                top: 14.58,
-                position: 'absolute',
-                background: value < 100 ? 'linear-gradient(159deg, #79F07A 0%, #4CC14C 50%, #1F921F 100%)' : 'linear-gradient(180deg, #FFD700 0%, #FFA500 100%)',
-                borderRadius: 10.52,
-              }}
-            />
-            <div
-              style={{
-                width: 47.92,
-                height: 47.92,
-                left: 26.04,
-                top: 26.04,
-                position: 'absolute',
-                background: value < 100
-                  ? 'radial-gradient(61.48% 60.76% at 28.57% 30.38%, #0FDB0C 0%, #089604 100%), radial-gradient(92.10% 173.57% at 628.93% -291.34%, rgba(255, 255, 255, 0.29) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, rgba(0, 89, 0, 0) 0%, rgba(0, 89, 0, 0.20) 100%)'
-                  : 'linear-gradient(180deg, rgba(255, 215, 0, 0.5) 0%, rgba(255, 215, 0, 0.20) 100%)', 
-                boxShadow: boxShadow,
-                borderRadius: 5.26,
-                border: `8.42px ${borderColor} solid`,
-              }}
-            />
-            <div
-              style={{
-                width: 56.44,
-                height: 56.44,
-                left: 21.78,
-                top: 21.78,
-                position: 'absolute',
-                opacity: 0.47,
-                borderRadius: 14.25,
-                border: `1.02px ${borderColor} solid`,
-              }}
-            />
-            <div
-              style={{
-                width: 47.92,
-                height: 47.92,
-                left: 26.04,
-                top: 26.04,
-                position: 'absolute',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Trophy style={{ color: "white" }} /> 
+                style={{
+                  width: 70.71,
+                  height: 70.71,
+                  left: 20,
+                  top: 0,
+                  position: 'absolute',
+                  transform: 'rotate(45deg)',
+                  transformOrigin: '0 0',
+                  background: trophyColor,
+                  boxShadow: boxShadow,
+                  borderRadius: 10.52,
+                }}
+              />
+              <div
+                style={{
+                  width: 70.83,
+                  height: 70.83,
+                  left: 23.58,
+                  top: 14.58,
+                  position: 'absolute',
+                  background: value < 100 ? 'linear-gradient(159deg, #79F07A 0%, #4CC14C 50%, #1F921F 100%)' : 'linear-gradient(180deg, #FFD700 0%, #FFA500 100%)',
+                  borderRadius: 10.52,
+                }}
+              />
+              <div
+                style={{
+                  width: 47.92,
+                  height: 47.92,
+                  left: 36.04,
+                  top: 26.04,
+                  position: 'absolute',
+                  background: value < 100
+                    ? 'radial-gradient(61.48% 60.76% at 28.57% 30.38%, #0FDB0C 0%, #089604 100%), radial-gradient(92.10% 173.57% at 628.93% -291.34%, rgba(255, 255, 255, 0.29) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, rgba(0, 89, 0, 0) 0%, rgba(0, 89, 0, 0.20) 100%)'
+                    : 'linear-gradient(180deg, rgba(255, 215, 0, 0.5) 0%, rgba(255, 215, 0, 0.20) 100%)', 
+                  boxShadow: boxShadow,
+                  borderRadius: 5.26,
+                  border: `8.42px ${borderColor} solid`,
+                }}
+              />
+              <div
+                style={{
+                  width: 56.44,
+                  height: 56.44,
+                  left: 31.78,
+                  top: 21.78,
+                  position: 'absolute',
+                  opacity: 0.47,
+                  borderRadius: 14.25,
+                  border: `1.02px ${borderColor} solid`,
+                }}
+              />
+              <div
+                style={{
+                  width: 47.92,
+                  height: 47.92,
+                  left: 36.04,
+                  top: 26.04,
+                  position: 'absolute',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Trophy style={{ color: "white" }} /> 
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>

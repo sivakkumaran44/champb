@@ -1,22 +1,24 @@
 {
-    "summary": {
-      "timeUntilExam": 12,
-      "currentStandardProjection": 65,
-      "currentActualProjection": 35,
-      "standardProjectionChange": 2.5,
-      "actualProjectionChange": 2.5
-    },
-    "weeklyData": [
-      { "week": "0", "goalProgress": 55, "standardProjection": 65, "actualProjection": 35 },
-      { "week": "1", "goalProgress": 62, "standardProjection": 70, "actualProjection": 42 },
-      { "week": "2", "goalProgress": 75, "standardProjection": 85, "actualProjection": 55 },
-      { "week": "3", "goalProgress": 78, "standardProjection": 88, "actualProjection": 58 },
-      { "week": "4", "goalProgress": 52, "standardProjection": 82, "actualProjection": 48 },
-      { "week": "5", "goalProgress": 68, "standardProjection": 80, "actualProjection": 45 },
-      { "week": "6", "goalProgress": 65, "standardProjection": 75, "actualProjection": 35 },
-      { "week": "7", "goalProgress": 58, "standardProjection": 65, "actualProjection": 25 },
-      { "week": "8", "goalProgress": 48, "standardProjection": 55, "actualProjection": 35 },
-      { "week": "9", "goalProgress": 60, "standardProjection": 65, "actualProjection": 42 }
-    ]
+  "summary": {
+    "timeUntilExam": 12,
+    "currentStandardProjection": 65,
+    "currentActualProjection": 35,
+    "standardProjectionChange": 2.5,
+    "actualProjectionChange": 2.5
+  },
+  "weeklyData": [
+    { "week": "0", "goalProgress": 55, "standardProjection": 65, "actualProjection": 35 },
+    { "week": "1", "goalProgress": 62, "standardProjection": 70, "actualProjection": 42 },
+    { "week": "2", "goalProgress": 75, "standardProjection": 85, "actualProjection": 55 },
+    { "week": "3", "goalProgress": 78, "standardProjection": 88, "actualProjection": 58 },
+    { "week": "4", "goalProgress": 52, "standardProjection": 82, "actualProjection": 48 },
+    { "week": "5", "goalProgress": 68, "standardProjection": 80, "actualProjection": 45 },
+    { "week": "6", "goalProgress": 65, "standardProjection": 75, "actualProjection": 35 },
+    { "week": "7", "goalProgress": 58, "standardProjection": 65, "actualProjection": 25 },
+    { "week": "8", "goalProgress": 48, "standardProjection": 55, "actualProjection": 35 },
+    { "week": "9", "goalProgress": 60, "standardProjection": 65, "actualProjection": 42 }
+  ],
+  "additionalData": {
+    "progress": 19
   }
-  
+}
