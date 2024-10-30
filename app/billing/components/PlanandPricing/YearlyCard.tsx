@@ -20,7 +20,14 @@ const YearlyCard: React.FC<YearlyCardProps> = ({
   return (
     <Card className="p-4 sm:p-6 bg-emerald-500 rounded-lg relative border border-gray-200 w-full max-w-[20rem] sm:max-w-sm md:max-w-md mx-auto">
       <div className="relative -top-6 -right-6 flex justify-end">
-        <div className="bg-gradient-to-r from-[#FDE68A] to-[#FACC15] text-slate-800 px-8 py-1 text-sm font-medium ">
+        <div className="bg-gradient-to-r from-[#FDE68A] to-[#FACC15] text-slate-800 text-sm   px-6 py-3 
+                   font-medium 
+                   rounded-tr-2xl 
+                   rounded-bl-2xl 
+                   hover:bg-blue-600 
+                   transition-colors 
+                   duration-200"
+>
           Max Savings
         </div>
       </div>

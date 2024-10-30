@@ -73,7 +73,7 @@ const PlansAndPricing = () => {
           </div>
         )}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <MonthlyCard
           originalPrice={savingsData.monthly.originalPrice}
           discountedPrice={prices.monthly}
