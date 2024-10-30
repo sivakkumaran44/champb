@@ -18,12 +18,12 @@ const QuarterlyCard: React.FC<QuarterlyCardProps> = ({
   percentage,
 }) => {
   return (
-    <Card className="p-4 sm:p-6 rounded-lg relative border border-gray-200 w-full max-w-[20rem] sm:max-w-sm md:max-w-md mx-auto">
+    <Card className="p-4 sm:p-6 rounded-lg bg-gradient-to-r from-purple-50 to-indigo-50 relative border border-gray-200 w-full max-w-[20rem] sm:max-w-sm md:max-w-md mx-auto">
       <div className="relative -top-6 -right-6 flex justify-end">
         <div className="bg-gradient-to-r from-[#D946EF] to-[#60A5FA] text-white text-sm px-6 py-3 
                    font-medium 
-                   rounded-tr-2xl 
-                   rounded-bl-2xl 
+                   rounded-tr-xl 
+                   rounded-bl-xl 
                    hover:bg-blue-600 
                    transition-colors 
                    duration-200"

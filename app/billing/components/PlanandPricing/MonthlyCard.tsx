@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
-
 interface MonthlyCardProps {
   originalPrice: number;
   discountedPrice: number;
@@ -9,7 +8,6 @@ interface MonthlyCardProps {
   savings: string;
   percentage: string;
 }
-
 const MonthlyCard: React.FC<MonthlyCardProps> = ({
   originalPrice,
   discountedPrice,
@@ -17,13 +15,13 @@ const MonthlyCard: React.FC<MonthlyCardProps> = ({
   percentage,
 }) => {
   return (
-    <Card className="p-4 sm:p-6 bg-white rounded-lg relative border border-gray-200 w-full max-w-[20rem] sm:max-w-sm md:max-w-md mx-auto ">
+    <Card className="p-4 sm:p-6 bg-gradient-to-r from-indigo-50 to-indigo-100 rounded-lg relative border border-gray-200 w-full max-w-[20rem] sm:max-w-sm md:max-w-md mx-auto ">
       <div className='mb-10'></div>
-      <CardContent>
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center "> 
-          <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-0">{validity} Access</h3>
-          <span className="bg-emerald-500 text-white text-xs px-2 sm:px-3 py-1 rounded-full">
-            Save {percentage}
+      <CardContent className="p-4">
+        <div className="flex flex-col mb-4">
+           <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-0">{validity} Access</h3>
+           <span className="bg-emerald-500 text-white text-xs px-2 py-1 rounded-lg self-start">
+               Save {percentage}
           </span>
         </div>
         <div className="mb-2">
@@ -39,5 +37,4 @@ const MonthlyCard: React.FC<MonthlyCardProps> = ({
     </Card>
   );
 };
-
 export default MonthlyCard;
