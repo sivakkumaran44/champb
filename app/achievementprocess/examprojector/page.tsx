@@ -5,7 +5,7 @@ import ExamPercentageBar from './components/ExamPercentageBar';
 
 const page = () => {
   return (
-    <div className="px-4 md:px-8 lg:px-16"> 
+    <div className="px-4 md:px-8 lg:px-8"> 
     <ExamPercentageBar/>
         <ExamProjectorChart/>
         <ExamStaticCard/>

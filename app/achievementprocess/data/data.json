@@ -18,7 +18,15 @@
     { "week": "8", "goalProgress": 48, "standardProjection": 55, "actualProjection": 35 },
     { "week": "9", "goalProgress": 60, "standardProjection": 65, "actualProjection": 42 }
   ],
+ 
   "additionalData": {
-    "progress": 19
+    "progress": 45,  
+
+    "progressMessages": {
+      "25": "Start with Find My Level test series",
+      "50": "Keep Practicing, Stay Focused",
+      "75": "You're Getting There, Champion!",
+      "100": "Bravo! You're almost there!"
+    }
   }
 }

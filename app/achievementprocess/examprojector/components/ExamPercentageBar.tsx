@@ -1,158 +1,211 @@
 "use client";
-
+import data from '../../data/data.json';
 import { Trophy } from "lucide-react";
-import data from '../../data/data.json'; 
 
 interface ProgressBarProps {
   value?: number;
 }
+type StyleWithMediaQueries = React.CSSProperties & {
+  '@media (min-width: 640px)'?: React.CSSProperties;
+};
 
 export default function Component({ value = data.additionalData.progress }: ProgressBarProps) {
   const getLevelColor = (value: number) => {
     if (value < 25) return {
-      base: 'bg-gradient-to-b from-[#99F6E4] to-[#2DD4BF]', 
-      inner: 'bg-gradient-to-b from-[#14B8A6] to-[#14B8A6]',
-      trophyColor: 'bg-gradient-to-br from-[#61DF61] to-[#168416]',
-      borderColor: '#209220',
-      boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_rgba(1, 96, 1, 0.60)]', 
+      base: 'bg-gradient-to-b from-[#99F6E4] to-[#2DD4BF]',
+      inner: 'bg-[#14B8A6]',
+      border: '#6FE9D6',
     };
     if (value < 50) return {
       base: 'bg-gradient-to-b from-[#FFC190] to-[#C35A2A]',
-      inner: 'radial-gradient(64.20% 64.20% at 32.10% 32.10%, #DA9062 0%, #C67341 100%)',
-      trophyColor: 'bg-gradient-to-br from-[#FFD700] to-[#FFA500]',
-      borderColor: '#D99B19',
-      boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_rgba(217, 155, 25, 0.60)]', 
+      inner: 'bg-gradient-to-b from-[#DA9062] to-[#C67341]',
+      border: '#C76030',
     };
     if (value < 75) return {
       base: 'bg-gradient-to-b from-[#ECEFF6] to-[#B5B5B6]',
-      inner: 'bg-gradient-to-b from-[#6B7280] to-[#6B7280]',
-      trophyColor: 'bg-gradient-to-br from-[#FFD700] to-[#FFA500]',
-      borderColor: '#D99B19',
-      boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_rgba(217, 155, 25, 0.60)]', 
+      inner: 'bg-[#6B7280]',
+      border: '#ACACAC',
     };
     return {
       base: 'bg-gradient-to-b from-[#EDB120] to-[#D99B19]',
-      inner: 'bg-gradient-to-b from-[#FECC2B] to-[#FECC2B]',
-      trophyColor: 'bg-gradient-to-br from-[#FFD700] to-[#FFA500]',
-      borderColor: '#FFD700',
-      boxShadow: 'shadow-inner shadow-[0px_0px_47.34px_rgba(255, 215, 0, 0.60)]', 
+      inner: 'bg-[#FECC2B]',
+      border: '#F6CD62',
     };
   };
 
   const getProgressMessage = (value: number) => {
-    if (value < 25) return "Start with Find My Level test series";
-    if (value < 50) return "Keep Practicing, Stay Focused";
-    if (value < 75) return "You're Getting There, Champion!";
-    if (value < 100) return "Bravo! You're almost there!";
-    return "Congratulations! You've achieved 100%!";
+    if (value < 25) return data.additionalData.progressMessages["25"];
+    if (value < 50) return data.additionalData.progressMessages["50"];
+    if (value < 75) return data.additionalData.progressMessages["75"];
+    return data.additionalData.progressMessages["100"];
   };
 
-  const { base, inner, trophyColor, borderColor, boxShadow } = getLevelColor(value);
+  const { base, inner, border } = getLevelColor(value);
   const progressMessage = getProgressMessage(value);
+
+  const getTrophyStyles = (value: number) => {
+    if (value === 100) {
+      return {
+        topSquare: { background: 'linear-gradient(123deg, #FDE047 0%, #EAB308 100%)' },
+        middleSquare: { background: 'linear-gradient(159deg, #FDE68A 0%, #FACC15 50%, #CA8A04 100%)' },
+        innerSquare: {
+          background: 'radial-gradient(61.48% 60.76% at 28.57% 30.38%, #FEF9C3 0%, #EAB308 100%)',
+          border: '8.42px #EEBC15 solid'
+        },
+        outerRing: { border: '1.02px #FDE047 solid' },
+        center: {
+          background: 'radial-gradient(41.29% 41.29% at 75.22% 48.85%, #A16207 0%, #EDB810 100%)',
+          border: '3.33px #F1FFF1 solid'
+        }
+      };
+    }
+    return {
+      topSquare: { background: 'linear-gradient(123deg, #61DF61 0%, #168416 100%)' },
+      middleSquare: { background: 'linear-gradient(159deg, #79F07A 0%, #4CC14C 50%, #1F921F 100%)' },
+      innerSquare: {
+        background: 'radial-gradient(61.48% 60.76% at 28.57% 30.38%, #0FDB0C 0%, #089604 100%)',
+        border: '8.42px #209220 solid'
+      },
+      outerRing: { border: '1.02px #AFFFAF solid' },
+      center: {
+        background: 'radial-gradient(41.29% 41.29% at 75.22% 48.85%, #316331 0%, #8BDCC8 100%)',
+        border: '3.33px #F1FFF1 solid'
+      }
+    };
+  };
+
+  const trophyStyles = getTrophyStyles(value);
 
   return (
     <div className="w-full px-4 md:px-8 lg:px-16 py-8">
-      <div className="relative h-12">
-        <div className="absolute inset-0 bg-[#E0F2FE] rounded-full overflow-hidden">
+      <div className="relative h-12 mb-6">
+        <div className="absolute inset-0 bg-[#E0F2FE] rounded-full sm:rounded-full overflow-hidden">
           <div
-            className={`h-full rounded-full ${base}`}
+            className={`h-full rounded-full sm:rounded-full ${base}`}
             style={{ width: `${value}%` }}
           />
         </div>
         <div className="absolute inset-0 flex items-center justify-between">
-          <div className="relative w-20 h-20">
-            <div
-              className={`absolute w-20 h-20 rounded-full ${base}`}
+          <div className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 relative">
+            <div className={`absolute inset-0 rounded-full ${base}`} />
+            <div 
+              className={`absolute inset-2 rounded-full ${inner}`}
+              style={{
+                boxShadow: 'inset 0px 0px 45px #5B1510',
+                border: `8px solid ${border}`,
+                '@media (min-width: 640px)': {
+                  border: `10px solid ${border}`
+                }
+              } as StyleWithMediaQueries}
             />
-            <div
-              className={`absolute w-14 h-14 rounded-full ${inner} left-3 top-3`}
-            />
-            <div
-              className={`absolute w-16 h-16 opacity-25 mix-blend-overlay rounded-full border border-white left-2 top-2`}
-            />
-            <div
-              className="absolute left-1/2 top-1/2 text-white text-xl font-semibold -translate-x-1/2 -translate-y-1/2 text-center"
-            >
-              {value}%
-            </div>
+            <div className="absolute inset-1 rounded-full opacity-25 mix-blend-overlay border border-white" />
+            <span className="relative text-white text-lg sm:text-xl font-semibold">{value}%</span>
           </div>
 
-          <div className="items-center justify-end">
-            <div className="w-24 h-24 relative ">
+          <div className="flex items-center justify-end">
+            <div className="w-8 h-20 sm:w-8 sm:h-20 relative">
               <div
                 style={{
-                  width: 70.71,
-                  height: 70.71,
-                  left: 20,
+                  width: 53.03,
+                  height: 53.03,
+                  left: 37.5,
                   top: 0,
                   position: 'absolute',
                   transform: 'rotate(45deg)',
                   transformOrigin: '0 0',
-                  background: trophyColor,
-                  boxShadow: boxShadow,
-                  borderRadius: 10.52,
-                }}
+                  borderRadius: 7.89,
+                  ...trophyStyles.topSquare,
+                  '@media (min-width: 640px)': {
+                    width: 70.71,
+                    height: 70.71,
+                    left: 50,
+                    borderRadius: 10.52,
+                  }
+                } as StyleWithMediaQueries}
               />
               <div
                 style={{
-                  width: 70.83,
-                  height: 70.83,
-                  left: 23.58,
-                  top: 14.58,
+                  width: 53.12,
+                  height: 53.12,
+                  left: 10.94,
+                  top: 10.94,
                   position: 'absolute',
-                  background: value < 100 ? 'linear-gradient(159deg, #79F07A 0%, #4CC14C 50%, #1F921F 100%)' : 'linear-gradient(180deg, #FFD700 0%, #FFA500 100%)',
-                  borderRadius: 10.52,
-                }}
+                  borderRadius: 7.89,
+                  ...trophyStyles.middleSquare,
+                  '@media (min-width: 640px)': {
+                    width: 70.83,
+                    height: 70.83,
+                    left: 14.58,
+                    top: 14.58,
+                    borderRadius: 10.52,
+                  }
+                } as StyleWithMediaQueries}
               />
               <div
                 style={{
-                  width: 47.92,
-                  height: 47.92,
-                  left: 36.04,
-                  top: 26.04,
+                  width: 35.94,
+                  height: 35.94,
+                  left: 19.53,
+                  top: 19.53,
                   position: 'absolute',
-                  background: value < 100
-                    ? 'radial-gradient(61.48% 60.76% at 28.57% 30.38%, #0FDB0C 0%, #089604 100%), radial-gradient(92.10% 173.57% at 628.93% -291.34%, rgba(255, 255, 255, 0.29) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, rgba(0, 89, 0, 0) 0%, rgba(0, 89, 0, 0.20) 100%)'
-                    : 'linear-gradient(180deg, rgba(255, 215, 0, 0.5) 0%, rgba(255, 215, 0, 0.20) 100%)', 
-                  boxShadow: boxShadow,
-                  borderRadius: 5.26,
-                  border: `8.42px ${borderColor} solid`,
-                }}
+                  borderRadius: 3.95,
+                  ...trophyStyles.innerSquare,
+                  '@media (min-width: 640px)': {
+                    width: 47.92,
+                    height: 47.92,
+                    left: 26.04,
+                    top: 26.04,
+                    borderRadius: 5.26,
+                  }
+                } as StyleWithMediaQueries}
               />
               <div
                 style={{
-                  width: 56.44,
-                  height: 56.44,
-                  left: 31.78,
-                  top: 21.78,
+                  width: 42.33,
+                  height: 42.33,
+                  left: 16.34,
+                  top: 16.34,
                   position: 'absolute',
                   opacity: 0.47,
-                  borderRadius: 14.25,
-                  border: `1.02px ${borderColor} solid`,
-                }}
+                  borderRadius: 10.69,
+                  ...trophyStyles.outerRing,
+                  '@media (min-width: 640px)': {
+                    width: 56.44,
+                    height: 56.44,
+                    left: 21.78,
+                    top: 21.78,
+                    borderRadius: 14.25,
+                  }
+                } as StyleWithMediaQueries}
               />
               <div
                 style={{
-                  width: 47.92,
-                  height: 47.92,
-                  left: 36.04,
-                  top: 26.04,
+                  width: 32.5,
+                  height: 30.25,
+                  left: 21.25,
+                  top: 21.25,
                   position: 'absolute',
+                  borderRadius: 5,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                }}
+                  '@media (min-width: 640px)': {
+                    width: 43.33,
+                    height: 40.33,
+                    left: 28.33,
+                    top: 28.33,
+                    borderRadius: 6.67,
+                  },
+                
+                } as StyleWithMediaQueries}
               >
-                <Trophy style={{ color: "white" }} /> 
+                <Trophy size={20} color="white" />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="flex justify-between mt-2 text-xs py-4">
-        <span className="text-gray-600">{progressMessage}</span>
-        <span className="text-gray-600">49 Days</span>
-      </div>
+      <p className=" text-lg sm:text-xl font-medium">{progressMessage}</p>
     </div>
   );
 }
