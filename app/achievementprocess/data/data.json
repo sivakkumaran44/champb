@@ -20,8 +20,8 @@
   ],
  
   "additionalData": {
-    "progress": 45,  
-
+    "progress": 87,  
+    "daysLeft": 12,
     "progressMessages": {
       "25": "Start with Find My Level test series",
       "50": "Keep Practicing, Stay Focused",

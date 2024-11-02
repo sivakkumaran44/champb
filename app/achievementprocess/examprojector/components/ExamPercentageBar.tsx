@@ -1,6 +1,6 @@
 "use client";
 import data from '../../data/data.json';
-import { Trophy } from "lucide-react";
+import { Clock, Trophy } from "lucide-react";
 
 interface ProgressBarProps {
   value?: number;
@@ -78,7 +78,7 @@ export default function Component({ value = data.additionalData.progress }: Prog
 
   return (
     <div className="w-full px-4 md:px-8 lg:px-16 py-8">
-      <div className="relative h-12 mb-6">
+      <div className="relative h-12 mb-6 ">
         <div className="absolute inset-0 bg-[#E0F2FE] rounded-full sm:rounded-full overflow-hidden">
           <div
             className={`h-full rounded-full sm:rounded-full ${base}`}
@@ -200,12 +200,22 @@ export default function Component({ value = data.additionalData.progress }: Prog
                 } as StyleWithMediaQueries}
               >
                 <Trophy size={20} color="white" />
+               
               </div>
             </div>
           </div>
         </div>
       </div>
-      <p className=" text-lg sm:text-xl font-medium">{progressMessage}</p>
-    </div>
+      <div className="flex items-center justify-between ">
+        <p className="text-sm sm:text-lg font-medium flex-grow">{progressMessage}</p>
+        <div className="flex items-center">
+          <Clock className="w-5 h-5 mr-2 text-blue-500" />
+          <span className="text-sm sm:text-base font-medium">
+            {data.additionalData.daysLeft} days left
+          </span>
+        </div>
+        </div>
+        </div>
+  
   );
 }
