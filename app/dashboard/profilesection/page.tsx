@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileBanner from './components/profileBanner'
+import ProfileBanner from './components/ProfileBanner'
 
 const page = () => {
   return (
