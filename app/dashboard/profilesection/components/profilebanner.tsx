@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-const ProfileBanner=() =>{
+const ProfileBanner =() =>{
   const [name, setName] = useState("Lorem Ipsum");
   
   const handleUpdateName = (newName: string) => {
