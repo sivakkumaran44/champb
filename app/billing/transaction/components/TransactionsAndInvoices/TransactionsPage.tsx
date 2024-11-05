@@ -64,7 +64,7 @@ const TransactionsPage = () => {
                 <div className="flex justify-end space-x-2 flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8">
                 <Button
   variant="outline"
-  className="w-full sm:w-auto border-[#6EDDB2] text-[#6EDDB2] bg-white hover:bg-white transition-colors text-sm sm:text-base"
+  className="w-full sm:w-auto border-[#6EDDB2] text-slate-500 bg-white hover:bg-white transition-colors text-sm sm:text-base"
   onClick={() => setIsInvoiceOpen(true)}
 >
   View Invoice

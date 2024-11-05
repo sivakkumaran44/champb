@@ -15,7 +15,7 @@ interface InvoiceModalProps {
   onOpenChange?: (open: boolean) => void
 }
 
-export default function Component({ isOpen, onOpenChange }: InvoiceModalProps = {}) {
+const InvoiceModal=({ isOpen, onOpenChange }: InvoiceModalProps = {})=> {
   const invoiceRef = useRef<HTMLDivElement>(null)
   const [isClient, setIsClient] = useState(false)
 
@@ -61,7 +61,7 @@ export default function Component({ isOpen, onOpenChange }: InvoiceModalProps = 
 
         <div ref={invoiceRef} className="relative bg-white p-4 sm:p-6">
           <div className="flex justify-start mb-4">
-            <Image src={bChampLogo} alt="bChamp Logo" className="w-28 h-28 object-contain rounded-full" />
+            <Image src={bChampLogo} alt="bChamp Logo" className="w-[full] h-[full] object-contain rounded-full" />
           </div>
 
           <div className="flex justify-between mb-8">
@@ -145,3 +145,4 @@ export default function Component({ isOpen, onOpenChange }: InvoiceModalProps = 
     </Dialog>
   )
 }
+export default InvoiceModal
