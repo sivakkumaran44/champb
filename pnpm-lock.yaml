@@ -98,6 +98,9 @@ importers:
       html-to-image:
         specifier: ^1.11.11
         version: 1.11.11
+      html2canvas:
+        specifier: ^1.4.1
+        version: 1.4.1
       jspdf:
         specifier: ^2.5.2
         version: 2.5.2

@@ -1,0 +1,20 @@
+{
+    "invoiceNumber": 123,
+    "date": "30 Sept, 2024",
+    "gstin": "ABCD EFGH 0000 0000 0000",
+    "from": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"],
+    "to": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"],
+    "items": [
+      {
+        "name": "SSC CGL TEST 2024",
+        "description": "12 Months Access",
+        "cost": 1061,
+        "quantity": 1,
+        "total": 1061
+      }
+    ],
+    "subtotal": 1061,
+    "discount": 62,
+    "total": 999
+  }
+  

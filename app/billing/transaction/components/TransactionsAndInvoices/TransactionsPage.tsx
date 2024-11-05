@@ -1,16 +1,17 @@
 "use client";
-import React from 'react';
+import React,{useState} from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
-
+import InvoiceModal from './invoice-modal'
 const TransactionsPage = () => {
+  const [isInvoiceOpen, setIsInvoiceOpen] = useState(false)
   return (
     <div className="w-full min-h-screen p-4 sm:p-6 md:p-8 max-w-4xl ">
       <h1 className="text-xl sm:text-2xl text-[#707F8F] mb-4 sm:mb-6 ">
         Upgrade Your Score Potential
       </h1>
-      
+     
       <Card className="overflow-hidden w-full">
         <CardContent className="p-0">
           <div className="grid grid-cols-1 md:grid-cols-2 text-center">
@@ -61,23 +62,29 @@ const TransactionsPage = () => {
                 </div>
 
                 <div className="flex justify-end space-x-2 flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8">
-                  <Button
-                    variant="outline"
-                    className="w-full sm:w-auto border-[#6EDDB2] text-[#6EDDB2] bg-white hover:bg-white  transition-colors text-sm sm:text-base"
-                  >
-                    View Invoice
-                  </Button>
+                <Button
+  variant="outline"
+  className="w-full sm:w-auto border-[#6EDDB2] text-[#6EDDB2] bg-white hover:bg-white transition-colors text-sm sm:text-base"
+  onClick={() => setIsInvoiceOpen(true)}
+>
+  View Invoice
+</Button>
                   <Button
                     className="w-full sm:w-auto bg-gray-800 hover:bg-gray-900 transition-colors text-sm sm:text-base"
                   >
                     Renew Now
                   </Button>
+                  
                 </div>
               </div>
             </div>
           </div>
         </CardContent>
       </Card>
+      <InvoiceModal 
+  isOpen={isInvoiceOpen}
+  onOpenChange={setIsInvoiceOpen}
+/>
     </div>
   );
 };
