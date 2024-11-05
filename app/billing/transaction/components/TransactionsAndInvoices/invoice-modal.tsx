@@ -15,13 +15,13 @@ interface InvoiceModalProps {
 
 const InvoiceModal = ({ isOpen, onOpenChange }: InvoiceModalProps = {}) => {
   const [isClient, setIsClient] = useState(false)
-  
+
   useEffect(() => {
     setIsClient(true)
   }, [])
 
   const calculateGST = (amount: number) => {
-    const gstRate = 18 
+    const gstRate = 18
     return (amount * gstRate) / 100
   }
 
@@ -61,102 +61,86 @@ const InvoiceModal = ({ isOpen, onOpenChange }: InvoiceModalProps = {}) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl h-full max-h-screen overflow-y-auto bg-white p-0">
+      <DialogContent className="max-w-3xl max-h-[calc(100vh-2rem)] overflow-y-auto p-0 bg-white">
         <DialogTitle className="sr-only">Invoice Details</DialogTitle>
         <DialogDescription className="sr-only">
           Detailed invoice information including purchase details and payment summary
         </DialogDescription>
-        
-        <div className="sticky top-0 z-10 px-4 sm:px-6 py-4 flex items-center justify-between bg-white border-b">
+        <div className="px-4 py-3 flex items-center justify-between bg-white border-b">
           <Button onClick={handleDownload} className="bg-[#10B981] hover:bg-[#0D9668]">
             <Download className="mr-2 h-4 w-4" />
             Download Invoice
           </Button>
         </div>
-
-        <div id="invoice-content" className="p-4 sm:p-6">
+        <div id="invoice-content" className="relative bg-white p-4 sm:p-6">
           <div className="flex justify-start mb-4">
-            <Image src={bChampLogo} alt="bChamp Logo" className="max-w-[200px]" />
+            <Image src={bChampLogo} alt="bChamp Logo" />
           </div>
-
-          <div className="flex flex-col sm:flex-row justify-between mb-8 gap-4">
+          <div className="flex flex-col sm:flex-row justify-between mb-8 text-sm sm:text-base">
             <div>
               <div className="text-2xl sm:text-4xl text-gray-400 mb-2">№ 123</div>
-              <div className="text-sm text-gray-600">
+              <div className="text-gray-600">
                 <div>Date</div>
-                <div className="font-medium">{invoiceData.date}</div>
+                <div className="font-medium">{formatDate(invoiceData.date)}</div>
               </div>
             </div>
-            <div className="sm:text-right">
+            <div className="text-right">
               <div className="text-xl sm:text-2xl font-bold mb-2">Invoice</div>
-              <div className="text-sm text-gray-600">
+              <div className="text-gray-600">
                 <div>GSTIN</div>
-                <div className="font-medium break-all">
-                  ABCD EFGH 0000 0000 0000
-                </div>
+                <div className="font-medium">ABCD EFGH 0000 0000 0000</div>
               </div>
             </div>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 mb-8 text-xs sm:text-sm">
             <div>
               <div className="text-gray-600 mb-2">From</div>
-              <div className="text-sm">
+              <div>
                 {invoiceData.from.map((line, index) => (
-                  <div key={index} className="break-words">{line}</div>
+                  <div key={index}>{line}</div>
                 ))}
               </div>
             </div>
             <div>
               <div className="text-gray-600 mb-2">To</div>
-              <div className="text-sm">
-                Lorem Ipsum<br />
-                Lorem Ipsum<br />
-                Lorem Ipsum
-              </div>
+              <div>Lorem Ipsum<br />Lorem Ipsum<br />Lorem Ipsum</div>
             </div>
           </div>
-
-          <div className="overflow-x-auto mb-8">
-            <div className="min-w-full inline-block align-middle">
-              <div className="border rounded-lg overflow-hidden">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead>
-                    <tr className="bg-gray-50">
-                      <th className="text-left p-4 whitespace-nowrap">Item</th>
-                      <th className="text-right p-4 whitespace-nowrap">Cost</th>
-                      <th className="text-right p-4 whitespace-nowrap">Qty</th>
-                      <th className="text-right p-4 whitespace-nowrap">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {invoiceData.items.map((item, index) => (
-                      <tr key={index}>
-                        <td className="p-4">
-                          <div className="font-medium">{item.name}</div>
-                          {item.validFrom && item.expiresOn && (
-                            <>
-                              <div className="text-xs text-gray-400 mt-1">
-                                Valid from: {formatDate(item.validFrom)}
-                              </div>
-                              <div className="text-xs text-gray-400">
-                                Expires on: {formatDate(item.expiresOn)}
-                              </div>
-                            </>
-                          )}
-                        </td>
-                        <td className="text-right p-4 whitespace-nowrap">₹{item.cost.toFixed(2)}</td>
-                        <td className="text-right p-4 whitespace-nowrap">{item.quantity}</td>
-                        <td className="text-right p-4 whitespace-nowrap">₹{item.total.toFixed(2)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          <div className="border rounded-lg overflow-hidden mb-8 text-xs sm:text-sm">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="text-left p-3 sm:p-4">Item</th>
+                  <th className="text-right p-3 sm:p-4">Cost</th>
+                  <th className="text-right p-3 sm:p-4">Qty</th>
+                  <th className="text-right p-3 sm:p-4">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {invoiceData.items.map((item, index) => (
+                  <tr key={index} className="border-t">
+                    <td className="p-3 sm:p-4">
+                      <div className="font-medium">{item.name}</div>
+                      {item.validFrom && item.expiresOn && (
+                        <>
+                          <div className="text-xs text-gray-400 mt-1">
+                            Valid from: {formatDate(item.validFrom)}
+                          </div>
+                          <div className="text-xs text-gray-400">
+                            Expires on: {formatDate(item.expiresOn)}
+                          </div>
+                        </>
+                      )}
+                    </td>
+                    <td className="text-right p-3 sm:p-4">₹{item.cost.toFixed(2)}</td>
+                    <td className="text-right p-3 sm:p-4">{item.quantity}</td>
+                    <td className="text-right p-3 sm:p-4">₹{item.total.toFixed(2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-
-          <div className="space-y-2 max-w-sm ml-auto">
+          <div className="space-y-2 text-xs sm:text-sm">
             <div className="flex justify-between">
               <div>Subtotal</div>
               <div>₹{invoiceData.subtotal.toFixed(2)}</div>
@@ -183,5 +167,4 @@ const InvoiceModal = ({ isOpen, onOpenChange }: InvoiceModalProps = {}) => {
     </Dialog>
   )
 }
-
 export default InvoiceModal
