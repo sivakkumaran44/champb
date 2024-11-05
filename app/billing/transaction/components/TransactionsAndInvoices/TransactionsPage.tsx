@@ -31,7 +31,7 @@ const TransactionsPage = () => {
                 </p>
                 
                 <Button 
-                  className="w-full bg-[#10B981] hover:bg-white/90 text-white transition-colors"
+                  className="w-full bg-[#10B981] hover:bg-[#10B981] text-white transition-colors"
                 >
                   Upgrade
                 </Button>

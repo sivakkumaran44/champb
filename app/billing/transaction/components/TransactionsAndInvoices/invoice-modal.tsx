@@ -1,4 +1,3 @@
-"use client"
 import { useEffect, useRef, useState } from "react"
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
@@ -6,23 +5,29 @@ import { Download } from "lucide-react"
 import jsPDF from "jspdf"
 import html2canvas from "html2canvas"
 import Image from "next/image"
-
-import invoiceData from "../../../data/invoicesdata.json" 
-import bChampLogo from "@/public/assets/img/LOGO SVG.svg" 
-
+import invoiceData from "../../../data/invoicesdata.json"
+import bChampLogo from "@/public/assets/img/LOGO SVG.svg"
 interface InvoiceModalProps {
   isOpen?: boolean
   onOpenChange?: (open: boolean) => void
 }
-
-const InvoiceModal=({ isOpen, onOpenChange }: InvoiceModalProps = {})=> {
+const InvoiceModal = ({ isOpen, onOpenChange }: InvoiceModalProps = {}) => {
   const invoiceRef = useRef<HTMLDivElement>(null)
   const [isClient, setIsClient] = useState(false)
-
   useEffect(() => {
     setIsClient(true)
   }, [])
-
+  const calculateGST = (amount: number) => {
+    const gstRate = 18 // 18% GST
+    return (amount * gstRate) / 100
+  }
+  const formatDate = (date: string) => {
+    return new Date(date).toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    })
+  }
   const handleDownload = async () => {
     if (invoiceRef.current) {
       const canvas = await html2canvas(invoiceRef.current, { scale: 2 })
@@ -39,11 +44,12 @@ const InvoiceModal=({ isOpen, onOpenChange }: InvoiceModalProps = {})=> {
       pdf.save('invoice.pdf')
     }
   }
-
   if (!isClient) {
     return null
   }
-
+  const taxableValue = invoiceData.subtotal - invoiceData.discount
+  const gstAmount = calculateGST(taxableValue)
+  const finalTotal = taxableValue + gstAmount
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl max-h-[calc(100vh-2rem)] overflow-y-auto p-0 bg-white">
@@ -51,22 +57,19 @@ const InvoiceModal=({ isOpen, onOpenChange }: InvoiceModalProps = {})=> {
         <DialogDescription className="sr-only">
           Detailed invoice information including purchase details and payment summary
         </DialogDescription>
-        
         <div className="px-6 py-4 flex items-center justify-between bg-white border-b">
           <Button onClick={handleDownload} className="bg-[#10B981] hover:bg-[#0D9668]">
             <Download className="mr-2 h-4 w-4" />
             Download Invoice
           </Button>
         </div>
-
         <div ref={invoiceRef} className="relative bg-white p-4 sm:p-6">
           <div className="flex justify-start mb-4">
-            <Image src={bChampLogo} alt="bChamp Logo" className="w-[full] h-[full] object-contain rounded-full" />
+            <Image src={bChampLogo} alt="bChamp Logo" />
           </div>
-
           <div className="flex justify-between mb-8">
             <div>
-              <div className="text-4xl text-gray-400 mb-2">№ {invoiceData.invoiceNumber}</div>
+              <div className="text-4xl text-gray-400 mb-2">№ 123</div>
               <div className="text-sm text-gray-600">
                 <div>Date</div>
                 <div className="font-medium">{invoiceData.date}</div>
@@ -76,11 +79,12 @@ const InvoiceModal=({ isOpen, onOpenChange }: InvoiceModalProps = {})=> {
               <div className="text-2xl font-bold mb-2">Invoice</div>
               <div className="text-sm text-gray-600">
                 <div>GSTIN</div>
-                <div className="font-medium">{invoiceData.gstin}</div>
+                <div className="font-medium">
+                 ABCD EFGH 0000 0000 0000
+                </div>
               </div>
             </div>
           </div>
-
           <div className="grid grid-cols-2 gap-8 mb-8">
             <div>
               <div className="text-gray-600 mb-2">From</div>
@@ -99,7 +103,6 @@ const InvoiceModal=({ isOpen, onOpenChange }: InvoiceModalProps = {})=> {
               </div>
             </div>
           </div>
-
           <div className="border rounded-lg overflow-hidden mb-8">
             <table className="w-full">
               <thead>
@@ -114,30 +117,46 @@ const InvoiceModal=({ isOpen, onOpenChange }: InvoiceModalProps = {})=> {
                 {invoiceData.items.map((item, index) => (
                   <tr key={index} className="border-t">
                     <td className="p-4">
-                      <div>{item.name}</div>
-                      <div className="text-sm text-gray-500">{item.description}</div>
+                      <div className="font-medium">{item.name}</div>
+                      {item.validFrom && item.expiresOn && (
+                        <>
+                          <div className="text-xs text-gray-400 mt-1">
+                            Valid from: {formatDate(item.validFrom)}
+                          </div>
+                          <div className="text-xs text-gray-400">
+                            Expires on: {formatDate(item.expiresOn)}
+                          </div>
+                        </>
+                      )}
                     </td>
-                    <td className="text-right p-4">₹{item.cost}</td>
+                    <td className="text-right p-4">₹{item.cost.toFixed(2)}</td>
                     <td className="text-right p-4">{item.quantity}</td>
-                    <td className="text-right p-4">₹{item.total}</td>
+                    <td className="text-right p-4">₹{item.total.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-
           <div className="space-y-2">
             <div className="flex justify-between">
               <div>Subtotal</div>
-              <div>₹{invoiceData.subtotal}</div>
+              <div>₹{invoiceData.subtotal.toFixed(2)}</div>
             </div>
             <div className="flex justify-between">
               <div>Discount</div>
-              <div>₹{invoiceData.discount}</div>
+              <div>₹{invoiceData.discount.toFixed(2)}</div>
+            </div>
+            <div className="flex justify-between">
+              <div>Taxable Value</div>
+              <div>₹{taxableValue.toFixed(2)}</div>
+            </div>
+            <div className="flex justify-between">
+              <div>GST @ 18%</div>
+              <div>₹{gstAmount.toFixed(2)}</div>
             </div>
             <div className="flex justify-between text-lg font-bold">
               <div>Total</div>
-              <div>₹{invoiceData.total}</div>
+              <div>₹{finalTotal.toFixed(2)}</div>
             </div>
           </div>
         </div>
