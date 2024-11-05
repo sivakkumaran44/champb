@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
@@ -7,20 +7,24 @@ import html2canvas from "html2canvas"
 import Image from "next/image"
 import invoiceData from "../../../data/invoicesdata.json"
 import bChampLogo from "@/public/assets/img/LOGO SVG.svg"
+
 interface InvoiceModalProps {
   isOpen?: boolean
   onOpenChange?: (open: boolean) => void
 }
+
 const InvoiceModal = ({ isOpen, onOpenChange }: InvoiceModalProps = {}) => {
-  const invoiceRef = useRef<HTMLDivElement>(null)
   const [isClient, setIsClient] = useState(false)
+  
   useEffect(() => {
     setIsClient(true)
   }, [])
+
   const calculateGST = (amount: number) => {
-    const gstRate = 18 // 18% GST
+    const gstRate = 18 
     return (amount * gstRate) / 100
   }
+
   const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString('en-IN', {
       day: 'numeric',
@@ -28,9 +32,11 @@ const InvoiceModal = ({ isOpen, onOpenChange }: InvoiceModalProps = {}) => {
       year: 'numeric'
     })
   }
+
   const handleDownload = async () => {
-    if (invoiceRef.current) {
-      const canvas = await html2canvas(invoiceRef.current, { scale: 2 })
+    const invoiceElement = document.getElementById("invoice-content")
+    if (invoiceElement) {
+      const canvas = await html2canvas(invoiceElement, { scale: 2 })
       const imgData = canvas.toDataURL('image/png')
       const pdf = new jsPDF('p', 'mm', 'a4')
       const pdfWidth = pdf.internal.pageSize.getWidth()
@@ -44,12 +50,15 @@ const InvoiceModal = ({ isOpen, onOpenChange }: InvoiceModalProps = {}) => {
       pdf.save('invoice.pdf')
     }
   }
+
   if (!isClient) {
     return null
   }
+
   const taxableValue = invoiceData.subtotal - invoiceData.discount
   const gstAmount = calculateGST(taxableValue)
   const finalTotal = taxableValue + gstAmount
+
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl max-h-[calc(100vh-2rem)] overflow-y-auto p-0 bg-white">
@@ -63,7 +72,7 @@ const InvoiceModal = ({ isOpen, onOpenChange }: InvoiceModalProps = {}) => {
             Download Invoice
           </Button>
         </div>
-        <div ref={invoiceRef} className="relative bg-white p-4 sm:p-6">
+        <div id="invoice-content" className="relative bg-white p-4 sm:p-6">
           <div className="flex justify-start mb-4">
             <Image src={bChampLogo} alt="bChamp Logo" />
           </div>
@@ -95,12 +104,12 @@ const InvoiceModal = ({ isOpen, onOpenChange }: InvoiceModalProps = {}) => {
               </div>
             </div>
             <div>
-              <div className="text-gray-600 mb-2">To</div>
-              <div className="text-sm">
-                {invoiceData.to.map((line, index) => (
-                  <div key={index}>{line}</div>
-                ))}
-              </div>
+            <div className="text-gray-600 mb-2">To</div>
+            <div className="text-sm">
+            Lorem Ipsum<br />
+            Lorem Ipsum<br />
+            Lorem Ipsum
+            </div>
             </div>
           </div>
           <div className="border rounded-lg overflow-hidden mb-8">
@@ -118,12 +127,9 @@ const InvoiceModal = ({ isOpen, onOpenChange }: InvoiceModalProps = {}) => {
                   <tr key={index} className="border-t">
                     <td className="p-4">
                       <div className="font-medium">{item.name}</div>
-                      {item.validFrom && item.expiresOn && (
+                      { item.expiresOn && (
                         <>
-                          <div className="text-xs text-gray-400 mt-1">
-                            Valid from: {formatDate(item.validFrom)}
-                          </div>
-                          <div className="text-xs text-gray-400">
+                            <div className="text-xs text-slate-600">
                             Expires on: {formatDate(item.expiresOn)}
                           </div>
                         </>

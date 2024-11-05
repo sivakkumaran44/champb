@@ -1,14 +1,13 @@
 {
   "date": "30 Sept, 2024",
   "from": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"],
-  "to": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"],
+  "to": [""],
   "items": [
     {
       "name": "365 Days Access",
       "cost": 1061,
       "quantity": 1,
       "total": 1061,
-      "validFrom": "2024-09-30",
       "expiresOn": "2025-09-30"
     }
   ],
