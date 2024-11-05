@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useRef, useState } from "react"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
 import jsPDF from "jspdf"
@@ -47,6 +47,11 @@ export default function Component({ isOpen, onOpenChange }: InvoiceModalProps = 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl max-h-[calc(100vh-2rem)] overflow-y-auto p-0 bg-white">
+        <DialogTitle className="sr-only">Invoice Details</DialogTitle>
+        <DialogDescription className="sr-only">
+          Detailed invoice information including purchase details and payment summary
+        </DialogDescription>
+        
         <div className="px-6 py-4 flex items-center justify-between bg-white border-b">
           <Button onClick={handleDownload} className="bg-[#10B981] hover:bg-[#0D9668]">
             <Download className="mr-2 h-4 w-4" />
